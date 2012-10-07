@@ -1,5 +1,5 @@
 #stringmetric
-A collection of string metrics built with Scala. Includes a light-weight core API and CLI for each string metric. The following string metrics are currently supported:
+A collection of string metrics implemented in Scala. Includes a light-weight core API and CLI for each string metric. The following string metrics are currently supported:
 
 * Jaro-Winkler
 
@@ -27,6 +27,7 @@ Uncompress the built tar and ensure you have ability to execute the commands. Ex
 
 ## Requirements
 * Scala 2.9.2
+* Gradle 1.2 or above
 
 ## License
 Apache License, Version 2.0
