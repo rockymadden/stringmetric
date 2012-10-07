@@ -28,7 +28,7 @@ object JaroWinklerMetric extends StringMetric {
 		val jaro = (
 			(matchesScore.toFloat / ca1.length) +
 			(matchesScore.toFloat / ca2.length) +
-			((matchesScore.toFloat - transpositionsScore) / matchesScore.toFloat)
+			((matchesScore.toFloat - transpositionsScore) / matchesScore)
 		) / 3
 
 		jaro + ((if (prefix.length <= 4) prefix.length else 4) * (.1f * (1 - jaro)))
