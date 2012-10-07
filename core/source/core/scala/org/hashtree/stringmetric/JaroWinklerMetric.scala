@@ -40,8 +40,8 @@ object JaroWinklerMetric extends StringMetric {
 
 	private[this] def `match`(ct: CompareTuple): MatchTuple = {
 		val window = math.abs((math.max(ct._1.length, ct._2.length) / 2f).floor.toInt - 1)
-		val a1 = ArrayBuffer[Int]()
-		val a2 = ArrayBuffer[Int]()
+		val ab1 = ArrayBuffer[Int]()
+		val ab2 = ArrayBuffer[Int]()
 
 		breakable {
 			for (i <- 0 until ct._1.length) {
@@ -51,10 +51,10 @@ object JaroWinklerMetric extends StringMetric {
 				if (start > ct._2.length - 1) break()
 
 				breakable {
-					for (ii <- start to end if ! a2.contains(ii)) {
+					for (ii <- start to end if !ab2.contains(ii)) {
 						if (ct._1(i) == ct._2(ii)) {
-							a1.append(i)
-							a2.append(ii)
+							ab1.append(i)
+							ab2.append(ii)
 
 							break()
 						}
@@ -63,7 +63,7 @@ object JaroWinklerMetric extends StringMetric {
 			}
 		}
 
-		(a1.map(ct._1(_)).toArray, a2.sortWith(_ < _).map(ct._2(_)).toArray)
+		(ab1.map(ct._1(_)).toArray, ab2.sortWith(_ < _).map(ct._2(_)).toArray)
 	}
 
 	private[this] def scoreMatches(mt: MatchTuple): Int = {
