@@ -11,8 +11,8 @@ import scala.util.control.Breaks.{ break, breakable }
  */
 object JaroWinklerMetric extends StringMetric {
 	override def compare(charArray1: Array[Char], charArray2: Array[Char]): Float = {
-		val prefix = charArray1.zip(charArray2).takeWhile(t => t._1 == t._2).map(_._1)
 		val jaro = JaroMetric.compare(charArray1, charArray2)
+		val prefix = charArray1.zip(charArray2).takeWhile(t => t._1 == t._2).map(_._1)
 
 		jaro + ((if (prefix.length <= 4) prefix.length else 4) * (0.1f * (1 - jaro)))
 	}
