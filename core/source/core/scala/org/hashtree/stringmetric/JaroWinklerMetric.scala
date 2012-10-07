@@ -17,9 +17,9 @@ object JaroWinklerMetric extends StringMetric {
 		// Return 0 if either character array lacks length.
 		if (ca1.length == 0 || ca2.length == 0) return 0f
 
-		val (m1, m2) = matchChars(ca1, ca2)
-		val matchesScore = scoreMatches(m1, m2)
-		val transpositionsScore = scoreTranspositions(m1, m2)
+		val (mca1, mca2) = matchChars(ca1, ca2)
+		val matchesScore = scoreMatches(mca1, mca2)
+		val transpositionsScore = scoreTranspositions(mca1, mca2)
 
 		// Return 0 if matches score is 0.
 		if (matchesScore == 0) return 0f
