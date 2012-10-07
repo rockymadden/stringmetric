@@ -9,21 +9,23 @@ import scala.util.control.Breaks.{ break, breakable }
  * matched in string2, it cannot be matched upon again. This results in a more penalized distance in these scenarios.
  */
 object JaroMetric extends StringMetric {
-	override def compare(string1: String, string2: String): Float = {
-		val ca1 = string1.replaceAllLiterally(" ", "").toLowerCase.toCharArray
-		val ca2 = string2.replaceAllLiterally(" ", "").toLowerCase.toCharArray
-
+	override def compare(charArray1: Array[Char], charArray2: Array[Char]): Float = {
 		// Return 0 if either character array lacks length.
-		if (ca1.length == 0 || ca2.length == 0) return 0f
+		if (charArray1.length == 0 || charArray2.length == 0) return 0f
 
-		val mt = `match`(ca1, ca2)
-		val ms = scoreMatches(mt._1, mt._2)
-		val ts = scoreTranspositions(mt._1, mt._2)
+		val mt = `match`((charArray1, charArray2))
+		val ms = scoreMatches((mt._1, mt._2))
+		val ts = scoreTranspositions((mt._1, mt._2))
 
 		// Return 0 if matches score is 0.
 		if (ms == 0) return 0f
 
-		((ms.toFloat / ca1.length) + (ms.toFloat / ca2.length) + ((ms.toFloat - ts) / ms)) / 3
+		((ms.toFloat / charArray1.length) + (ms.toFloat / charArray2.length) + ((ms.toFloat - ts) / ms)) / 3
+	}
+
+	override def compare(string1: String, string2: String): Float = {
+		compare(string1.replaceAllLiterally(" ", "").toLowerCase.toCharArray,
+			string2.replaceAllLiterally(" ", "").toLowerCase.toCharArray)
 	}
 
 	private[this] def `match`(ct: CompareTuple): MatchTuple = {
