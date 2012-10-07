@@ -24,7 +24,7 @@ object JaroWinklerMetric extends StringMetric {
 		// Return 0 if matches score is 0.
 		if (matchesScore == 0) return 0f
 
-		val prefix = ca1.zip(ca2).takeWhile(t => t._1 == t._2).map(_._1).mkString
+		val prefix = ca1.zip(ca2).takeWhile(t => t._1 == t._2).map(_._1)
 		val jaro = (
 			(matchesScore.toFloat / ca1.length) +
 			(matchesScore.toFloat / ca2.length) +
