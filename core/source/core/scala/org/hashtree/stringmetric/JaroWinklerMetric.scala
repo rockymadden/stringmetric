@@ -44,7 +44,7 @@ object JaroWinklerMetric extends StringMetric {
 				val start = if (i - window <= 0) 0 else i - window
 				val end = if (i + window >= ca2.length - 1) ca2.length - 1 else i + window
 
-				if (start > ca2.length - 1) break
+				if (start > ca2.length - 1) break()
 
 				breakable {
 					for (ii <- start to end if ! a2Indices.contains(ii)) {
@@ -52,7 +52,7 @@ object JaroWinklerMetric extends StringMetric {
 							a1Indices.append(i)
 							a2Indices.append(ii)
 
-							break
+							break()
 						}
 					}
 				}
