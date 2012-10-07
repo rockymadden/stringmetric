@@ -59,7 +59,7 @@ object JaroWinklerMetric extends StringMetric {
 			}
 		}
 
-		(a1Indices.map(i => ca1(i)).toArray, a2Indices.sortWith(_ < _).map(i => ca2(i)).toArray)
+		(a1Indices.map(ca1(_)).toArray, a2Indices.sortWith(_ < _).map(ca2(_)).toArray)
 	}
 
 	private[this] def scoreMatches(mca1: Array[Char], mca2: Array[Char]): Int = {
