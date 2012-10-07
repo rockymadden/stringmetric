@@ -1,0 +1,29 @@
+# Core ignores
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*#
+.git/
+
+# OS ignores
+.DS_Store
+thumbs.db
+
+# Editor ignores
+.cache
+.project
+.settings
+.settings/
+bin/
+
+# Build ignores
+build/
+
+# Project ignores
+.classpath

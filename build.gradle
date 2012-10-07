@@ -1,0 +1,8 @@
+group = 'org.hashtree.stringmetric'
+version = '0.0.0'
+
+allprojects {
+	repositories {
+		mavenCentral()
+	}
+}

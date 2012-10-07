@@ -1,0 +1,106 @@
+apply plugin: 'eclipse'
+apply plugin: 'scala'
+
+dependencies {
+	compile project(':stringmetric-core')
+	compile 'org.scala-lang:scala-compiler:2.9.2'
+	compile 'org.scala-lang:scala-library:2.9.2'
+
+	scalaTools 'org.scala-lang:scala-compiler:2.9.2'
+	scalaTools 'org.scala-lang:scala-library:2.9.2'
+
+	testCompile 'junit:junit:4.10'
+	testCompile 'org.scalatest:scalatest_2.9.2:1.8'
+}
+
+sourceSets {
+	main {
+		output.resourcesDir "${project.buildDir}/classes/main"
+
+		java {
+			srcDir 'source/core/java'
+		}
+		resources {
+			srcDir 'source/core/resource'
+		}
+		scala {
+			srcDir 'source/core/scala'
+		}
+	}
+	test {
+		output.resourcesDir "${project.buildDir}/classes/test"
+
+		java {
+			srcDir 'source/test/java'
+		}
+		resources {
+			srcDir 'source/test/resource'
+		}
+		scala {
+			srcDir 'source/test/scala'
+		}
+	}
+}
+
+task tar(description: 'Assembles a compressed tar archive of all core source files.', dependsOn: [':stringmetric-cli:jar', ':stringmetric-core:jar']) {
+	ext.sourcePath = "${project.projectDir}/source/core/scala"
+	ext.outputPath = "${project.buildDir}"
+	ext.workingPath = "${project.buildDir}/${project.name}"
+
+	inputs.dir new File(sourcePath)
+	outputs.dir new File(outputPath, 'generated')
+	outputs.upToDateWhen {
+		new File(workingPath).isDirectory()
+	}
+	
+	doLast {
+		// Clean up working directory and tar from last execution, should they exist.
+		ant.delete(dir: workingPath, failOnError: false)
+		ant.delete(file: "${project.buildDir}/${project.name}.tar.gz", failOnError: false)
+
+		// Create project working directory.
+		ant.mkdir(dir: workingPath)
+
+		// Create scalascript header file.
+		ant.echo(file: "${workingPath}/scalascript.sh", message: '#!/bin/bash\ndir="`dirname \\"$0\\"`"\ndir="`( cd \\"$dir\\" && pwd )`"\ncp=`echo $dir/*.jar|sed \'s/ /:/g\'`\nexec scala -classpath "$cp" -savecompiled "$0" "$@"\n!#\n//')
+
+		// Copy source files to working directory.
+		ant.copy(toDir: workingPath, force: true, overwrite: true) {
+			fileset(dir: sourcePath) {
+				exclude(name: '**/cli/*.scala')
+				exclude(name: '**/package.scala')
+			}
+			filterchain {
+				concatfilter(prepend: "${workingPath}/scalascript.sh")
+			}
+		}
+
+		// Delete scalascript header file.
+		ant.delete(file: "${workingPath}/scalascript.sh")
+
+		// Flatten and remove file extension.
+		ant.move(toDir: workingPath) {
+			fileset(dir: workingPath)
+			chainedmapper {
+				mapper(type: 'flatten')
+				mapper(from: '*.scala', to: '*', type: 'glob')
+			}
+		}
+
+		// Clean up emtpy folder(s) from flatten.
+		ant.delete(dir: "${workingPath}/org", includeEmptyDirs: true)
+
+		// Copy project jars into place.
+		ant.copy(toDir: workingPath, force: true, overwrite: true) {
+			fileset(dir: "${project.buildDir}/libs")
+		}
+		ant.copy(toDir: workingPath, force: true, overwrite: true) {
+			fileset(dir: "${project(':stringmetric-core').buildDir}/libs")
+		}
+
+		// Assemble compressed tar.
+		ant.tar(compression: 'gzip', destFile: "${project.buildDir}/${project.name}.tar.gz") {
+			tarfileset(dir: workingPath, fileMode: 755, prefix: project.name)
+		}
+	}
+}
