@@ -1,9 +1,5 @@
 package org.hashtree.stringmetric
 
-import scala.collection.mutable.ArrayBuffer
-import scala.math
-import scala.util.control.Breaks.{ break, breakable }
-
 /**
  * An implementation of the Jaro-Winkler string metric. One differing detail in this implementation is that if a
  * character is matched in string2, it cannot be matched upon again. This results in a more penalized distance in these
