@@ -3,7 +3,6 @@ package org.hashtree.stringmetric
 import scala.collection.mutable.ArrayBuffer
 import scala.math
 import scala.util.control.Breaks.{ break, breakable }
-import org.hashtree.stringmetric._
 
 /**
  * An implementation of the Jaro [[org.hashtree.stringmetric.StringMetric]]. One differing detail in this implementation is that if a character is
