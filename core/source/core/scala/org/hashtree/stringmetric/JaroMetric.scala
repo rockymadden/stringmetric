@@ -5,29 +5,30 @@ import scala.math
 import scala.util.control.Breaks.{ break, breakable }
 
 /**
- * An implementation of the Jaro [[org.hashtree.stringmetric.StringMetric]]. One differing detail in this implementation is that if a character is
- * matched in string2, it cannot be matched upon again. This results in a more penalized distance in these scenarios.
+ * An implementation of the Jaro [[org.hashtree.stringmetric.StringMetric]]. One differing detail in this implementation
+ * is that if a character is matched in string2, it cannot be matched upon again. This results in a more penalized
+ * distance in these scenarios.
  */
 object JaroMetric extends StringMetric {
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Float = {
 		val ca1 = stringCleaner.clean(charArray1)
 		val ca2 = stringCleaner.clean(charArray2)
 
-		// Return 0f if either character array lacks length.
+		// Return 0 if either character array lacks length.
 		if (ca1.length == 0 || ca2.length == 0) return 0f
 
 		val mt = `match`((ca1, ca2))
 		val ms = scoreMatches((mt._1, mt._2))
 		val ts = scoreTranspositions((mt._1, mt._2))
 
-		// Return 0f if matches score is 0.
+		// Return 0 if matches score is 0.
 		if (ms == 0) return 0f
 
 		((ms.toFloat / ca1.length) + (ms.toFloat / ca2.length) + ((ms.toFloat - ts) / ms)) / 3
 	}
 
 	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Float = {
-		// Return 1f if strings are an exact match.
+		// Return 1 if strings are an exact match.
 		if (string1.length > 0 && string2.length > 0 && string1 == string2) return 1f
 
 		compare(stringCleaner.clean(string1.toCharArray), stringCleaner.clean(string2.toCharArray))(new StringCleanerDelegate)
