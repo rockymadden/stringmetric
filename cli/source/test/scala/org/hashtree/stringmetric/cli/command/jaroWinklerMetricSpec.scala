@@ -13,14 +13,14 @@ final class jaroWinklerMetricSpec extends ScalaTest {
 					val out = new java.io.ByteArrayOutputStream()
 
 					Console.withOut(out)(
-						jaroWinklerMetric.main(Array("--unitTest", "--debug", "abc", "abc"))
+						jaroWinklerMetric.main(Array("--unitTest", "--debug", "aBc", "abc"))
 					)
 
 					out.toString should equal ("1.0\n")
 					out.reset()
 
 					Console.withOut(out)(
-						jaroWinklerMetric.main(Array("--unitTest", "--debug", "abc", "xyz"))
+						jaroWinklerMetric.main(Array("--unitTest", "--debug", "aBc", "xyz"))
 					)
 
 					out.toString should equal ("0.0\n")

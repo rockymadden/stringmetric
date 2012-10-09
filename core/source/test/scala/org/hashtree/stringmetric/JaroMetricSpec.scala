@@ -36,6 +36,7 @@ final class JaroMetricSpec extends ScalaTest {
 						JaroMetric.compare("brittney spears", "brittney startzman")
 
 					JaroMetric.compare("m a r t h a", "m a r h t a") should be (0.9444444f)
+
 					JaroMetric.compare("d w a y n e", "d u a n e") should be (0.82222223f)
 					JaroMetric.compare("d i x o n", "d i c k s o n x") should be (0.76666665f)
 					JaroMetric.compare("a b c v w x y z", "c a b v w x y z") should be (0.9583333f)

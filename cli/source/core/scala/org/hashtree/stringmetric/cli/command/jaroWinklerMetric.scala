@@ -1,6 +1,6 @@
 package org.hashtree.stringmetric.cli.command
 
-import org.hashtree.stringmetric.JaroWinklerMetric
+import org.hashtree.stringmetric.{ CaseStringCleaner, JaroWinklerMetric, StringCleanerDelegate }
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.cli.command._
 
@@ -47,6 +47,6 @@ object jaroWinklerMetric extends Command {
 	override def execute(options: OptionMap): Unit = {
 		val strings = options('dashless).split(" ")
 
-		println(JaroWinklerMetric.compare(strings(0), strings(1)).toString)
+		println(JaroWinklerMetric.compare(strings(0), strings(1))(new StringCleanerDelegate with CaseStringCleaner).toString)
 	}
 }

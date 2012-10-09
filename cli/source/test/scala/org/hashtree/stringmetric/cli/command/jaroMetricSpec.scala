@@ -13,14 +13,14 @@ final class jaroMetricSpec extends ScalaTest {
 					val out = new java.io.ByteArrayOutputStream()
 
 					Console.withOut(out)(
-						jaroMetric.main(Array("--unitTest", "--debug", "abc", "abc"))
+						jaroMetric.main(Array("--unitTest", "--debug", "aBc", "abc"))
 					)
 
 					out.toString should equal ("1.0\n")
 					out.reset()
 
 					Console.withOut(out)(
-						jaroMetric.main(Array("--unitTest", "--debug", "abc", "xyz"))
+						jaroMetric.main(Array("--unitTest", "--debug", "aBc", "xyz"))
 					)
 
 					out.toString should equal ("0.0\n")
