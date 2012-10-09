@@ -23,7 +23,7 @@ object JaroMetric extends StringMetric {
 		// Return 0 if matches score is 0.
 		if (ms == 0) return 0f
 
-		((ms.toFloat / charArray1.length) + (ms.toFloat / charArray2.length) + ((ms.toFloat - ts) / ms)) / 3
+		((ms.toFloat / ca1.length) + (ms.toFloat / ca2.length) + ((ms.toFloat - ts) / ms)) / 3
 	}
 
 	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Float = {
