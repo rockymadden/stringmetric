@@ -1,6 +1,6 @@
 package org.hashtree.stringmetric
 
-import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable.{ ArrayBuffer, HashSet }
 import scala.math
 import scala.util.control.Breaks.{ break, breakable }
 
@@ -35,8 +35,8 @@ object JaroMetric extends StringMetric {
 
 	private[this] def `match`(ct: CompareTuple) = {
 		val window = math.abs((math.max(ct._1.length, ct._2.length) / 2f).floor.toInt - 1)
-		val ab1 = ArrayBuffer[Int]()
-		val ab2 = ArrayBuffer[Int]()
+		val one = ArrayBuffer[Int]()
+		val two = HashSet[Int]()
 
 		breakable {
 			for (i <- 0 until ct._1.length) {
@@ -46,10 +46,10 @@ object JaroMetric extends StringMetric {
 				if (start > ct._2.length - 1) break()
 
 				breakable {
-					for (ii <- start to end if !ab2.contains(ii)) {
+					for (ii <- start to end if !two.contains(ii)) {
 						if (ct._1(i) == ct._2(ii)) {
-							ab1.append(i)
-							ab2.append(ii)
+							one += i
+							two += ii
 
 							break()
 						}
@@ -58,7 +58,7 @@ object JaroMetric extends StringMetric {
 			}
 		}
 
-		(ab1.map(ct._1(_)).toArray, ab2.sortWith(_ < _).map(ct._2(_)).toArray)
+		(one.toArray.map(ct._1(_)), two.toArray.sortWith(_ < _).map(ct._2(_)))
 	}
 
 	private[this] def scoreMatches(mt: MatchTuple) = {
