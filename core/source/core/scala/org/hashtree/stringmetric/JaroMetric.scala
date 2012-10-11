@@ -2,7 +2,6 @@ package org.hashtree.stringmetric
 
 import scala.collection.mutable.{ ArrayBuffer, HashSet }
 import scala.math
-import scala.util.control.Breaks.{ break, breakable }
 
 /**
  * An implementation of the Jaro [[org.hashtree.stringmetric.StringMetric]]. One differing detail in this implementation
@@ -38,24 +37,28 @@ object JaroMetric extends StringMetric {
 		val window = math.abs((math.max(ct._1.length, ct._2.length) / 2f).floor.toInt - 1)
 		val one = ArrayBuffer[Int]()
 		val two = HashSet[Int]()
+		var i = 0
+		var bi = false
 
-		breakable {
-			for (i <- 0 until ct._1.length) {
-				val start = if (i - window <= 0) 0 else i - window
-				val end = if (i + window >= ct._2.length - 1) ct._2.length - 1 else i + window
+		while (i < ct._1.length && !bi) {
+			val start = if (i - window <= 0) 0 else i - window
+			val end = if (i + window >= ct._2.length - 1) ct._2.length - 1 else i + window
 
-				if (start > ct._2.length - 1) break()
+			if (start > ct._2.length - 1) {
+				bi = !bi
+			} else {
+				var ii = start
+				var bii = false
 
-				breakable {
-					for (ii <- start to end if !two.contains(ii)) {
-						if (ct._1(i) == ct._2(ii)) {
-							one += i
-							two += ii
-
-							break()
-						}
-					}
+				while (ii <= end && !bii) {
+					if (!two.contains(ii) && ct._1(i) == ct._2(ii)) {
+						one += i
+						two += ii
+						bii = !bii
+					} else ii += 1
 				}
+
+				i += 1
 			}
 		}
 
