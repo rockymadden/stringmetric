@@ -17,7 +17,7 @@ object JaroWinklerMetric extends StringMetric {
 
 	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Float = {
 		// Return 1 if strings are an exact match.
-		if (string1.length > 0 && string2.length > 0 && string1 == string2) return 1f
+		if (string1.length > 0 && string1 == string2) return 1f
 
 		compare(stringCleaner.clean(string1.toCharArray), stringCleaner.clean(string2.toCharArray))(new StringCleanerDelegate)
 	}
