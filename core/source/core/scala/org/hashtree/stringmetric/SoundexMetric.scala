@@ -36,7 +36,7 @@ object SoundexMetric extends StringMetric {
 		@tailrec
 		def code(i: Array[Char], p: Char, o: Array[Char]): Array[Char] = {
 			require(i.length > 0)
-			require((p >= 97 && p <= 122) || (p >= 49 && p <= 54))
+			require(p >= 97 && p <= 122)
 			require(o.length > 0)
 
 			val c = i.head.toLower
@@ -58,7 +58,6 @@ object SoundexMetric extends StringMetric {
 				case 'r' if pc != '6' => '6'
 				case _ => '\0'
 			}
-
 			val a =
 				p match {
 					// Code twice.
