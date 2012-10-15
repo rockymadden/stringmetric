@@ -3,6 +3,7 @@ A collection of string metrics implemented in Scala. Includes a light-weight cor
 
 * Jaro
 * Jaro-Winkler
+* Soundex
 
 ## Building the API
 gradle jar
