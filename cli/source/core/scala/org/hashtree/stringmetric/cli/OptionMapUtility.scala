@@ -1,5 +1,6 @@
 package org.hashtree.stringmetric.cli
 
+import scala.annotation.tailrec
 import scala.collection.immutable.HashMap
 
 /** Utility standalone for OptionMap based operations. */
@@ -12,6 +13,7 @@ object OptionMapUtility {
 		next(new HashMap[Symbol, String](), arguments)
 	}
 
+	@tailrec
 	private[this] def next(optionMap: OptionMap, arguments: List[String]): OptionMap = {
 		val double = """^(--[a-zA-Z0-9]+)(\=[a-zA-Z0-9\.\-\_]+)?""".r
 		val single = """^(-[a-zA-Z0-9]+)(\=[a-zA-Z0-9\.\-\_]+)?""".r
