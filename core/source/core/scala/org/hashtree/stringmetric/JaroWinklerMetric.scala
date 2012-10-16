@@ -6,18 +6,23 @@ package org.hashtree.stringmetric
  * penalized distance in these scenarios (e.g. comparing henka and henkan distance is 0.9666 versus the typical 0.9722).
  */
 object JaroWinklerMetric extends StringMetric {
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Float = {
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Float] = {
 		val ca1 = stringCleaner.clean(charArray1)
 		val ca2 = stringCleaner.clean(charArray2)
-		val jaro = JaroMetric.compare(ca1, ca2)(new StringCleanerDelegate)
-		val prefix = ca1.zip(ca2).takeWhile(t => t._1 == t._2).map(_._1)
 
-		jaro + ((if (prefix.length <= 4) prefix.length else 4) * 0.1f * (1 - jaro))
+		JaroMetric.compare(ca1, ca2)(new StringCleanerDelegate) match {
+			case Some(jaro) => {
+				val prefix = ca1.zip(ca2).takeWhile(t => t._1 == t._2).map(_._1)
+
+				Some(jaro + ((if (prefix.length <= 4) prefix.length else 4) * 0.1f * (1 - jaro)))
+			}
+			case None => None
+		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Float = {
+	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Option[Float] = {
 		// Return 1 if strings are an exact match.
-		if (string1.length > 0 && string1 == string2) return 1f
+		if (string1.length > 0 && string1 == string2) return Some(1f)
 
 		compare(stringCleaner.clean(string1.toCharArray), stringCleaner.clean(string2.toCharArray))(new StringCleanerDelegate)
 	}

@@ -47,6 +47,6 @@ object jaroMetric extends Command {
 	override def execute(options: OptionMap): Unit = {
 		val strings = options('dashless).split(" ")
 
-		println(JaroMetric.compare(strings(0), strings(1))(new StringCleanerDelegate with CaseStringCleaner).toString)
+		println(JaroMetric.compare(strings(0), strings(1))(new StringCleanerDelegate with CaseStringCleaner).getOrElse("0.0").toString)
 	}
 }

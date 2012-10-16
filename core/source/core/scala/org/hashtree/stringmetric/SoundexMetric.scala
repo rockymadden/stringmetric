@@ -4,19 +4,19 @@ import scala.annotation.tailrec
 
 /** An implementation of the Soundex [[org.hashtree.stringmetric.StringMetric]]. */
 object SoundexMetric extends StringMetric {
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Boolean = {
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Boolean] = {
 		val se1 = if (charArray1.length > 0) soundex(charArray1) else None
 		val se2 = if (charArray2.length > 0) soundex(charArray2) else None
 
-		(se1.isDefined && se2.isDefined && se1.get == se2.get)
+		if (!se1.isDefined || !se2.isDefined) None else Some(se1.get == se2.get)
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Boolean = {
+	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Option[Boolean] = {
 		compare(string1.toCharArray, string2.toCharArray)
 	}
 
-	private[this] def soundex(charArray: Array[Char]) = {
-		require(charArray.length > 0)
+	private[this] def soundex(ca: Array[Char]) = {
+		require(ca.length > 0)
 
 		@tailrec
 		def letter(ca: Array[Char], i: Int): Option[Tuple2[Char, Int]] = {
@@ -72,12 +72,12 @@ object SoundexMetric extends StringMetric {
 				code(i.tail, c, if (a != '\0') o :+ a else o)
 		}
 
-		letter(charArray, 0) match {
+		letter(ca, 0) match {
 			case Some(l) => {
-				if (charArray.length - 1 == l._2) Some(l._1 + "000")
+				if (ca.length - 1 == l._2) Some(l._1 + "000")
 				else {
 					Some(
-						code(charArray.takeRight(charArray.length - (l._2 + 1)),
+						code(ca.takeRight(ca.length - (l._2 + 1)),
 							l._1, // Pass first letter.
 							Array(l._1) // Pass array with first letter.
 						).mkString.padTo(4, '0')

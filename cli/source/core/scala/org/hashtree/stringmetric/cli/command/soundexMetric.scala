@@ -47,6 +47,6 @@ object soundexMetric extends Command {
 	override def execute(options: OptionMap): Unit = {
 		val strings = options('dashless).split(" ")
 
-		println(SoundexMetric.compare(strings(0), strings(1))(new StringCleanerDelegate).toString)
+		println(SoundexMetric.compare(strings(0), strings(1))(new StringCleanerDelegate).getOrElse("false").toString)
 	}
 }

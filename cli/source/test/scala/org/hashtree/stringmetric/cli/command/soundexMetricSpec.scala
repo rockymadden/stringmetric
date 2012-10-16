@@ -25,6 +25,13 @@ final class soundexMetricSpec extends ScalaTest {
 
 					out.toString should equal ("false\n")
 					out.reset()
+
+					Console.withOut(out)(
+						soundexMetric.main(Array("--unitTest", "--debug", "1", "1"))
+					)
+
+					out.toString should equal ("false\n")
+					out.reset()
 				}
 			}
 			"no dashless arguments" should throws {

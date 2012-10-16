@@ -47,6 +47,6 @@ object jaroWinklerMetric extends Command {
 	override def execute(options: OptionMap): Unit = {
 		val strings = options('dashless).split(" ")
 
-		println(JaroWinklerMetric.compare(strings(0), strings(1))(new StringCleanerDelegate with CaseStringCleaner).toString)
+		println(JaroWinklerMetric.compare(strings(0), strings(1))(new StringCleanerDelegate with CaseStringCleaner).getOrElse("0.0").toString)
 	}
 }
