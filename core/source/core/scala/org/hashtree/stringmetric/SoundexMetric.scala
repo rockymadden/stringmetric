@@ -15,7 +15,7 @@ object SoundexMetric extends StringMetric {
 		compare(string1.toCharArray, string2.toCharArray)
 	}
 
-	private[this] def soundex(charArray: Array[Char]): Option[String] = {
+	private[this] def soundex(charArray: Array[Char]) = {
 		require(charArray.length > 0)
 
 		@tailrec
@@ -24,13 +24,7 @@ object SoundexMetric extends StringMetric {
 
 			val c = ca.head.toLower
 
-			if (c >= 97 && c <= 122) {
-				Some((c, i))
-			} else if (ca.length == 1) {
-				None
-			} else {
-				letter(ca.tail, i + 1)
-			}
+			if (c >= 97 && c <= 122) Some((c, i)) else if (ca.length == 1) None else letter(ca.tail, i + 1)
 		}
 
 		@tailrec
@@ -58,40 +52,38 @@ object SoundexMetric extends StringMetric {
 				case 'r' if pc != '6' => '6'
 				case _ => '\0'
 			}
-			val a =
-				p match {
-					// Code twice.
-					case 'a' | 'e' | 'i' | 'o' | 'u' | 'y' => m2(c)
-					// Code once.
-					case _ => m1(
-						c,
+			val a = p match {
+				// Code twice.
+				case 'a' | 'e' | 'i' | 'o' | 'u' | 'y' => m2(c)
+				// Code once.
+				case _ => {
+					m1(c,
 						o.last match {
 							case '1' | '2' | '3' | '4' | '5' | '6' => o.last
 							case _ => m2(o.last)
 						}
 					)
 				}
-
-			if (i.length == 1 || (o.length == 3 && a != '\0')) {
-				if (a != '\0') o :+ a else o
-			} else {
-				code(i.tail, c, if (a != '\0') o :+ a else o)
 			}
+
+			if (i.length == 1 || (o.length == 3 && a != '\0'))
+				if (a != '\0') o :+ a else o
+			else
+				code(i.tail, c, if (a != '\0') o :+ a else o)
 		}
 
 		letter(charArray, 0) match {
-			case Some(l) =>
-				if (charArray.length - 1 == l._2) {
-					Some(l._1 + "000")
-				} else {
+			case Some(l) => {
+				if (charArray.length - 1 == l._2) Some(l._1 + "000")
+				else {
 					Some(
-						code(
-							charArray.takeRight(charArray.length - (l._2 + 1)),
+						code(charArray.takeRight(charArray.length - (l._2 + 1)),
 							l._1, // Pass first letter.
 							Array(l._1) // Pass array with first letter.
 						).mkString.padTo(4, '0')
 					)
 				}
+			}
 			case None => None
 		}
 	}

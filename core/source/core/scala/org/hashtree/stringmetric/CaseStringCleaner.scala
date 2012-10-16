@@ -5,16 +5,10 @@ trait CaseStringCleaner extends StringCleaner {
 	abstract override def clean(charArray: Array[Char]): Array[Char] = {
 		super.clean(
 			charArray.map { c =>
-				if (c >= 65 && c <= 90) {
-					(c + 32).toChar
-				} else {
-					c
-				}
+				if (c >= 65 && c <= 90) (c + 32).toChar else c
 			}
 		)
 	}
 
-	abstract override def clean(string: String): String = {
-		super.clean(string.toLowerCase)
-	}
+	abstract override def clean(string: String): String = super.clean(string.toLowerCase)
 }

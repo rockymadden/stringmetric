@@ -44,9 +44,8 @@ object JaroMetric extends StringMetric {
 			val start = if (i - window <= 0) 0 else i - window
 			val end = if (i + window >= ct._2.length - 1) ct._2.length - 1 else i + window
 
-			if (start > ct._2.length - 1) {
-				bi = !bi
-			} else {
+			if (start > ct._2.length - 1) bi = !bi
+			else {
 				var ii = start
 				var bii = false
 
