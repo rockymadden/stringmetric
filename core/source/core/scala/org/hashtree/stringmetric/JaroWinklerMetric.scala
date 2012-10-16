@@ -24,6 +24,8 @@ object JaroWinklerMetric extends StringMetric {
 		// Return 1 if strings are an exact match.
 		if (string1.length > 0 && string1 == string2) return Some(1f)
 
-		compare(stringCleaner.clean(string1.toCharArray), stringCleaner.clean(string2.toCharArray))(new StringCleanerDelegate)
+		compare(stringCleaner.clean(string1.toCharArray),
+			stringCleaner.clean(string2.toCharArray)
+		)(new StringCleanerDelegate)
 	}
 }

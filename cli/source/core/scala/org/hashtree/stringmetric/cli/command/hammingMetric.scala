@@ -1,14 +1,14 @@
 package org.hashtree.stringmetric.cli.command
 
-import org.hashtree.stringmetric.{ CaseStringCleaner, JaroMetric, StringCleanerDelegate }
+import org.hashtree.stringmetric.{ CaseStringCleaner, HammingMetric, StringCleanerDelegate }
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.cli.command._
 
 /**
- * The jaroMetric [[org.hashtree.stringmetric.cli.command.Command]]. Compares two strings to calculate the
- * Jaro distance.
+ * The hammingMetric [[org.hashtree.stringmetric.cli.command.Command]]. Compares the number of characters that two equal
+ * length strings are different from one another.
  */
-object jaroMetric extends Command {
+object hammingMetric extends Command {
 	override def main(args: Array[String]): Unit = {
 		val options = OptionMapUtility.toOptionMap(args)
 
@@ -35,9 +35,9 @@ object jaroMetric extends Command {
 		val tab = "  "
 
 		println(
-			"Compares two strings to calculate the Jaro distance." + ls + ls +
+			"Compares the number of characters that two equal length strings are different from one another." + ls + ls +
 			"Syntax:" + ls +
-			tab + "jaroMetric [Options] string1 string2..." + ls + ls +
+			tab + "hammingMetric [Options] string1 string2..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
 			tab + tab + "Outputs description, syntax, and options."
@@ -48,7 +48,7 @@ object jaroMetric extends Command {
 		val strings = options('dashless).split(" ")
 
 		println(
-			JaroMetric.compare(strings(0),
+			HammingMetric.compare(strings(0),
 				strings(1))(new StringCleanerDelegate with CaseStringCleaner
 			).getOrElse("not comparable").toString
 		)
