@@ -21,11 +21,11 @@ object HammingMetric extends StringMetric {
 		)(new StringCleanerDelegate)
 	}
 
-	private[this] def hamming(ca1: Array[Char], ca2: Array[Char]) = {
-		require(ca1.length > 0)
-		require(ca2.length > 0)
-		require(ca1.length == ca2.length)
+	private[this] def hamming(ct: CompareTuple) = {
+		require(ct._1.length > 0)
+		require(ct._2.length > 0)
+		require(ct._1.length == ct._2.length)
 
-		ca1.zip(ca2).count(t => t._1 != t._2)
+		ct._1.zip(ct._2).count(t => t._1 != t._2)
 	}
 }
