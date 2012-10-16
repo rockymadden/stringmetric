@@ -5,14 +5,16 @@ import scala.annotation.tailrec
 /** An implementation of the Soundex [[org.hashtree.stringmetric.StringMetric]]. */
 object SoundexMetric extends StringMetric {
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Boolean] = {
-		val se1 = if (charArray1.length > 0) soundex(charArray1) else None
-		val se2 = if (charArray2.length > 0) soundex(charArray2) else None
+		val se1 = if (charArray1.length > 0) soundex(stringCleaner.clean(charArray1)) else None
+		val se2 = if (charArray2.length > 0) soundex(stringCleaner.clean(charArray2)) else None
 
 		if (!se1.isDefined || !se2.isDefined) None else Some(se1.get == se2.get)
 	}
 
 	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Option[Boolean] = {
-		compare(string1.toCharArray, string2.toCharArray)
+		compare(stringCleaner.clean(string1.toCharArray),
+			stringCleaner.clean(string2.toCharArray)
+		)(new StringCleanerDelegate)
 	}
 
 	private[this] def soundex(ca: Array[Char]) = {
