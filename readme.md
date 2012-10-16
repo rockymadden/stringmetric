@@ -4,6 +4,7 @@ A collection of string metrics implemented in Scala. Includes a light-weight cor
 * Hamming
 * Jaro
 * Jaro-Winkler
+* Levenshtein
 * Soundex
 
 ## Building the API
