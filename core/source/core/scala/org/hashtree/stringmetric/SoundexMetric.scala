@@ -7,14 +7,17 @@ object SoundexMetric extends StringMetric {
 	implicit val stringCleaner = new StringCleanerDelegate
 
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Boolean] = {
-		val se1 = if (charArray1.length > 0) soundex(stringCleaner.clean(charArray1)) else None
-		val se2 = if (charArray2.length > 0) soundex(stringCleaner.clean(charArray2)) else None
+		val ca1 = stringCleaner.clean(charArray1)
+		val ca2 = stringCleaner.clean(charArray2)
+		val se1 = if (ca1.length > 0) soundex(ca1) else None
+		val se2 = if (ca2.length > 0) soundex(ca2) else None
 
 		if (!se1.isDefined || !se2.isDefined) None else Some(se1.get == se2.get)
 	}
 
 	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Option[Boolean] = {
-		compare(stringCleaner.clean(string1.toCharArray),
+		compare(
+			stringCleaner.clean(string1.toCharArray),
 			stringCleaner.clean(string2.toCharArray)
 		)(new StringCleanerDelegate)
 	}
@@ -61,7 +64,8 @@ object SoundexMetric extends StringMetric {
 				case 'a' | 'e' | 'i' | 'o' | 'u' | 'y' => m2(c)
 				// Code once.
 				case _ => {
-					m1(c,
+					m1(
+						c,
 						o.last match {
 							case '1' | '2' | '3' | '4' | '5' | '6' => o.last
 							case _ => m2(o.last)
@@ -81,7 +85,8 @@ object SoundexMetric extends StringMetric {
 				if (ca.length - 1 == l._2) Some(l._1 + "000")
 				else {
 					Some(
-						code(ca.takeRight(ca.length - (l._2 + 1)),
+						code(
+							ca.takeRight(ca.length - (l._2 + 1)),
 							l._1, // Pass first letter.
 							Array(l._1) // Pass array with first letter.
 						).mkString.padTo(4, '0')
