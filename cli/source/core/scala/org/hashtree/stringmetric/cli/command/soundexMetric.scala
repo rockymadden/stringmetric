@@ -48,9 +48,10 @@ object soundexMetric extends Command {
 		val strings = options('dashless).split(" ")
 
 		println(
-			SoundexMetric.compare(strings(0),
-				strings(1))(new StringCleanerDelegate
-			).getOrElse("not comparable").toString
+			SoundexMetric.compare(
+				strings(0),
+				strings(1)
+			)(new StringCleanerDelegate).getOrElse("not comparable").toString
 		)
 	}
 }

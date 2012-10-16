@@ -48,9 +48,10 @@ object jaroMetric extends Command {
 		val strings = options('dashless).split(" ")
 
 		println(
-			JaroMetric.compare(strings(0),
-				strings(1))(new StringCleanerDelegate with CaseStringCleaner
-			).getOrElse("not comparable").toString
+			JaroMetric.compare(
+				strings(0),
+				strings(1)
+			)(new StringCleanerDelegate with CaseStringCleaner).getOrElse("not comparable").toString
 		)
 	}
 }

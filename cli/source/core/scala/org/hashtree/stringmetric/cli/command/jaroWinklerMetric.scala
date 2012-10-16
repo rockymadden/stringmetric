@@ -48,9 +48,10 @@ object jaroWinklerMetric extends Command {
 		val strings = options('dashless).split(" ")
 
 		println(
-			JaroWinklerMetric.compare(strings(0),
-				strings(1))(new StringCleanerDelegate with CaseStringCleaner
-			).getOrElse("not comparable").toString
+			JaroWinklerMetric.compare(
+				strings(0),
+				strings(1)
+			)(new StringCleanerDelegate with CaseStringCleaner).getOrElse("not comparable").toString
 		)
 	}
 }

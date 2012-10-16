@@ -48,9 +48,10 @@ object hammingMetric extends Command {
 		val strings = options('dashless).split(" ")
 
 		println(
-			HammingMetric.compare(strings(0),
-				strings(1))(new StringCleanerDelegate with CaseStringCleaner
-			).getOrElse("not comparable").toString
+			HammingMetric.compare(
+				strings(0),
+				strings(1)
+			)(new StringCleanerDelegate with CaseStringCleaner).getOrElse("not comparable").toString
 		)
 	}
 }

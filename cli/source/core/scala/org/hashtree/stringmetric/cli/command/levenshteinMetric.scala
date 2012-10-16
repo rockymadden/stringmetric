@@ -49,9 +49,10 @@ object levenshteinMetric extends Command {
 		val strings = options('dashless).split(" ")
 
 		println(
-			LevenshteinMetric.compare(strings(0),
-				strings(1))(new StringCleanerDelegate with CaseStringCleaner
-			).getOrElse("not comparable").toString
+			LevenshteinMetric.compare(
+				strings(0),
+				strings(1)
+			)(new StringCleanerDelegate with CaseStringCleaner).getOrElse("not comparable").toString
 		)
 	}
 }
