@@ -1,5 +1,6 @@
 package org.hashtree.stringmetric
 
+import org.hashtree.stringmetric.SoundexMetric.stringCleaner
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 

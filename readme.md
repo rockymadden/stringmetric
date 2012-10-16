@@ -13,10 +13,12 @@ gradle jar
 gradle tar
 
 ## Using the API
-`// Import the metric of choice.`  
-`import org.hashtree.stringmetric.JaroWinklerMetric`
+`// Import metric of choice.`  
+`import org.hashtree.stringmetric.JaroWinklerMetric`  
+`// Optionally import metric implicit stringCleaner into scope.`  
+`import org.hashtree.stringmetric.JaroWinklerMetric.stringCleaner`
 
-`// Invoke the compare method on the metric.`  
+`// Invoke metric compare method with implicit stringCleaner.`  
 `val distance = JaroWinklerMetric.compare("string1", "string2")`
 
 `// Do something. In this case, distance is between 1.0f and 0.0f.`  

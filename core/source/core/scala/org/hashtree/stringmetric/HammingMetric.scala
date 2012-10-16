@@ -2,6 +2,8 @@ package org.hashtree.stringmetric
 
 /** An implementation of the Hamming [[org.hashtree.stringmetric.StringMetric]]. */
 object HammingMetric extends StringMetric {
+	implicit val stringCleaner = new StringCleanerDelegate with CaseStringCleaner
+
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Int] = {
 		if (charArray1.length == 0 || charArray2.length == 0 || charArray2.length != charArray2.length)
 			None

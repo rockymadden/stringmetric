@@ -4,6 +4,8 @@ import scala.annotation.tailrec
 
 /** An implementation of the Soundex [[org.hashtree.stringmetric.StringMetric]]. */
 object SoundexMetric extends StringMetric {
+	implicit val stringCleaner = new StringCleanerDelegate
+
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Boolean] = {
 		val se1 = if (charArray1.length > 0) soundex(stringCleaner.clean(charArray1)) else None
 		val se2 = if (charArray2.length > 0) soundex(stringCleaner.clean(charArray2)) else None
