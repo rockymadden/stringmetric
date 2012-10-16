@@ -6,5 +6,5 @@ package object stringmetric {
 
 	type MatchTuple = CompareTuple
 
-	implicit val stringCleaner = new StringCleanerDelegate with CaseStringCleaner with SpaceStringCleaner
+	implicit val stringCleaner = new StringCleanerDelegate
 }

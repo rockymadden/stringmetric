@@ -5,6 +5,8 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class JaroMetricSpec extends ScalaTest {
+	implicit val stringMetric = new StringCleanerDelegate with CaseStringCleaner with SpaceStringCleaner
+
 	"JaroMetric" should provide {
 		"compare method" when passed {
 			"valid arguments" should returns {
