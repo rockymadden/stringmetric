@@ -21,7 +21,7 @@ object HammingMetric extends StringMetric {
 		)(new StringCleanerDelegate)
 	}
 
-	private[this] def hamming(ct: CompareTuple) = {
+	private[this] def hamming(ct: CompareTuple[Char]) = {
 		require(ct._1.length > 0)
 		require(ct._2.length > 0)
 		require(ct._1.length == ct._2.length)

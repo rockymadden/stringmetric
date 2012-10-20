@@ -24,7 +24,7 @@ object LevenshteinMetric extends StringMetric {
 		)(new StringCleanerDelegate)
 	}
 
-	private[this] def levenshtein(f: CompareTuple => Int)(ct: CompareTuple): Int = {
+	private[this] def levenshtein(f: CompareTuple[Char] => Int)(ct: CompareTuple[Char]): Int = {
 		if (ct._1.length == 0)
 			ct._2.length
 		else if (ct._2.length == 0)

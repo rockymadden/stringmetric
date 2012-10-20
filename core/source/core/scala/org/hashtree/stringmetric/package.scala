@@ -2,9 +2,9 @@ package org.hashtree
 
 /** Provides core string metric functionality. */
 package object stringmetric {
-	type CompareTuple = Tuple2[Array[Char], Array[Char]]
+	type CompareTuple[T] = Tuple2[Array[T], Array[T]]
 
-	type MatchTuple = CompareTuple
+	type MatchTuple[T] = Tuple2[Array[T], Array[T]]
 
 	implicit val stringCleaner = new StringCleanerDelegate
 }

@@ -36,7 +36,7 @@ object JaroMetric extends StringMetric {
 		)(new StringCleanerDelegate)
 	}
 
-	private[this] def `match`(ct: CompareTuple) = {
+	private[this] def `match`(ct: CompareTuple[Char]) = {
 		val window = math.abs((math.max(ct._1.length, ct._2.length) / 2f).floor.toInt - 1)
 		val one = ArrayBuffer[Int]()
 		val two = HashSet[Int]()
@@ -67,13 +67,13 @@ object JaroMetric extends StringMetric {
 		(one.toArray.map(ct._1(_)), two.toArray.sortWith(_ < _).map(ct._2(_)))
 	}
 
-	private[this] def scoreMatches(mt: MatchTuple) = {
+	private[this] def scoreMatches(mt: MatchTuple[Char]) = {
 		require(mt._1.length == mt._2.length)
 
 		mt._1.length
 	}
 
-	private[this] def scoreTranspositions(mt: MatchTuple) = {
+	private[this] def scoreTranspositions(mt: MatchTuple[Char]) = {
 		require(mt._1.length == mt._2.length)
 
 		(mt._1.zip(mt._2).filter(t => t._1 != t._2).length / 2f).floor.toInt
