@@ -38,8 +38,8 @@ object JaroMetric extends StringMetric {
 
 	private[this] def `match`(ct: CompareTuple[Char]) = {
 		val window = math.abs((math.max(ct._1.length, ct._2.length) / 2f).floor.toInt - 1)
-		val one = ArrayBuffer[Int]()
-		val two = HashSet[Int]()
+		val one = ArrayBuffer.empty[Int]
+		val two = HashSet.empty[Int]
 		var i = 0
 		var bi = false
 

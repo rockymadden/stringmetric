@@ -10,7 +10,7 @@ object OptionMapUtility {
 	}
 
 	def toOptionMap(arguments: List[String]): OptionMap = {
-		next(new HashMap[Symbol, String](), arguments)
+		next(HashMap.empty[Symbol, String], arguments)
 	}
 
 	@tailrec

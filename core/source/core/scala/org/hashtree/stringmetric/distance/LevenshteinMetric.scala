@@ -41,7 +41,7 @@ object LevenshteinMetric extends StringMetric {
 	}
 
 	private[this] final class Memoize[-T, +R](f: T => R) extends (T => R) {
-		private[this] val map = scala.collection.mutable.Map[T, R]()
+		private[this] val map = scala.collection.mutable.Map.empty[T, R]
 
 		def apply(k: T): R = map.getOrElseUpdate(k, f(k))
 	}
