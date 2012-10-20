@@ -13,30 +13,28 @@ object JaroMetric extends StringMetric {
 		val ca1 = stringCleaner.clean(charArray1)
 		val ca2 = stringCleaner.clean(charArray2)
 
-		// Return None if either character array lacks length.
-		if (ca1.length == 0 || ca2.length == 0) return None
+		if (ca1.length == 0 || ca2.length == 0) None
+		else {
+			val mt = `match`((ca1, ca2))
+			val ms = scoreMatches((mt._1, mt._2))
+			val ts = scoreTranspositions((mt._1, mt._2))
 
-		val mt = `match`((ca1, ca2))
-		val ms = scoreMatches((mt._1, mt._2))
-		val ts = scoreTranspositions((mt._1, mt._2))
-
-		// Return 0 if matches score is 0.
-		if (ms == 0) return Some(0f)
-
-		Some(((ms.toFloat / ca1.length) + (ms.toFloat / ca2.length) + ((ms.toFloat - ts) / ms)) / 3)
+			if (ms == 0) Some(0f)
+			else
+				Some(((ms.toFloat / ca1.length) + (ms.toFloat / ca2.length) + ((ms.toFloat - ts) / ms)) / 3)
+		}
 	}
 
 	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Option[Float] = {
-		// Return 1 if strings are an exact match.
-		if (string1.length > 0 && string1 == string2) return Some(1f)
-
-		compare(
-			stringCleaner.clean(string1.toCharArray),
-			stringCleaner.clean(string2.toCharArray)
-		)(new StringCleanerDelegate)
+		if (string1.length > 0 && string1.length == string2.length && string1 == string2) Some(1f)
+		else
+			compare(
+				stringCleaner.clean(string1.toCharArray),
+				stringCleaner.clean(string2.toCharArray)
+			)(new StringCleanerDelegate)
 	}
 
-	private[this] def `match`(ct: CompareTuple[Char]) = {
+	private[this] def `match`(ct: CompareTuple[Char]): MatchTuple[Char] = {
 		val window = math.abs((math.max(ct._1.length, ct._2.length) / 2f).floor.toInt - 1)
 		val one = ArrayBuffer.empty[Int]
 		val two = HashSet.empty[Int]
