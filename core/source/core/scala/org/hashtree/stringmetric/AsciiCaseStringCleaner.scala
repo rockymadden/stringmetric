@@ -1,7 +1,7 @@
 package org.hashtree.stringmetric
 
 /** A decorator [[org.hashtree.stringmetric.StringCleaner]]. Ensures the input case-sensitivity does not matter. */
-trait CaseStringCleaner extends StringCleaner {
+trait AsciiCaseStringCleaner extends StringCleaner {
 	abstract override def clean(charArray: Array[Char]): Array[Char] = {
 		super.clean(
 			charArray.map { c =>

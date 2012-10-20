@@ -4,10 +4,10 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-final class CaseStringCleanerSpec extends ScalaTest {
-	private final val Cleaner = new StringCleanerDelegate with CaseStringCleaner
+final class AsciiCaseStringCleanerSpec extends ScalaTest {
+	private final val Cleaner = new StringCleanerDelegate with AsciiCaseStringCleaner
 
-	"CaseStringCleaner" should provide {
+	"AsciiCaseStringCleaner" should provide {
 		"overloaded clean method" when passed {
 			"String with mixed case" should returns {
 				"String with the same case" in {

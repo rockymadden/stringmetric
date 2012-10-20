@@ -1,6 +1,6 @@
 package org.hashtree.stringmetric.cli.command
 
-import org.hashtree.stringmetric.{ CaseStringCleaner, StringCleanerDelegate }
+import org.hashtree.stringmetric.{ AsciiCaseStringCleaner, StringCleanerDelegate }
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.cli.command._
 import org.hashtree.stringmetric.distance.JaroWinklerMetric
@@ -52,7 +52,7 @@ object jaroWinklerMetric extends Command {
 			JaroWinklerMetric.compare(
 				strings(0),
 				strings(1)
-			)(new StringCleanerDelegate with CaseStringCleaner).getOrElse("not comparable").toString
+			)(new StringCleanerDelegate with AsciiCaseStringCleaner).getOrElse("not comparable").toString
 		)
 	}
 }
