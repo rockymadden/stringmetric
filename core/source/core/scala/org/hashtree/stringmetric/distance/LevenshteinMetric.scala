@@ -1,11 +1,9 @@
-package org.hashtree.stringmetric
+package org.hashtree.stringmetric.distance
 
-import scala.math
+import org.hashtree.stringmetric.{ CompareTuple, StringCleaner, StringCleanerDelegate, StringMetric }
 
 /** An implementation of the Levenshtein [[org.hashtree.stringmetric.StringMetric]]. */
 object LevenshteinMetric extends StringMetric {
-	implicit val stringCleaner = new StringCleanerDelegate with CaseStringCleaner
-
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Int] = {
 		val ca1 = stringCleaner.clean(charArray1)
 		val ca2 = stringCleaner.clean(charArray2)

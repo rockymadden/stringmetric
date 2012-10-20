@@ -1,6 +1,6 @@
-package org.hashtree.stringmetric
+package org.hashtree.stringmetric.distance
 
-import org.hashtree.stringmetric.LevenshteinMetric.stringCleaner
+import org.hashtree.stringmetric.ScalaTest
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 

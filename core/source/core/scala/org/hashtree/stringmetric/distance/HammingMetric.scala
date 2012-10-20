@@ -1,9 +1,9 @@
-package org.hashtree.stringmetric
+package org.hashtree.stringmetric.distance
+
+import org.hashtree.stringmetric.{ CompareTuple, StringCleaner, StringCleanerDelegate, StringMetric }
 
 /** An implementation of the Hamming [[org.hashtree.stringmetric.StringMetric]]. */
 object HammingMetric extends StringMetric {
-	implicit val stringCleaner = new StringCleanerDelegate with CaseStringCleaner
-
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Int] = {
 		val ca1 = stringCleaner.clean(charArray1)
 		val ca2 = stringCleaner.clean(charArray2)

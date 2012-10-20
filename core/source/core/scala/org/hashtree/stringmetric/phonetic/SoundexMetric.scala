@@ -1,5 +1,6 @@
-package org.hashtree.stringmetric
+package org.hashtree.stringmetric.phonetic
 
+import org.hashtree.stringmetric.{ StringCleaner, StringCleanerDelegate, StringMetric }
 import scala.annotation.tailrec
 
 /** An implementation of the Soundex [[org.hashtree.stringmetric.StringMetric]]. */

@@ -1,8 +1,9 @@
 package org.hashtree.stringmetric.cli.command
 
-import org.hashtree.stringmetric.{ CaseStringCleaner, LevenshteinMetric, StringCleanerDelegate }
+import org.hashtree.stringmetric.{ CaseStringCleaner, StringCleanerDelegate }
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.cli.command._
+import org.hashtree.stringmetric.distance.LevenshteinMetric
 
 /**
  * The levenshteinMetric [[org.hashtree.stringmetric.cli.command.Command]]. Compares the number of characters that two

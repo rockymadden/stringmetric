@@ -1,8 +1,9 @@
 package org.hashtree.stringmetric.cli.command
 
-import org.hashtree.stringmetric.{ CaseStringCleaner, JaroWinklerMetric, StringCleanerDelegate }
+import org.hashtree.stringmetric.{ CaseStringCleaner, StringCleanerDelegate }
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.cli.command._
+import org.hashtree.stringmetric.distance.JaroWinklerMetric
 
 /**
  * The jaroWinklerMetric [[org.hashtree.stringmetric.cli.command.Command]]. Compares two strings to calculate the

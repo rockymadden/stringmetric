@@ -1,4 +1,6 @@
-package org.hashtree.stringmetric
+package org.hashtree.stringmetric.distance
+
+import org.hashtree.stringmetric.{ StringCleaner, StringCleanerDelegate, StringMetric }
 
 /**
  * An implementation of the Jaro-Winkler [[org.hashtree.stringmetric.StringMetric]]. One differing detail in this
@@ -6,8 +8,6 @@ package org.hashtree.stringmetric
  * penalized distance in these scenarios (e.g. comparing henka and henkan distance is 0.9666 versus the typical 0.9722).
  */
 object JaroWinklerMetric extends StringMetric {
-	implicit val stringCleaner = new StringCleanerDelegate with CaseStringCleaner with SpaceStringCleaner
-
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Float] = {
 		val ca1 = stringCleaner.clean(charArray1)
 		val ca2 = stringCleaner.clean(charArray2)

@@ -1,7 +1,7 @@
-package org.hashtree.stringmetric
+package org.hashtree.stringmetric.distance
 
+import org.hashtree.stringmetric.{ CompareTuple, MatchTuple, StringCleaner, StringCleanerDelegate, StringMetric }
 import scala.collection.mutable.{ ArrayBuffer, HashSet }
-import scala.math
 
 /**
  * An implementation of the Jaro [[org.hashtree.stringmetric.StringMetric]]. One differing detail in this implementation
@@ -9,8 +9,6 @@ import scala.math
  * distance in these scenarios.
  */
 object JaroMetric extends StringMetric {
-	implicit val stringCleaner = new StringCleanerDelegate with CaseStringCleaner with SpaceStringCleaner
-
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Float] = {
 		val ca1 = stringCleaner.clean(charArray1)
 		val ca2 = stringCleaner.clean(charArray2)

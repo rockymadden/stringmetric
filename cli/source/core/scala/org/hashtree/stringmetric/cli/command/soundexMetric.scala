@@ -1,8 +1,9 @@
 package org.hashtree.stringmetric.cli.command
 
-import org.hashtree.stringmetric.{ SoundexMetric, StringCleanerDelegate }
+import org.hashtree.stringmetric.StringCleanerDelegate
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.cli.command._
+import org.hashtree.stringmetric.phonetic.SoundexMetric
 
 /**
  * The soundexMetric [[org.hashtree.stringmetric.cli.command.Command]]. Compares two strings to determine if they are
