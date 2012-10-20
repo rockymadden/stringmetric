@@ -5,6 +5,7 @@ A collection of string metrics implemented in Scala. Includes a light-weight cor
 * Jaro
 * Jaro-Winkler
 * Levenshtein
+* Metaphone
 * Soundex
 
 ## Building the API
@@ -15,11 +16,9 @@ gradle tar
 
 ## Using the API
 `// Import metric of choice.`  
-`import org.hashtree.stringmetric.JaroWinklerMetric`  
-`// Optionally import metric implicit stringCleaner into scope.`  
-`import org.hashtree.stringmetric.JaroWinklerMetric.stringCleaner`
+`import org.hashtree.stringmetric.distance.JaroWinklerMetric`  
 
-`// Invoke metric compare method with implicit stringCleaner.`  
+`// Invoke metric compare method.`  
 `val distance = JaroWinklerMetric.compare("string1", "string2")`
 
 `// Do something. In this case, distance is between 1.0f and 0.0f.`  

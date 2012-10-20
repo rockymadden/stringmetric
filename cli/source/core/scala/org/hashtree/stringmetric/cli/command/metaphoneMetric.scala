@@ -3,13 +3,13 @@ package org.hashtree.stringmetric.cli.command
 import org.hashtree.stringmetric.StringCleanerDelegate
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.cli.command._
-import org.hashtree.stringmetric.phonetic.SoundexMetric
+import org.hashtree.stringmetric.phonetic.MetaphoneMetric
 
 /**
- * The soundexMetric [[org.hashtree.stringmetric.cli.command.Command]]. Compares two strings to determine if they are
- * phonetically similarly, per the Soundex algorithm.
+ * The metaphoneMetric [[org.hashtree.stringmetric.cli.command.Command]]. Compares two strings to determine if they are
+ * phonetically similarly, per the Metaphone algorithm.
  */
-object soundexMetric extends Command {
+object metaphoneMetric extends Command {
 	override def main(args: Array[String]): Unit = {
 		val options = OptionMapUtility.toOptionMap(args)
 
@@ -36,9 +36,9 @@ object soundexMetric extends Command {
 		val tab = "  "
 
 		println(
-			"Compares two strings to determine if they are phonetically similarly, per the Soundex algorithm." + ls + ls +
+			"Compares two strings to determine if they are phonetically similarly, per the Metaphone algorithm." + ls + ls +
 			"Syntax:" + ls +
-			tab + "soundexMetric [Options] string1 string2..." + ls + ls +
+			tab + "metaphoneMetric [Options] string1 string2..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
 			tab + tab + "Outputs description, syntax, and options."
@@ -49,7 +49,7 @@ object soundexMetric extends Command {
 		val strings = options('dashless).split(" ")
 
 		println(
-			SoundexMetric.compare(
+			MetaphoneMetric.compare(
 				strings(0),
 				strings(1)
 			)(new StringCleanerDelegate).getOrElse("not comparable").toString
