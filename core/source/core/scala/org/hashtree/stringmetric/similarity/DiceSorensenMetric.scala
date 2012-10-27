@@ -5,7 +5,7 @@ import scala.annotation.tailrec
 
 /** An implementation of the Dice, and Sorensen, [[org.hashtree.stringmetric.StringMetric]]. */
 object DiceSorensenMetric extends StringMetric {
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Float] = {
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Double] = {
 		val ca1 = stringCleaner.clean(charArray1)
 		val ca2 = stringCleaner.clean(charArray2)
 
@@ -14,12 +14,12 @@ object DiceSorensenMetric extends StringMetric {
 			val b = bigrams(ca1, ca2)
 			val ms = scoreMatches(b)
 
-			Some((2f * ms) / (b._1.length + b._2.length))
+			Some((2d * ms) / (b._1.length + b._2.length))
 		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Option[Float] = {
-		if (string1.length > 0 && string1.length == string2.length && string1 == string2) Some(1f)
+	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Option[Double] = {
+		if (string1.length > 0 && string1.length == string2.length && string1 == string2) Some(1d)
 		else
 			compare(
 				stringCleaner.clean(string1.toCharArray),

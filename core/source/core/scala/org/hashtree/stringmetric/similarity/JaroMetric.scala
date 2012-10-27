@@ -9,7 +9,7 @@ import scala.collection.mutable.{ ArrayBuffer, HashSet }
  * distance in these scenarios.
  */
 object JaroMetric extends StringMetric {
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Float] = {
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Double] = {
 		val ca1 = stringCleaner.clean(charArray1)
 		val ca2 = stringCleaner.clean(charArray2)
 
@@ -19,14 +19,14 @@ object JaroMetric extends StringMetric {
 			val ms = scoreMatches((mt._1, mt._2))
 			val ts = scoreTranspositions((mt._1, mt._2))
 
-			if (ms == 0) Some(0f)
+			if (ms == 0) Some(0d)
 			else
-				Some(((ms.toFloat / ca1.length) + (ms.toFloat / ca2.length) + ((ms.toFloat - ts) / ms)) / 3)
+				Some(((ms.toDouble / ca1.length) + (ms.toDouble / ca2.length) + ((ms.toDouble - ts) / ms)) / 3)
 		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Option[Float] = {
-		if (string1.length > 0 && string1.length == string2.length && string1 == string2) Some(1f)
+	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Option[Double] = {
+		if (string1.length > 0 && string1.length == string2.length && string1 == string2) Some(1d)
 		else
 			compare(
 				stringCleaner.clean(string1.toCharArray),
@@ -35,7 +35,7 @@ object JaroMetric extends StringMetric {
 	}
 
 	private[this] def `match`(ct: CompareTuple[Char]): MatchTuple[Char] = {
-		val window = math.abs((math.max(ct._1.length, ct._2.length) / 2f).floor.toInt - 1)
+		val window = math.abs((math.max(ct._1.length, ct._2.length) / 2d).floor.toInt - 1)
 		val one = ArrayBuffer.empty[Int]
 		val two = HashSet.empty[Int]
 		var i = 0
@@ -74,6 +74,6 @@ object JaroMetric extends StringMetric {
 	private[this] def scoreTranspositions(mt: MatchTuple[Char]) = {
 		require(mt._1.length == mt._2.length)
 
-		(mt._1.zip(mt._2).filter(t => t._1 != t._2).length / 2f).floor.toInt
+		(mt._1.zip(mt._2).filter(t => t._1 != t._2).length / 2d).floor.toInt
 	}
 }

@@ -17,17 +17,17 @@ final class DiceSorensenMetricSpec extends ScalaTest {
 			}
 			"equal arguments" should returns {
 				"1" in {
-					DiceSorensenMetric.compare("abc", "abc").get should be (1.0f)
+					DiceSorensenMetric.compare("abc", "abc").get should be (1)
 				}
 			}
 			"unequal arguments" should returns {
 				"0" in {
-					DiceSorensenMetric.compare("abc", "xyz").get should be (0.0f)
+					DiceSorensenMetric.compare("abc", "xyz").get should be (0)
 				}
 			}
 			"valid arguments" should returns {
-				"Float indicating distance" in {
-					DiceSorensenMetric.compare("night", "nacht").get should be (0.25f)
+				"Double indicating distance" in {
+					DiceSorensenMetric.compare("night", "nacht").get should be (0.25)
 				}
 			}
 		}

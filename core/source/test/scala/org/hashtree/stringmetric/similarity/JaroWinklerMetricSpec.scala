@@ -17,28 +17,28 @@ final class JaroWinklerMetricSpec extends ScalaTest {
 			}
 			"equal arguments" should returns {
 				"1" in {
-					JaroWinklerMetric.compare("a", "a").get should be (1.0f)
-					JaroWinklerMetric.compare("abc", "abc").get should be (1.0f)
+					JaroWinklerMetric.compare("a", "a").get should be (1)
+					JaroWinklerMetric.compare("abc", "abc").get should be (1)
 				}
 			}
 			"unequal arguments" should returns {
 				"0" in {
-					JaroWinklerMetric.compare("abc", "xyz").get should be (0.0f)
+					JaroWinklerMetric.compare("abc", "xyz").get should be (0)
 				}
 			}
 			"valid arguments" should returns {
-				"Float indicating distance" in {
-					JaroWinklerMetric.compare("aa", "a").get should be (0.84999996f)
-					JaroWinklerMetric.compare("a", "aa").get should be (0.84999996f)
-					JaroWinklerMetric.compare("veryveryverylong", "v").get should be (0.71875f)
-					JaroWinklerMetric.compare("v", "veryveryverylong").get should be (0.71875f)
-					JaroWinklerMetric.compare("martha", "marhta").get should be (0.96111107f)
-					JaroWinklerMetric.compare("dwayne", "duane").get should be (0.84000003f)
-					JaroWinklerMetric.compare("dixon", "dicksonx").get should be (0.81333333f)
-					JaroWinklerMetric.compare("abcvwxyz", "cabvwxyz").get should be (0.9583333f)
-					JaroWinklerMetric.compare("jones", "johnson").get should be (0.8323809f)
-					JaroWinklerMetric.compare("henka", "henkan").get should be (0.96666664f)
-					JaroWinklerMetric.compare("fvie", "ten").get should be (0.0f)
+				"Double indicating distance" in {
+					JaroWinklerMetric.compare("aa", "a").get should be (0.8500000000000001)
+					JaroWinklerMetric.compare("a", "aa").get should be (0.8500000000000001)
+					JaroWinklerMetric.compare("veryveryverylong", "v").get should be (0.71875)
+					JaroWinklerMetric.compare("v", "veryveryverylong").get should be (0.71875)
+					JaroWinklerMetric.compare("martha", "marhta").get should be (0.9611111111111111)
+					JaroWinklerMetric.compare("dwayne", "duane").get should be (0.8400000000000001)
+					JaroWinklerMetric.compare("dixon", "dicksonx").get should be (0.8133333333333332)
+					JaroWinklerMetric.compare("abcvwxyz", "cabvwxyz").get should be (0.9583333333333334)
+					JaroWinklerMetric.compare("jones", "johnson").get should be (0.8323809523809523)
+					JaroWinklerMetric.compare("henka", "henkan").get should be (0.9666666666666667)
+					JaroWinklerMetric.compare("fvie", "ten").get should be (0)
 
 					JaroWinklerMetric.compare("zac ephron", "zac efron").get should be >
 						JaroWinklerMetric.compare("zac ephron", "kai ephron").get
