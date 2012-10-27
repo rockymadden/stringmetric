@@ -9,26 +9,20 @@ trait Command {
 	def help(): Unit
 
 	final def error(error: Throwable)(implicit options: OptionMap): Unit = {
-		if (! isUnitTest(options)) {
+		if (!isUnitTest(options)) {
 			println(error.getMessage)
 			sys.exit(1)
-		} else {
-			throw error
-		}
+		} else throw error
 	}
 
 	def execute(options: OptionMap): Unit
 
-	final def exit(implicit options: OptionMap): Unit = {
-		if (! isUnitTest(options)) sys.exit(0)
-	}
+	final def exit(implicit options: OptionMap): Unit =
+		if (!isUnitTest(options)) sys.exit(0)
 
-	protected[this] def isUnitTest(options: OptionMap): Boolean = {
+	protected[this] def isUnitTest(options: OptionMap): Boolean =
 		(options.contains('ut) || (options.contains('unitTest) && options.get('unitTest) != "false"))
-	}
 
-	protected[this] def isDebug(options: OptionMap): Boolean = {
+	protected[this] def isDebug(options: OptionMap): Boolean =
 		(options.contains('d) || (options.contains('debug) && options.get('debug) != "false"))
-	}
 }
-
