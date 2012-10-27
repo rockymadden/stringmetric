@@ -31,8 +31,18 @@ final class LevenshteinMetricSpec extends ScalaTest {
 					LevenshteinMetric.compare("a", "abc").get should be (2)
 					LevenshteinMetric.compare("abc", "c").get should be (2)
 					LevenshteinMetric.compare("c", "abc").get should be (2)
+					LevenshteinMetric.compare("sitting", "kitten").get should be (3)
 					LevenshteinMetric.compare("kitten", "sitting").get should be (3)
+					LevenshteinMetric.compare("cake", "drake").get should be (2)
 					LevenshteinMetric.compare("drake", "cake").get should be (2)
+					LevenshteinMetric.compare("saturday", "sunday").get should be (3)
+					LevenshteinMetric.compare("sunday", "saturday").get should be (3)
+					LevenshteinMetric.compare("book", "back").get should be (2)
+					LevenshteinMetric.compare("dog", "fog").get should be (1)
+					LevenshteinMetric.compare("foq", "fog").get should be (1)
+					LevenshteinMetric.compare("fvg", "fog").get should be (1)
+					LevenshteinMetric.compare("encyclopedia", "encyclopediaz").get should be (1)
+					LevenshteinMetric.compare("encyclopediz", "encyclopediaz").get should be (1)
 				}
 			}
 		}

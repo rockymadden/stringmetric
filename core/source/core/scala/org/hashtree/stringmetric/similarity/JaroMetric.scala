@@ -14,6 +14,7 @@ object JaroMetric extends StringMetric {
 		val ca2 = stringFilter.filter(charArray2)
 
 		if (ca1.length == 0 || ca2.length == 0) None
+		else if (ca1.sameElements(ca2)) Some(1d)
 		else {
 			val mt = `match`((ca1, ca2))
 			val ms = scoreMatches((mt._1, mt._2))
@@ -26,12 +27,10 @@ object JaroMetric extends StringMetric {
 	}
 
 	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] = {
-		if (string1.length > 0 && string1.length == string2.length && string1 == string2) Some(1d)
-		else
-			compare(
-				stringFilter.filter(string1.toCharArray),
-				stringFilter.filter(string2.toCharArray)
-			)(new StringFilterDelegate)
+		compare(
+			stringFilter.filter(string1.toCharArray),
+			stringFilter.filter(string2.toCharArray)
+		)(new StringFilterDelegate)
 	}
 
 	private[this] def `match`(ct: CompareTuple[Char]): MatchTuple[Char] = {

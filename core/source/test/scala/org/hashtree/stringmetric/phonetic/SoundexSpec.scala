@@ -43,6 +43,7 @@ final class SoundexSpec extends ScalaTest {
 					Soundex.compute("kant").get should equal ("k530")
 					Soundex.compute("ladd").get should equal ("l300")
 					Soundex.compute("lissajous").get should equal ("l222")
+					Soundex.compute("x123").get should equal ("x000")
 				}
 			}
 		}

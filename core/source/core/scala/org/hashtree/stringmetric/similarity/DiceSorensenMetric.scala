@@ -10,6 +10,7 @@ object DiceSorensenMetric extends StringMetric {
 		val ca2 = stringFilter.filter(charArray2)
 
 		if (ca1.length == 0 || ca2.length == 0) None
+		else if (ca1.sameElements(ca2)) Some(1d)
 		else {
 			val b = bigrams(ca1, ca2)
 			val ms = scoreMatches(b)
@@ -19,12 +20,10 @@ object DiceSorensenMetric extends StringMetric {
 	}
 
 	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] = {
-		if (string1.length > 0 && string1.length == string2.length && string1 == string2) Some(1d)
-		else
-			compare(
-				stringFilter.filter(string1.toCharArray),
-				stringFilter.filter(string2.toCharArray)
-			)(new StringFilterDelegate)
+		compare(
+			stringFilter.filter(string1.toCharArray),
+			stringFilter.filter(string2.toCharArray)
+		)(new StringFilterDelegate)
 	}
 
 	private[this] def bigrams(ct: CompareTuple[Char]): MatchTuple[String] = {
@@ -32,7 +31,7 @@ object DiceSorensenMetric extends StringMetric {
 		def set(ca: Array[Char], sa: Array[String]): Array[String] = {
 			if (ca.length <= 1) sa
 			else
-				set(ca.tail, sa :+ "" + ca.head + ca.tail.head)
+				set(ca.tail, sa :+ "" + ca.head + ca(1))
 		}
 
 		(set(ct._1, Array.empty[String]), set(ct._2, Array.empty[String]))

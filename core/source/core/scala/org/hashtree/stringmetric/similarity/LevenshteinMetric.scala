@@ -9,49 +9,47 @@ object LevenshteinMetric extends StringMetric {
 		val ca2 = stringFilter.filter(charArray2)
 
 		if (ca1.length == 0 && ca2.length == 0) None
-		else {
-			val levenshteinMemoize = Memoize.Y(levenshtein)
-
-			Some(levenshteinMemoize(ca1, ca2))
-		}
+		else if (ca1.length == 0) Some(ca2.length)
+		else if (ca2.length == 0) Some(ca1.length)
+		else Some(levenshtein(ca1, ca2))
 	}
 
 	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Int] = {
-		if (string1.length > 0 && string1.length == string2.length && string1 == string2) Some(0)
-		else
-			compare(
-				stringFilter.filter(string1.toCharArray),
-				stringFilter.filter(string2.toCharArray)
-			)(new StringFilterDelegate)
+		compare(
+			stringFilter.filter(string1.toCharArray),
+			stringFilter.filter(string2.toCharArray)
+		)(new StringFilterDelegate)
 	}
 
-	private[this] def levenshtein(f: CompareTuple[Char] => Int)(ct: CompareTuple[Char]): Int = {
-		if (ct._1.length == 0) ct._2.length
-		else if (ct._2.length == 0) ct._1.length
-		else {
-			math.min(
-				math.min(
-					f(ct._1.tail, ct._2) + 1,
-					f(ct._1, ct._2.tail) + 1
-				),
-				f(ct._1.tail, ct._2.tail) + (if (ct._1.head != ct._2.head) 1 else 0)
-			)
+	private[this] def levenshtein(ct: CompareTuple[Char]) = {
+		val m = Array.fill[Int](ct._1.length + 1, ct._2.length + 1)(-1)
+
+		def distance(t: Tuple2[Int, Int]): Int = {
+			t match {
+				case (r, 0) => r
+				case (0, c) => c
+				case (r, c) if m(r)(c) != -1 => m(r)(c)
+				case (r, c) => {
+					val min = {
+						if (ct._1(r - 1) == ct._2(c - 1))
+							distance(r - 1, c - 1)
+						else {
+							math.min(
+								math.min(
+									distance(r - 1, c) + 1, // Delete (left).
+									distance(r, c - 1) + 1 // Insert (up).
+								),
+								distance(r - 1, c - 1) + 1 // Substitute (left-up).
+							)
+						}
+					}
+
+					m(r)(c) = min
+					min
+				}
+			}
 		}
-	}
 
-	private[this] final class Memoize[-T, +R](f: T => R) extends (T => R) {
-		private[this] val map = scala.collection.mutable.Map.empty[T, R]
-
-		def apply(k: T): R = map.getOrElseUpdate(k, f(k))
-	}
-
-	private[this] object Memoize {
-		def apply[T, R](f: T => R) = new Memoize(f)
-
-		def Y[T, R](f: (T => R) => T => R): (T => R) = {
-			lazy val yf: T => R = Memoize(f(yf)(_))
-
-			yf
-		}
+		distance(ct._1.length, ct._2.length)
 	}
 }

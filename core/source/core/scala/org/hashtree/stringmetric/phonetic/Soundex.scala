@@ -10,20 +10,17 @@ object Soundex extends StringAlgorithm {
 
 		if (ca.length == 0) None
 		else {
-			letter(ca, 0) match {
-				case Some(l) => {
-					if (ca.length - 1 == l._2) Some(Array(l._1, '0', '0', '0'))
-					else {
-						Some(
-							code(
-								ca.takeRight(ca.length - (l._2 + 1)),
-								l._1, // Pass first letter.
-								Array(l._1) // Pass array with first letter.
-							).padTo(4, '0')
-						)
-					}
-				}
-				case None => None
+			val fc = ca.head.toLower
+
+			if (fc < 97 || fc > 122) None
+			else {
+				Some(
+					transcode(
+						ca.tail,
+						fc, // Pass first letter.
+						Array(fc) // Pass array with first letter.
+					).padTo(4, '0')
+				)
 			}
 		}
 	}
@@ -36,18 +33,7 @@ object Soundex extends StringAlgorithm {
 	}
 
 	@tailrec
-	private[this] def letter(i: Array[Char], ind: Int): Option[Tuple2[Char, Int]] = {
-		if (i.length == 0) None
-		else {
-			val c = i.head.toLower
-
-			if (c >= 97 && c <= 122) Some((c, ind)) else letter(i.tail, ind + 1)
-		}
-	}
-
-	@tailrec
-	private[this] def code(i: Array[Char], p: Char, o: Array[Char]): Array[Char] = {
-		require(p >= 97 && p <= 122)
+	private[this] def transcode(i: Array[Char], p: Char, o: Array[Char]): Array[Char] = {
 		require(o.length > 0)
 
 		if (i.length == 0) o
@@ -88,7 +74,7 @@ object Soundex extends StringAlgorithm {
 
 			if (o.length == 3 && a != '\0') o :+ a
 			else
-				code(i.tail, c, if (a != '\0') o :+ a else o)
+				transcode(i.tail, c, if (a != '\0') o :+ a else o)
 		}
 	}
 }

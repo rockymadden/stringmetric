@@ -21,7 +21,6 @@ object MetaphoneMetric extends StringMetric {
 	}
 
 	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Boolean] = {
-		// Unable to perform simple equality check, due to situations where no letters are passed.
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)

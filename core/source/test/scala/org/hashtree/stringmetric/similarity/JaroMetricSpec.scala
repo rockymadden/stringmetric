@@ -28,17 +28,17 @@ final class JaroMetricSpec extends ScalaTest {
 			}
 			"valid arguments" should returns {
 				"Double indicating distance" in {
-					JaroWinklerMetric.compare("aa", "a").get should be (0.8500000000000001)
-					JaroWinklerMetric.compare("a", "aa").get should be (0.8500000000000001)
-					JaroWinklerMetric.compare("veryveryverylong", "v").get should be (0.71875)
-					JaroWinklerMetric.compare("v", "veryveryverylong").get should be (0.71875)
-					JaroWinklerMetric.compare("martha", "marhta").get should be (0.9611111111111111)
-					JaroWinklerMetric.compare("dwayne", "duane").get should be (0.8400000000000001)
-					JaroWinklerMetric.compare("dixon", "dicksonx").get should be (0.8133333333333332)
-					JaroWinklerMetric.compare("abcvwxyz", "cabvwxyz").get should be (0.9583333333333334)
-					JaroWinklerMetric.compare("jones", "johnson").get should be (0.8323809523809523)
-					JaroWinklerMetric.compare("henka", "henkan").get should be (0.9666666666666667)
-					JaroWinklerMetric.compare("fvie", "ten").get should be (0)
+					JaroMetric.compare("aa", "a").get should be (0.8333333333333334)
+					JaroMetric.compare("a", "aa").get should be (0.8333333333333334)
+					JaroMetric.compare("veryveryverylong", "v").get should be (0.6875)
+					JaroMetric.compare("v", "veryveryverylong").get should be (0.6875)
+					JaroMetric.compare("martha", "marhta").get should be (0.9444444444444445)
+					JaroMetric.compare("dwayne", "duane").get should be (0.8222222222222223)
+					JaroMetric.compare("dixon", "dicksonx").get should be (0.7666666666666666)
+					JaroMetric.compare("abcvwxyz", "cabvwxyz").get should be (0.9583333333333334)
+					JaroMetric.compare("jones", "johnson").get should be (0.7904761904761904)
+					JaroMetric.compare("henka", "henkan").get should be (0.9444444444444445)
+					JaroMetric.compare("fvie", "ten").get should be (0)
 
 					JaroMetric.compare("zac ephron", "zac efron").get should be >
 						JaroMetric.compare("zac ephron", "kai ephron").get

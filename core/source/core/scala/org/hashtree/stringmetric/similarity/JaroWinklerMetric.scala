@@ -13,6 +13,8 @@ object JaroWinklerMetric extends StringMetric {
 		val ca2 = stringFilter.filter(charArray2)
 
 		JaroMetric.compare(ca1, ca2)(new StringFilterDelegate) match {
+			case Some(0d) => Some(0d)
+			case Some(1d) => Some(1d)
 			case Some(jaro) => {
 				val prefix = ca1.zip(ca2).takeWhile(t => t._1 == t._2).map(_._1)
 
@@ -23,11 +25,9 @@ object JaroWinklerMetric extends StringMetric {
 	}
 
 	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] = {
-		if (string1.length > 0 && string1.length == string2.length && string1 == string2) Some(1d)
-		else
-			compare(
-				stringFilter.filter(string1.toCharArray),
-				stringFilter.filter(string2.toCharArray)
-			)(new StringFilterDelegate)
+		compare(
+			stringFilter.filter(string1.toCharArray),
+			stringFilter.filter(string2.toCharArray)
+		)(new StringFilterDelegate)
 	}
 }

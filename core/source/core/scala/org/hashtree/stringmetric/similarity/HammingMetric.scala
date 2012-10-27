@@ -9,16 +9,15 @@ object HammingMetric extends StringMetric {
 		val ca2 = stringFilter.filter(charArray2)
 
 		if (ca1.length == 0 || ca2.length == 0 || ca1.length != ca2.length) None
+		else if (ca1.sameElements(ca2)) Some(0)
 		else Some(hamming(ca1, ca2))
 	}
 
 	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Int] = {
-		if (string1.length > 0 && string1.length == string2.length && string1 == string2) Some(0)
-		else
-			compare(
-				stringFilter.filter(string1.toCharArray),
-				stringFilter.filter(string2.toCharArray)
-			)(new StringFilterDelegate)
+		compare(
+			stringFilter.filter(string1.toCharArray),
+			stringFilter.filter(string2.toCharArray)
+		)(new StringFilterDelegate)
 	}
 
 	private[this] def hamming(ct: CompareTuple[Char]) = {
