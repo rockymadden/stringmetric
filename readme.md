@@ -7,6 +7,7 @@ A collection of string metrics implemented in Scala. Includes a light-weight cor
 * Jaro-Winkler
 * Levenshtein
 * Metaphone
+* NYSIIS
 * Soundex
 
 ## Building the API
