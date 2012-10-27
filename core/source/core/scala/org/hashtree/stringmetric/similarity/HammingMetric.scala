@@ -1,4 +1,4 @@
-package org.hashtree.stringmetric.distance
+package org.hashtree.stringmetric.similarity
 
 import org.hashtree.stringmetric.{ CompareTuple, StringCleaner, StringCleanerDelegate, StringMetric }
 

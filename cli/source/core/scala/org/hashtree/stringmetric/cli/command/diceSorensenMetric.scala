@@ -3,7 +3,7 @@ package org.hashtree.stringmetric.cli.command
 import org.hashtree.stringmetric.{ AsciiCaseStringCleaner, StringCleanerDelegate }
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.cli.command._
-import org.hashtree.stringmetric.distance.DiceSorensenMetric
+import org.hashtree.stringmetric.similarity.DiceSorensenMetric
 
 /**
  * The diceSorensenMetric [[org.hashtree.stringmetric.cli.command.Command]]. Compares the similarity of two strings

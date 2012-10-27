@@ -3,7 +3,7 @@ package org.hashtree.stringmetric.cli.command
 import org.hashtree.stringmetric.{ AsciiCaseStringCleaner, StringCleanerDelegate }
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.cli.command._
-import org.hashtree.stringmetric.distance.JaroWinklerMetric
+import org.hashtree.stringmetric.similarity.JaroWinklerMetric
 
 /**
  * The jaroWinklerMetric [[org.hashtree.stringmetric.cli.command.Command]]. Compares two strings to calculate the

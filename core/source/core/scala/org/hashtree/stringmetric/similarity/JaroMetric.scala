@@ -1,4 +1,4 @@
-package org.hashtree.stringmetric.distance
+package org.hashtree.stringmetric.similarity
 
 import org.hashtree.stringmetric.{ CompareTuple, MatchTuple, StringCleaner, StringCleanerDelegate, StringMetric }
 import scala.collection.mutable.{ ArrayBuffer, HashSet }
