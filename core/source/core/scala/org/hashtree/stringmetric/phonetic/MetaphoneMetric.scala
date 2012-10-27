@@ -1,12 +1,12 @@
 package org.hashtree.stringmetric.phonetic
 
-import org.hashtree.stringmetric.{ StringCleaner, StringCleanerDelegate, StringMetric }
+import org.hashtree.stringmetric.{ StringFilter, StringFilterDelegate, StringMetric }
 
 /** An implementation of the Metaphone [[org.hashtree.stringmetric.StringMetric]]. */
 object MetaphoneMetric extends StringMetric {
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Boolean] = {
-		val ca1 = stringCleaner.clean(charArray1)
-		val ca2 = stringCleaner.clean(charArray2)
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Boolean] = {
+		val ca1 = stringFilter.filter(charArray1)
+		val ca2 = stringFilter.filter(charArray2)
 
 		if (ca1.length == 0 || ca2.length == 0) None
 		else {
@@ -20,11 +20,11 @@ object MetaphoneMetric extends StringMetric {
 		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Option[Boolean] = {
+	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Boolean] = {
 		// Unable to perform simple equality check, due to situations where no letters are passed.
 		compare(
-			stringCleaner.clean(string1.toCharArray),
-			stringCleaner.clean(string2.toCharArray)
-		)(new StringCleanerDelegate)
+			stringFilter.filter(string1.toCharArray),
+			stringFilter.filter(string2.toCharArray)
+		)(new StringFilterDelegate)
 	}
 }

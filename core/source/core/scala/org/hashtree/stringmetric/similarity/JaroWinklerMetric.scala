@@ -1,6 +1,6 @@
 package org.hashtree.stringmetric.similarity
 
-import org.hashtree.stringmetric.{ StringCleaner, StringCleanerDelegate, StringMetric }
+import org.hashtree.stringmetric.{ StringFilter, StringFilterDelegate, StringMetric }
 
 /**
  * An implementation of the Jaro-Winkler [[org.hashtree.stringmetric.StringMetric]]. One differing detail in this
@@ -8,11 +8,11 @@ import org.hashtree.stringmetric.{ StringCleaner, StringCleanerDelegate, StringM
  * penalized distance in these scenarios (e.g. comparing henka and henkan distance is 0.9666 versus the typical 0.9722).
  */
 object JaroWinklerMetric extends StringMetric {
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Double] = {
-		val ca1 = stringCleaner.clean(charArray1)
-		val ca2 = stringCleaner.clean(charArray2)
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Double] = {
+		val ca1 = stringFilter.filter(charArray1)
+		val ca2 = stringFilter.filter(charArray2)
 
-		JaroMetric.compare(ca1, ca2)(new StringCleanerDelegate) match {
+		JaroMetric.compare(ca1, ca2)(new StringFilterDelegate) match {
 			case Some(jaro) => {
 				val prefix = ca1.zip(ca2).takeWhile(t => t._1 == t._2).map(_._1)
 
@@ -22,12 +22,12 @@ object JaroWinklerMetric extends StringMetric {
 		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Option[Double] = {
+	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] = {
 		if (string1.length > 0 && string1.length == string2.length && string1 == string2) Some(1d)
 		else
 			compare(
-				stringCleaner.clean(string1.toCharArray),
-				stringCleaner.clean(string2.toCharArray)
-			)(new StringCleanerDelegate)
+				stringFilter.filter(string1.toCharArray),
+				stringFilter.filter(string2.toCharArray)
+			)(new StringFilterDelegate)
 	}
 }

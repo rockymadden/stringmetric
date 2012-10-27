@@ -6,5 +6,5 @@ package object stringmetric {
 
 	type MatchTuple[T] = Tuple2[Array[T], Array[T]]
 
-	implicit val stringCleaner = new StringCleanerDelegate
+	implicit val stringFilter = new StringFilterDelegate
 }

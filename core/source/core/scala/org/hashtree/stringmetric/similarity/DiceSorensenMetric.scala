@@ -1,13 +1,13 @@
 package org.hashtree.stringmetric.similarity
 
-import org.hashtree.stringmetric.{ CompareTuple, MatchTuple, StringCleaner, StringCleanerDelegate, StringMetric }
+import org.hashtree.stringmetric.{ CompareTuple, MatchTuple, StringFilter, StringFilterDelegate, StringMetric }
 import scala.annotation.tailrec
 
 /** An implementation of the Dice, and Sorensen, [[org.hashtree.stringmetric.StringMetric]]. */
 object DiceSorensenMetric extends StringMetric {
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringCleaner: StringCleaner): Option[Double] = {
-		val ca1 = stringCleaner.clean(charArray1)
-		val ca2 = stringCleaner.clean(charArray2)
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Double] = {
+		val ca1 = stringFilter.filter(charArray1)
+		val ca2 = stringFilter.filter(charArray2)
 
 		if (ca1.length == 0 || ca2.length == 0) None
 		else {
@@ -18,13 +18,13 @@ object DiceSorensenMetric extends StringMetric {
 		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringCleaner: StringCleaner): Option[Double] = {
+	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] = {
 		if (string1.length > 0 && string1.length == string2.length && string1 == string2) Some(1d)
 		else
 			compare(
-				stringCleaner.clean(string1.toCharArray),
-				stringCleaner.clean(string2.toCharArray)
-			)(new StringCleanerDelegate)
+				stringFilter.filter(string1.toCharArray),
+				stringFilter.filter(string2.toCharArray)
+			)(new StringFilterDelegate)
 	}
 
 	private[this] def bigrams(ct: CompareTuple[Char]): MatchTuple[String] = {

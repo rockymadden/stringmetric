@@ -1,6 +1,6 @@
 package org.hashtree.stringmetric.cli.command
 
-import org.hashtree.stringmetric.StringCleanerDelegate
+import org.hashtree.stringmetric.StringFilterDelegate
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.cli.command._
 import org.hashtree.stringmetric.phonetic.MetaphoneMetric
@@ -52,7 +52,7 @@ object metaphoneMetric extends Command {
 			MetaphoneMetric.compare(
 				strings(0),
 				strings(1)
-			)(new StringCleanerDelegate).getOrElse("not comparable").toString
+			)(new StringFilterDelegate).getOrElse("not comparable").toString
 		)
 	}
 }

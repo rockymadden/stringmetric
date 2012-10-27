@@ -1,12 +1,12 @@
 package org.hashtree.stringmetric.phonetic
 
-import org.hashtree.stringmetric.{ StringAlgorithm, StringCleaner, StringCleanerDelegate }
+import org.hashtree.stringmetric.{ StringAlgorithm, StringFilter, StringFilterDelegate }
 import scala.annotation.tailrec
 
 /** An implementation of the Soundex [[org.hashtree.stringmetric.StringAlgorithm]]. */
 object Soundex extends StringAlgorithm {
-	override def compute(charArray: Array[Char])(implicit stringCleaner: StringCleaner): Option[Array[Char]] = {
-		val ca = stringCleaner.clean(charArray)
+	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
+		val ca = stringFilter.filter(charArray)
 
 		if (ca.length == 0) None
 		else {
@@ -28,8 +28,8 @@ object Soundex extends StringAlgorithm {
 		}
 	}
 
-	override def compute(string: String)(implicit stringCleaner: StringCleaner): Option[String] = {
-		compute(stringCleaner.clean(string.toCharArray))(new StringCleanerDelegate) match {
+	override def compute(string: String)(implicit stringFilter: StringFilter): Option[String] = {
+		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate) match {
 			case Some(se) => Some(se.mkString)
 			case None => None
 		}
