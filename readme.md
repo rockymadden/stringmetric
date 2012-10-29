@@ -1,7 +1,7 @@
 #stringmetric
 A collection of string metrics implemented in Scala. Includes a light-weight core API and CLI for each string metric. The following string metrics are currently supported:
 
-* __Dice / Sorensen__ (<http://en.wikipedia.org/wiki/Dice's_coefficient>)
+* __Dice / Sorensen__ (<http://en.wikipedia.org/wiki/Dice%27s_coefficient>)
 	* _API namespace_: org.hashtree.stringmetric.similarity.DiceSorensenMetric
 	* _CLI name_: diceSorensenMetric
 * __Hamming__ (<http://en.wikipedia.org/wiki/Hamming_distance>)
