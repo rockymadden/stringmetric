@@ -1,6 +1,6 @@
 package org.hashtree.stringmetric.cli.command
 
-import org.hashtree.stringmetric.{ AsciiCaseStringFilter, StringFilterDelegate }
+import org.hashtree.stringmetric.{ AsciiLetterCaseStringFilter, StringFilterDelegate }
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.cli.command._
 import org.hashtree.stringmetric.similarity.HammingMetric
@@ -50,7 +50,7 @@ object hammingMetric extends Command {
 			HammingMetric.compare(
 				strings(0),
 				strings(1)
-			)(new StringFilterDelegate with AsciiCaseStringFilter).getOrElse("not comparable").toString
+			)(new StringFilterDelegate with AsciiLetterCaseStringFilter).getOrElse("not comparable").toString
 		)
 	}
 }

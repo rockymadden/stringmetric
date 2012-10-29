@@ -4,10 +4,10 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-final class AsciiCaseStringFilterSpec extends ScalaTest {
-	private final val Filter = new StringFilterDelegate with AsciiCaseStringFilter
+final class AsciiLetterCaseStringFilterSpec extends ScalaTest {
+	private final val Filter = new StringFilterDelegate with AsciiLetterCaseStringFilter
 
-	"AsciiCaseStringFilter" should provide {
+	"AsciiLetterCaseStringFilter" should provide {
 		"overloaded filter method" when passed {
 			"String with mixed case" should returns {
 				"String with the same case" in {
