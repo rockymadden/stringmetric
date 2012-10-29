@@ -5,22 +5,22 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-final class refinedSoundexSpec extends ScalaTest {
-	"refinedSoundex" should provide {
+final class metaphoneAlgorithmSpec extends ScalaTest {
+	"metaphoneAlgorithm" should provide {
 		"main method" when passed {
 			"valid dashless argument" should executes {
 				"print phonetic representation" in {
 					val out = new java.io.ByteArrayOutputStream()
 
 					Console.withOut(out)(
-						refinedSoundex.main(Array("--unitTest", "--debug", "aBc"))
+						metaphoneAlgorithm.main(Array("--unitTest", "--debug", "aBc"))
 					)
 
-					out.toString should equal ("a013\n")
+					out.toString should equal ("abk\n")
 					out.reset()
 
 					Console.withOut(out)(
-						refinedSoundex.main(Array("--unitTest", "--debug", "1"))
+						metaphoneAlgorithm.main(Array("--unitTest", "--debug", "1"))
 					)
 
 					out.toString should equal ("not computable\n")
@@ -30,7 +30,7 @@ final class refinedSoundexSpec extends ScalaTest {
 			"no dashless argument" should throws {
 				"IllegalArgumentException" in {
 					evaluating {
-						refinedSoundex.main(Array("--unitTest", "--debug"))
+						metaphoneAlgorithm.main(Array("--unitTest", "--debug"))
 					} should produce [IllegalArgumentException]
 				}
 			}

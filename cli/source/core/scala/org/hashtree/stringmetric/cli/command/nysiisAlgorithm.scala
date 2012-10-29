@@ -3,13 +3,13 @@ package org.hashtree.stringmetric.cli.command
 import org.hashtree.stringmetric.StringFilterDelegate
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.cli.command._
-import org.hashtree.stringmetric.phonetic.Metaphone
+import org.hashtree.stringmetric.phonetic.NysiisAlgorithm
 
 /**
- * The Metaphone [[org.hashtree.stringmetric.cli.command.Command]]. Returns the phonetic representation of the
- * passed string, per the Metaphone algorithm.
+ * The nysiisAlgorithm [[org.hashtree.stringmetric.cli.command.Command]]. Returns the phonetic representation of the
+ * passed string, per the NYSIIS algorithm.
  */
-object metaphone extends Command {
+object nysiisAlgorithm extends Command {
 	override def main(args: Array[String]): Unit = {
 		val options = OptionMapUtility.toOptionMap(args)
 
@@ -34,9 +34,9 @@ object metaphone extends Command {
 		val tab = "  "
 
 		println(
-			"Returns the phonetic representation of the passed string, per the Metaphone algorithm." + ls + ls +
+			"Returns the phonetic representation of the passed string, per the NYSIIS algorithm." + ls + ls +
 			"Syntax:" + ls +
-			tab + "metaphone [Options] string..." + ls + ls +
+			tab + "nysiisAlgorithm [Options] string..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
 			tab + tab + "Outputs description, syntax, and options."
@@ -45,7 +45,7 @@ object metaphone extends Command {
 
 	override def execute(options: OptionMap): Unit =
 		println(
-			Metaphone.compute(
+			NysiisAlgorithm.compute(
 				options('dashless)
 			)(new StringFilterDelegate).getOrElse("not computable").toString
 		)

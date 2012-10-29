@@ -3,13 +3,13 @@ package org.hashtree.stringmetric.cli.command
 import org.hashtree.stringmetric.StringFilterDelegate
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.cli.command._
-import org.hashtree.stringmetric.phonetic.Soundex
+import org.hashtree.stringmetric.phonetic.MetaphoneAlgorithm
 
 /**
- * The Soundex [[org.hashtree.stringmetric.cli.command.Command]]. Returns the phonetic representation of the
- * passed string, per the Soundex algorithm.
+ * The metaphoneAlgorithm [[org.hashtree.stringmetric.cli.command.Command]]. Returns the phonetic representation of the
+ * passed string, per the Metaphone algorithm.
  */
-object soundex extends Command {
+object metaphoneAlgorithm extends Command {
 	override def main(args: Array[String]): Unit = {
 		val options = OptionMapUtility.toOptionMap(args)
 
@@ -34,9 +34,9 @@ object soundex extends Command {
 		val tab = "  "
 
 		println(
-			"Returns the phonetic representation of the passed string, per the Soundex algorithm." + ls + ls +
+			"Returns the phonetic representation of the passed string, per the Metaphone algorithm." + ls + ls +
 			"Syntax:" + ls +
-			tab + "soundex [Options] string..." + ls + ls +
+			tab + "metaphoneAlgorithm [Options] string..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
 			tab + tab + "Outputs description, syntax, and options."
@@ -45,7 +45,7 @@ object soundex extends Command {
 
 	override def execute(options: OptionMap): Unit =
 		println(
-			Soundex.compute(
+			MetaphoneAlgorithm.compute(
 				options('dashless)
 			)(new StringFilterDelegate).getOrElse("not computable").toString
 		)

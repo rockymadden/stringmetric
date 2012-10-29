@@ -10,8 +10,8 @@ object RefinedSoundexMetric extends StringMetric {
 
 		if (ca1.length == 0 || ca2.length == 0) None
 		else {
-			val rse1 = RefinedSoundex.compute(ca1)
-			val rse2 = RefinedSoundex.compute(ca2)
+			val rse1 = RefinedSoundexAlgorithm.compute(ca1)
+			val rse2 = RefinedSoundexAlgorithm.compute(ca2)
 
 			if (!rse1.isDefined || !rse2.isDefined || (rse1.get.length == 0 && rse2.get.length == 0)) None
 			else Some(rse1.get.sameElements(rse2.get))

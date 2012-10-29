@@ -5,22 +5,22 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-final class nysiisSpec extends ScalaTest {
-	"nysiis" should provide {
+final class refinedSoundexAlgorithmSpec extends ScalaTest {
+	"refinedSoundexAlgorithm" should provide {
 		"main method" when passed {
 			"valid dashless argument" should executes {
 				"print phonetic representation" in {
 					val out = new java.io.ByteArrayOutputStream()
 
 					Console.withOut(out)(
-						nysiis.main(Array("--unitTest", "--debug", "aBc"))
+						refinedSoundexAlgorithm.main(Array("--unitTest", "--debug", "aBc"))
 					)
 
-					out.toString should equal ("abc\n")
+					out.toString should equal ("a013\n")
 					out.reset()
 
 					Console.withOut(out)(
-						nysiis.main(Array("--unitTest", "--debug", "1"))
+						refinedSoundexAlgorithm.main(Array("--unitTest", "--debug", "1"))
 					)
 
 					out.toString should equal ("not computable\n")
@@ -30,7 +30,7 @@ final class nysiisSpec extends ScalaTest {
 			"no dashless argument" should throws {
 				"IllegalArgumentException" in {
 					evaluating {
-						nysiis.main(Array("--unitTest", "--debug"))
+						refinedSoundexAlgorithm.main(Array("--unitTest", "--debug"))
 					} should produce [IllegalArgumentException]
 				}
 			}

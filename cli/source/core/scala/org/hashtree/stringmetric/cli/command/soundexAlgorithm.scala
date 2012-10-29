@@ -3,13 +3,13 @@ package org.hashtree.stringmetric.cli.command
 import org.hashtree.stringmetric.StringFilterDelegate
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.cli.command._
-import org.hashtree.stringmetric.phonetic.RefinedSoundex
+import org.hashtree.stringmetric.phonetic.SoundexAlgorithm
 
 /**
- * The refined Soundex [[org.hashtree.stringmetric.cli.command.Command]]. Returns the phonetic representation of the
- * passed string, per the refined Soundex algorithm.
+ * The soundexAlgorithm [[org.hashtree.stringmetric.cli.command.Command]]. Returns the phonetic representation of the
+ * passed string, per the Soundex algorithm.
  */
-object refinedSoundex extends Command {
+object soundexAlgorithm extends Command {
 	override def main(args: Array[String]): Unit = {
 		val options = OptionMapUtility.toOptionMap(args)
 
@@ -34,9 +34,9 @@ object refinedSoundex extends Command {
 		val tab = "  "
 
 		println(
-			"Returns the phonetic representation of the passed string, per the refined Soundex algorithm." + ls + ls +
+			"Returns the phonetic representation of the passed string, per the Soundex algorithm." + ls + ls +
 			"Syntax:" + ls +
-			tab + "refinedSoundex [Options] string..." + ls + ls +
+			tab + "soundexAlgorithm [Options] string..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
 			tab + tab + "Outputs description, syntax, and options."
@@ -45,7 +45,7 @@ object refinedSoundex extends Command {
 
 	override def execute(options: OptionMap): Unit =
 		println(
-			RefinedSoundex.compute(
+			SoundexAlgorithm.compute(
 				options('dashless)
 			)(new StringFilterDelegate).getOrElse("not computable").toString
 		)

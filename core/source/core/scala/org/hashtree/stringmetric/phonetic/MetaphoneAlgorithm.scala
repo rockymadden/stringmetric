@@ -4,7 +4,7 @@ import org.hashtree.stringmetric.{ StringAlgorithm, StringFilter, StringFilterDe
 import scala.annotation.tailrec
 
 /** An implementation of the Metaphone [[org.hashtree.stringmetric.StringAlgorithm]]. */
-object Metaphone extends StringAlgorithm {
+object MetaphoneAlgorithm extends StringAlgorithm {
 	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
 		val ca = stringFilter.filter(charArray)
 

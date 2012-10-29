@@ -10,8 +10,8 @@ object SoundexMetric extends StringMetric {
 
 		if (ca1.length == 0 || ca2.length == 0) None
 		else {
-			val se1 = Soundex.compute(ca1)
-			val se2 = Soundex.compute(ca2)
+			val se1 = SoundexAlgorithm.compute(ca1)
+			val se2 = SoundexAlgorithm.compute(ca2)
 
 			if (!se1.isDefined || !se2.isDefined || (se1.get.length == 0 && se2.get.length == 0)) None
 			else Some(se1.get.sameElements(se2.get))

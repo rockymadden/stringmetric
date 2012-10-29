@@ -29,7 +29,22 @@ A collection of string metrics implemented in Scala. Includes a light-weight cor
 	* _API namespace_: org.hashtree.stringmetric.phonetic.SoundexMetric
 	* _CLI name_: soundexMetric
 
-In addition to string metrics, several filters are available which clean up passed arguments prior to evaluation. Filtering rules can be composed via trait mixing.
+All phonetic string metrics have a stand alone algorithm counter part. They provide a means to extract the phonetic representation of the argument passed, rather than determining if two arguments sound the same phonetically.
+
+* __Metaphone__
+	* _API namespace_: org.hashtree.stringmetric.phonetic.MetaphoneAlgorithm
+	* _CLI name_: metaphoneAlgorithm
+* __NYSIIS__
+	* _API namespace_: org.hashtree.stringmetric.phonetic.NysiisAlgorithm
+	* _CLI name_: nysiisAlgorithm
+* __Refined Soundex__
+	* _API namespace_: org.hashtree.stringmetric.phonetic.RefinedSoundexAlgorithm
+	* _CLI name_: refinedSoundexAlgorithm
+* __Soundex__
+	* _API namespace_: org.hashtree.stringmetric.phonetic.SoundexAlgorithm
+	* _CLI name_: soundexAlgorithm
+
+In addition to string metrics, several filters are available which clean up passed arguments prior to evaluation. Filtering rules can be composed via trait decoration.
 
 * __Differing Case__ (Ignore ASCII letter case differences)
 	* _API namespace_: org.hashtree.stringmetric.AsciiLetterCaseStringFilter
@@ -37,21 +52,6 @@ In addition to string metrics, several filters are available which clean up pass
 	* _API namespace_: org.hashtree.stringmetric.AsciiLetterOnlyStringFilter
 * __Spaces__ (Ignore all spaces)
 	* _API namespace_: org.hashtree.stringmetric.SpaceStringFilter
-
-All phonetic string metrics have a stand alone algorithm counter part. They provide a means to extract the phonetic representation of the argument passed, rather than determining if two arguments sound the same phonetically.
-
-* __Metaphone__
-	* _API namespace_: org.hashtree.stringmetric.phonetic.Metaphone
-	* _CLI name_: metaphone
-* __NYSIIS__
-	* _API namespace_: org.hashtree.stringmetric.phonetic.Nysiis
-	* _CLI name_: nysiis
-* __Refined Soundex__
-	* _API namespace_: org.hashtree.stringmetric.phonetic.RefinedSoundex
-	* _CLI name_: refinedSoundex
-* __Soundex__
-	* _API namespace_: org.hashtree.stringmetric.phonetic.Soundex
-	* _CLI name_: soundex
 
 ## Building the API
 gradle jar
@@ -86,11 +86,19 @@ gradle tar
 ## Using the CLI
 Uncompress the built tar and ensure you have ability to execute the commands. Execute the metric of choice via the command line:
 
+`// Pass the help option to any command to see syntax and usage.`  
 `jaroWinklerMetric --help`  
+`metaphoneMetric --help`  
+`metaphoneAlgorithm --help`  
+
+`// Compare "abc" to "xyz" using the Jaro-Winkler metric.`  
 `jaroWinklerMetric abc xyz`  
 
-`metaphone --help`  
-`metaphone abc`  
+`// Compare "abc "to "xyz" using the Metaphone metric.`  
+`metaphoneMetric abc xyz`  
+
+`// Get the phonetic representation of "abc", via the metaphone phonetic algorithm.`  
+`metaphoneAlgorithm abc`  
 
 ## Requirements
 * Scala 2.9.2
