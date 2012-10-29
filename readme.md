@@ -18,12 +18,12 @@ gradle tar
 
 ## Using the API
 `// Import metric of choice.`  
-`import org.hashtree.stringmetric.distance.JaroWinklerMetric`  
+`import org.hashtree.stringmetric.similarity.JaroWinklerMetric`  
 
 `// Invoke metric compare method.`  
 `val distance = JaroWinklerMetric.compare("string1", "string2")`
 
-`// Do something. In this case, distance is between 1.0f and 0.0f.`  
+`// Do something. In this case, distance is between 1.0 and 0.0.`  
 `if (distance >= 0.9) println("It's likely you're a match!")`
 
 ## Using the CLI
