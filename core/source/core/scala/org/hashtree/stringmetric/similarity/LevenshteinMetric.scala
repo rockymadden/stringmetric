@@ -14,12 +14,11 @@ object LevenshteinMetric extends StringMetric {
 		else Some(levenshtein(ca1, ca2))
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Int] = {
+	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Int] =
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
 		)(new StringFilterDelegate)
-	}
 
 	private[this] def levenshtein(ct: CompareTuple[Char]) = {
 		val m = Array.fill[Int](ct._1.length + 1, ct._2.length + 1)(-1)

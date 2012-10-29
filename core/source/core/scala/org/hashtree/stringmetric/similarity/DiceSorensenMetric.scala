@@ -19,12 +19,11 @@ object DiceSorensenMetric extends StringMetric {
 		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] = {
+	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] =
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
 		)(new StringFilterDelegate)
-	}
 
 	private[this] def bigrams(ct: CompareTuple[Char]): MatchTuple[String] = {
 		@tailrec
@@ -37,7 +36,5 @@ object DiceSorensenMetric extends StringMetric {
 		(set(ct._1, Array.empty[String]), set(ct._2, Array.empty[String]))
 	}
 
-	private[this] def scoreMatches(mt: MatchTuple[String]) = {
-		mt._1.intersect(mt._2).length
-	}
+	private[this] def scoreMatches(mt: MatchTuple[String]) = mt._1.intersect(mt._2).length
 }

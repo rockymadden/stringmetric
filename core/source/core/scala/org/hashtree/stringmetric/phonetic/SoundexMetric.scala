@@ -13,18 +13,14 @@ object SoundexMetric extends StringMetric {
 			val se1 = Soundex.compute(ca1)
 			val se2 = Soundex.compute(ca2)
 
-			if (!se1.isDefined || !se2.isDefined || (se1.get.length == 0 && se2.get.length == 0))
-				None
-			else
-				Some(se1.get.sameElements(se2.get))
+			if (!se1.isDefined || !se2.isDefined || (se1.get.length == 0 && se2.get.length == 0)) None
+			else Some(se1.get.sameElements(se2.get))
 		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Boolean] = {
-		// Unable to perform simple equality check, due to situations where no letters are passed.
+	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Boolean] =
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
 		)(new StringFilterDelegate)
-	}
 }

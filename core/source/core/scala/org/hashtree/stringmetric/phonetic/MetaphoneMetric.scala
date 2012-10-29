@@ -13,17 +13,14 @@ object MetaphoneMetric extends StringMetric {
 			val mp1 = Metaphone.compute(ca1)
 			val mp2 = Metaphone.compute(ca2)
 
-			if (!mp1.isDefined || !mp2.isDefined || (mp1.get.length == 0 && mp2.get.length == 0))
-				None
-			else
-				Some(mp1.get.sameElements(mp2.get))
+			if (!mp1.isDefined || !mp2.isDefined || (mp1.get.length == 0 && mp2.get.length == 0)) None
+			else Some(mp1.get.sameElements(mp2.get))
 		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Boolean] = {
+	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Boolean] =
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
 		)(new StringFilterDelegate)
-	}
 }

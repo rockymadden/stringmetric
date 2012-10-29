@@ -13,12 +13,11 @@ object HammingMetric extends StringMetric {
 		else Some(hamming(ca1, ca2))
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Int] = {
+	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Int] =
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
 		)(new StringFilterDelegate)
-	}
 
 	private[this] def hamming(ct: CompareTuple[Char]) = {
 		require(ct._1.length == ct._2.length)

@@ -24,10 +24,9 @@ object JaroWinklerMetric extends StringMetric {
 		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] = {
+	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] =
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
 		)(new StringFilterDelegate)
-	}
 }

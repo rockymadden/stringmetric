@@ -21,18 +21,16 @@ object Metaphone extends StringAlgorithm {
 		}
 	}
 
-	override def compute(string: String)(implicit stringFilter: StringFilter): Option[String] = {
+	override def compute(string: String)(implicit stringFilter: StringFilter): Option[String] =
 		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate) match {
 			case Some(mp) => Some(mp.mkString)
 			case None => None
 		}
-	}
 
-	private[this] def deduplicate(ca: Array[Char]) = {
+	private[this] def deduplicate(ca: Array[Char]) =
 		if (ca.length <= 1) ca
 		else
 			ca.sliding(2).filter(a => a(0) == 'c' || a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
-	}
 
 	private[this] def isVowel(c: Char) = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
 
@@ -86,8 +84,7 @@ object Metaphone extends StringAlgorithm {
 							shift(1, o :+ 't')
 					}
 					case 'g' => {
-						if (
-							(r.length > 1 && r.head == 'h') ||
+						if ((r.length > 1 && r.head == 'h') ||
 							(r.length == 1 && r.head == 'n') ||
 							(r.length == 3 && r.head == 'n' && r(1) == 'e' && r(2) == 'd')
 						)
@@ -98,8 +95,7 @@ object Metaphone extends StringAlgorithm {
 							shift(1, o :+ 'k')
 					}
 					case 'h' => {
-						if (
-							(l.length >= 1 && isVowel(l.last) && (r.length == 0 || !isVowel(r.head))) ||
+						if ((l.length >= 1 && isVowel(l.last) && (r.length == 0 || !isVowel(r.head))) ||
 							(l.length >= 2 && l.last == 'h' && (
 									l(l.length - 2) == 'c' || l(l.length - 2) == 's' || l(l.length - 2) == 'p' ||
 									l(l.length - 2) == 't' || l(l.length - 2) == 'g'
@@ -146,8 +142,7 @@ object Metaphone extends StringAlgorithm {
 	private[this] def transcodeHead(ca: Array[Char]) = {
 		val h = ca.take(2).padTo(2, '\0')
 
-		if (
-			(h.head == 'a' && h.last == 'e') ||
+		if ((h.head == 'a' && h.last == 'e') ||
 			(h.last == 'n' && (h.head == 'g' || h.head == 'k' || h.head == 'p')) ||
 			(h.head == 'w' && h.last == 'r')
 		)
@@ -156,7 +151,6 @@ object Metaphone extends StringAlgorithm {
 			'w' +: ca.drop(2)
 		else if (h.head == 'x')
 			's' +: ca.tail
-		else
-			ca
+		else ca
 	}
 }

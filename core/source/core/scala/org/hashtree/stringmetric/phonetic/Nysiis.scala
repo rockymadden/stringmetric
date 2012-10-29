@@ -16,7 +16,6 @@ object Nysiis extends StringAlgorithm {
 			else {
 				if (thl.length == 1) Some(thl)
 				else {
-
 					val ts = thl.splitAt(1)
 					val t = transcode(ts._1, ts._2.head, ts._2.tail, ts._1)
 
@@ -26,18 +25,16 @@ object Nysiis extends StringAlgorithm {
 		}
 	}
 
-	override def compute(string: String)(implicit stringFilter: StringFilter): Option[String] = {
+	override def compute(string: String)(implicit stringFilter: StringFilter): Option[String] =
 		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate) match {
 			case Some(se) => Some(se.mkString)
 			case None => None
 		}
-	}
 
-	private[this] def deduplicate(ca: Array[Char]) = {
+	private[this] def deduplicate(ca: Array[Char]) =
 		if (ca.length <= 1) ca
 		else
 			ca.sliding(2).filter(a => a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
-	}
 
 	private[this] def isVowel(c: Char) = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
 
@@ -97,14 +94,12 @@ object Nysiis extends StringAlgorithm {
 		}
 	}
 
-	private[this] def transcodeClean(ca: Array[Char]) = {
+	private[this] def transcodeClean(ca: Array[Char]) =
 		if (ca.length >= 1 && (ca.last == 'a' || ca.last == 's'))
 			ca.reverse.dropWhile(c => c == 'a' || c == 's').reverse
 		else if (ca.length >= 2 && ca.last == 'y' && ca(ca.length - 2) == 'a')
 			ca.dropRight(2) :+ 'y'
-		else
-			ca
-	}
+		else ca
 
 	private[this] def transcodeHead(ca: Array[Char]) = {
 		val h = ca.take(3).padTo(3, '\0')
@@ -119,21 +114,18 @@ object Nysiis extends StringAlgorithm {
 			Array('n', 'n') ++ ca.takeRight(ca.length - 2)
 		else if (h.head == 'k')
 			Array('c') ++ ca.takeRight(ca.length - 1)
-		else
-			ca
+		else ca
 	}
 
 	private[this] def transcodeLast(ca: Array[Char]) = {
 		val h = ca.take(2).padTo(2, '\0')
 
-		if (
-			(h.last == 't' && (h.head == 'd' || h.head == 'r' || h.head == 'n')) ||
+		if ((h.last == 't' && (h.head == 'd' || h.head == 'r' || h.head == 'n')) ||
 			(h.last == 'd' && (h.head == 'r' || h.head == 'n'))
 		)
 			Array('d') ++ ca.takeRight(ca.length - 2)
 		else if (h.last == 'e' && (h.head == 'i' || h.head == 'e'))
 			Array('y') ++ ca.takeRight(ca.length - 2)
-		else
-			ca
+		else ca
 	}
 }

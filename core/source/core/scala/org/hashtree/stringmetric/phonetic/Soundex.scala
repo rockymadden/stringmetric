@@ -25,12 +25,11 @@ object Soundex extends StringAlgorithm {
 		}
 	}
 
-	override def compute(string: String)(implicit stringFilter: StringFilter): Option[String] = {
+	override def compute(string: String)(implicit stringFilter: StringFilter): Option[String] =
 		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate) match {
 			case Some(se) => Some(se.mkString)
 			case None => None
 		}
-	}
 
 	@tailrec
 	private[this] def transcode(i: Array[Char], p: Char, o: Array[Char]): Array[Char] = {

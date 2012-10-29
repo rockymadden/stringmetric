@@ -26,12 +26,11 @@ object JaroMetric extends StringMetric {
 		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] = {
+	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] =
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
 		)(new StringFilterDelegate)
-	}
 
 	private[this] def `match`(ct: CompareTuple[Char]): MatchTuple[Char] = {
 		val window = math.abs((math.max(ct._1.length, ct._2.length) / 2d).floor.toInt - 1)

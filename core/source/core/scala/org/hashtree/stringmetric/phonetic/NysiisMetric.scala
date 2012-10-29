@@ -13,17 +13,14 @@ object NysiisMetric extends StringMetric {
 			val ny1 = Nysiis.compute(ca1)
 			val ny2 = Nysiis.compute(ca2)
 
-			if (!ny1.isDefined || !ny2.isDefined || (ny1.get.length == 0 && ny2.get.length == 0))
-				None
-			else
-				Some(ny1.get.sameElements(ny2.get))
+			if (!ny1.isDefined || !ny2.isDefined || (ny1.get.length == 0 && ny2.get.length == 0)) None
+			else Some(ny1.get.sameElements(ny2.get))
 		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Boolean] = {
+	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Boolean] =
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
 		)(new StringFilterDelegate)
-	}
 }
