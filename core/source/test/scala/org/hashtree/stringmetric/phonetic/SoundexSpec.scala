@@ -20,8 +20,11 @@ final class SoundexSpec extends ScalaTest {
 			}
 			"phonetic argument" should returns {
 				"Some" in {
+					Soundex.compute("x123").get should equal ("x000")
+
 					Soundex.compute("abc").get should equal ("a120")
 					Soundex.compute("xyz").get should equal ("x200")
+
 					Soundex.compute("robert").get should equal ("r163")
 					Soundex.compute("rupert").get should equal ("r163")
 					Soundex.compute("rubin").get should equal ("r150")
@@ -43,7 +46,7 @@ final class SoundexSpec extends ScalaTest {
 					Soundex.compute("kant").get should equal ("k530")
 					Soundex.compute("ladd").get should equal ("l300")
 					Soundex.compute("lissajous").get should equal ("l222")
-					Soundex.compute("x123").get should equal ("x000")
+					Soundex.compute("fusedale").get should equal ("f234")
 				}
 			}
 		}
