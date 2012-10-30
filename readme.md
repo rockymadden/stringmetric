@@ -29,7 +29,7 @@ A collection of string metrics implemented in Scala. Includes a light-weight cor
 	* _API_: org.hashtree.stringmetric.phonetic.SoundexMetric
 	* _CLI_: soundexMetric
 
-All phonetic string metrics have a stand alone algorithm counter part. They provide a means to extract the phonetic representation of the argument passed, rather than determining if two arguments sound the same phonetically.
+All phonetic string metrics have a standalone algorithm counterpart. They provide a means to determine the phonetic representation of the argument passed, rather than evaluating if two arguments sound the same phonetically.
 
 * __Metaphone__
 	* _API_: org.hashtree.stringmetric.phonetic.MetaphoneAlgorithm
@@ -44,9 +44,9 @@ All phonetic string metrics have a stand alone algorithm counter part. They prov
 	* _API_: org.hashtree.stringmetric.phonetic.SoundexAlgorithm
 	* _CLI_: soundexAlgorithm
 
-In addition to string metrics, several filters are available which clean up passed arguments prior to evaluation. Filtering rules can be composed via trait decoration.
+Filters are available which clean up arguments prior to evaluation. Filtering rules can be composed via trait decoration.
 
-* __Differing Case__ (Ignore ASCII letter case differences)
+* __Differing Case__ (Ignore all ASCII letter case differences)
 	* _API_: org.hashtree.stringmetric.AsciiLetterCaseStringFilter
 * __Non-Letters__ (Ignore all characters except for ASCII letters)
 	* _API_: org.hashtree.stringmetric.AsciiLetterOnlyStringFilter
@@ -63,7 +63,7 @@ gradle tar
 `// Import metric of choice.`  
 `import org.hashtree.stringmetric.similarity.JaroWinklerMetric`  
 
-`// Import some filters, if desired.`  
+`// Import some filters, optionally.`  
 `import org.hashtree.stringmetric.{ AsciiLetterCaseStringFilter, AsciiLetterOnlyStringFilter, StringFilterDelegate }`  
 
 `// Invoke metric compare method without filters.`  
@@ -86,7 +86,7 @@ gradle tar
 ## Using the CLI
 Uncompress the built tar and ensure you have ability to execute the commands. Execute the metric of choice via the command line:
 
-`// Pass the help option to any command to see syntax and usage.`  
+`// The help option prints command syntax and usage.`  
 `jaroWinklerMetric --help`  
 `metaphoneMetric --help`  
 `metaphoneAlgorithm --help`  
@@ -97,7 +97,7 @@ Uncompress the built tar and ensure you have ability to execute the commands. Ex
 `// Compare "abc "to "xyz" using the Metaphone metric.`  
 `metaphoneMetric abc xyz`  
 
-`// Get the phonetic representation of "abc", via the metaphone phonetic algorithm.`  
+`// Get the phonetic representation of "abc" via the metaphone phonetic algorithm.`  
 `metaphoneAlgorithm abc`  
 
 ## Requirements
