@@ -54,10 +54,10 @@ Filters are available which clean up arguments prior to evaluation. Filtering ru
 	* _API_: org.hashtree.stringmetric.SpaceStringFilter
 
 ## Building the API
-gradle jar
+gradle :stringmetric-core:jar
 
 ## Building the CLI
-gradle tar
+gradle :stringmetric-cli:tar
 
 ## Using the API
 `// Import metric of choice.`  
