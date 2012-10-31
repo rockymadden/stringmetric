@@ -142,7 +142,7 @@ final class NysiisAlgorithmSpec extends ScalaTest {
 					NysiisAlgorithm.compute("nd").get should equal ("d")
 
 					// Core cases.
-					NysiisAlgorithm.compute("eev").get should equal ("yv") //dropby wrongly says eaf
+					NysiisAlgorithm.compute("eev").get should equal ("yv") // dropby wrongly says eaf
 					NysiisAlgorithm.compute("zev").get should equal ("zaf")
 					NysiisAlgorithm.compute("kkn").get should equal ("cn")
 					NysiisAlgorithm.compute("sschn").get should equal ("ssn")
