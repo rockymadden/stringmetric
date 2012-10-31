@@ -31,14 +31,12 @@ object OptionMapUtility {
 			case single(name, value) :: tail =>
 				next(optionMap + (Symbol(name.tail) -> ""), tail)
 			// Dashless options.
-			case less(value) :: tail if value.head != '-' => {
+			case less(value) :: tail if value.head != '-' =>
 				if (optionMap.contains('dashless)) {
 					val dashless = optionMap('dashless) + " " + value.trim
 
 					next((optionMap - 'dashless) + ('dashless -> dashless), tail)
-				} else
-					next(optionMap + ('dashless -> value.trim), tail)
-			}
+				} else next(optionMap + ('dashless -> value.trim), tail)
 			// Invalid option, ignore.
 			case _ :: tail => next(optionMap, tail)
 		}

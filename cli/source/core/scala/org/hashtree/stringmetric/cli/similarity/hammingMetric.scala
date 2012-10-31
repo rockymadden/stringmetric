@@ -24,7 +24,7 @@ object hammingMetric extends Command {
 			// Invalid syntax.
 			} else throw new IllegalArgumentException("Expected valid syntax. See --help.")
 		} catch {
-			case e => error(e)(options)
+			case e => error(e, options)
 		}
 	}
 

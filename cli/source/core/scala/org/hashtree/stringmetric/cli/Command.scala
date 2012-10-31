@@ -6,16 +6,15 @@ trait Command {
 
 	def help(): Unit
 
-	final def error(error: Throwable)(implicit options: OptionMap): Unit = {
+	final def error(error: Throwable, options: OptionMap): Unit =
 		if (!isUnitTest(options)) {
 			println(error.getMessage)
 			sys.exit(1)
 		} else throw error
-	}
 
 	def execute(options: OptionMap): Unit
 
-	final def exit(implicit options: OptionMap): Unit =
+	final def exit(options: OptionMap): Unit =
 		if (!isUnitTest(options)) sys.exit(0)
 
 	protected[this] def isUnitTest(options: OptionMap): Boolean =
