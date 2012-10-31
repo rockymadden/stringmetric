@@ -1,6 +1,6 @@
 package org.hashtree.stringmetric
 
-/** A decorator [[org.hashtree.stringmetric.StringFilter]]. Ensures the input spacing does not matter. */
+/** A decorator [[org.hashtree.stringmetric.StringFilter]]. Ensures spaces do not matter. */
 trait SpaceStringFilter extends StringFilter {
 	abstract override def filter(charArray: Array[Char]): Array[Char] = super.filter(charArray.filter(_ != ' '))
 

@@ -1,6 +1,6 @@
 package org.hashtree.stringmetric
 
-/** A decorator [[org.hashtree.stringmetric.StringFilter]]. Ensures the input case-sensitivity does not matter. */
+/** A decorator [[org.hashtree.stringmetric.StringFilter]]. Ensures ASCII letter case-sensitivity does not matter. */
 trait AsciiLetterCaseStringFilter extends StringFilter {
 	abstract override def filter(charArray: Array[Char]): Array[Char] = {
 		super.filter(
