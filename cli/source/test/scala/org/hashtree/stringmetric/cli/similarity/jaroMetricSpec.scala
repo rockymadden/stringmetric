@@ -1,4 +1,4 @@
-package org.hashtree.stringmetric.cli.command
+package org.hashtree.stringmetric.cli.similarity
 
 import org.hashtree.stringmetric.ScalaTest
 import org.junit.runner.RunWith

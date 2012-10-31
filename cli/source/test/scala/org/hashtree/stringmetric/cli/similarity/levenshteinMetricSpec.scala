@@ -1,36 +1,36 @@
-package org.hashtree.stringmetric.cli.command
+package org.hashtree.stringmetric.cli.similarity
 
 import org.hashtree.stringmetric.ScalaTest
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-final class jaroWinklerMetricSpec extends ScalaTest {
-	"jaroWinklerMetric" should provide {
+final class levenshteinMetricSpec extends ScalaTest {
+	"levenshteinMetric" should provide {
 		"main method" when passed {
 			"valid dashless arguments" should executes {
-				"print the distance" in {
+				"print if they are a match" in {
 					val out = new java.io.ByteArrayOutputStream()
 
 					Console.withOut(out)(
-						jaroWinklerMetric.main(Array("--unitTest", "--debug", "aBc", "abc"))
+						levenshteinMetric.main(Array("--unitTest", "--debug", "aBc", "abc"))
 					)
 
-					out.toString should equal ("1.0\n")
+					out.toString should equal ("0\n")
 					out.reset()
 
 					Console.withOut(out)(
-						jaroWinklerMetric.main(Array("--unitTest", "--debug", "aBc", "xyz"))
+						levenshteinMetric.main(Array("--unitTest", "--debug", "aBc", "xyz"))
 					)
 
-					out.toString should equal ("0.0\n")
+					out.toString should equal ("3\n")
 					out.reset()
 				}
 			}
 			"no dashless arguments" should throws {
 				"IllegalArgumentException" in {
 					evaluating {
-						jaroWinklerMetric.main(Array("--unitTest", "--debug"))
+						levenshteinMetric.main(Array("--unitTest", "--debug"))
 					} should produce [IllegalArgumentException]
 				}
 			}

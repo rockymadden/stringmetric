@@ -1,15 +1,14 @@
-package org.hashtree.stringmetric.cli.command
+package org.hashtree.stringmetric.cli.similarity
 
-import org.hashtree.stringmetric.StringFilterDelegate
+import org.hashtree.stringmetric.{ AsciiLetterCaseStringFilter, StringFilterDelegate }
 import org.hashtree.stringmetric.cli._
-import org.hashtree.stringmetric.cli.command._
-import org.hashtree.stringmetric.phonetic.NysiisMetric
+import org.hashtree.stringmetric.similarity.JaroMetric
 
 /**
- * The nysiisMetric [[org.hashtree.stringmetric.cli.command.Command]]. Compares two strings to determine if they are
- * phonetically similarly, per the NYSIIS algorithm.
+ * The jaroMetric [[org.hashtree.stringmetric.cli.Command]]. Compares two strings to calculate the
+ * Jaro distance.
  */
-object nysiisMetric extends Command {
+object jaroMetric extends Command {
 	override def main(args: Array[String]): Unit = {
 		val options = OptionMapUtility.toOptionMap(args)
 
@@ -34,9 +33,9 @@ object nysiisMetric extends Command {
 		val tab = "  "
 
 		println(
-			"Compares two strings to determine if they are phonetically similarly, per the NYSIIS algorithm." + ls + ls +
+			"Compares two strings to calculate the Jaro distance." + ls + ls +
 			"Syntax:" + ls +
-			tab + "nysiisMetric [Options] string1 string2..." + ls + ls +
+			tab + "jaroMetric [Options] string1 string2..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
 			tab + tab + "Outputs description, syntax, and options."
@@ -47,10 +46,10 @@ object nysiisMetric extends Command {
 		val strings = options('dashless).split(" ")
 
 		println(
-			NysiisMetric.compare(
+			JaroMetric.compare(
 				strings(0),
 				strings(1)
-			)(new StringFilterDelegate).getOrElse("not comparable").toString
+			)(new StringFilterDelegate with AsciiLetterCaseStringFilter).getOrElse("not comparable").toString
 		)
 	}
 }

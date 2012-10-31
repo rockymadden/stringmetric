@@ -1,15 +1,14 @@
-package org.hashtree.stringmetric.cli.command
+package org.hashtree.stringmetric.cli.similarity
 
-import org.hashtree.stringmetric.StringFilterDelegate
+import org.hashtree.stringmetric.{ AsciiLetterCaseStringFilter, StringFilterDelegate }
 import org.hashtree.stringmetric.cli._
-import org.hashtree.stringmetric.cli.command._
-import org.hashtree.stringmetric.phonetic.MetaphoneMetric
+import org.hashtree.stringmetric.similarity.HammingMetric
 
 /**
- * The metaphoneMetric [[org.hashtree.stringmetric.cli.command.Command]]. Compares two strings to determine if they are
- * phonetically similarly, per the Metaphone algorithm.
+ * The hammingMetric [[org.hashtree.stringmetric.cli.Command]]. Compares the number of characters that two equal
+ * length strings are different from one another.
  */
-object metaphoneMetric extends Command {
+object hammingMetric extends Command {
 	override def main(args: Array[String]): Unit = {
 		val options = OptionMapUtility.toOptionMap(args)
 
@@ -34,9 +33,9 @@ object metaphoneMetric extends Command {
 		val tab = "  "
 
 		println(
-			"Compares two strings to determine if they are phonetically similarly, per the Metaphone algorithm." + ls + ls +
+			"Compares the number of characters that two equal length strings are different from one another." + ls + ls +
 			"Syntax:" + ls +
-			tab + "metaphoneMetric [Options] string1 string2..." + ls + ls +
+			tab + "hammingMetric [Options] string1 string2..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
 			tab + tab + "Outputs description, syntax, and options."
@@ -47,10 +46,10 @@ object metaphoneMetric extends Command {
 		val strings = options('dashless).split(" ")
 
 		println(
-			MetaphoneMetric.compare(
+			HammingMetric.compare(
 				strings(0),
 				strings(1)
-			)(new StringFilterDelegate).getOrElse("not comparable").toString
+			)(new StringFilterDelegate with AsciiLetterCaseStringFilter).getOrElse("not comparable").toString
 		)
 	}
 }

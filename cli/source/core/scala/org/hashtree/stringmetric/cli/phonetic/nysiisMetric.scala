@@ -1,15 +1,14 @@
-package org.hashtree.stringmetric.cli.command
+package org.hashtree.stringmetric.cli.phonetic
 
 import org.hashtree.stringmetric.StringFilterDelegate
 import org.hashtree.stringmetric.cli._
-import org.hashtree.stringmetric.cli.command._
-import org.hashtree.stringmetric.phonetic.RefinedSoundexMetric
+import org.hashtree.stringmetric.phonetic.NysiisMetric
 
 /**
- * The refinedSoundexMetric [[org.hashtree.stringmetric.cli.command.Command]]. Compares two strings to determine if they are
- * phonetically similarly, per the refined Soundex algorithm.
+ * The nysiisMetric [[org.hashtree.stringmetric.cli.Command]]. Compares two strings to determine if they are
+ * phonetically similarly, per the NYSIIS algorithm.
  */
-object refinedSoundexMetric extends Command {
+object nysiisMetric extends Command {
 	override def main(args: Array[String]): Unit = {
 		val options = OptionMapUtility.toOptionMap(args)
 
@@ -34,9 +33,9 @@ object refinedSoundexMetric extends Command {
 		val tab = "  "
 
 		println(
-			"Compares two strings to determine if they are phonetically similarly, per the refined Soundex algorithm." + ls + ls +
+			"Compares two strings to determine if they are phonetically similarly, per the NYSIIS algorithm." + ls + ls +
 			"Syntax:" + ls +
-			tab + "refinedSoundexMetric [Options] string1 string2..." + ls + ls +
+			tab + "nysiisMetric [Options] string1 string2..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
 			tab + tab + "Outputs description, syntax, and options."
@@ -47,7 +46,7 @@ object refinedSoundexMetric extends Command {
 		val strings = options('dashless).split(" ")
 
 		println(
-			RefinedSoundexMetric.compare(
+			NysiisMetric.compare(
 				strings(0),
 				strings(1)
 			)(new StringFilterDelegate).getOrElse("not comparable").toString

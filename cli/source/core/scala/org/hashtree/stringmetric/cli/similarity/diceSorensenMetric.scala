@@ -1,15 +1,14 @@
-package org.hashtree.stringmetric.cli.command
+package org.hashtree.stringmetric.cli.similarity
 
 import org.hashtree.stringmetric.{ AsciiLetterCaseStringFilter, StringFilterDelegate }
 import org.hashtree.stringmetric.cli._
-import org.hashtree.stringmetric.cli.command._
-import org.hashtree.stringmetric.similarity.HammingMetric
+import org.hashtree.stringmetric.similarity.DiceSorensenMetric
 
 /**
- * The hammingMetric [[org.hashtree.stringmetric.cli.command.Command]]. Compares the number of characters that two equal
- * length strings are different from one another.
+ * The diceSorensenMetric [[org.hashtree.stringmetric.cli.Command]]. Compares the similarity of two strings
+ * using the Dice coefficient / Sorensen similarity index.
  */
-object hammingMetric extends Command {
+object diceSorensenMetric extends Command {
 	override def main(args: Array[String]): Unit = {
 		val options = OptionMapUtility.toOptionMap(args)
 
@@ -34,9 +33,9 @@ object hammingMetric extends Command {
 		val tab = "  "
 
 		println(
-			"Compares the number of characters that two equal length strings are different from one another." + ls + ls +
+			"Compares the similarity of two strings using the Dice coefficient / Sorensen similarity index." + ls + ls +
 			"Syntax:" + ls +
-			tab + "hammingMetric [Options] string1 string2..." + ls + ls +
+			tab + "diceSorensenMetric [Options] string1 string2..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
 			tab + tab + "Outputs description, syntax, and options."
@@ -47,7 +46,7 @@ object hammingMetric extends Command {
 		val strings = options('dashless).split(" ")
 
 		println(
-			HammingMetric.compare(
+			DiceSorensenMetric.compare(
 				strings(0),
 				strings(1)
 			)(new StringFilterDelegate with AsciiLetterCaseStringFilter).getOrElse("not comparable").toString

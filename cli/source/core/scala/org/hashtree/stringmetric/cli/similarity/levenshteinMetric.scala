@@ -1,12 +1,11 @@
-package org.hashtree.stringmetric.cli.command
+package org.hashtree.stringmetric.cli.similarity
 
 import org.hashtree.stringmetric.{ AsciiLetterCaseStringFilter, StringFilterDelegate }
 import org.hashtree.stringmetric.cli._
-import org.hashtree.stringmetric.cli.command._
 import org.hashtree.stringmetric.similarity.LevenshteinMetric
 
 /**
- * The levenshteinMetric [[org.hashtree.stringmetric.cli.command.Command]]. Compares the number of characters that two
+ * The levenshteinMetric [[org.hashtree.stringmetric.cli.Command]]. Compares the number of characters that two
  * strings are different from one another via insertion, deletion, and substitution.
  */
 object levenshteinMetric extends Command {

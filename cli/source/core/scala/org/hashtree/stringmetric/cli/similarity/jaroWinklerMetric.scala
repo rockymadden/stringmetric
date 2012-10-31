@@ -1,15 +1,14 @@
-package org.hashtree.stringmetric.cli.command
+package org.hashtree.stringmetric.cli.similarity
 
 import org.hashtree.stringmetric.{ AsciiLetterCaseStringFilter, StringFilterDelegate }
 import org.hashtree.stringmetric.cli._
-import org.hashtree.stringmetric.cli.command._
-import org.hashtree.stringmetric.similarity.DiceSorensenMetric
+import org.hashtree.stringmetric.similarity.JaroWinklerMetric
 
 /**
- * The diceSorensenMetric [[org.hashtree.stringmetric.cli.command.Command]]. Compares the similarity of two strings
- * using the Dice coefficient / Sorensen similarity index.
+ * The jaroWinklerMetric [[org.hashtree.stringmetric.cli.Command]]. Compares two strings to calculate the
+ * Jaro-Winkler distance.
  */
-object diceSorensenMetric extends Command {
+object jaroWinklerMetric extends Command {
 	override def main(args: Array[String]): Unit = {
 		val options = OptionMapUtility.toOptionMap(args)
 
@@ -34,9 +33,9 @@ object diceSorensenMetric extends Command {
 		val tab = "  "
 
 		println(
-			"Compares the similarity of two strings using the Dice coefficient / Sorensen similarity index." + ls + ls +
+			"Compares two strings to calculate the Jaro-Winkler distance." + ls + ls +
 			"Syntax:" + ls +
-			tab + "diceSorensenMetric [Options] string1 string2..." + ls + ls +
+			tab + "jaroWinklerMetric [Options] string1 string2..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
 			tab + tab + "Outputs description, syntax, and options."
@@ -47,7 +46,7 @@ object diceSorensenMetric extends Command {
 		val strings = options('dashless).split(" ")
 
 		println(
-			DiceSorensenMetric.compare(
+			JaroWinklerMetric.compare(
 				strings(0),
 				strings(1)
 			)(new StringFilterDelegate with AsciiLetterCaseStringFilter).getOrElse("not comparable").toString

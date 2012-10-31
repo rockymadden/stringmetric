@@ -1,6 +1,4 @@
-package org.hashtree.stringmetric.cli.command
-
-import org.hashtree.stringmetric.cli.OptionMap
+package org.hashtree.stringmetric.cli
 
 /** Defines the traits and provides basic implementations of a command. Commands are always implemented as objects. */
 trait Command {
