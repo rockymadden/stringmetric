@@ -1,5 +1,5 @@
 #stringmetric
-A collection of string metrics implemented in Scala. Includes a light-weight core API and CLI for each string metric. The following string metrics are currently supported:
+A collection of string metrics implemented in Scala. Provides a light-weight API and a CLI for each string metric. The following string metrics are currently supported:
 
 * __Dice / Sorensen__ (<http://en.wikipedia.org/wiki/Dice%27s_coefficient>)
 	* _API_: org.hashtree.stringmetric.similarity.DiceSorensenMetric
@@ -44,7 +44,7 @@ All phonetic string metrics have a standalone algorithm counterpart. They provid
 	* _API_: org.hashtree.stringmetric.phonetic.SoundexAlgorithm
 	* _CLI_: soundexAlgorithm
 
-Filters are available which clean up arguments prior to evaluation. Filtering rules can be composed via trait decoration.
+Filters, which can optionally be applied, clean up arguments prior to evaluation. Filtering rules can be composed via trait decoration.
 
 * __Differing Case__ (Ignore all ASCII letter case differences)
 	* _API_: org.hashtree.stringmetric.AsciiLetterCaseStringFilter
