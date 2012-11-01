@@ -4,5 +4,5 @@ package org.hashtree.stringmetric
 trait AsciiSpaceStringFilter extends StringFilter {
 	abstract override def filter(charArray: Array[Char]): Array[Char] = super.filter(charArray.filter(_ != ' '))
 
-	abstract override def filter(string: String): String = super.filter(string.replaceAllLiterally(" ", ""))
+	abstract override def filter(string: String): String = filter(string.toCharArray).mkString
 }

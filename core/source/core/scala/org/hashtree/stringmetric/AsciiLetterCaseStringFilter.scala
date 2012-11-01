@@ -10,5 +10,5 @@ trait AsciiLetterCaseStringFilter extends StringFilter {
 		)
 	}
 
-	abstract override def filter(string: String): String = super.filter(string.toLowerCase)
+	abstract override def filter(string: String): String = filter(string.toCharArray).mkString
 }
