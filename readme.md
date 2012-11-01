@@ -62,10 +62,10 @@ Filters, which can optionally be applied, clean up arguments prior to evaluation
 [SemVer](http://semver.org/)
 
 ## Building the API
-gradle :stringmetric-core:jar
+`gradle :stringmetric-core:jar`
 
 ## Building the CLI
-gradle :stringmetric-cli:tar
+`gradle :stringmetric-cli:tar`
 
 ## Using the API
 `// Import metric of choice.`  
