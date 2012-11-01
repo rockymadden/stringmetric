@@ -82,7 +82,7 @@ Filters, which can optionally be applied, clean up arguments prior to evaluation
     import org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter
 
     val distance = JaroWinklerMetric.compare("string1", "string2")
-    (new StringFilterDelegate with AsciiLetterCaseStringFilter)
+        (new StringFilterDelegate with AsciiLetterCaseStringFilter)
 
     if (distance >= 0.9) println("It's likely you're a match!")
 
@@ -99,7 +99,7 @@ Filters, which can optionally be applied, clean up arguments prior to evaluation
 
 *****
 
-    // All string metrics and algorithms have an overloaded compare method which accepts character arrays.
+    // All string metrics and algorithms have overloaded methods which accept character arrays.
     import org.hashtree.stringmetric.similarity.JaroWinklerMetric
   
     val distance = JaroWinklerMetric.compare("string1".toCharArray, "string2".toCharArray)
