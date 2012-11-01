@@ -33,12 +33,30 @@ A collection of string metrics and algorithms implemented in Scala. All phonetic
 ## Filters
 Filters, which can optionally be applied, clean up arguments prior to evaluation. Filtering rules can be composed via trait decoration.
 
-* __Differing Case__ (Ignore all ASCII letter case differences)
-	* API: org.hashtree.stringmetric.AsciiLetterCaseStringFilter
-* __Non-Letters__ (Ignore all characters except for ASCII letters)
-	* API: org.hashtree.stringmetric.AsciiLetterOnlyStringFilter
-* __Spaces__ (Ignore all spaces)
-	* API: org.hashtree.stringmetric.SpaceStringFilter
+* __Ensures only ASCII control characters matter__
+	* API: org.hashtree.stringmetric.filter.AsciiControlOnlyStringFilter
+* __Ensures ASCII controls do not matter__
+	* API: org.hashtree.stringmetric.filter.AsciiControlStringFilter
+* __Ensures ASCII letter case-sensitivity does not matter__
+	* API: org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter
+* __Ensures only ASCII letters and numbers matter__
+	* API: org.hashtree.stringmetric.filter.AsciiLetterNumberOnlyStringFilter
+* __Ensures ASCII letters and numbers do not matter__
+	* API: org.hashtree.stringmetric.filter.AsciiLetterNumberStringFilter
+* __Ensures only ASCII letters matter__
+	* API: org.hashtree.stringmetric.filter.AsciiLetterOnlyStringFilter
+* __Ensures ASCII letters do not matter__
+	* API: org.hashtree.stringmetric.filter.AsciiLetterStringFilter
+* __Ensures only ASCII numbers matter__
+	* API: org.hashtree.stringmetric.filter.AsciiNumberOnlyStringFilter
+* __Ensures ASCII numbers do not matter__
+	* API: org.hashtree.stringmetric.filter.AsciiNumberStringFilter
+* __Ensures ASCII spaces do not matter__
+	* API: org.hashtree.stringmetric.filter.AsciiSpaceStringFilter
+* __Ensures only ASCII symbols matter__
+	* API: org.hashtree.stringmetric.filter.AsciiSymbolOnlyStringFilter
+* __Ensures ASCII symbols do not matter__
+	* API: org.hashtree.stringmetric.filter.AsciiSymbolStringFilter
 
 ## Building the API
 gradle :stringmetric-core:jar
