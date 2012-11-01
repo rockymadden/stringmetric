@@ -59,7 +59,7 @@ Filters, which can optionally be applied, clean up arguments prior to evaluation
 	* API: org.hashtree.stringmetric.filter.AsciiSymbolStringFilter
 
 ## Versioning
-[SemVer](http://semver.org/)
+[Semantic Versioning 2.0.0](http://semver.org/)
 
 ## Building the API
     gradle :stringmetric-core:jar
