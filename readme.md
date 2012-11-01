@@ -1,57 +1,44 @@
 #stringmetric
-A collection of string metrics implemented in Scala. Includes a CLI for each string metric. The following currently supported:
+A collection of string metrics and algorithms implemented in Scala. All phonetic string metrics have a standalone algorithm counterpart. They provide a means to determine the phonetic representation of the argument passed, rather than evaluating if two arguments sound the same phonetically. __Each metric and algorithm has a CLI.__
 
+## Metrics and Algorithms
 * __Dice / Sorensen__ (<http://en.wikipedia.org/wiki/Dice%27s_coefficient>)
-	* _API_: org.hashtree.stringmetric.similarity.DiceSorensenMetric
-	* _CLI_: diceSorensenMetric
+	* API: org.hashtree.stringmetric.similarity.DiceSorensenMetric
+	* CLI: diceSorensenMetric
 * __Hamming__ (<http://en.wikipedia.org/wiki/Hamming_distance>)
-	* _API_: org.hashtree.stringmetric.similarity.HammingMetric
-	* _CLI_: hammingMetric
+	* API: org.hashtree.stringmetric.similarity.HammingMetric
+	* CLI: hammingMetric
 * __Jaro__ (<http://en.wikipedia.org/wiki/Jaro-Winkler_distance>)
-	* _API_: org.hashtree.stringmetric.similarity.JaroMetric
-	* _CLI_: jaroMetric
+	* API: org.hashtree.stringmetric.similarity.JaroMetric
+	* CLI: jaroMetric
 * __Jaro-Winkler__ (<http://en.wikipedia.org/wiki/Jaro-Winkler_distance>)
-	* _API_: org.hashtree.stringmetric.similarity.JaroWinklerMetric
-	* _CLI_: jaroWinklerMetric
+	* API: org.hashtree.stringmetric.similarity.JaroWinklerMetric
+	* CLI: jaroWinklerMetric
 * __Levenshtein__ (<http://en.wikipedia.org/wiki/Levenshtein_distance>)
-	* _API_: org.hashtree.stringmetric.similarity.LevenshteinMetric
-	* _CLI_: levenshteinMetric
+	* API: org.hashtree.stringmetric.similarity.LevenshteinMetric
+	* CLI: levenshteinMetric
 * __Metaphone__ (<http://en.wikipedia.org/wiki/Metaphone>)
-	* _API_: org.hashtree.stringmetric.phonetic.MetaphoneMetric
-	* _CLI_: metaphoneMetric
+	* API: org.hashtree.stringmetric.phonetic.MetaphoneMetric and org.hashtree.stringmetric.phonetic.MetaphoneAlgorithm
+	* CLI: metaphoneMetric and metaphoneAlgorithm
 * __NYSIIS__ (<http://en.wikipedia.org/wiki/New_York_State_Identification_and_Intelligence_System>)
-	* _API_: org.hashtree.stringmetric.phonetic.NysiisMetric
-	* _CLI_: nysiisMetric
+	* API: org.hashtree.stringmetric.phonetic.NysiisMetric and org.hashtree.stringmetric.phonetic.NysiisAlgorithm
+	* CLI: nysiisMetric and nysiisAlgorithm
 * __Refined Soundex__ (<http://ntz-develop.blogspot.com/2011/03/phonetic-algorithms.html>)
-	* _API_: org.hashtree.stringmetric.phonetic.RefinedSoundexMetric
-	* _CLI_: refinedSoundexMetric
+	* API: org.hashtree.stringmetric.phonetic.RefinedSoundexMetric and org.hashtree.stringmetric.phonetic.RefinedSoundexAlgorithm
+	* CLI: refinedSoundexMetric and refinedSoundexAlgorithm
 * __Soundex__ (<http://en.wikipedia.org/wiki/Soundex>)
-	* _API_: org.hashtree.stringmetric.phonetic.SoundexMetric
-	* _CLI_: soundexMetric
+	* API: org.hashtree.stringmetric.phonetic.SoundexMetric and org.hashtree.stringmetric.phonetic.SoundexAlgorithm
+	* CLI: soundexMetric and soundexAlgorithm
 
-All phonetic string metrics have a standalone algorithm counterpart. They provide a means to determine the phonetic representation of the argument passed, rather than evaluating if two arguments sound the same phonetically.
-
-* __Metaphone__
-	* _API_: org.hashtree.stringmetric.phonetic.MetaphoneAlgorithm
-	* _CLI_: metaphoneAlgorithm
-* __NYSIIS__
-	* _API_: org.hashtree.stringmetric.phonetic.NysiisAlgorithm
-	* _CLI_: nysiisAlgorithm
-* __Refined Soundex__
-	* _API_: org.hashtree.stringmetric.phonetic.RefinedSoundexAlgorithm
-	* _CLI_: refinedSoundexAlgorithm
-* __Soundex__
-	* _API_: org.hashtree.stringmetric.phonetic.SoundexAlgorithm
-	* _CLI_: soundexAlgorithm
-
+## Filters
 Filters, which can optionally be applied, clean up arguments prior to evaluation. Filtering rules can be composed via trait decoration.
 
 * __Differing Case__ (Ignore all ASCII letter case differences)
-	* _API_: org.hashtree.stringmetric.AsciiLetterCaseStringFilter
+	* API: org.hashtree.stringmetric.AsciiLetterCaseStringFilter
 * __Non-Letters__ (Ignore all characters except for ASCII letters)
-	* _API_: org.hashtree.stringmetric.AsciiLetterOnlyStringFilter
+	* API: org.hashtree.stringmetric.AsciiLetterOnlyStringFilter
 * __Spaces__ (Ignore all spaces)
-	* _API_: org.hashtree.stringmetric.SpaceStringFilter
+	* API: org.hashtree.stringmetric.SpaceStringFilter
 
 ## Building the API
 gradle :stringmetric-core:jar
