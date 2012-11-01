@@ -62,51 +62,72 @@ Filters, which can optionally be applied, clean up arguments prior to evaluation
 [SemVer](http://semver.org/)
 
 ## Building the API
-`gradle :stringmetric-core:jar`
+    gradle :stringmetric-core:jar
 
 ## Building the CLI
-`gradle :stringmetric-cli:tar`
+    gradle :stringmetric-cli:tar
 
 ## Using the API
-`// Import metric of choice.`  
-`import org.hashtree.stringmetric.similarity.JaroWinklerMetric`  
+    // Simple example. Import metric, compare, do something with result. 
+    import org.hashtree.stringmetric.similarity.JaroWinklerMetric  
+  
+    val distance = JaroWinklerMetric.compare("string1", "string2")
 
-`// Import some filters, optionally.`  
-`import org.hashtree.stringmetric.{ AsciiLetterCaseStringFilter, AsciiLetterOnlyStringFilter, StringFilterDelegate }`  
+    if (distance >= 0.9) println("It's likely you're a match!")
 
-`// Invoke metric compare method without filters.`  
-`val distance0 = JaroWinklerMetric.compare("string1", "string2")`
+*****
 
-`// Invoke metric compare method with filters to ignore non-letter characters and case.`  
-`val distance1 = JaroWinklerMetric.compare("string1", "string2")`  
-`(new StringFilterDelegate with AsciiLetterCaseStringFilter with AsciiLetterOnlyStringFilter)`
+    // One filter example. Import metric, compare with one filter, do something with result.
+    import org.hashtree.stringmetric.similarity.{ JaroWinklerMetric, StringFilterDelegate }
+    import org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter
 
-`// Invoke metric compare method with filters to ignore case.`  
-`val distance2 = JaroWinklerMetric.compare("string1", "string2")`  
-`(new StringFilterDelegate with AsciiLetterCaseStringFilter)`
+    val distance = JaroWinklerMetric.compare("string1", "string2")
+    (new StringFilterDelegate with AsciiLetterCaseStringFilter)
 
-`// All metrics have an overloaded compare method which accepts character arrays.`  
-`val distance3 = JaroWinklerMetric.compare("string1".toCharArray, "string2".toCharArray)`
+    if (distance >= 0.9) println("It's likely you're a match!")
 
-`// Do something. In this case, distance is between 1.0 and 0.0.`  
-`if (distance0 >= 0.9) println("It's likely you're a match!")`
+*****
+
+    // Compound filter example. Import metric, compare with two filters, do something with result. 
+    import org.hashtree.stringmetric.similarity.{ JaroWinklerMetric, StringFilterDelegate }
+    import org.hashtree.stringmetric.filter.{ AsciiLetterCaseStringFilter, AsciiLetterOnlyStringFilter }
+
+    val distance = JaroWinklerMetric.compare("string1", "string2")
+        (new StringFilterDelegate with AsciiLetterCaseStringFilter with AsciiLetterOnlyStringFilter)
+
+    if (distance >= 0.9) println("It's likely you're a match!")`
+
+*****
+
+    // All string metrics and algorithms have an overloaded compare method which accepts character arrays.
+    import org.hashtree.stringmetric.similarity.JaroWinklerMetric
+  
+    val distance = JaroWinklerMetric.compare("string1".toCharArray, "string2".toCharArray)
+
+    if (distance >= 0.9) println("It's likely you're a match!")
 
 ## Using the CLI
 Uncompress the built tar and ensure you have ability to execute the commands. Execute the metric of choice via the command line:
 
-`// The help option prints command syntax and usage.`  
-`jaroWinklerMetric --help`  
-`metaphoneMetric --help`  
-`metaphoneAlgorithm --help`  
+    // The help option prints command syntax and usage.
+    jaroWinklerMetric --help
+    metaphoneMetric --help
+    metaphoneAlgorithm --help
 
-`// Compare "abc" to "xyz" using the Jaro-Winkler metric.`  
-`jaroWinklerMetric abc xyz`  
+*****
 
-`// Compare "abc "to "xyz" using the Metaphone metric.`  
-`metaphoneMetric abc xyz`  
+    // Compare "abc" to "xyz" using the Jaro-Winkler metric.
+    jaroWinklerMetric abc xyz`  
 
-`// Get the phonetic representation of "abc" via the metaphone phonetic algorithm.`  
-`metaphoneAlgorithm abc`  
+*****
+
+    // Compare "abc "to "xyz" using the Metaphone metric.
+    metaphoneMetric abc xyz
+
+*****
+
+    // Get the phonetic representation of "abc" via the metaphone phonetic algorithm. 
+    metaphoneAlgorithm abc
 
 ## Requirements
 * Scala 2.9.2
