@@ -4,10 +4,10 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-final class SpaceStringFilterSpec extends ScalaTest {
-	private final val Filter = new StringFilterDelegate with SpaceStringFilter
+final class AsciiSpaceStringFilterSpec extends ScalaTest {
+	private final val Filter = new StringFilterDelegate with AsciiSpaceStringFilter
 
-	"SpaceStringFilter" should provide {
+	"AsciiSpaceStringFilter" should provide {
 		"overloaded filter method" when passed {
 			"String with spaces" should returns {
 				"String with spaces removed" in {
