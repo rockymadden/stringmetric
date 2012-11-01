@@ -1,11 +1,11 @@
 package org.hashtree.stringmetric
 
-/** A decorator [[org.hashtree.stringmetric.StringFilter]]. Ensures only ASCII letters matter. */
-trait AsciiLetterOnlyStringFilter extends StringFilter {
+/** A decorator [[org.hashtree.stringmetric.StringFilter]]. Ensures only ASCII numbers matter. */
+trait AsciiNumberOnlyStringFilter extends StringFilter {
 	abstract override def filter(charArray: Array[Char]): Array[Char] =
 		super.filter(
 			charArray.filter { c =>
-				((c >= 65 && c <= 90 ) || (c >= 97 && c <= 122))
+				(c >= 48 && c <= 57 )
 			}
 		)
 
