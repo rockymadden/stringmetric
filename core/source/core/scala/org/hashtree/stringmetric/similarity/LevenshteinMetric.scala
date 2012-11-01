@@ -1,6 +1,7 @@
 package org.hashtree.stringmetric.similarity
 
-import org.hashtree.stringmetric.{ CompareTuple, StringFilter, StringFilterDelegate, StringMetric }
+import org.hashtree.stringmetric.{ CompareTuple, StringFilter, StringMetric }
+import org.hashtree.stringmetric.StringFilterDelegate
 
 /** An implementation of the Levenshtein [[org.hashtree.stringmetric.StringMetric]]. */
 object LevenshteinMetric extends StringMetric {

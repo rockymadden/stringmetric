@@ -1,6 +1,7 @@
 package org.hashtree.stringmetric.similarity
 
-import org.hashtree.stringmetric.{ CompareTuple, MatchTuple, StringFilter, StringFilterDelegate, StringMetric }
+import org.hashtree.stringmetric.{ CompareTuple, MatchTuple, StringFilter, StringMetric }
+import org.hashtree.stringmetric.StringFilterDelegate
 import scala.annotation.tailrec
 
 /** An implementation of the Dice, and Sorensen, [[org.hashtree.stringmetric.StringMetric]]. */

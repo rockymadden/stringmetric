@@ -1,7 +1,8 @@
 package org.hashtree.stringmetric.cli.similarity
 
-import org.hashtree.stringmetric.{ AsciiLetterCaseStringFilter, StringFilterDelegate }
+import org.hashtree.stringmetric.StringFilterDelegate
 import org.hashtree.stringmetric.cli._
+import org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter
 import org.hashtree.stringmetric.similarity.JaroWinklerMetric
 
 /**

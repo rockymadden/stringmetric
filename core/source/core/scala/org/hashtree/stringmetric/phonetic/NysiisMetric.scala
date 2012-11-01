@@ -1,6 +1,7 @@
 package org.hashtree.stringmetric.phonetic
 
-import org.hashtree.stringmetric.{ StringFilter, StringFilterDelegate, StringMetric }
+import org.hashtree.stringmetric.{ StringFilter, StringMetric }
+import org.hashtree.stringmetric.StringFilterDelegate
 
 /** An implementation of the NYSIIS [[org.hashtree.stringmetric.StringMetric]]. */
 object NysiisMetric extends StringMetric {

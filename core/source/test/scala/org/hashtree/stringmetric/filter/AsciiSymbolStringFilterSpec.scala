@@ -1,5 +1,7 @@
-package org.hashtree.stringmetric
+package org.hashtree.stringmetric.filter
 
+import org.hashtree.stringmetric.ScalaTest
+import org.hashtree.stringmetric.StringFilterDelegate
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 

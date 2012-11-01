@@ -1,4 +1,6 @@
-package org.hashtree.stringmetric
+package org.hashtree.stringmetric.filter
+
+import org.hashtree.stringmetric.StringFilter
 
 /** A decorator [[org.hashtree.stringmetric.StringFilter]]. Ensures only ASCII letters and numbers matter. */
 trait AsciiLetterNumberOnlyStringFilter extends StringFilter {

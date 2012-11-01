@@ -1,6 +1,7 @@
 package org.hashtree.stringmetric.similarity
 
-import org.hashtree.stringmetric.{ StringFilter, StringFilterDelegate, StringMetric }
+import org.hashtree.stringmetric.{ StringFilter, StringMetric }
+import org.hashtree.stringmetric.StringFilterDelegate
 
 /**
  * An implementation of the Jaro-Winkler [[org.hashtree.stringmetric.StringMetric]]. One differing detail in this
