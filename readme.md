@@ -58,6 +58,9 @@ Filters, which can optionally be applied, clean up arguments prior to evaluation
 * __Ensures ASCII symbols do not matter__
 	* API: org.hashtree.stringmetric.filter.AsciiSymbolStringFilter
 
+## Versioning
+[SemVer](http://semver.org/)
+
 ## Building the API
 gradle :stringmetric-core:jar
 
