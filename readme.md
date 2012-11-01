@@ -2,31 +2,31 @@
 A collection of string metrics and algorithms implemented in Scala. All phonetic string metrics have a standalone algorithm counterpart. They provide a means to determine the phonetic representation of the argument passed, rather than evaluating if two arguments sound the same phonetically. __Each metric and algorithm has a CLI.__
 
 ## Metrics and Algorithms
-* __Dice / Sorensen__ (<http://en.wikipedia.org/wiki/Dice%27s_coefficient>)
+* __[Dice / Sorensen](http://en.wikipedia.org/wiki/Dice%27s_coefficient)__
 	* API: org.hashtree.stringmetric.similarity.DiceSorensenMetric
 	* CLI: diceSorensenMetric
-* __Hamming__ (<http://en.wikipedia.org/wiki/Hamming_distance>)
+* __[Hamming](http://en.wikipedia.org/wiki/Hamming_distance)__
 	* API: org.hashtree.stringmetric.similarity.HammingMetric
 	* CLI: hammingMetric
-* __Jaro__ (<http://en.wikipedia.org/wiki/Jaro-Winkler_distance>)
+* __[Jaro](http://en.wikipedia.org/wiki/Jaro-Winkler_distance)__
 	* API: org.hashtree.stringmetric.similarity.JaroMetric
 	* CLI: jaroMetric
-* __Jaro-Winkler__ (<http://en.wikipedia.org/wiki/Jaro-Winkler_distance>)
+* __[Jaro-Winkler](http://en.wikipedia.org/wiki/Jaro-Winkler_distance)__
 	* API: org.hashtree.stringmetric.similarity.JaroWinklerMetric
 	* CLI: jaroWinklerMetric
-* __Levenshtein__ (<http://en.wikipedia.org/wiki/Levenshtein_distance>)
+* __[Levenshtein](http://en.wikipedia.org/wiki/Levenshtein_distance)__
 	* API: org.hashtree.stringmetric.similarity.LevenshteinMetric
 	* CLI: levenshteinMetric
-* __Metaphone__ (<http://en.wikipedia.org/wiki/Metaphone>)
+* __[Metaphone](http://en.wikipedia.org/wiki/Metaphone)__
 	* API: org.hashtree.stringmetric.phonetic.MetaphoneMetric and org.hashtree.stringmetric.phonetic.MetaphoneAlgorithm
 	* CLI: metaphoneMetric and metaphoneAlgorithm
-* __NYSIIS__ (<http://en.wikipedia.org/wiki/New_York_State_Identification_and_Intelligence_System>)
+* __[NYSIIS](http://en.wikipedia.org/wiki/New_York_State_Identification_and_Intelligence_System)__
 	* API: org.hashtree.stringmetric.phonetic.NysiisMetric and org.hashtree.stringmetric.phonetic.NysiisAlgorithm
 	* CLI: nysiisMetric and nysiisAlgorithm
-* __Refined Soundex__ (<http://ntz-develop.blogspot.com/2011/03/phonetic-algorithms.html>)
+* __[Refined Soundex](http://ntz-develop.blogspot.com/2011/03/phonetic-algorithms.html)__
 	* API: org.hashtree.stringmetric.phonetic.RefinedSoundexMetric and org.hashtree.stringmetric.phonetic.RefinedSoundexAlgorithm
 	* CLI: refinedSoundexMetric and refinedSoundexAlgorithm
-* __Soundex__ (<http://en.wikipedia.org/wiki/Soundex>)
+* __[Soundex](http://en.wikipedia.org/wiki/Soundex)__
 	* API: org.hashtree.stringmetric.phonetic.SoundexMetric and org.hashtree.stringmetric.phonetic.SoundexAlgorithm
 	* CLI: soundexMetric and soundexAlgorithm
 
