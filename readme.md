@@ -88,7 +88,7 @@ Filters, which can optionally be applied, clean up arguments prior to evaluation
 
 *****
 
-    // Compound filter example. Import metric, compare with two filters, do something with result. 
+    // Compound filter example. Import metric, compare with two filters, do something with result. Filters are applied in reverse order!
     import org.hashtree.stringmetric.similarity.{ JaroWinklerMetric, StringFilterDelegate }
     import org.hashtree.stringmetric.filter.{ AsciiLetterCaseStringFilter, AsciiLetterOnlyStringFilter }
 
@@ -134,4 +134,4 @@ Uncompress the built tar and ensure you have ability to execute the commands. Ex
 * Gradle 1.0 or above
 
 ## License
-Apache License, Version 2.0
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
