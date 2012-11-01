@@ -1,7 +1,7 @@
 #stringmetric
-A collection of string metrics and algorithms implemented in Scala. All phonetic string metrics have a standalone algorithm counterpart. They provide a means to determine the phonetic representation of the argument passed, rather than evaluating if two arguments sound the same phonetically. __Each metric and algorithm has a CLI.__
+A collection of string metrics and phonetic algorithms implemented in Scala. All phonetic string metrics have a standalone algorithm counterpart. They provide a means to determine the phonetic representation of the argument passed, rather than evaluating if two arguments sound the same phonetically. __Each metric and algorithm has a CLI.__
 
-## Metrics and Algorithms
+## Metrics and Phonetic Algorithms
 * __[Dice / Sorensen](http://en.wikipedia.org/wiki/Dice%27s_coefficient)__
 	* API: org.hashtree.stringmetric.similarity.DiceSorensenMetric
 	* CLI: diceSorensenMetric
