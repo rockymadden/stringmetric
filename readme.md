@@ -1,5 +1,5 @@
 #stringmetric
-A collection of string metrics implemented in Scala. Provides a light-weight API and a CLI for each string metric. The following string metrics are currently supported:
+A collection of string metrics implemented in Scala. Includes a CLI for each string metric. The following currently supported:
 
 * __Dice / Sorensen__ (<http://en.wikipedia.org/wiki/Dice%27s_coefficient>)
 	* _API_: org.hashtree.stringmetric.similarity.DiceSorensenMetric
