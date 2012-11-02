@@ -69,6 +69,20 @@ gradle :stringmetric-cli:tar
 ```
 
 ## Using the API
+The absolute easiest example is to use the StringMetric convenience object.
+```scala
+import org.hashtree.stringmetric.StringMetric
+  
+if (StringMetric.compareJaroWinkler("string1", "string2") >= 0.9) println("It's likely you're a match!")
+```
+
+The absolute easiest example with one filter is to use the StringMetric and StringFilter convenience objects.
+```scala
+import org.hashtree.stringmetric.StringMetric
+  
+if (StringMetric.compareJaroWinkler("string1", "string2")(StringFilter.asciiLetterCase) >= 0.9) println("It's likely you're a match!")
+```
+
 Simple example. Import metric, compare, do something with result. 
 ```scala
 import org.hashtree.stringmetric.similarity.JaroWinklerMetric  
