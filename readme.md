@@ -121,7 +121,7 @@ metaphoneAlgorithm --help
 
 Compare "abc" to "xyz" using the Jaro-Winkler metric.
 ```shell
-jaroWinklerMetric abc xyz`  
+jaroWinklerMetric abc xyz
 ```
 
 Compare "abc "to "xyz" using the Metaphone metric.
