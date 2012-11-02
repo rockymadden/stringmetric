@@ -28,7 +28,7 @@ object NysiisAlgorithm extends StringAlgorithm {
 
 	override def compute(string: String)(implicit stringFilter: StringFilter): Option[String] =
 		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate) match {
-			case Some(se) => Some(se.mkString)
+			case Some(ny) => Some(ny.mkString)
 			case None => None
 		}
 
