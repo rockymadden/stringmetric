@@ -58,16 +58,12 @@ Filters, which can optionally be applied, clean up arguments prior to evaluation
 * __Ensures ASCII symbols do not matter__
 	* API: org.hashtree.stringmetric.filter.AsciiSymbolStringFilter
 
-## Versioning
-[Semantic Versioning 2.0.0](http://semver.org/)
-
-## Building
-Build the API.
+## Building the API
 ```shell
 gradle :stringmetric-core:jar
 ```
 
-Build the CLI.
+## Building the CLI
 ```shell
 gradle :stringmetric-cli:tar
 ```
@@ -141,6 +137,9 @@ metaphoneAlgorithm abc
 ## Requirements
 * Scala 2.9.2
 * Gradle 1.0 or above
+
+## Versioning
+[Semantic Versioning 2.0.0](http://semver.org/)
 
 ## License
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
