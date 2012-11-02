@@ -85,7 +85,7 @@ if (StringMetric.compareJaroWinkler("string1", "string2")(StringFilter.asciiLett
     println("It's likely you're a match!")
 ```
 
-Simple example. Import metric, compare, do something with result. 
+Basic example with no filtering. Import metric, compare, do something with result. 
 ```scala
 import org.hashtree.stringmetric.similarity.JaroWinklerMetric  
   
@@ -113,7 +113,7 @@ import org.hashtree.stringmetric.filter.{ AsciiLetterCaseStringFilter, AsciiLett
 val distance = JaroWinklerMetric.compare("string1", "string2")
     (new StringFilterDelegate with AsciiLetterCaseStringFilter with AsciiLetterOnlyStringFilter)
 
-if (distance >= 0.9) println("It's likely you're a match!")`
+if (distance >= 0.9) println("It's likely you're a match!")
 ```
 
 All string metrics and algorithms have overloaded methods which accept character arrays.
