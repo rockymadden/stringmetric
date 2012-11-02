@@ -61,73 +61,82 @@ Filters, which can optionally be applied, clean up arguments prior to evaluation
 ## Versioning
 [Semantic Versioning 2.0.0](http://semver.org/)
 
-## Building the API
-    gradle :stringmetric-core:jar
+## Building
+Build the API.
+```shell
+gradle :stringmetric-core:jar
+```
 
-## Building the CLI
-    gradle :stringmetric-cli:tar
+Build the CLI.
+```shell
+gradle :stringmetric-cli:tar
+```
 
 ## Using the API
-    // Simple example. Import metric, compare, do something with result. 
-    import org.hashtree.stringmetric.similarity.JaroWinklerMetric  
+Simple example. Import metric, compare, do something with result. 
+```scala
+import org.hashtree.stringmetric.similarity.JaroWinklerMetric  
   
-    val distance = JaroWinklerMetric.compare("string1", "string2")
+val distance = JaroWinklerMetric.compare("string1", "string2")
 
-    if (distance >= 0.9) println("It's likely you're a match!")
+if (distance >= 0.9) println("It's likely you're a match!")
+```
 
-*****
+One filter example. Import metric, compare with one filter, do something with result.
+```scala
+import org.hashtree.stringmetric.similarity.{ JaroWinklerMetric, StringFilterDelegate }
+import org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter
 
-    // One filter example. Import metric, compare with one filter, do something with result.
-    import org.hashtree.stringmetric.similarity.{ JaroWinklerMetric, StringFilterDelegate }
-    import org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter
+val distance = JaroWinklerMetric.compare("string1", "string2")
+    (new StringFilterDelegate with AsciiLetterCaseStringFilter)
 
-    val distance = JaroWinklerMetric.compare("string1", "string2")
-        (new StringFilterDelegate with AsciiLetterCaseStringFilter)
+if (distance >= 0.9) println("It's likely you're a match!")
+```
 
-    if (distance >= 0.9) println("It's likely you're a match!")
+Compound filter example. Import metric, compare with two filters, do something with result. Filters are applied in reverse order!
+```scala
+import org.hashtree.stringmetric.similarity.{ JaroWinklerMetric, StringFilterDelegate }
+import org.hashtree.stringmetric.filter.{ AsciiLetterCaseStringFilter, AsciiLetterOnlyStringFilter }
 
-*****
+val distance = JaroWinklerMetric.compare("string1", "string2")
+    (new StringFilterDelegate with AsciiLetterCaseStringFilter with AsciiLetterOnlyStringFilter)
 
-    // Compound filter example. Import metric, compare with two filters, do something with result. Filters are applied in reverse order!
-    import org.hashtree.stringmetric.similarity.{ JaroWinklerMetric, StringFilterDelegate }
-    import org.hashtree.stringmetric.filter.{ AsciiLetterCaseStringFilter, AsciiLetterOnlyStringFilter }
+if (distance >= 0.9) println("It's likely you're a match!")`
+```
 
-    val distance = JaroWinklerMetric.compare("string1", "string2")
-        (new StringFilterDelegate with AsciiLetterCaseStringFilter with AsciiLetterOnlyStringFilter)
-
-    if (distance >= 0.9) println("It's likely you're a match!")`
-
-*****
-
-    // All string metrics and algorithms have overloaded methods which accept character arrays.
-    import org.hashtree.stringmetric.similarity.JaroWinklerMetric
+All string metrics and algorithms have overloaded methods which accept character arrays.
+```scala
+import org.hashtree.stringmetric.similarity.JaroWinklerMetric
   
-    val distance = JaroWinklerMetric.compare("string1".toCharArray, "string2".toCharArray)
+val distance = JaroWinklerMetric.compare("string1".toCharArray, "string2".toCharArray)
 
-    if (distance >= 0.9) println("It's likely you're a match!")
+if (distance >= 0.9) println("It's likely you're a match!")
+```
 
 ## Using the CLI
 Uncompress the built tar and ensure you have ability to execute the commands. Execute the metric of choice via the command line:
 
-    // The help option prints command syntax and usage.
-    jaroWinklerMetric --help
-    metaphoneMetric --help
-    metaphoneAlgorithm --help
+The help option prints command syntax and usage.
+```shell
+jaroWinklerMetric --help
+metaphoneMetric --help
+metaphoneAlgorithm --help
+```
 
-*****
+Compare "abc" to "xyz" using the Jaro-Winkler metric.
+```shell
+jaroWinklerMetric abc xyz`  
+```
 
-    // Compare "abc" to "xyz" using the Jaro-Winkler metric.
-    jaroWinklerMetric abc xyz`  
+Compare "abc "to "xyz" using the Metaphone metric.
+```shell
+metaphoneMetric abc xyz
+```
 
-*****
-
-    // Compare "abc "to "xyz" using the Metaphone metric.
-    metaphoneMetric abc xyz
-
-*****
-
-    // Get the phonetic representation of "abc" via the metaphone phonetic algorithm. 
-    metaphoneAlgorithm abc
+Get the phonetic representation of "abc" via the metaphone phonetic algorithm.
+```shell 
+metaphoneAlgorithm abc
+```
 
 ## Requirements
 * Scala 2.9.2
