@@ -9,21 +9,29 @@ trait StringAlgorithm extends Algorithm[String, StringFilter] {
 
 /** Convenience object for those extending [[org.hashtree.stringmetric.StringAlgorithm]]. */
 object StringAlgorithm {
-	def computeMetaphone(charArray: Array[Char]): Option[Array[Char]] = MetaphoneAlgorithm.compute(charArray)
+	def computeMetaphone(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] =
+		MetaphoneAlgorithm.compute(charArray)(stringFilter)
 
-	def computeMetaphone(string: String): Option[String] = MetaphoneAlgorithm.compute(string)
+	def computeMetaphone(string: String)(implicit stringFilter: StringFilter): Option[String] =
+		MetaphoneAlgorithm.compute(string)(stringFilter)
 
-	def computeNysiis(charArray: Array[Char]): Option[Array[Char]] = NysiisAlgorithm.compute(charArray)
+	def computeNysiis(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] =
+		NysiisAlgorithm.compute(charArray)(stringFilter)
 
-	def computeNysiis(string: String): Option[String] = NysiisAlgorithm.compute(string)
+	def computeNysiis(string: String)(implicit stringFilter: StringFilter): Option[String] =
+		NysiisAlgorithm.compute(string)(stringFilter)
 
-	def computeRefinedSoundex(charArray: Array[Char]): Option[Array[Char]] = RefinedSoundexAlgorithm.compute(charArray)
+	def computeRefinedSoundex(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] =
+		RefinedSoundexAlgorithm.compute(charArray)(stringFilter)
 
-	def computeRefinedSoundex(string: String): Option[String] = RefinedSoundexAlgorithm.compute(string)
+	def computeRefinedSoundex(string: String)(implicit stringFilter: StringFilter): Option[String] =
+		RefinedSoundexAlgorithm.compute(string)(stringFilter)
 
-	def computeSoundex(charArray: Array[Char]): Option[Array[Char]] = SoundexAlgorithm.compute(charArray)
+	def computeSoundex(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] =
+		SoundexAlgorithm.compute(charArray)(stringFilter)
 
-	def computeSoundex(string: String): Option[String] = SoundexAlgorithm.compute(string)
+	def computeSoundex(string: String)(implicit stringFilter: StringFilter): Option[String] =
+		SoundexAlgorithm.compute(string)(stringFilter)
 
 	def metaphone: MetaphoneAlgorithm.type = MetaphoneAlgorithm
 

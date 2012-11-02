@@ -10,59 +10,59 @@ trait StringMetric extends Metric[String, StringFilter] {
 
 /** Convenience object for those extending [[org.hashtree.stringmetric.StringMetric]]. */
 object StringMetric {
-	def compareDiceSorensen(charArray1: Array[Char], charArray2: Array[Char]): Option[Double] =
-		DiceSorensenMetric.compare(charArray1, charArray2)
+	def compareDiceSorensen(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Double] =
+		DiceSorensenMetric.compare(charArray1, charArray2)(stringFilter)
 
-	def compareDiceSorensen(string1: String, string2: String): Option[Double] =
-		DiceSorensenMetric.compare(string1, string2)
+	def compareDiceSorensen(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] =
+		DiceSorensenMetric.compare(string1, string2)(stringFilter)
 
-	def compareHamming(charArray1: Array[Char], charArray2: Array[Char]): Option[Int] =
-		HammingMetric.compare(charArray1, charArray2)
+	def compareHamming(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Int] =
+		HammingMetric.compare(charArray1, charArray2)(stringFilter)
 
-	def compareHamming(string1: String, string2: String): Option[Int] =
-		HammingMetric.compare(string1, string2)
+	def compareHamming(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Int] =
+		HammingMetric.compare(string1, string2)(stringFilter)
 
-	def compareJaro(charArray1: Array[Char], charArray2: Array[Char]): Option[Double] =
-		JaroMetric.compare(charArray1, charArray2)
+	def compareJaro(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Double] =
+		JaroMetric.compare(charArray1, charArray2)(stringFilter)
 
-	def compareJaro(string1: String, string2: String): Option[Double] =
-		JaroMetric.compare(string1, string2)
+	def compareJaro(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] =
+		JaroMetric.compare(string1, string2)(stringFilter)
 
-	def compareJaroWinkler(charArray1: Array[Char], charArray2: Array[Char]): Option[Double] =
-		JaroWinklerMetric.compare(charArray1, charArray2)
+	def compareJaroWinkler(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Double] =
+		JaroWinklerMetric.compare(charArray1, charArray2)(stringFilter)
 
-	def compareJaroWinkler(string1: String, string2: String): Option[Double] =
-		JaroWinklerMetric.compare(string1, string2)
+	def compareJaroWinkler(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] =
+		JaroWinklerMetric.compare(string1, string2)(stringFilter)
 
-	def compareLevenshtein(charArray1: Array[Char], charArray2: Array[Char]): Option[Int] =
-		LevenshteinMetric.compare(charArray1, charArray2)
+	def compareLevenshtein(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Int] =
+		LevenshteinMetric.compare(charArray1, charArray2)(stringFilter)
 
-	def compareLevenshtein(string1: String, string2: String): Option[Int] =
-		LevenshteinMetric.compare(string1, string2)
+	def compareLevenshtein(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Int] =
+		LevenshteinMetric.compare(string1, string2)(stringFilter)
 
-	def compareMetaphone(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] =
-		MetaphoneMetric.compare(charArray1, charArray2)
+	def compareMetaphone(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Boolean] =
+		MetaphoneMetric.compare(charArray1, charArray2)(stringFilter)
 
-	def compareMetaphone(string1: String, string2: String): Option[Boolean] =
-		MetaphoneMetric.compare(string1, string2)
+	def compareMetaphone(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Boolean] =
+		MetaphoneMetric.compare(string1, string2)(stringFilter)
 
-	def compareNysiis(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] =
-		NysiisMetric.compare(charArray1, charArray2)
+	def compareNysiis(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Boolean] =
+		NysiisMetric.compare(charArray1, charArray2)(stringFilter)
 
-	def compareNysiis(string1: String, string2: String): Option[Boolean] =
-		NysiisMetric.compare(string1, string2)
+	def compareNysiis(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Boolean] =
+		NysiisMetric.compare(string1, string2)(stringFilter)
 
-	def compareRefinedSoundex(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] =
-		RefinedSoundexMetric.compare(charArray1, charArray2)
+	def compareRefinedSoundex(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Boolean] =
+		RefinedSoundexMetric.compare(charArray1, charArray2)(stringFilter)
 
-	def compareRefinedSoundex(string1: String, string2: String): Option[Boolean] =
-		RefinedSoundexMetric.compare(string1, string2)
+	def compareRefinedSoundex(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Boolean] =
+		RefinedSoundexMetric.compare(string1, string2)(stringFilter)
 
-	def compareSoundex(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] =
-		SoundexMetric.compare(charArray1, charArray2)
+	def compareSoundex(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Boolean] =
+		SoundexMetric.compare(charArray1, charArray2)(stringFilter)
 
-	def compareSoundex(string1: String, string2: String): Option[Boolean] =
-		SoundexMetric.compare(string1, string2)
+	def compareSoundex(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Boolean] =
+		SoundexMetric.compare(string1, string2)(stringFilter)
 
 	def diceSorensen: DiceSorensenMetric.type = DiceSorensenMetric
 
