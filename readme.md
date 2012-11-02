@@ -78,7 +78,7 @@ if (StringMetric.compareJaroWinkler("string1", "string2") >= 0.9) println("It's 
 
 The absolute easiest example with one filter is to use the StringMetric and StringFilter convenience objects.
 ```scala
-import org.hashtree.stringmetric.StringMetric
+import org.hashtree.stringmetric.{ StringFilter, StringMetric }
   
 if (StringMetric.compareJaroWinkler("string1", "string2")(StringFilter.asciiLetterCase) >= 0.9) println("It's likely you're a match!")
 ```
