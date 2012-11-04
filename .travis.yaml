@@ -1,0 +1,11 @@
+language: scala
+scala:
+  - 2.9.2
+jdk:
+  - openjdk6
+  - openjdk7
+  - oraclejdk7
+branches:
+  except:
+    - develop
+script: "gradle test"
