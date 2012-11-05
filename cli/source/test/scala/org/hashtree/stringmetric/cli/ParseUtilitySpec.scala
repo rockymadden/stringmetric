@@ -1,0 +1,60 @@
+package org.hashtree.stringmetric.cli
+
+import org.hashtree.stringmetric.ScalaTest
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
+import scala.math.BigDecimal
+
+@RunWith(classOf[JUnitRunner])
+final class ParseUtilitySpec extends ScalaTest {
+	"ParseUtility" should provide {
+		"parseBigDecimal method" when passed {
+			"invalid argument" should returns {
+				"None" in {
+					ParseUtility.parseBigDecimal("one").isDefined should be (false)
+				}
+			}
+			"valid argument" should returns {
+				"Some(BigDecimal)" in {
+					ParseUtility.parseBigDecimal("1").get should equal (BigDecimal(1))
+				}
+			}
+		}
+		"parseDouble method" when passed {
+			"invalid argument" should returns {
+				"None" in {
+					ParseUtility.parseDouble("one").isDefined should be (false)
+				}
+			}
+			"valid argument" should returns {
+				"Some(Double)" in {
+					ParseUtility.parseDouble("1").get should be (1d)
+				}
+			}
+		}
+		"parseFloat method" when passed {
+			"invalid argument" should returns {
+				"None" in {
+					ParseUtility.parseFloat("one").isDefined should be (false)
+				}
+			}
+			"valid argument" should returns {
+				"Some(Float)" in {
+					ParseUtility.parseFloat("1").get should be (1f)
+				}
+			}
+		}
+		"parseInt method" when passed {
+			"invalid argument" should returns {
+				"None" in {
+					ParseUtility.parseInt("one").isDefined should be (false)
+				}
+			}
+			"valid argument" should returns {
+				"Some(Int)" in {
+					ParseUtility.parseInt("1").get should be (1)
+				}
+			}
+		}
+	}
+}

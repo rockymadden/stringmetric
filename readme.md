@@ -29,6 +29,9 @@ A collection of string metrics and phonetic algorithms implemented in Scala. All
 * __[Soundex](http://en.wikipedia.org/wiki/Soundex)__
 	* API: org.hashtree.stringmetric.phonetic.SoundexMetric and org.hashtree.stringmetric.phonetic.SoundexAlgorithm
 	* CLI: soundexMetric and soundexAlgorithm
+* __Weighted Levenshtein__
+	* API: org.hashtree.stringmetric.similarity.WeightedLevenshteinMetric
+	* CLI: weightedLevenshteinMetric
 
 ## Filters
 Filters, which can optionally be applied, clean up arguments prior to evaluation. Filtering rules can be composed via trait decoration.
