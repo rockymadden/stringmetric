@@ -32,4 +32,6 @@ object StringFilter {
 	def asciiSymbol = new StringFilterDelegate with AsciiSymbolStringFilter
 
 	def asciiSymbolOnly = new StringFilterDelegate with AsciiSymbolOnlyStringFilter
+
+	def delegate = new StringFilterDelegate
 }
