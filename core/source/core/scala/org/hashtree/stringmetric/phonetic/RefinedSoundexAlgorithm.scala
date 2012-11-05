@@ -1,11 +1,10 @@
 package org.hashtree.stringmetric.phonetic
 
-import org.hashtree.stringmetric.{ StringAlgorithm, StringFilter }
-import org.hashtree.stringmetric.StringFilterDelegate
+import org.hashtree.stringmetric.{ FilterableStringAlgorithm, StringAlgorithm, StringFilter, StringFilterDelegate }
 import scala.annotation.tailrec
 
 /** An implementation of the refined Soundex [[org.hashtree.stringmetric.StringAlgorithm]]. */
-object RefinedSoundexAlgorithm extends StringAlgorithm {
+object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
 		val ca = stringFilter.filter(charArray)
 

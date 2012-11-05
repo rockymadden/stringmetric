@@ -1,10 +1,9 @@
 package org.hashtree.stringmetric.similarity
 
-import org.hashtree.stringmetric.{ CompareTuple, StringFilter, StringMetric }
-import org.hashtree.stringmetric.StringFilterDelegate
+import org.hashtree.stringmetric.{ CompareTuple, FilterableStringMetric, StringFilter, StringMetric, StringFilterDelegate }
 
 /** An implementation of the Hamming [[org.hashtree.stringmetric.StringMetric]]. */
-object HammingMetric extends StringMetric {
+object HammingMetric extends StringMetric with FilterableStringMetric {
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Int] = {
 		val ca1 = stringFilter.filter(charArray1)
 		val ca2 = stringFilter.filter(charArray2)

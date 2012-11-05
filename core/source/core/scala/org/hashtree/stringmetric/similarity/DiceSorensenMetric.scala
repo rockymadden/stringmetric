@@ -1,11 +1,10 @@
 package org.hashtree.stringmetric.similarity
 
-import org.hashtree.stringmetric.{ CompareTuple, MatchTuple, StringFilter, StringMetric }
-import org.hashtree.stringmetric.StringFilterDelegate
+import org.hashtree.stringmetric.{ CompareTuple, FilterableStringMetric, MatchTuple, StringFilter, StringMetric, StringFilterDelegate }
 import scala.annotation.tailrec
 
 /** An implementation of the Dice, and Sorensen, [[org.hashtree.stringmetric.StringMetric]]. */
-object DiceSorensenMetric extends StringMetric {
+object DiceSorensenMetric extends StringMetric with FilterableStringMetric {
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Double] = {
 		val ca1 = stringFilter.filter(charArray1)
 		val ca2 = stringFilter.filter(charArray2)

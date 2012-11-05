@@ -1,14 +1,13 @@
 package org.hashtree.stringmetric.similarity
 
-import org.hashtree.stringmetric.{ StringFilter, StringMetric }
-import org.hashtree.stringmetric.StringFilterDelegate
+import org.hashtree.stringmetric.{ FilterableStringMetric, StringFilter, StringMetric, StringFilterDelegate }
 
 /**
  * An implementation of the Jaro-Winkler [[org.hashtree.stringmetric.StringMetric]]. One differing detail in this
  * implementation is that if a character is matched in string2, it cannot be matched upon again. This results in a more
  * penalized distance in these scenarios (e.g. comparing henka and henkan distance is 0.9666 versus the typical 0.9722).
  */
-object JaroWinklerMetric extends StringMetric {
+object JaroWinklerMetric extends StringMetric with FilterableStringMetric {
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Double] = {
 		val ca1 = stringFilter.filter(charArray1)
 		val ca2 = stringFilter.filter(charArray2)

@@ -1,10 +1,9 @@
 package org.hashtree.stringmetric.phonetic
 
-import org.hashtree.stringmetric.{ StringFilter, StringMetric }
-import org.hashtree.stringmetric.StringFilterDelegate
+import org.hashtree.stringmetric.{ FilterableStringMetric, StringFilter, StringFilterDelegate, StringMetric }
 
 /** An implementation of the refined Soundex [[org.hashtree.stringmetric.StringMetric]]. */
-object RefinedSoundexMetric extends StringMetric {
+object RefinedSoundexMetric extends StringMetric with FilterableStringMetric {
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Boolean] = {
 		val ca1 = stringFilter.filter(charArray1)
 		val ca2 = stringFilter.filter(charArray2)

@@ -1,7 +1,6 @@
 package org.hashtree.stringmetric.similarity
 
-import org.hashtree.stringmetric.{ CompareTuple, MatchTuple, StringFilter, StringMetric }
-import org.hashtree.stringmetric.StringFilterDelegate
+import org.hashtree.stringmetric.{ CompareTuple, FilterableStringMetric, MatchTuple, StringFilter, StringMetric, StringFilterDelegate }
 import scala.collection.mutable.{ ArrayBuffer, HashSet }
 
 /**
@@ -9,7 +8,7 @@ import scala.collection.mutable.{ ArrayBuffer, HashSet }
  * is that if a character is matched in string2, it cannot be matched upon again. This results in a more penalized
  * distance in these scenarios.
  */
-object JaroMetric extends StringMetric {
+object JaroMetric extends StringMetric with FilterableStringMetric {
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Double] = {
 		val ca1 = stringFilter.filter(charArray1)
 		val ca2 = stringFilter.filter(charArray2)

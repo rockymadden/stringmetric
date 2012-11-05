@@ -3,8 +3,8 @@ package org.hashtree.stringmetric
 import org.hashtree.stringmetric.phonetic.{ MetaphoneAlgorithm, NysiisAlgorithm, RefinedSoundexAlgorithm, SoundexAlgorithm }
 
 /** Marks those which leverage traits of a string based [[org.hashtree.stringmetric.Algorithm]]. */
-trait StringAlgorithm extends Algorithm[String, StringFilter] {
-	def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]]
+trait StringAlgorithm extends Algorithm[String] {
+
 }
 
 /** Convenience object for those extending [[org.hashtree.stringmetric.StringAlgorithm]]. */

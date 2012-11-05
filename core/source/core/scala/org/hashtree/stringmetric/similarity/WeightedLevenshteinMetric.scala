@@ -1,12 +1,12 @@
 package org.hashtree.stringmetric.similarity
 
-import org.hashtree.stringmetric.{ CompareTuple, StringFilter, StringFilterDelegate, StringOptionMetric }
+import org.hashtree.stringmetric.{ CompareTuple, FilterableConfigurableStringMetric, StringFilter, StringFilterDelegate, StringMetric }
 import scala.math.BigDecimal
 
-/** An implementation of a weighted Levenshtein [[org.hashtree.stringmetric.StringOptionMetric]]. */
-object WeightedLevenshteinMetric extends StringOptionMetric[Tuple3[BigDecimal, BigDecimal, BigDecimal]] {
+/** An implementation of a weighted Levenshtein [[org.hashtree.stringmetric.StringMetric]]. */
+object WeightedLevenshteinMetric extends StringMetric with FilterableConfigurableStringMetric[Tuple3[BigDecimal, BigDecimal, BigDecimal]] {
 	/** Options order is delete, insert, then substitute weight. */
-	def compare(charArray1: Array[Char], charArray2: Array[Char])(options: Tuple3[BigDecimal, BigDecimal, BigDecimal])
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])(options: Tuple3[BigDecimal, BigDecimal, BigDecimal])
 		(implicit stringFilter: StringFilter): Option[Double] = {
 		val ca1 = stringFilter.filter(charArray1)
 		val ca2 = stringFilter.filter(charArray2)

@@ -1,11 +1,11 @@
 package org.hashtree.stringmetric
 
 import org.hashtree.stringmetric.phonetic.{ MetaphoneMetric, NysiisMetric, RefinedSoundexMetric, SoundexMetric }
-import org.hashtree.stringmetric.similarity.{ DiceSorensenMetric, HammingMetric, JaroMetric, JaroWinklerMetric, LevenshteinMetric }
+import org.hashtree.stringmetric.similarity.{ DiceSorensenMetric, HammingMetric, JaroMetric, JaroWinklerMetric, LevenshteinMetric, WeightedLevenshteinMetric }
 
 /** Marks those which leverage traits of a string based [[org.hashtree.stringmetric.Metric]]. */
-trait StringMetric extends Metric[String, StringFilter] {
-	def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[AnyVal]
+trait StringMetric extends Metric[String] {
+
 }
 
 /** Convenience object for those extending [[org.hashtree.stringmetric.StringMetric]]. */
@@ -64,6 +64,14 @@ object StringMetric {
 	def compareSoundex(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Boolean] =
 		SoundexMetric.compare(string1, string2)(stringFilter)
 
+	def compareWeightedLevenshtein(charArray1: Array[Char], charArray2: Array[Char])
+		(options: Tuple3[BigDecimal, BigDecimal, BigDecimal])(implicit stringFilter: StringFilter): Option[Double] =
+		WeightedLevenshteinMetric.compare(charArray1, charArray2)(options)(stringFilter)
+
+	def compareWeightedLevenshtein(string1: String, string2: String)
+		(options: Tuple3[BigDecimal, BigDecimal, BigDecimal])(implicit stringFilter: StringFilter): Option[Double] =
+		WeightedLevenshteinMetric.compare(string1, string2)(options)(stringFilter)
+
 	def diceSorensen: DiceSorensenMetric.type = DiceSorensenMetric
 
 	def hamming: HammingMetric.type = HammingMetric
@@ -81,4 +89,6 @@ object StringMetric {
 	def refinedSoundex: RefinedSoundexMetric.type = RefinedSoundexMetric
 
 	def soundex: SoundexMetric.type = SoundexMetric
+
+	def weightedLevenshtein: WeightedLevenshteinMetric.type = WeightedLevenshteinMetric
 }
