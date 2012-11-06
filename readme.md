@@ -139,7 +139,7 @@ Compare "abc "to "xyz" using the Metaphone metric.
 metaphoneMetric abc xyz
 ```
 
-Get the phonetic representation of "abc" via the metaphone phonetic algorithm.
+Get the phonetic representation of "abc" using the Metaphone phonetic algorithm.
 ```shell 
 metaphoneAlgorithm abc
 ```
