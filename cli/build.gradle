@@ -45,7 +45,7 @@ sourceSets {
 	}
 }
 
-task tar(description: 'Assembles a compressed tar archive of all core source files.', dependsOn: [':stringmetric-cli:jar', ':stringmetric-core:jar']) {
+task tar(description: 'Assembles a compressed tar archive of source files.', dependsOn: [':stringmetric-cli:jar', ':stringmetric-core:jar']) {
 	ext.sourcePath = "${project.projectDir}/source/core/scala"
 	ext.outputPath = "${project.buildDir}"
 	ext.workingPath = "${project.buildDir}/${project.name}"
