@@ -1,13 +1,12 @@
 package org.hashtree.stringmetric.cli
 
 import scala.annotation.tailrec
-import scala.collection.immutable.HashMap
 
 /** Utility standalone for OptionMap based operations. */
 object OptionMapUtility {
 	def toOptionMap(arguments: Array[String]): OptionMap = toOptionMap(arguments.toList)
 
-	def toOptionMap(arguments: List[String]): OptionMap = next(HashMap.empty[Symbol, String], arguments)
+	def toOptionMap(arguments: List[String]): OptionMap = next(Map.empty[Symbol, String], arguments)
 
 	@tailrec
 	private[this] def next(optionMap: OptionMap, arguments: List[String]): OptionMap = {
