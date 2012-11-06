@@ -1,10 +1,12 @@
 package org.hashtree.stringmetric.cli
 
-import scala.math.BigDecimal
+import scala.math.{ BigDecimal, BigInt }
 
 /** Utility standalone for parse based operations. */
 object ParseUtility {
 	def parseBigDecimal(string: String): Option[BigDecimal] = try { Some(BigDecimal(string)) } catch { case _ => None }
+
+	def parseBigInt(string: String): Option[BigInt] = try { Some(BigInt(string)) } catch { case _ => None }
 
 	def parseDouble(string: String): Option[Double] = try { Some(string.toDouble) } catch { case _ => None }
 

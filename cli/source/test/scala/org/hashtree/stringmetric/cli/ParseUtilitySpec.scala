@@ -3,7 +3,7 @@ package org.hashtree.stringmetric.cli
 import org.hashtree.stringmetric.ScalaTest
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-import scala.math.BigDecimal
+import scala.math.{ BigDecimal, BigInt }
 
 @RunWith(classOf[JUnitRunner])
 final class ParseUtilitySpec extends ScalaTest {
@@ -17,6 +17,18 @@ final class ParseUtilitySpec extends ScalaTest {
 			"valid argument" should returns {
 				"Some(BigDecimal)" in {
 					ParseUtility.parseBigDecimal("1").get should equal (BigDecimal(1))
+				}
+			}
+		}
+		"parseBigInt method" when passed {
+			"invalid argument" should returns {
+				"None" in {
+					ParseUtility.parseBigInt("one").isDefined should be (false)
+				}
+			}
+			"valid argument" should returns {
+				"Some(BigInt)" in {
+					ParseUtility.parseBigInt("1").get should equal (1: BigInt)
 				}
 			}
 		}
