@@ -56,5 +56,29 @@ final class ParseUtilitySpec extends ScalaTest {
 				}
 			}
 		}
+		"parseLong method" when passed {
+			"invalid argument" should returns {
+				"None" in {
+					ParseUtility.parseLong("one").isDefined should be (false)
+				}
+			}
+			"valid argument" should returns {
+				"Some(Long)" in {
+					ParseUtility.parseLong("1").get should be (1l)
+				}
+			}
+		}
+		"parseShort method" when passed {
+			"invalid argument" should returns {
+				"None" in {
+					ParseUtility.parseShort("one").isDefined should be (false)
+				}
+			}
+			"valid argument" should returns {
+				"Some(Short)" in {
+					ParseUtility.parseShort("1").get should equal (1: Short)
+				}
+			}
+		}
 	}
 }

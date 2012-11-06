@@ -11,4 +11,8 @@ object ParseUtility {
 	def parseFloat(string: String): Option[Float] = try { Some(string.toFloat) } catch { case _ => None }
 
 	def parseInt(string: String): Option[Int] = try { Some(string.toInt) } catch { case _ => None }
+
+	def parseLong(string: String): Option[Long] = try { Some(string.toLong) } catch { case _ => None }
+
+	def parseShort(string: String): Option[Short] = try { Some(string.toShort) } catch { case _ => None }
 }
