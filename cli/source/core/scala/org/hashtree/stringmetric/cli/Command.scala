@@ -2,8 +2,6 @@ package org.hashtree.stringmetric.cli
 
 /** Defines the traits and provides basic implementations of a command. Commands are always implemented as objects. */
 trait Command {
-	def main(args: Array[String]): Unit
-
 	def help(): Unit
 
 	final def error(error: Throwable, options: OptionMap): Unit =
@@ -17,9 +15,11 @@ trait Command {
 	final def exit(options: OptionMap): Unit =
 		if (!isUnitTest(options)) sys.exit(0)
 
-	protected[this] def isUnitTest(options: OptionMap): Boolean =
+	final protected[this] def isDebug(options: OptionMap): Boolean =
+		(options.contains('d) || (options.contains('debug) && options.get('debug) != "false"))
+
+	final protected[this] def isUnitTest(options: OptionMap): Boolean =
 		(options.contains('ut) || (options.contains('unitTest) && options.get('unitTest) != "false"))
 
-	protected[this] def isDebug(options: OptionMap): Boolean =
-		(options.contains('d) || (options.contains('debug) && options.get('debug) != "false"))
+	def main(args: Array[String]): Unit
 }
