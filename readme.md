@@ -72,7 +72,7 @@ gradle :stringmetric-cli:tar
 ```
 
 ## Using the API
-The absolute easiest example is to use the StringMetric convenience object.
+The easiest non-filtered example involves using the StringMetric convenience object.
 ```scala
 import org.hashtree.stringmetric.StringMetric
   
@@ -80,7 +80,7 @@ if (StringMetric.compareJaroWinkler("string1", "string2") >= 0.9)
     println("It's likely you're a match!")
 ```
 
-The absolute easiest example with one filter is to use the StringMetric and StringFilter convenience objects.
+The easiest single filtered example involves using the StringMetric and StringFilter convenience objects.
 ```scala
 import org.hashtree.stringmetric.{ StringFilter, StringMetric }
   
@@ -88,7 +88,7 @@ if (StringMetric.compareJaroWinkler("string1", "string2")(StringFilter.asciiLett
     println("It's likely you're a match!")
 ```
 
-Basic example with no filtering. Import metric, compare, do something with result. 
+Basic example with no filtering.
 ```scala
 import org.hashtree.stringmetric.similarity.JaroWinklerMetric  
   
@@ -97,7 +97,7 @@ val distance = JaroWinklerMetric.compare("string1", "string2")
 if (distance >= 0.9) println("It's likely you're a match!")
 ```
 
-One filter example. Import metric, compare with one filter, do something with result.
+Basic example with single filter.
 ```scala
 import org.hashtree.stringmetric.similarity.{ JaroWinklerMetric, StringFilterDelegate }
 import org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter
@@ -108,22 +108,13 @@ val distance = JaroWinklerMetric.compare("string1", "string2")
 if (distance >= 0.9) println("It's likely you're a match!")
 ```
 
-Compound filter example. Import metric, compare with two filters, do something with result. Filters are applied in reverse order!
+Basic example with stacked filter. Filters are applied in reverse order.
 ```scala
 import org.hashtree.stringmetric.similarity.{ JaroWinklerMetric, StringFilterDelegate }
 import org.hashtree.stringmetric.filter.{ AsciiLetterCaseStringFilter, AsciiLetterOnlyStringFilter }
 
 val distance = JaroWinklerMetric.compare("string1", "string2")
     (new StringFilterDelegate with AsciiLetterCaseStringFilter with AsciiLetterOnlyStringFilter)
-
-if (distance >= 0.9) println("It's likely you're a match!")
-```
-
-All string metrics and algorithms have overloaded methods which accept character arrays.
-```scala
-import org.hashtree.stringmetric.similarity.JaroWinklerMetric
-  
-val distance = JaroWinklerMetric.compare("string1".toCharArray, "string2".toCharArray)
 
 if (distance >= 0.9) println("It's likely you're a match!")
 ```
