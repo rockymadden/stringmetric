@@ -1,4 +1,4 @@
-# Core ignores
+# Core ignores.
 *.diff
 *.err
 *.orig
@@ -11,19 +11,18 @@
 *#
 .git/
 
-# OS ignores
+# OS ignores.
 .DS_Store
-thumbs.db
 
-# Editor ignores
+# Editor ignores.
 .cache
 .project
 .settings
 .settings/
 bin/
 
-# Build ignores
+# Build ignores.
 build/
 
-# Project ignores
+# Project ignores.
 .classpath
