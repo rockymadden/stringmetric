@@ -5,8 +5,10 @@ import scala.math.BigDecimal
 
 /** An implementation of a weighted Levenshtein [[org.hashtree.stringmetric.StringMetric]]. */
 object WeightedLevenshteinMetric extends StringMetric with FilterableConfigurableStringMetric[Tuple3[BigDecimal, BigDecimal, BigDecimal]] {
+	type Options = Tuple3[BigDecimal, BigDecimal, BigDecimal]
+
 	/** Options order is delete, insert, then substitute weight. */
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(options: Tuple3[BigDecimal, BigDecimal, BigDecimal])
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])(options: Options)
 		(implicit stringFilter: StringFilter): Option[Double] = {
 		val ca1 = stringFilter.filter(charArray1)
 		val ca2 = stringFilter.filter(charArray2)
@@ -19,14 +21,14 @@ object WeightedLevenshteinMetric extends StringMetric with FilterableConfigurabl
 	}
 
 	/** Options order is delete, insert, then substitute weight. */
-	override def compare(string1: String, string2: String)(options: Tuple3[BigDecimal, BigDecimal, BigDecimal])
+	override def compare(string1: String, string2: String)(options: Options)
 		(implicit stringFilter: StringFilter): Option[Double] =
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
 		)(options)(new StringFilterDelegate)
 
-	private[this] def weightedLevenshtein(ct: CompareTuple[Char], w: Tuple3[BigDecimal, BigDecimal, BigDecimal]) = {
+	private[this] def weightedLevenshtein(ct: CompareTuple[Char], w: Options) = {
 		val m = Array.ofDim[BigDecimal](ct._1.length + 1, ct._2.length + 1)
 
 		for (r <- 0 to ct._1.length) m(r)(0) = w._1 * r
