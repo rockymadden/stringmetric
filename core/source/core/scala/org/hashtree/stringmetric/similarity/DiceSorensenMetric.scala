@@ -10,12 +10,14 @@ object DiceSorensenMetric extends StringMetric with FilterableStringMetric {
 		val ca2 = stringFilter.filter(charArray2)
 
 		if (ca1.length == 0 || ca2.length == 0) None
+		else if (ca1.length < 2 || ca2.length < 2) Some(0d) // Because length is less than that of bigram, it will always be 0.
 		else if (ca1.sameElements(ca2)) Some(1d)
 		else {
-			val b = bigrams(ca1, ca2)
-			val ms = scoreMatches(b)
+			val ca1bg = NGramAlgorithm.compute(ca1)(2).get
+			val ca2bg = NGramAlgorithm.compute(ca2)(2).get
+			val ms = scoreMatches((ca1bg.map(_.mkString), ca2bg.map(_.mkString)))
 
-			Some((2d * ms) / (b._1.length + b._2.length))
+			Some((2d * ms) / (ca1bg.length + ca2bg.length))
 		}
 	}
 
@@ -24,17 +26,6 @@ object DiceSorensenMetric extends StringMetric with FilterableStringMetric {
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
 		)(new StringFilterDelegate)
-
-	private[this] def bigrams(ct: CompareTuple[Char]): MatchTuple[String] = {
-		@tailrec
-		def set(ca: Array[Char], sa: Array[String]): Array[String] = {
-			if (ca.length <= 1) sa
-			else
-				set(ca.tail, sa :+ "" + ca.head + ca(1))
-		}
-
-		(set(ct._1, Array.empty[String]), set(ct._2, Array.empty[String]))
-	}
 
 	private[this] def scoreMatches(mt: MatchTuple[String]) = mt._1.intersect(mt._2).length
 }
