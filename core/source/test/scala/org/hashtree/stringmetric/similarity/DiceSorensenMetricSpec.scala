@@ -36,6 +36,11 @@ final class DiceSorensenMetricSpec extends ScalaTest {
 					DiceSorensenMetric.compare("night", "nacht").get should be (0.25)
 					DiceSorensenMetric.compare("night", "naght").get should be (0.5)
 					DiceSorensenMetric.compare("context", "contact").get should be (0.5)
+					DiceSorensenMetric.compare("contextcontext", "contact").get should be (0.3157894736842105)
+					DiceSorensenMetric.compare("context", "contactcontact").get should be (0.3157894736842105)
+					DiceSorensenMetric.compare("ht", "nacht").get should be (0.4)
+					DiceSorensenMetric.compare("xp", "nacht").get should be (0)
+					DiceSorensenMetric.compare("ht", "hththt").get should be (0.3333333333333333)
 				}
 			}
 		}
