@@ -20,6 +20,9 @@ A collection of string metrics implemented in Scala. All phonetic string metrics
 * __[Metaphone](http://en.wikipedia.org/wiki/Metaphone)__
 	* API: org.hashtree.stringmetric.phonetic.MetaphoneMetric and org.hashtree.stringmetric.phonetic.MetaphoneAlgorithm
 	* CLI: metaphoneMetric and metaphoneAlgorithm
+* __[N-Gram](http://en.wikipedia.org/wiki/N-gram)__
+	* API: org.hashtree.stringmetric.similarity.NGramMetric and org.hashtree.stringmetric.similarity.NGramAlgorithm
+	* CLI: nGramMetric and nGramAlgorithm
 * __[NYSIIS](http://en.wikipedia.org/wiki/New_York_State_Identification_and_Intelligence_System)__
 	* API: org.hashtree.stringmetric.phonetic.NysiisMetric and org.hashtree.stringmetric.phonetic.NysiisAlgorithm
 	* CLI: nysiisMetric and nysiisAlgorithm
