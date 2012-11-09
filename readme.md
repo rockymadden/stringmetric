@@ -34,7 +34,7 @@ A collection of string metrics implemented in Scala. All phonetic string metrics
 	* CLI: weightedLevenshteinMetric
 
 ## Filters
-Filters, which can optionally be applied, clean up arguments prior to evaluation. Filtering rules can be composed via trait decoration.
+Filters, which can optionally be applied, clean up arguments prior to evaluation. Filtering rules can be composed via trait stacking.
 
 * __Ensure only ASCII control characters matter__
 	* API: org.hashtree.stringmetric.filter.AsciiControlOnlyStringFilter
