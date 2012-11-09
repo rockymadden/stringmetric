@@ -10,7 +10,7 @@ object NGramMetric extends StringMetric with FilterableConfigurableStringMetric[
 		val ca2 = stringFilter.filter(charArray2)
 
 		if (ca1.length == 0 || ca2.length == 0) None
-		else if (ca1.length < n || ca2.length < n) Some(0d) // Because length is less than that of n, it will always be 0.
+		else if (ca1.length < n || ca2.length < n) Some(0d) // Because length is less than n, it will always be 0.
 		else if (ca1.sameElements(ca2)) Some(1d)
 		else {
 			val ca1bg = NGramAlgorithm.compute(ca1)(n).get
