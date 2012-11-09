@@ -1,6 +1,7 @@
 package org.hashtree.stringmetric
 
 import org.hashtree.stringmetric.phonetic.{ MetaphoneAlgorithm, NysiisAlgorithm, RefinedSoundexAlgorithm, SoundexAlgorithm }
+import org.hashtree.stringmetric.similarity.NGramAlgorithm
 
 /** Marks those which leverage traits of a string based [[org.hashtree.stringmetric.Algorithm]]. */
 trait StringAlgorithm extends Algorithm[String] {
@@ -14,6 +15,12 @@ object StringAlgorithm {
 
 	def computeMetaphone(string: String)(implicit stringFilter: StringFilter): Option[String] =
 		MetaphoneAlgorithm.compute(string)(stringFilter)
+
+	def computeNGram(charArray: Array[Char])(n: Int)(implicit stringFilter: StringFilter): Option[Array[Array[Char]]] =
+		NGramAlgorithm.compute(charArray)(n)(stringFilter)
+
+	def computeNGram(string: String)(n: Int)(implicit stringFilter: StringFilter): Option[Array[String]] =
+		NGramAlgorithm.compute(string)(n)(stringFilter)
 
 	def computeNysiis(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] =
 		NysiisAlgorithm.compute(charArray)(stringFilter)
@@ -34,6 +41,8 @@ object StringAlgorithm {
 		SoundexAlgorithm.compute(string)(stringFilter)
 
 	def metaphone: MetaphoneAlgorithm.type = MetaphoneAlgorithm
+
+	def nGram: NGramAlgorithm.type = NGramAlgorithm
 
 	def nysiis: NysiisAlgorithm.type = NysiisAlgorithm
 

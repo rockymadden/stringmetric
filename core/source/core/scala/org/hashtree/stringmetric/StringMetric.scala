@@ -1,7 +1,7 @@
 package org.hashtree.stringmetric
 
 import org.hashtree.stringmetric.phonetic.{ MetaphoneMetric, NysiisMetric, RefinedSoundexMetric, SoundexMetric }
-import org.hashtree.stringmetric.similarity.{ DiceSorensenMetric, HammingMetric, JaroMetric, JaroWinklerMetric, LevenshteinMetric, WeightedLevenshteinMetric }
+import org.hashtree.stringmetric.similarity._
 
 /** Marks those which leverage traits of a string based [[org.hashtree.stringmetric.Metric]]. */
 trait StringMetric extends Metric[String] {
@@ -46,6 +46,12 @@ object StringMetric {
 	def compareMetaphone(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Boolean] =
 		MetaphoneMetric.compare(string1, string2)(stringFilter)
 
+	def compareNGram(charArray1: Array[Char], charArray2: Array[Char])(n: Int)(implicit stringFilter: StringFilter): Option[Double] =
+		NGramMetric.compare(charArray1, charArray2)(n)(stringFilter)
+
+	def compareNGram(string1: String, string2: String)(n: Int)(implicit stringFilter: StringFilter): Option[Double] =
+		NGramMetric.compare(string1, string2)(n)(stringFilter)
+
 	def compareNysiis(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Boolean] =
 		NysiisMetric.compare(charArray1, charArray2)(stringFilter)
 
@@ -83,6 +89,8 @@ object StringMetric {
 	def levenshtein: LevenshteinMetric.type = LevenshteinMetric
 
 	def metaphone: MetaphoneMetric.type = MetaphoneMetric
+
+	def nGram: NGramMetric.type = NGramMetric
 
 	def nysiis: NysiisMetric.type = NysiisMetric
 
