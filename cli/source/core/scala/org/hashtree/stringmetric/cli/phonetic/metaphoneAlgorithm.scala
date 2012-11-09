@@ -5,8 +5,8 @@ import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.phonetic.MetaphoneAlgorithm
 
 /**
- * The metaphoneAlgorithm [[org.hashtree.stringmetric.cli.Command]]. Returns the phonetic representation of the
- * passed string, per the Metaphone algorithm.
+ * The metaphoneAlgorithm [[org.hashtree.stringmetric.cli.Command]]. Returns the phonetic representation of the passed
+ * string, per the Metaphone algorithm.
  */
 object metaphoneAlgorithm extends Command {
 	override def main(args: Array[String]): Unit = {

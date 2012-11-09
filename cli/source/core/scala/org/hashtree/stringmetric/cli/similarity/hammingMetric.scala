@@ -6,8 +6,8 @@ import org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter
 import org.hashtree.stringmetric.similarity.HammingMetric
 
 /**
- * The hammingMetric [[org.hashtree.stringmetric.cli.Command]]. Compares the number of characters that two equal
- * length strings are different from one another.
+ * The hammingMetric [[org.hashtree.stringmetric.cli.Command]]. Compares the number of characters that two equal length
+ * strings are different from one another.
  */
 object hammingMetric extends Command {
 	override def main(args: Array[String]): Unit = {

@@ -5,8 +5,8 @@ import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.phonetic.NysiisAlgorithm
 
 /**
- * The nysiisAlgorithm [[org.hashtree.stringmetric.cli.Command]]. Returns the phonetic representation of the
- * passed string, per the NYSIIS algorithm.
+ * The nysiisAlgorithm [[org.hashtree.stringmetric.cli.Command]]. Returns the phonetic representation of the passed
+ * string, per the NYSIIS algorithm.
  */
 object nysiisAlgorithm extends Command {
 	override def main(args: Array[String]): Unit = {

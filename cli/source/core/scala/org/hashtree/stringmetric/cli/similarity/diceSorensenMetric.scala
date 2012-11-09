@@ -6,8 +6,8 @@ import org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter
 import org.hashtree.stringmetric.similarity.DiceSorensenMetric
 
 /**
- * The diceSorensenMetric [[org.hashtree.stringmetric.cli.Command]]. Compares the similarity of two strings
- * using the Dice coefficient / Sorensen similarity index.
+ * The diceSorensenMetric [[org.hashtree.stringmetric.cli.Command]]. Compares the similarity of two strings using the
+ * Dice coefficient / Sorensen similarity index.
  */
 object diceSorensenMetric extends Command {
 	override def main(args: Array[String]): Unit = {

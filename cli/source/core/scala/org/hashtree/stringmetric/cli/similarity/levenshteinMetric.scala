@@ -6,8 +6,8 @@ import org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter
 import org.hashtree.stringmetric.similarity.LevenshteinMetric
 
 /**
- * The levenshteinMetric [[org.hashtree.stringmetric.cli.Command]]. Compares the number of characters that two
- * strings are different from one another via insertion, deletion, and substitution.
+ * The levenshteinMetric [[org.hashtree.stringmetric.cli.Command]]. Compares the number of characters that two strings
+ * are different from one another via insertion, deletion, and substitution.
  */
 object levenshteinMetric extends Command {
 	override def main(args: Array[String]): Unit = {

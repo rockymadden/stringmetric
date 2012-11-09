@@ -6,8 +6,8 @@ import org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter
 import org.hashtree.stringmetric.similarity.JaroWinklerMetric
 
 /**
- * The jaroWinklerMetric [[org.hashtree.stringmetric.cli.Command]]. Compares two strings to calculate the
- * Jaro-Winkler distance.
+ * The jaroWinklerMetric [[org.hashtree.stringmetric.cli.Command]]. Compares two strings to calculate the Jaro-Winkler
+ * distance.
  */
 object jaroWinklerMetric extends Command {
 	override def main(args: Array[String]): Unit = {

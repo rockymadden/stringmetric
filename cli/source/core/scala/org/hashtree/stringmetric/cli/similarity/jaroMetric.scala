@@ -5,10 +5,7 @@ import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter
 import org.hashtree.stringmetric.similarity.JaroMetric
 
-/**
- * The jaroMetric [[org.hashtree.stringmetric.cli.Command]]. Compares two strings to calculate the
- * Jaro distance.
- */
+/** The jaroMetric [[org.hashtree.stringmetric.cli.Command]]. Compares two strings to calculate the Jaro distance. */
 object jaroMetric extends Command {
 	override def main(args: Array[String]): Unit = {
 		val options = OptionMapUtility.toOptionMap(args)

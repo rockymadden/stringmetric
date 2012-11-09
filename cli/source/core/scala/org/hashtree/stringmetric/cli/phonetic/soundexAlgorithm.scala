@@ -5,8 +5,8 @@ import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.phonetic.SoundexAlgorithm
 
 /**
- * The soundexAlgorithm [[org.hashtree.stringmetric.cli.Command]]. Returns the phonetic representation of the
- * passed string, per the Soundex algorithm.
+ * The soundexAlgorithm [[org.hashtree.stringmetric.cli.Command]]. Returns the phonetic representation of the passed
+ * string, per the Soundex algorithm.
  */
 object soundexAlgorithm extends Command {
 	override def main(args: Array[String]): Unit = {
