@@ -24,6 +24,8 @@ object NGramAlgorithm extends StringAlgorithm with FilterableConfigurableStringA
 
 	@tailrec
 	private[this] def sequence(i: Array[Char], o: Array[Array[Char]], n: Int): Array[Array[Char]] = {
+		require(n > 0)
+
 		if (i.length <= n) o :+ i
 		else
 			sequence(i.tail, o :+ i.take(n), n)
