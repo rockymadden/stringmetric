@@ -10,11 +10,11 @@ trait StringMetric extends Metric[String] {
 
 /** Convenience object for those extending [[org.hashtree.stringmetric.StringMetric]]. */
 object StringMetric {
-	def compareDiceSorensen(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Double] =
-		DiceSorensenMetric.compare(charArray1, charArray2)(stringFilter)
+	def compareDiceSorensen(charArray1: Array[Char], charArray2: Array[Char])(n: Int)(implicit stringFilter: StringFilter): Option[Double] =
+		DiceSorensenMetric.compare(charArray1, charArray2)(n)(stringFilter)
 
-	def compareDiceSorensen(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] =
-		DiceSorensenMetric.compare(string1, string2)(stringFilter)
+	def compareDiceSorensen(string1: String, string2: String)(n: Int)(implicit stringFilter: StringFilter): Option[Double] =
+		DiceSorensenMetric.compare(string1, string2)(n)(stringFilter)
 
 	def compareHamming(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Int] =
 		HammingMetric.compare(charArray1, charArray2)(stringFilter)

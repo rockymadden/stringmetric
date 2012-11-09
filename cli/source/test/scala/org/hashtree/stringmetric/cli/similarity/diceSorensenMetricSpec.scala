@@ -13,14 +13,14 @@ final class diceSorensenMetricSpec extends ScalaTest {
 					val out = new java.io.ByteArrayOutputStream()
 
 					Console.withOut(out)(
-						diceSorensenMetric.main(Array("--unitTest", "--debug", "aBc", "abc"))
+						diceSorensenMetric.main(Array("--unitTest", "--debug", "--n=2", "aBc", "abc"))
 					)
 
 					out.toString should equal ("1.0\n")
 					out.reset()
 
 					Console.withOut(out)(
-						diceSorensenMetric.main(Array("--unitTest", "--debug", "aBc", "xyz"))
+						diceSorensenMetric.main(Array("--unitTest", "--debug", "--n=2", "aBc", "xyz"))
 					)
 
 					out.toString should equal ("0.0\n")

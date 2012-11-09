@@ -19,7 +19,9 @@ object diceSorensenMetric extends Command {
 				help()
 				exit(options)
 			// Execute.
-			} else if (options.contains('dashless) && options('dashless).count(_ == ' ') == 1) {
+			} else if (options.contains('dashless) && options('dashless).count(_ == ' ') == 1 &&
+				options.contains('n) && ParseUtility.parseInt(options('n)).isDefined
+			) {
 				execute(options)
 				exit(options)
 			// Invalid syntax.
@@ -39,18 +41,21 @@ object diceSorensenMetric extends Command {
 			tab + "diceSorensenMetric [Options] string1 string2..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
-			tab + tab + "Outputs description, syntax, and options."
+			tab + tab + "Outputs description, syntax, and options." +
+			tab + "--n" + ls +
+			tab + tab + "The n, traditionally 2."
 		)
 	}
 
 	override def execute(options: OptionMap): Unit = {
 		val strings = options('dashless).split(" ")
+		val n = ParseUtility.parseInt(options('n)).get
 
 		println(
 			DiceSorensenMetric.compare(
 				strings(0),
 				strings(1)
-			)(new StringFilterDelegate with AsciiLetterCaseStringFilter).getOrElse("not comparable").toString
+			)(n)(new StringFilterDelegate with AsciiLetterCaseStringFilter).getOrElse("not comparable").toString
 		)
 	}
 }
