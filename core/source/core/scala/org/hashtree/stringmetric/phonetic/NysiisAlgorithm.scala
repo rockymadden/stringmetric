@@ -5,6 +5,8 @@ import scala.annotation.tailrec
 
 /** An implementation of the NYSIIS [[org.hashtree.stringmetric.StringAlgorithm]]. */
 object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
+	type ComputeReturn = String
+
 	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
 		val ca = stringFilter.filter(charArray)
 

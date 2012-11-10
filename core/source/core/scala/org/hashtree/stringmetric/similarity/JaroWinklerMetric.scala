@@ -8,7 +8,9 @@ import org.hashtree.stringmetric.{ FilterableStringMetric, StringFilter, StringM
  * penalized distance in these scenarios (e.g. comparing henka and henkan distance is 0.9666 versus the typical 0.9722).
  */
 object JaroWinklerMetric extends StringMetric with FilterableStringMetric {
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Double] = {
+	type CompareReturn = Double
+
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 		val ca1 = stringFilter.filter(charArray1)
 		val ca2 = stringFilter.filter(charArray2)
 
@@ -24,7 +26,7 @@ object JaroWinklerMetric extends StringMetric with FilterableStringMetric {
 		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] =
+	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[CompareReturn] =
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)

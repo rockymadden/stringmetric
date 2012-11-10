@@ -5,7 +5,9 @@ import scala.math
 
 /** An implementation of the N-Gram [[org.hashtree.stringmetric.StringMetric]]. */
 object NGramMetric extends StringMetric with FilterableConfigurableStringMetric[Int] {
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(n: Int)(implicit stringFilter: StringFilter): Option[Double] = {
+	type CompareReturn = Double
+
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])(n: Int)(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 		val ca1 = stringFilter.filter(charArray1)
 		val ca2 = stringFilter.filter(charArray2)
 
@@ -21,7 +23,7 @@ object NGramMetric extends StringMetric with FilterableConfigurableStringMetric[
 		}
 	}
 
-	override def compare(string1: String, string2: String)(n: Int)(implicit stringFilter: StringFilter): Option[Double] =
+	override def compare(string1: String, string2: String)(n: Int)(implicit stringFilter: StringFilter): Option[CompareReturn] =
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)

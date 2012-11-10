@@ -4,7 +4,9 @@ import org.hashtree.stringmetric.{ CompareTuple, FilterableStringMetric, StringF
 
 /** An implementation of the Levenshtein [[org.hashtree.stringmetric.StringMetric]]. */
 object LevenshteinMetric extends StringMetric with FilterableStringMetric {
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Int] = {
+	type CompareReturn = Int
+
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 		val ca1 = stringFilter.filter(charArray1)
 		val ca2 = stringFilter.filter(charArray2)
 
@@ -14,7 +16,7 @@ object LevenshteinMetric extends StringMetric with FilterableStringMetric {
 		else Some(levenshtein(ca1, ca2))
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Int] =
+	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[CompareReturn] =
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)

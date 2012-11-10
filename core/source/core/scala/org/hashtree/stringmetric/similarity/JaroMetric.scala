@@ -9,7 +9,9 @@ import scala.collection.mutable.{ ArrayBuffer, HashSet }
  * distance in these scenarios.
  */
 object JaroMetric extends StringMetric with FilterableStringMetric {
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[Double] = {
+	type CompareReturn = Double
+
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 		val ca1 = stringFilter.filter(charArray1)
 		val ca2 = stringFilter.filter(charArray2)
 
@@ -26,7 +28,7 @@ object JaroMetric extends StringMetric with FilterableStringMetric {
 		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[Double] =
+	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[CompareReturn] =
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)

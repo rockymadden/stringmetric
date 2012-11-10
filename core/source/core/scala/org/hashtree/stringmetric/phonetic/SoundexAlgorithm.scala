@@ -5,6 +5,8 @@ import scala.annotation.tailrec
 
 /** An implementation of the Soundex [[org.hashtree.stringmetric.StringAlgorithm]]. */
 object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
+	type ComputeReturn = String
+
 	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
 		val ca = stringFilter.filter(charArray)
 
@@ -25,7 +27,7 @@ object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 		}
 	}
 
-	override def compute(string: String)(implicit stringFilter: StringFilter): Option[String] =
+	override def compute(string: String)(implicit stringFilter: StringFilter): Option[ComputeReturn] =
 		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate) match {
 			case Some(se) => Some(se.mkString)
 			case None => None
