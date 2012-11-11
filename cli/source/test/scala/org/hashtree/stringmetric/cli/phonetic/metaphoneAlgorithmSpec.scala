@@ -13,7 +13,7 @@ final class metaphoneAlgorithmSpec extends ScalaTest {
 					val out = new java.io.ByteArrayOutputStream()
 
 					Console.withOut(out)(
-						metaphoneAlgorithm.main(Array("--unitTest", "--debug", "aBc"))
+						metaphoneAlgorithm.main(Array("--unitTest", "--debug", "abc"))
 					)
 
 					out.toString should equal ("abk\n")

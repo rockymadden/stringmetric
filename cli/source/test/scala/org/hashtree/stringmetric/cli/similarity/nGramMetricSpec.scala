@@ -18,7 +18,7 @@ final class nGramMetricSpec extends ScalaTest {
 								"--unitTest",
 								"--debug",
 								"--n=1",
-								"aBc",
+								"abc",
 								"abc"
 							)
 						)
@@ -33,7 +33,7 @@ final class nGramMetricSpec extends ScalaTest {
 								"--unitTest",
 								"--debug",
 								"--n=1",
-								"aBc",
+								"abc",
 								"xyz"
 							)
 						)
@@ -49,7 +49,7 @@ final class nGramMetricSpec extends ScalaTest {
 						nGramMetric.main(
 							Array(
 								"--unitTest",
-								"aBc",
+								"abc",
 								"abc"
 							)
 						)

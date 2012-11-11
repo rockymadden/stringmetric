@@ -13,7 +13,7 @@ final class nysiisAlgorithmSpec extends ScalaTest {
 					val out = new java.io.ByteArrayOutputStream()
 
 					Console.withOut(out)(
-						nysiisAlgorithm.main(Array("--unitTest", "--debug", "aBc"))
+						nysiisAlgorithm.main(Array("--unitTest", "--debug", "abc"))
 					)
 
 					out.toString should equal ("abc\n")

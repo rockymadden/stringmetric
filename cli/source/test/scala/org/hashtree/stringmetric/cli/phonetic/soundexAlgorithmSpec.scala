@@ -13,7 +13,7 @@ final class soundexAlgorithmSpec extends ScalaTest {
 					val out = new java.io.ByteArrayOutputStream()
 
 					Console.withOut(out)(
-						soundexAlgorithm.main(Array("--unitTest", "--debug", "aBc"))
+						soundexAlgorithm.main(Array("--unitTest", "--debug", "abc"))
 					)
 
 					out.toString should equal ("a120\n")

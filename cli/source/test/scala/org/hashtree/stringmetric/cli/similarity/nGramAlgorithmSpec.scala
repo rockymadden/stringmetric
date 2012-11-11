@@ -18,12 +18,12 @@ final class nGramAlgorithmSpec extends ScalaTest {
 								"--unitTest",
 								"--debug",
 								"--n=1",
-								"aBc"
+								"abc"
 							)
 						)
 					)
 
-					out.toString should equal ("a|B|c\n")
+					out.toString should equal ("a|b|c\n")
 					out.reset()
 
 					Console.withOut(out)(
@@ -32,12 +32,12 @@ final class nGramAlgorithmSpec extends ScalaTest {
 								"--unitTest",
 								"--debug",
 								"--n=2",
-								"aBc"
+								"abc"
 							)
 						)
 					)
 
-					out.toString should equal ("aB|Bc\n")
+					out.toString should equal ("ab|bc\n")
 					out.reset()
 				}
 			}
@@ -47,7 +47,7 @@ final class nGramAlgorithmSpec extends ScalaTest {
 						nGramAlgorithm.main(
 							Array(
 								"--unitTest",
-								"aBc",
+								"abc",
 								"abc"
 							)
 						)

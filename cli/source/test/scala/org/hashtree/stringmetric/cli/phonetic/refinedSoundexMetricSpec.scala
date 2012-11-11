@@ -13,14 +13,14 @@ final class refinedSoundexMetricSpec extends ScalaTest {
 					val out = new java.io.ByteArrayOutputStream()
 
 					Console.withOut(out)(
-						refinedSoundexMetric.main(Array("--unitTest", "--debug", "aBc", "abc"))
+						refinedSoundexMetric.main(Array("--unitTest", "--debug", "abc", "abc"))
 					)
 
 					out.toString should equal ("true\n")
 					out.reset()
 
 					Console.withOut(out)(
-						refinedSoundexMetric.main(Array("--unitTest", "--debug", "aBc", "xyz"))
+						refinedSoundexMetric.main(Array("--unitTest", "--debug", "abc", "xyz"))
 					)
 
 					out.toString should equal ("false\n")

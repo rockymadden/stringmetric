@@ -13,7 +13,7 @@ final class refinedSoundexAlgorithmSpec extends ScalaTest {
 					val out = new java.io.ByteArrayOutputStream()
 
 					Console.withOut(out)(
-						refinedSoundexAlgorithm.main(Array("--unitTest", "--debug", "aBc"))
+						refinedSoundexAlgorithm.main(Array("--unitTest", "--debug", "abc"))
 					)
 
 					out.toString should equal ("a013\n")

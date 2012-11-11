@@ -20,7 +20,7 @@ final class weightedLevenshteinMetricSpec extends ScalaTest {
 								"--deleteWeight=1",
 								"--insertWeight=1",
 								"--substituteWeight=1",
-								"aBc",
+								"abc",
 								"abc"
 							)
 						)
@@ -37,7 +37,7 @@ final class weightedLevenshteinMetricSpec extends ScalaTest {
 								"--deleteWeight=2",
 								"--insertWeight=2",
 								"--substituteWeight=1",
-								"aBc",
+								"abc",
 								"xyz"
 							)
 						)
@@ -90,7 +90,7 @@ final class weightedLevenshteinMetricSpec extends ScalaTest {
 								"--debug",
 								"--deleteWeight=1",
 								"--substituteWeight=1",
-								"aBc",
+								"abc",
 								"abc"
 							)
 						)
@@ -104,7 +104,7 @@ final class weightedLevenshteinMetricSpec extends ScalaTest {
 								"--deleteWeight=1",
 								"--insertWeight=q",
 								"--substituteWeight=1",
-								"aBc",
+								"abc",
 								"abc"
 							)
 						)

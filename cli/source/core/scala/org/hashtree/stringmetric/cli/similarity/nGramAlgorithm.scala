@@ -2,7 +2,6 @@ package org.hashtree.stringmetric.cli.similarity
 
 import org.hashtree.stringmetric.StringFilterDelegate
 import org.hashtree.stringmetric.cli._
-import org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter
 import org.hashtree.stringmetric.similarity.NGramAlgorithm
 
 /**
@@ -48,8 +47,7 @@ object nGramAlgorithm extends Command {
 
 	override def execute(options: OptionMap): Unit = {
 		val n = ParseUtility.parseInt(options('n)).get
-		val ngram = NGramAlgorithm.compute(options('dashless))(n)
-			(new StringFilterDelegate with AsciiLetterCaseStringFilter)
+		val ngram = NGramAlgorithm.compute(options('dashless))(n)(new StringFilterDelegate)
 
 		ngram match {
 			case Some(a) => println(a.mkString("|"))

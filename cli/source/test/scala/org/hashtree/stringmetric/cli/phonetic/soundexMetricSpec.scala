@@ -13,14 +13,14 @@ final class soundexMetricSpec extends ScalaTest {
 					val out = new java.io.ByteArrayOutputStream()
 
 					Console.withOut(out)(
-						soundexMetric.main(Array("--unitTest", "--debug", "aBc", "abc"))
+						soundexMetric.main(Array("--unitTest", "--debug", "abc", "abc"))
 					)
 
 					out.toString should equal ("true\n")
 					out.reset()
 
 					Console.withOut(out)(
-						soundexMetric.main(Array("--unitTest", "--debug", "aBc", "xyz"))
+						soundexMetric.main(Array("--unitTest", "--debug", "abc", "xyz"))
 					)
 
 					out.toString should equal ("false\n")

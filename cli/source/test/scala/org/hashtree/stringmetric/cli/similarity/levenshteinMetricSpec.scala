@@ -13,14 +13,14 @@ final class levenshteinMetricSpec extends ScalaTest {
 					val out = new java.io.ByteArrayOutputStream()
 
 					Console.withOut(out)(
-						levenshteinMetric.main(Array("--unitTest", "--debug", "aBc", "abc"))
+						levenshteinMetric.main(Array("--unitTest", "--debug", "abc", "abc"))
 					)
 
 					out.toString should equal ("0\n")
 					out.reset()
 
 					Console.withOut(out)(
-						levenshteinMetric.main(Array("--unitTest", "--debug", "aBc", "xyz"))
+						levenshteinMetric.main(Array("--unitTest", "--debug", "abc", "xyz"))
 					)
 
 					out.toString should equal ("3\n")

@@ -13,14 +13,14 @@ final class metaphoneMetricSpec extends ScalaTest {
 					val out = new java.io.ByteArrayOutputStream()
 
 					Console.withOut(out)(
-						metaphoneMetric.main(Array("--unitTest", "--debug", "aBc", "abc"))
+						metaphoneMetric.main(Array("--unitTest", "--debug", "abc", "abc"))
 					)
 
 					out.toString should equal ("true\n")
 					out.reset()
 
 					Console.withOut(out)(
-						metaphoneMetric.main(Array("--unitTest", "--debug", "aBc", "xyz"))
+						metaphoneMetric.main(Array("--unitTest", "--debug", "abc", "xyz"))
 					)
 
 					out.toString should equal ("false\n")
