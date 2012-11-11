@@ -32,7 +32,7 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 	private[this] def deduplicate(ca: Array[Char]) =
 		if (ca.length <= 1) ca
 		else
-			ca.sliding(2).filter(a => a(0) == 'c' || a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
+			ca.sliding(2).withFilter(a => a(0) == 'c' || a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
 
 	private[this] def isVowel(c: Char) = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
 
