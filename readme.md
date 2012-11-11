@@ -1,68 +1,74 @@
 #stringmetric [![Build Status](https://secure.travis-ci.org/rockymadden/stringmetric.png)](http://travis-ci.org/rockymadden/stringmetric)
-A collection of string metrics implemented in Scala. All phonetic string metrics have a standalone algorithm counterpart. They provide a means to determine the phonetic representation of the argument passed, rather than evaluating if two arguments sound the same phonetically. __Each metric and algorithm has a CLI.__
+A collection of string metrics and supporting algorithms implemented in Scala. There exists two packages which house said metrics and algorithms. 
+
+* The __similarity package__ houses metrics and supporting algorithms which determine distance and coefficients. This includes the Dice's coefficient, Hamming distance, Jaro distance, Jaro-Winkler distance, Levenshtein distance, N-Gram distance, and weighted Levenshtein distance metrics/algorithms.
+
+* The __phonetic package__ houses metrics and supporting algorithms which determine if two strings sound the same, phonetically. All phonetic string metrics have a standalone algorithm counterpart. They provide a means to determine the phonetic representation of the argument passed. This includes the Metaphone, NYSIIS, refined Soundex, and Soundex metrics/algorithms.
+
+Each string metric and supporting algorithm has a shell based CLI. 
 
 ## Metrics and Phonetic Algorithms
 * __[Dice / Sorensen](http://en.wikipedia.org/wiki/Dice%27s_coefficient)__
-	* API: org.hashtree.stringmetric.similarity.DiceSorensenMetric
-	* CLI: diceSorensenMetric
+	* API: `org.hashtree.stringmetric.similarity.DiceSorensenMetric`
+	* CLI: `diceSorensenMetric`
 * __[Hamming](http://en.wikipedia.org/wiki/Hamming_distance)__
-	* API: org.hashtree.stringmetric.similarity.HammingMetric
-	* CLI: hammingMetric
+	* API: `org.hashtree.stringmetric.similarity.HammingMetric`
+	* CLI: `hammingMetric`
 * __[Jaro](http://en.wikipedia.org/wiki/Jaro-Winkler_distance)__
-	* API: org.hashtree.stringmetric.similarity.JaroMetric
-	* CLI: jaroMetric
+	* API: `org.hashtree.stringmetric.similarity.JaroMetric`
+	* CLI: `jaroMetric`
 * __[Jaro-Winkler](http://en.wikipedia.org/wiki/Jaro-Winkler_distance)__
-	* API: org.hashtree.stringmetric.similarity.JaroWinklerMetric
-	* CLI: jaroWinklerMetric
+	* API: `org.hashtree.stringmetric.similarity.JaroWinklerMetric`
+	* CLI: `jaroWinklerMetric`
 * __[Levenshtein](http://en.wikipedia.org/wiki/Levenshtein_distance)__
-	* API: org.hashtree.stringmetric.similarity.LevenshteinMetric
-	* CLI: levenshteinMetric
+	* API:` org.hashtree.stringmetric.similarity.LevenshteinMetric`
+	* CLI: `levenshteinMetric`
 * __[Metaphone](http://en.wikipedia.org/wiki/Metaphone)__
-	* API: org.hashtree.stringmetric.phonetic.MetaphoneMetric and org.hashtree.stringmetric.phonetic.MetaphoneAlgorithm
-	* CLI: metaphoneMetric and metaphoneAlgorithm
+	* API: `org.hashtree.stringmetric.phonetic.MetaphoneMetric` and `org.hashtree.stringmetric.phonetic.MetaphoneAlgorithm`
+	* CLI: `metaphoneMetric` and `metaphoneAlgorithm`
 * __[N-Gram](http://en.wikipedia.org/wiki/N-gram)__
-	* API: org.hashtree.stringmetric.similarity.NGramMetric and org.hashtree.stringmetric.similarity.NGramAlgorithm
-	* CLI: nGramMetric and nGramAlgorithm
+	* API: `org.hashtree.stringmetric.similarity.NGramMetric` and `org.hashtree.stringmetric.similarity.NGramAlgorithm`
+	* CLI: `nGramMetric` and `nGramAlgorithm`
 * __[NYSIIS](http://en.wikipedia.org/wiki/New_York_State_Identification_and_Intelligence_System)__
-	* API: org.hashtree.stringmetric.phonetic.NysiisMetric and org.hashtree.stringmetric.phonetic.NysiisAlgorithm
-	* CLI: nysiisMetric and nysiisAlgorithm
+	* API: `org.hashtree.stringmetric.phonetic.NysiisMetric` and `org.hashtree.stringmetric.phonetic.NysiisAlgorithm`
+	* CLI: `nysiisMetric` and `nysiisAlgorithm`
 * __[Refined Soundex](http://ntz-develop.blogspot.com/2011/03/phonetic-algorithms.html)__
-	* API: org.hashtree.stringmetric.phonetic.RefinedSoundexMetric and org.hashtree.stringmetric.phonetic.RefinedSoundexAlgorithm
-	* CLI: refinedSoundexMetric and refinedSoundexAlgorithm
+	* API: `org.hashtree.stringmetric.phonetic.RefinedSoundexMetric` and `org.hashtree.stringmetric.phonetic.RefinedSoundexAlgorithm`
+	* CLI: `refinedSoundexMetric` and `refinedSoundexAlgorithm`
 * __[Soundex](http://en.wikipedia.org/wiki/Soundex)__
-	* API: org.hashtree.stringmetric.phonetic.SoundexMetric and org.hashtree.stringmetric.phonetic.SoundexAlgorithm
-	* CLI: soundexMetric and soundexAlgorithm
+	* API: `org.hashtree.stringmetric.phonetic.SoundexMetric` and `org.hashtree.stringmetric.phonetic.SoundexAlgorithm`
+	* CLI: `soundexMetric` and `soundexAlgorithm`
 * __Weighted Levenshtein__
-	* API: org.hashtree.stringmetric.similarity.WeightedLevenshteinMetric
-	* CLI: weightedLevenshteinMetric
+	* API: `org.hashtree.stringmetric.similarity.WeightedLevenshteinMetric`
+	* CLI: `weightedLevenshteinMetric`
 
 ## Filters
 Filters, which can optionally be applied, clean up arguments prior to evaluation. Filtering rules can be composed via trait stacking.
 
 * __Ensure only ASCII control characters matter__
-	* API: org.hashtree.stringmetric.filter.AsciiControlOnlyStringFilter
+	* API: `org.hashtree.stringmetric.filter.AsciiControlOnlyStringFilter`
 * __Ensure ASCII controls do not matter__
-	* API: org.hashtree.stringmetric.filter.AsciiControlStringFilter
+	* API: `org.hashtree.stringmetric.filter.AsciiControlStringFilter`
 * __Ensure ASCII letter case-sensitivity does not matter__
-	* API: org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter
+	* API: `org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter`
 * __Ensure only ASCII letters and numbers matter__
-	* API: org.hashtree.stringmetric.filter.AsciiLetterNumberOnlyStringFilter
+	* API: `org.hashtree.stringmetric.filter.AsciiLetterNumberOnlyStringFilter`
 * __Ensure ASCII letters and numbers do not matter__
-	* API: org.hashtree.stringmetric.filter.AsciiLetterNumberStringFilter
+	* API: `org.hashtree.stringmetric.filter.AsciiLetterNumberStringFilter`
 * __Ensure only ASCII letters matter__
-	* API: org.hashtree.stringmetric.filter.AsciiLetterOnlyStringFilter
+	* API: `org.hashtree.stringmetric.filter.AsciiLetterOnlyStringFilter`
 * __Ensure ASCII letters do not matter__
-	* AlI: org.hashtree.stringmetric.filter.AsciiLetterStringFilter
+	* AlI: `org.hashtree.stringmetric.filter.AsciiLetterStringFilter`
 * __Ensure only ASCII numbers matter__
-	* API: org.hashtree.stringmetric.filter.AsciiNumberOnlyStringFilter
+	* API: `org.hashtree.stringmetric.filter.AsciiNumberOnlyStringFilter`
 * __Ensure ASCII numbers do not matter__
-	* API: org.hashtree.stringmetric.filter.AsciiNumberStringFilter
+	* API: `org.hashtree.stringmetric.filter.AsciiNumberStringFilter`
 * __Ensure ASCII spaces do not matter__
-	* API: org.hashtree.stringmetric.filter.AsciiSpaceStringFilter
+	* API: `org.hashtree.stringmetric.filter.AsciiSpaceStringFilter`
 * __Ensure only ASCII symbols matter__
-	* API: org.hashtree.stringmetric.filter.AsciiSymbolOnlyStringFilter
+	* API: `org.hashtree.stringmetric.filter.AsciiSymbolOnlyStringFilter`
 * __Ensure ASCII symbols do not matter__
-	* API: org.hashtree.stringmetric.filter.AsciiSymbolStringFilter
+	* API: `org.hashtree.stringmetric.filter.AsciiSymbolStringFilter`
 
 ## Building the API
 ```shell
