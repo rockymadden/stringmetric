@@ -15,7 +15,7 @@ object RefinedSoundexMetric extends StringMetric with FilterableStringMetric {
 			val rse1 = RefinedSoundexAlgorithm.compute(ca1)
 			lazy val rse2 = RefinedSoundexAlgorithm.compute(ca2)
 
-			if (!rse1.isDefined || !rse2.isDefined || (rse1.get.length == 0 && rse2.get.length == 0)) None
+			if (!rse1.isDefined || rse1.get.length == 0 || !rse2.isDefined || rse2.get.length == 0) None
 			else Some(rse1.get.sameElements(rse2.get))
 		}
 	}

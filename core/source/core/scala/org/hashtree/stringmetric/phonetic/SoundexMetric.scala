@@ -15,7 +15,7 @@ object SoundexMetric extends StringMetric with FilterableStringMetric {
 			val se1 = SoundexAlgorithm.compute(ca1)
 			lazy val se2 = SoundexAlgorithm.compute(ca2)
 
-			if (!se1.isDefined || !se2.isDefined || (se1.get.length == 0 && se2.get.length == 0)) None
+			if (!se1.isDefined || se1.get.length == 0 || !se2.isDefined || se2.get.length == 0) None
 			else Some(se1.get.sameElements(se2.get))
 		}
 	}

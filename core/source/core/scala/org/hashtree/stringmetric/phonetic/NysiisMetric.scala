@@ -15,7 +15,7 @@ object NysiisMetric extends StringMetric with FilterableStringMetric {
 			val ny1 = NysiisAlgorithm.compute(ca1)
 			lazy val ny2 = NysiisAlgorithm.compute(ca2)
 
-			if (!ny1.isDefined || !ny2.isDefined || (ny1.get.length == 0 && ny2.get.length == 0)) None
+			if (!ny1.isDefined || ny1.get.length == 0 || !ny2.isDefined || ny2.get.length == 0) None
 			else Some(ny1.get.sameElements(ny2.get))
 		}
 	}

@@ -15,7 +15,7 @@ object MetaphoneMetric extends StringMetric with FilterableStringMetric {
 			val mp1 = MetaphoneAlgorithm.compute(ca1)
 			lazy val mp2 = MetaphoneAlgorithm.compute(ca2)
 
-			if (!mp1.isDefined || !mp2.isDefined || (mp1.get.length == 0 && mp2.get.length == 0)) None
+			if (!mp1.isDefined || mp1.get.length == 0 || !mp2.isDefined || mp2.get.length == 0) None
 			else Some(mp1.get.sameElements(mp2.get))
 		}
 	}
