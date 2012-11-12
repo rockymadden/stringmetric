@@ -1,11 +1,10 @@
 #stringmetric [![Build Status](https://secure.travis-ci.org/rockymadden/stringmetric.png)](http://travis-ci.org/rockymadden/stringmetric)
-A collection of string metrics and supporting algorithms implemented in Scala. There exists two packages which house said metrics and algorithms. 
+A small library of string metrics and phonetic algorithms implemented in Scala. Said metrics and algorithms are broken out into packages:
 
-* The __similarity package__ houses metrics and supporting algorithms which determine distance and coefficients. This package includes the Dice's coefficient, Hamming distance, Jaro distance, Jaro-Winkler distance, Levenshtein distance, N-Gram distance, and weighted Levenshtein distance metrics/algorithms.
+* The __similarity package__ houses metrics and supporting algorithms which determine distance and coefficients (e.g. Dice's coefficient and Levenshtein distance).
+* The __phonetic package__ houses metrics and supporting algorithms which determine if two strings sound the same phonetically (e.g. Metaphone and Soundex). All phonetic string metrics have a standalone algorithm counterpart. They provide a means to determine the phonetic representation of the argument passed.
 
-* The __phonetic package__ houses metrics and supporting algorithms which determine if two strings sound the same, phonetically. All phonetic string metrics have a standalone algorithm counterpart. They provide a means to determine the phonetic representation of the argument passed. This package includes the Metaphone, NYSIIS, refined Soundex, and Soundex metrics/algorithms.
-
-Each string metric and supporting algorithm has a shell based CLI. 
+Each string metric and supporting algorithm has a CLI. 
 
 ## Metrics and Phonetic Algorithms
 * __[Dice / Sorensen](http://en.wikipedia.org/wiki/Dice%27s_coefficient)__
