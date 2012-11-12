@@ -11,6 +11,9 @@ object WeightedLevenshteinMetric extends StringMetric with FilterableConfigurabl
 	/** Options order is delete, insert, then substitute weight. */
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(options: Options)
 		(implicit stringFilter: StringFilter): Option[CompareReturn] = {
+		if (options._1 < 0 || options._2 < 0 || options._3 < 0)
+			throw new IllegalArgumentException("Expected valid weight options.")
+
 		val ca1 = stringFilter.filter(charArray1)
 		val ca2 = stringFilter.filter(charArray2)
 
