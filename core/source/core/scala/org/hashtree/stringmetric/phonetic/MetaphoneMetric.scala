@@ -8,12 +8,12 @@ object MetaphoneMetric extends StringMetric with FilterableStringMetric {
 
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 		val ca1 = stringFilter.filter(charArray1)
-		val ca2 = stringFilter.filter(charArray2)
+		lazy val ca2 = stringFilter.filter(charArray2)
 
 		if (ca1.length == 0 || ca2.length == 0) None
 		else {
 			val mp1 = MetaphoneAlgorithm.compute(ca1)
-			val mp2 = MetaphoneAlgorithm.compute(ca2)
+			lazy val mp2 = MetaphoneAlgorithm.compute(ca2)
 
 			if (!mp1.isDefined || !mp2.isDefined || (mp1.get.length == 0 && mp2.get.length == 0)) None
 			else Some(mp1.get.sameElements(mp2.get))

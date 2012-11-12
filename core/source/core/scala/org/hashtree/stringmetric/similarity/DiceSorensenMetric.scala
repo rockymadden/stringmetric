@@ -11,7 +11,7 @@ object DiceSorensenMetric extends StringMetric with FilterableConfigurableString
 
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(n: Int)(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 		val ca1 = stringFilter.filter(charArray1)
-		val ca2 = stringFilter.filter(charArray2)
+		lazy val ca2 = stringFilter.filter(charArray2)
 
 		if (ca1.length == 0 || ca2.length == 0) None
 		else if (ca1.length < n || ca2.length < n) Some(0d) // Because length is less than n, it will always be 0.

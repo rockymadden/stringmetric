@@ -13,18 +13,20 @@ object JaroMetric extends StringMetric with FilterableStringMetric {
 
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 		val ca1 = stringFilter.filter(charArray1)
-		val ca2 = stringFilter.filter(charArray2)
+		lazy val ca2 = stringFilter.filter(charArray2)
 
 		if (ca1.length == 0 || ca2.length == 0) None
 		else if (ca1.sameElements(ca2)) Some(1d)
 		else {
 			val mt = `match`((ca1, ca2))
 			val ms = scoreMatches((mt._1, mt._2))
-			val ts = scoreTranspositions((mt._1, mt._2))
 
 			if (ms == 0) Some(0d)
-			else
+			else {
+				val ts = scoreTranspositions((mt._1, mt._2))
+
 				Some(((ms.toDouble / ca1.length) + (ms.toDouble / ca2.length) + ((ms.toDouble - ts) / ms)) / 3)
+			}
 		}
 	}
 
@@ -35,7 +37,7 @@ object JaroMetric extends StringMetric with FilterableStringMetric {
 		)(new StringFilterDelegate)
 
 	private[this] def `match`(ct: CompareTuple[Char]): MatchTuple[Char] = {
-		val window = math.abs((math.max(ct._1.length, ct._2.length) / 2d).floor.toInt - 1)
+		lazy val window = math.abs((math.max(ct._1.length, ct._2.length) / 2d).floor.toInt - 1)
 		val one = ArrayBuffer.empty[Int]
 		val two = HashSet.empty[Int]
 		var i = 0

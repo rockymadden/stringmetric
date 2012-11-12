@@ -8,7 +8,7 @@ object HammingMetric extends StringMetric with FilterableStringMetric {
 
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 		val ca1 = stringFilter.filter(charArray1)
-		val ca2 = stringFilter.filter(charArray2)
+		lazy val ca2 = stringFilter.filter(charArray2)
 
 		if (ca1.length == 0 || ca2.length == 0 || ca1.length != ca2.length) None
 		else if (ca1.sameElements(ca2)) Some(0)

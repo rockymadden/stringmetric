@@ -8,12 +8,12 @@ object RefinedSoundexMetric extends StringMetric with FilterableStringMetric {
 
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 		val ca1 = stringFilter.filter(charArray1)
-		val ca2 = stringFilter.filter(charArray2)
+		lazy val ca2 = stringFilter.filter(charArray2)
 
 		if (ca1.length == 0 || ca2.length == 0) None
 		else {
 			val rse1 = RefinedSoundexAlgorithm.compute(ca1)
-			val rse2 = RefinedSoundexAlgorithm.compute(ca2)
+			lazy val rse2 = RefinedSoundexAlgorithm.compute(ca2)
 
 			if (!rse1.isDefined || !rse2.isDefined || (rse1.get.length == 0 && rse2.get.length == 0)) None
 			else Some(rse1.get.sameElements(rse2.get))
