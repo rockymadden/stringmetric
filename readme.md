@@ -163,6 +163,9 @@ metaphoneAlgorithm abc
 * Jaccard
 * Refined NYSIIS
 * Double Metaphone
+* Micro benchmarks
+* Performance enhancements to existing metrics/algorithms
+* Memoization decorator
 
 ## Versioning
 [Semantic Versioning 2.0.0](http://semver.org/)
