@@ -94,7 +94,7 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 
 	private[this] def transcodeClean(ca: Array[Char]) =
 		if (ca.length >= 1 && (ca.last == 'a' || ca.last == 's'))
-			ca.reverse.dropWhile(c => c == 'a' || c == 's').reverse
+			ca.dropRight(ca.reverseIterator.takeWhile(c => c == 'a' || c == 's').length)
 		else if (ca.length >= 2 && ca.last == 'y' && ca(ca.length - 2) == 'a')
 			ca.dropRight(2) :+ 'y'
 		else ca
@@ -111,7 +111,7 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 		else if (h.head == 'k' && h(1) == 'n')
 			Array('n', 'n') ++ ca.takeRight(ca.length - 2)
 		else if (h.head == 'k')
-			Array('c') ++ ca.takeRight(ca.length - 1)
+			'c' +: ca.takeRight(ca.length - 1)
 		else ca
 	}
 
@@ -121,9 +121,9 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 		if ((h.last == 't' && (h.head == 'd' || h.head == 'r' || h.head == 'n')) ||
 			(h.last == 'd' && (h.head == 'r' || h.head == 'n'))
 		)
-			Array('d') ++ ca.takeRight(ca.length - 2)
+			'd' +: ca.takeRight(ca.length - 2)
 		else if (h.last == 'e' && (h.head == 'i' || h.head == 'e'))
-			Array('y') ++ ca.takeRight(ca.length - 2)
+			'y' +: ca.takeRight(ca.length - 2)
 		else ca
 	}
 }

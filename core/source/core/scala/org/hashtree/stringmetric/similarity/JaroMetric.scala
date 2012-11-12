@@ -74,6 +74,6 @@ object JaroMetric extends StringMetric with FilterableStringMetric {
 	private[this] def scoreTranspositions(mt: MatchTuple[Char]) = {
 		require(mt._1.length == mt._2.length)
 
-		(mt._1.zip(mt._2).filter(t => t._1 != t._2).length / 2d).floor.toInt
+		(mt._1.zip(mt._2).count(t => t._1 != t._2) / 2d).floor.toInt
 	}
 }

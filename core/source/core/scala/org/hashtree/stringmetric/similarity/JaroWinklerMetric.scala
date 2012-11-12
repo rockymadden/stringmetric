@@ -18,7 +18,7 @@ object JaroWinklerMetric extends StringMetric with FilterableStringMetric {
 			case Some(0d) => Some(0d)
 			case Some(1d) => Some(1d)
 			case Some(jaro) => {
-				val prefix = ca1.zip(ca2).takeWhile(t => t._1 == t._2).map(_._1)
+				val prefix = ca1.zip(ca2).takeWhile(t => t._1 == t._2)
 
 				Some(jaro + ((if (prefix.length <= 4) prefix.length else 4) * 0.1d * (1 - jaro)))
 			}
