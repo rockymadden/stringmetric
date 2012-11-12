@@ -15,7 +15,7 @@ object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 			val fc = ca.head.toLower
 
 			if (fc < 97 || fc > 122) None
-			else {
+			else
 				Some(
 					transcode(
 						ca.tail,
@@ -23,7 +23,6 @@ object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 						Array(fc) // Pass array with first letter.
 					).padTo(4, '0')
 				)
-			}
 		}
 	}
 
@@ -62,7 +61,7 @@ object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 				// Code twice.
 				case 'a' | 'e' | 'i' | 'o' | 'u' | 'y' => m2(c)
 				// Code once.
-				case _ => {
+				case _ =>
 					m1(
 						c,
 						o.last match {
@@ -70,7 +69,6 @@ object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 							case _ => m2(o.last)
 						}
 					)
-				}
 			}
 
 			if (o.length == 3 && a != '\0') o :+ a

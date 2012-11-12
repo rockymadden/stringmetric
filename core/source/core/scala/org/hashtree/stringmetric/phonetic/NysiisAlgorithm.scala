@@ -59,34 +59,30 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 				c match {
 					case 'a' | 'i' | 'o' | 'u' => shift(1, o :+ 'a')
 					case 'b' | 'c' | 'd' | 'f' | 'g' | 'j' | 'l' | 'n' | 'r' | 't' | 'v' | 'x' | 'y' => shift(1, o :+ c)
-					case 'e' => {
+					case 'e' =>
 						if (r.length >= 1 && r.head == 'v')
 							shift(2, o ++ Array('a', 'f'))
 						else
 							shift(1, o :+ 'a')
-					}
-					case 'h' => {
+					case 'h' =>
 						if (l.length >= 1 && (!isVowel(l.last) || (r.length >= 1 && !isVowel(r.head))))
 							shift(1, o :+ l.last)
 						else
 							shift(1, o :+ c)
-					}
 					case 'k' => if (r.length >= 1 && r.head == 'n') shift(2, o :+ 'n') else shift(1, o :+ 'c')
 					case 'm' => shift(1, o :+ 'n')
 					case 'p' => if (r.length >= 1 && r.head == 'h') shift(2, o ++ Array('f', 'f')) else shift(1, o :+ 'p')
 					case 'q' => shift(1, o :+ 'g')
-					case 's' => {
+					case 's' =>
 						if (r.length >= 2 && r.head == 'c' && r(1) == 'h')
 							shift(3, o ++ Array('s', 's', 's'))
 						else
 							shift(1, o :+ c)
-					}
-					case 'w' => {
+					case 'w' =>
 						if (l.length >= 1 && !isVowel(l.last))
 							shift(1, o :+ l.last)
 						else
 							shift(1, o :+ c)
-					}
 					case 'z' => shift(1, o :+ 's')
 					case _ => shift(1, o)
 				}

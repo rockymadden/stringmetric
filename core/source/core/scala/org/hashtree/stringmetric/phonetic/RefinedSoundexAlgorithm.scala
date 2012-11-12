@@ -15,7 +15,7 @@ object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgo
 			val fc = ca.head.toLower
 
 			if (fc < 97 || fc > 122) None
-			else {
+			else
 				Some(
 					transcode(
 						ca,
@@ -23,7 +23,6 @@ object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgo
 						Array(fc) // Pass array with first letter.
 					)
 				)
-			}
 		}
 	}
 

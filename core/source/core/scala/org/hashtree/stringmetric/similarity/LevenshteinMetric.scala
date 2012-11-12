@@ -34,7 +34,7 @@ object LevenshteinMetric extends StringMetric with FilterableStringMetric {
 					val min = {
 						if (ct._1(r - 1) == ct._2(c - 1))
 							distance(r - 1, c - 1)
-						else {
+						else
 							math.min(
 								math.min(
 									distance(r - 1, c) + 1, // Delete (left).
@@ -42,7 +42,6 @@ object LevenshteinMetric extends StringMetric with FilterableStringMetric {
 								),
 								distance(r - 1, c - 1) + 1 // Substitute (left-up).
 							)
-						}
 					}
 
 					m(r)(c) = min

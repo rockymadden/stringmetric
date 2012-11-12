@@ -39,13 +39,12 @@ object WeightedLevenshteinMetric extends StringMetric with FilterableConfigurabl
 			m(r)(c) = {
 				if (ct._1(r - 1) == ct._2(c - 1))
 					m(r - 1)(c - 1)
-				else {
+				else
 					(m(r - 1)(c) + w._1).min( // Delete (left).
 						(m(r)(c - 1) + w._2).min( // Insert (up).
 							m(r - 1)(c - 1) + w._3 // Substitute (left-up).
 						)
 					)
-				}
 			}
 		}
 
