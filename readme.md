@@ -156,6 +156,14 @@ metaphoneAlgorithm abc
 * Scala 2.9.2
 * Gradle 1.0 or above
 
+## Todo
+* SmithWaterman
+* MongeElkan
+* NeedlemanWunch
+* Jaccard
+* Refined NYSIIS
+* Double Metaphone
+
 ## Versioning
 [Semantic Versioning 2.0.0](http://semver.org/)
 
