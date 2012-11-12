@@ -30,11 +30,11 @@ final class NGramMetricSpec extends ScalaTest {
 				}
 			}
 			"invalid arguments" should returns {
-				"Double indicating distance" in {
-					NGramMetric.compare("n", "naght")(2).get should be (0)
-					NGramMetric.compare("night", "n")(2).get should be (0)
-					NGramMetric.compare("ni", "naght")(3).get should be (0)
-					NGramMetric.compare("night", "na")(3).get should be (0)
+				"None" in {
+					NGramMetric.compare("n", "naght")(2).isDefined should be (false)
+					NGramMetric.compare("night", "n")(2).isDefined should be (false)
+					NGramMetric.compare("ni", "naght")(3).isDefined should be (false)
+					NGramMetric.compare("night", "na")(3).isDefined should be (false)
 				}
 			}
 			"valid arguments" should returns {

@@ -10,18 +10,23 @@ object DiceSorensenMetric extends StringMetric with FilterableConfigurableString
 	type CompareReturn = Double
 
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(n: Int)(implicit stringFilter: StringFilter): Option[CompareReturn] = {
+		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
+
 		val ca1 = stringFilter.filter(charArray1)
 		lazy val ca2 = stringFilter.filter(charArray2)
 
-		if (ca1.length == 0 || ca2.length == 0) None
-		else if (ca1.length < n || ca2.length < n) Some(0d) // Because length is less than n, it will always be 0.
+		if (ca1.length < n || ca2.length < n) None // Because length is less than n, it is not possible to compare.
 		else if (ca1.sameElements(ca2)) Some(1d)
 		else {
-			val ca1bg = NGramAlgorithm.compute(ca1)(n).get
-			val ca2bg = NGramAlgorithm.compute(ca2)(n).get
-			val ms = scoreMatches((ca1bg.map(_.mkString), ca2bg.map(_.mkString)))
+			val ca1bg = NGramAlgorithm.compute(ca1)(n)
+			lazy val ca2bg = NGramAlgorithm.compute(ca2)(n)
 
-			Some((2d * ms) / (ca1bg.length + ca2bg.length))
+			if (!ca1bg.isDefined || !ca2bg.isDefined) None
+			else {
+				val ms = scoreMatches((ca1bg.get.map(_.mkString), ca2bg.get.map(_.mkString)))
+
+				Some((2d * ms) / (ca1bg.get.length + ca2bg.get.length))
+			}
 		}
 	}
 

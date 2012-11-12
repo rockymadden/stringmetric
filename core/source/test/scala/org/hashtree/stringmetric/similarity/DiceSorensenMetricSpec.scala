@@ -30,11 +30,11 @@ final class DiceSorensenMetricSpec extends ScalaTest {
 				}
 			}
 			"invalid arguments" should returns {
-				"Double indicating distance" in {
-					DiceSorensenMetric.compare("n", "naght")(2).get should be (0)
-					DiceSorensenMetric.compare("night", "n")(2).get should be (0)
-					DiceSorensenMetric.compare("ni", "naght")(3).get should be (0)
-					DiceSorensenMetric.compare("night", "na")(3).get should be (0)
+				"None" in {
+					DiceSorensenMetric.compare("n", "naght")(2).isDefined should be (false)
+					DiceSorensenMetric.compare("night", "n")(2).isDefined should be (false)
+					DiceSorensenMetric.compare("ni", "naght")(3).isDefined should be (false)
+					DiceSorensenMetric.compare("night", "na")(3).isDefined should be (false)
 				}
 			}
 			"valid arguments" should returns {

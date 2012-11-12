@@ -12,7 +12,7 @@ object NGramAlgorithm extends StringAlgorithm with FilterableConfigurableStringA
 
 		val ca = stringFilter.filter(charArray)
 
-		if (ca.length == 0) None
+		if (ca.length < n) None
 		else
 			Some(sequence(ca, Array.empty[Array[Char]], n))
 	}
