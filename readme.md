@@ -2,7 +2,7 @@
 A small library of string metrics and phonetic algorithms implemented in Scala. Each metric and algorithm has a CLI. 
 
 * __Phonetic metrics__ determine if two arguments sound the same phonetically. 
-* __Phonetic algorithms__ provide a means to determine the phonetic representation of the argument passed. All phonetic metrics have a standalone algorithm counterpart. 
+* __Phonetic algorithms__ provide a means to determine the phonetic representation of the argument passed. All phonetic metrics have an algorithm counterpart. 
 * __Similarity metrics__ determine the distance or coefficient between two arguments.
 * __Similarity algorithms__ provide a means to access underlying similarity metric functionality, when applicable. An example is the N-Gram algorithm, which provides a means to get n-grams for a given argument with a specific n.
 * __Filters__, which can optionally be applied to metrics and algorithms, clean up arguments prior to evaluation. Filtering rules can easily be combined via trait stacking.
@@ -72,8 +72,7 @@ if (distance >= 0.9) println("It's likely you're a match!")
 
 Basic example with single filter.
 ```scala
-import org.hashtree.stringmetric.StringFilterDelegate
-import org.hashtree.stringmetric.filter.AsciiLetterCaseStringFilter
+import org.hashtree.stringmetric.filter.{ AsciiLetterCaseStringFilter, StringFilterDelegate }
 import org.hashtree.stringmetric.similarity.JaroWinklerMetric
 
 val distance = JaroWinklerMetric.compare("string1", "string2")
