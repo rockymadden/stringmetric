@@ -1,6 +1,5 @@
 package org.hashtree.stringmetric.cli.phonetic
 
-import org.hashtree.stringmetric.StringFilterDelegate
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.phonetic.SoundexAlgorithm
 
@@ -46,6 +45,6 @@ object soundexAlgorithm extends Command {
 		println(
 			SoundexAlgorithm.compute(
 				options('dashless)
-			)(new StringFilterDelegate).getOrElse("not computable").toString
+			).getOrElse("not computable").toString
 		)
 }

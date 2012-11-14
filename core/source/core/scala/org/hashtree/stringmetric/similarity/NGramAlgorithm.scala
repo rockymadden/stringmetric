@@ -1,6 +1,7 @@
 package org.hashtree.stringmetric.similarity
 
-import org.hashtree.stringmetric.{ FilterableConfigurableStringAlgorithm, StringAlgorithm, StringFilter, StringFilterDelegate }
+import org.hashtree.stringmetric.{ FilterableConfigurableStringAlgorithm, StringAlgorithm, StringFilter }
+import org.hashtree.stringmetric.filter.StringFilterDelegate
 import scala.annotation.tailrec
 
 /** An implementation of the N-Gram [[org.hashtree.stringmetric.StringAlgorithm]]. */

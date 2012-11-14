@@ -1,6 +1,7 @@
 package org.hashtree.stringmetric.similarity
 
-import org.hashtree.stringmetric.{ CompareTuple, FilterableConfigurableStringMetric, StringFilter, StringFilterDelegate, StringMetric }
+import org.hashtree.stringmetric.{ CompareTuple, FilterableConfigurableStringMetric, StringFilter, StringMetric }
+import org.hashtree.stringmetric.filter.StringFilterDelegate
 import scala.math.BigDecimal
 
 /** An implementation of a weighted Levenshtein [[org.hashtree.stringmetric.StringMetric]]. */

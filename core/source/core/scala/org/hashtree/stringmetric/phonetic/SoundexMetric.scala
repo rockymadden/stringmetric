@@ -1,6 +1,7 @@
 package org.hashtree.stringmetric.phonetic
 
-import org.hashtree.stringmetric.{ FilterableStringMetric, StringFilter, StringFilterDelegate, StringMetric }
+import org.hashtree.stringmetric.{ FilterableStringMetric, StringFilter, StringMetric }
+import org.hashtree.stringmetric.filter.StringFilterDelegate
 
 /** An implementation of the Soundex [[org.hashtree.stringmetric.StringMetric]]. */
 object SoundexMetric extends StringMetric with FilterableStringMetric {

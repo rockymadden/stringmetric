@@ -1,6 +1,5 @@
 package org.hashtree.stringmetric.cli.similarity
 
-import org.hashtree.stringmetric.StringFilterDelegate
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.similarity.DiceSorensenMetric
 
@@ -54,7 +53,7 @@ object diceSorensenMetric extends Command {
 			DiceSorensenMetric.compare(
 				strings(0),
 				strings(1)
-			)(n)(new StringFilterDelegate).getOrElse("not comparable").toString
+			)(n).getOrElse("not comparable").toString
 		)
 	}
 }

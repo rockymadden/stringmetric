@@ -1,6 +1,5 @@
 package org.hashtree.stringmetric.cli.phonetic
 
-import org.hashtree.stringmetric.StringFilterDelegate
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.phonetic.MetaphoneMetric
 
@@ -49,7 +48,7 @@ object metaphoneMetric extends Command {
 			MetaphoneMetric.compare(
 				strings(0),
 				strings(1)
-			)(new StringFilterDelegate).getOrElse("not comparable").toString
+			).getOrElse("not comparable").toString
 		)
 	}
 }

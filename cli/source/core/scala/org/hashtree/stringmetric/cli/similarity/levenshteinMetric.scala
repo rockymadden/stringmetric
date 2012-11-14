@@ -1,6 +1,5 @@
 package org.hashtree.stringmetric.cli.similarity
 
-import org.hashtree.stringmetric.StringFilterDelegate
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.similarity.LevenshteinMetric
 
@@ -50,7 +49,7 @@ object levenshteinMetric extends Command {
 			LevenshteinMetric.compare(
 				strings(0),
 				strings(1)
-			)(new StringFilterDelegate).getOrElse("not comparable").toString
+			).getOrElse("not comparable").toString
 		)
 	}
 }

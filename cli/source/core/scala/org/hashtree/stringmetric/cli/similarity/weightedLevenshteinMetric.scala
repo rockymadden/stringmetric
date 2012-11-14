@@ -1,6 +1,5 @@
 package org.hashtree.stringmetric.cli.similarity
 
-import org.hashtree.stringmetric.StringFilterDelegate
 import org.hashtree.stringmetric.cli._
 import org.hashtree.stringmetric.similarity.WeightedLevenshteinMetric
 import scala.math.BigDecimal
@@ -67,7 +66,7 @@ object weightedLevenshteinMetric extends Command {
 			WeightedLevenshteinMetric.compare(
 				strings(0),
 				strings(1)
-			)(weights)(new StringFilterDelegate).getOrElse("not comparable").toString
+			)(weights).getOrElse("not comparable").toString
 		)
 	}
 }

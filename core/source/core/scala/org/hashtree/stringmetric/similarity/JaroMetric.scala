@@ -1,6 +1,7 @@
 package org.hashtree.stringmetric.similarity
 
-import org.hashtree.stringmetric.{ CompareTuple, FilterableStringMetric, MatchTuple, StringFilter, StringMetric, StringFilterDelegate }
+import org.hashtree.stringmetric.{ CompareTuple, FilterableStringMetric, MatchTuple, StringFilter, StringMetric }
+import org.hashtree.stringmetric.filter.StringFilterDelegate
 import scala.collection.mutable.{ ArrayBuffer, HashSet }
 
 /**

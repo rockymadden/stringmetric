@@ -1,6 +1,7 @@
 package org.hashtree.stringmetric.similarity
 
-import org.hashtree.stringmetric.{ CompareTuple, FilterableStringMetric, StringFilter, StringMetric, StringFilterDelegate }
+import org.hashtree.stringmetric.{ CompareTuple, FilterableStringMetric, StringFilter, StringMetric }
+import org.hashtree.stringmetric.filter.StringFilterDelegate
 
 /** An implementation of the Hamming [[org.hashtree.stringmetric.StringMetric]]. */
 object HammingMetric extends StringMetric with FilterableStringMetric {

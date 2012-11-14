@@ -1,6 +1,7 @@
 package org.hashtree.stringmetric.similarity
 
-import org.hashtree.stringmetric.{ FilterableConfigurableStringMetric, MatchTuple, StringFilter, StringMetric, StringFilterDelegate }
+import org.hashtree.stringmetric.{ FilterableConfigurableStringMetric, MatchTuple, StringFilter, StringMetric }
+import org.hashtree.stringmetric.filter.StringFilterDelegate
 
 /**
  * An implementation of the Dice, and lesser known Sorensen, [[org.hashtree.stringmetric.StringMetric]]. This

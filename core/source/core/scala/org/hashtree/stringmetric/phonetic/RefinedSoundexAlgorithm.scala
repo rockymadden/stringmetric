@@ -1,6 +1,7 @@
 package org.hashtree.stringmetric.phonetic
 
-import org.hashtree.stringmetric.{ FilterableStringAlgorithm, StringAlgorithm, StringFilter, StringFilterDelegate }
+import org.hashtree.stringmetric.{ FilterableStringAlgorithm, StringAlgorithm, StringFilter }
+import org.hashtree.stringmetric.filter.StringFilterDelegate
 import scala.annotation.tailrec
 
 /** An implementation of the refined Soundex [[org.hashtree.stringmetric.StringAlgorithm]]. */
