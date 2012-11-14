@@ -1,13 +1,11 @@
 #stringmetric [![Build Status](https://secure.travis-ci.org/rockymadden/stringmetric.png)](http://travis-ci.org/rockymadden/stringmetric)
-A small library of string metrics and phonetic algorithms implemented in Scala.
+A small library of string metrics and phonetic algorithms implemented in Scala. Each string metric and supporting algorithm has a CLI. 
 
 * __Phonetic metrics__ determine if two arguments sound the same phonetically. 
 * __Phonetic algorithms__ provide a means to determine the phonetic representation of the argument passed. All phonetic metrics have a standalone algorithm counterpart. 
 * __Similarity metrics__ determine the distance or coefficient between two arguments.
 * __Similarity algorithms__ provide a means to access underlying similarity metric functionality, when applicable. An example is the N-Gram algorithm, which provides a means to get n-grams for a given argument with a specific n.
 * __Filters__, which can optionally be applied to metrics and algorithms, clean up arguments prior to evaluation. Filtering rules can easily be combined via trait stacking.
-
-Each string metric and supporting algorithm has a CLI. 
 
 ## Metrics and Algorithms
 * __[Dice / Sorensen](http://en.wikipedia.org/wiki/Dice%27s_coefficient)__ (Similarity metric)
