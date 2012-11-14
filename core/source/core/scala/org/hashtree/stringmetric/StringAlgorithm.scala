@@ -10,52 +10,52 @@ trait StringAlgorithm extends Algorithm[String] {
 
 /** Convenience object for those extending [[org.hashtree.stringmetric.StringAlgorithm]]. */
 object StringAlgorithm {
-	def computeMetaphone(charArray: Array[Char])
+	def computeWithMetaphone(charArray: Array[Char])
 		(implicit stringFilter: StringFilter): Option[Array[Char]] =
 
 		MetaphoneAlgorithm.compute(charArray)(stringFilter)
 
-	def computeMetaphone(string: String)
+	def computeWithMetaphone(string: String)
 		(implicit stringFilter: StringFilter): Option[MetaphoneAlgorithm.ComputeReturn] =
 
 		MetaphoneAlgorithm.compute(string)(stringFilter)
 
-	def computeNGram(charArray: Array[Char])(n: Int)
+	def computeWithNGram(charArray: Array[Char])(n: Int)
 		(implicit stringFilter: StringFilter): Option[Array[Array[Char]]] =
 
 		NGramAlgorithm.compute(charArray)(n)(stringFilter)
 
-	def computeNGram(string: String)(n: Int)
+	def computeWithNGram(string: String)(n: Int)
 		(implicit stringFilter: StringFilter): Option[NGramAlgorithm.ComputeReturn] =
 
 		NGramAlgorithm.compute(string)(n)(stringFilter)
 
-	def computeNysiis(charArray: Array[Char])
+	def computeWithNysiis(charArray: Array[Char])
 		(implicit stringFilter: StringFilter): Option[Array[Char]] =
 
 		NysiisAlgorithm.compute(charArray)(stringFilter)
 
-	def computeNysiis(string: String)
+	def computeWithNysiis(string: String)
 		(implicit stringFilter: StringFilter): Option[NysiisAlgorithm.ComputeReturn] =
 
 		NysiisAlgorithm.compute(string)(stringFilter)
 
-	def computeRefinedSoundex(charArray: Array[Char])
+	def computeWithRefinedSoundex(charArray: Array[Char])
 		(implicit stringFilter: StringFilter): Option[Array[Char]] =
 
 		RefinedSoundexAlgorithm.compute(charArray)(stringFilter)
 
-	def computeRefinedSoundex(string: String)
+	def computeWithRefinedSoundex(string: String)
 		(implicit stringFilter: StringFilter): Option[RefinedSoundexAlgorithm.ComputeReturn] =
 
 		RefinedSoundexAlgorithm.compute(string)(stringFilter)
 
-	def computeSoundex(charArray: Array[Char])
+	def computeWithSoundex(charArray: Array[Char])
 		(implicit stringFilter: StringFilter): Option[Array[Char]] =
 
 		SoundexAlgorithm.compute(charArray)(stringFilter)
 
-	def computeSoundex(string: String)
+	def computeWithSoundex(string: String)
 		(implicit stringFilter: StringFilter): Option[SoundexAlgorithm.ComputeReturn] =
 
 		SoundexAlgorithm.compute(string)(stringFilter)

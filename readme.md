@@ -49,7 +49,7 @@ The easiest non-filtered example involves using the StringMetric convenience obj
 ```scala
 import org.hashtree.stringmetric.StringMetric
   
-if (StringMetric.compareJaroWinkler("string1", "string2") >= 0.9) 
+if (StringMetric.compareWithJaroWinkler("string1", "string2") >= 0.9) 
     println("It's likely you're a match!")
 ```
 
@@ -57,7 +57,7 @@ The easiest single filtered example involves using the StringMetric and StringFi
 ```scala
 import org.hashtree.stringmetric.{ StringFilter, StringMetric }
   
-if (StringMetric.compareJaroWinkler("string1", "string2")(StringFilter.asciiLetterCase) >= 0.9) 
+if (StringMetric.compareWithJaroWinkler("string1", "string2")(StringFilter.asciiLetterCase) >= 0.9) 
     println("It's likely you're a match!")
 ```
 
