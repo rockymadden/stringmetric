@@ -7,7 +7,9 @@ import scala.annotation.tailrec
 object NGramAlgorithm extends StringAlgorithm with FilterableConfigurableStringAlgorithm[Int] {
 	type ComputeReturn = Array[String]
 
-	override def compute(charArray: Array[Char])(n: Int)(implicit stringFilter: StringFilter): Option[Array[Array[Char]]] = {
+	override def compute(charArray: Array[Char])(n: Int)
+		(implicit stringFilter: StringFilter): Option[Array[Array[Char]]] = {
+
 		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
 
 		val ca = stringFilter.filter(charArray)
@@ -17,7 +19,9 @@ object NGramAlgorithm extends StringAlgorithm with FilterableConfigurableStringA
 			Some(sequence(ca, Array.empty[Array[Char]], n))
 	}
 
-	override def compute(string: String)(n: Int)(implicit stringFilter: StringFilter): Option[ComputeReturn] =
+	override def compute(string: String)(n: Int)
+		(implicit stringFilter: StringFilter): Option[ComputeReturn] =
+
 		compute(stringFilter.filter(string.toCharArray))(n)(new StringFilterDelegate) match {
 			case Some(mp) => Some(mp.map(_.mkString))
 			case None => None

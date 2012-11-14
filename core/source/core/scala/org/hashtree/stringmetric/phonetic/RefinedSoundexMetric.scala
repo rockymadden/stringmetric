@@ -6,7 +6,9 @@ import org.hashtree.stringmetric.{ FilterableStringMetric, StringFilter, StringF
 object RefinedSoundexMetric extends StringMetric with FilterableStringMetric {
 	type CompareReturn = Boolean
 
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit stringFilter: StringFilter): Option[CompareReturn] = {
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])
+		(implicit stringFilter: StringFilter): Option[CompareReturn] = {
+
 		val ca1 = stringFilter.filter(charArray1)
 		lazy val ca2 = stringFilter.filter(charArray2)
 
@@ -20,7 +22,9 @@ object RefinedSoundexMetric extends StringMetric with FilterableStringMetric {
 		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit stringFilter: StringFilter): Option[CompareReturn] =
+	override def compare(string1: String, string2: String)
+		(implicit stringFilter: StringFilter): Option[CompareReturn] =
+
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)

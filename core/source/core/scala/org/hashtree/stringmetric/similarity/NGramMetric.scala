@@ -7,7 +7,9 @@ import scala.math
 object NGramMetric extends StringMetric with FilterableConfigurableStringMetric[Int] {
 	type CompareReturn = Double
 
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(n: Int)(implicit stringFilter: StringFilter): Option[CompareReturn] = {
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])(n: Int)
+		(implicit stringFilter: StringFilter): Option[CompareReturn] = {
+
 		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
 
 		val ca1 = stringFilter.filter(charArray1)
@@ -28,7 +30,9 @@ object NGramMetric extends StringMetric with FilterableConfigurableStringMetric[
 		}
 	}
 
-	override def compare(string1: String, string2: String)(n: Int)(implicit stringFilter: StringFilter): Option[CompareReturn] =
+	override def compare(string1: String, string2: String)(n: Int)
+		(implicit stringFilter: StringFilter): Option[CompareReturn] =
+
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
