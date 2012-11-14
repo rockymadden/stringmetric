@@ -84,8 +84,7 @@ if (distance >= 0.9) println("It's likely you're a match!")
 
 Basic example with stacked filter. Filters are applied in reverse order.
 ```scala
-import org.hashtree.stringmetric.StringFilterDelegate
-import org.hashtree.stringmetric.filter.{ AsciiLetterCaseStringFilter, AsciiLetterOnlyStringFilter }
+import org.hashtree.stringmetric.filter.{ AsciiLetterCaseStringFilter, AsciiLetterOnlyStringFilter, StringFilterDelegate }
 import org.hashtree.stringmetric.similarity.JaroWinklerMetric
 
 val distance = JaroWinklerMetric.compare("string1", "string2")
