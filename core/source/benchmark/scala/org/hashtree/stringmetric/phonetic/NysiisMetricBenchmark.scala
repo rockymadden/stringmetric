@@ -16,7 +16,7 @@ final class NysiisMetricBenchmark extends CaliperBenchmark {
 
 	override protected def setUp() {
 		@tailrec
-		def random(l: Int, ps: String = null): String = {
+		def random(l: Int, ps: String = null): String =
 			if (l == 0) ""
 			else {
 				val s = Random.alphanumeric.filter(_ > '9').take(l).mkString
@@ -24,7 +24,6 @@ final class NysiisMetricBenchmark extends CaliperBenchmark {
 				if (ps == null || s != ps) s
 				else random(l, ps)
 			}
-		}
 
 		string1 = random(length)
 		string2 = random(length, string1)
