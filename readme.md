@@ -1,5 +1,5 @@
 #stringmetric [![Build Status](https://secure.travis-ci.org/rockymadden/stringmetric.png)](http://travis-ci.org/rockymadden/stringmetric)
-A small library of string metrics and phonetic algorithms implemented in Scala. Each metric and algorithm has a CLI. 
+A small library of string metrics and phonetic algorithms implemented in Scala. Each metric and algorithm has a command line interface and [Google Caliper](http://code.google.com/p/caliper/) microbenchmark suite.
 
 * __Phonetic metrics__ determine if two arguments sound the same phonetically. 
 * __Phonetic algorithms__ provide a means to determine the phonetic representation of the argument passed. All phonetic metrics have an algorithm counterpart. 
@@ -128,8 +128,6 @@ metaphoneAlgorithm abc
 * Jaccard
 * Refined NYSIIS
 * Double Metaphone
-* Micro benchmarks
-* Performance enhancements to existing metrics/algorithms
 * Memoization decorator
 
 ## Versioning
