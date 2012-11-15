@@ -5,8 +5,8 @@ import org.hashtree.stringmetric.filter.StringFilterDelegate
 import scala.math.BigDecimal
 
 /** An implementation of a weighted Levenshtein [[org.hashtree.stringmetric.StringMetric]]. */
-object WeightedLevenshteinMetric extends
-	StringMetric with FilterableConfigurableStringMetric[Tuple3[BigDecimal, BigDecimal, BigDecimal]] {
+object WeightedLevenshteinMetric
+	extends StringMetric with FilterableConfigurableStringMetric[Tuple3[BigDecimal, BigDecimal, BigDecimal]] {
 
 	type CompareReturn = Double
 	type Options = Tuple3[BigDecimal, BigDecimal, BigDecimal]

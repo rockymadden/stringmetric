@@ -62,14 +62,12 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 							shift(1, o :+ 'k')
 						else if (r.length >= 2 && r.head == 'i' && r(1) == 'a')
 							shift(3, o :+ 'x')
-						else if (
-							(r.length >= 1 && r.head == 'h') ||
-							(l.length >= 1 && r.length >= 1 && l.last == 's' && r.head == 'h')
+						else if ((r.length >= 1 && r.head == 'h')
+							|| (l.length >= 1 && r.length >= 1 && l.last == 's' && r.head == 'h')
 						)
 							shift(2, o :+ 'x')
-						else if (l.length >= 1 && r.length >= 1 && l.last == 's' && (
-								r.head == 'i' || r.head == 'e' || r.head == 'y'
-							)
+						else if (l.length >= 1 && r.length >= 1 && l.last == 's'
+							&& (r.head == 'i' || r.head == 'e' || r.head == 'y')
 						)
 							shift(1, o)
 						else if (r.length >= 1 && (r.head == 'i' || r.head == 'e' || r.head == 'y'))
@@ -77,17 +75,16 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 						else
 							shift(1, o :+ 'k')
 					case 'd' =>
-						if (r.length >= 2 && r.head == 'g' && (
-								r(1) == 'e' || r(1) == 'y' || r(1) == 'i'
-							)
+						if (r.length >= 2 && r.head == 'g'
+							&& (r(1) == 'e' || r(1) == 'y' || r(1) == 'i')
 						)
 							shift(1, o :+ 'j')
 						else
 							shift(1, o :+ 't')
 					case 'g' =>
-						if ((r.length > 1 && r.head == 'h') ||
-							(r.length == 1 && r.head == 'n') ||
-							(r.length == 3 && r.head == 'n' && r(1) == 'e' && r(2) == 'd')
+						if ((r.length > 1 && r.head == 'h')
+							|| (r.length == 1 && r.head == 'n')
+							|| (r.length == 3 && r.head == 'n' && r(1) == 'e' && r(2) == 'd')
 						)
 							shift(1, o)
 						else if (r.length >= 1 && (r.head == 'i' || r.head == 'e' || r.head == 'y'))
@@ -95,10 +92,10 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 						else
 							shift(1, o :+ 'k')
 					case 'h' =>
-						if ((l.length >= 1 && isVowel(l.last) && (r.length == 0 || !isVowel(r.head))) ||
-							(l.length >= 2 && l.last == 'h' && (
-									l(l.length - 2) == 'c' || l(l.length - 2) == 's' || l(l.length - 2) == 'p' ||
-									l(l.length - 2) == 't' || l(l.length - 2) == 'g'
+						if ((l.length >= 1 && isVowel(l.last) && (r.length == 0 || !isVowel(r.head)))
+							|| (l.length >= 2 && l.last == 'h'
+								&& (l(l.length - 2) == 'c' || l(l.length - 2) == 's' || l(l.length - 2) == 'p'
+									|| l(l.length - 2) == 't' || l(l.length - 2) == 'g'
 								)
 							)
 						)
@@ -139,9 +136,9 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 	private[this] def transcodeHead(ca: Array[Char]) = {
 		val h = ca.take(2).padTo(2, '\0')
 
-		if ((h.head == 'a' && h.last == 'e') ||
-			(h.last == 'n' && (h.head == 'g' || h.head == 'k' || h.head == 'p')) ||
-			(h.head == 'w' && h.last == 'r')
+		if ((h.head == 'a' && h.last == 'e')
+			|| (h.last == 'n' && (h.head == 'g' || h.head == 'k' || h.head == 'p'))
+			|| (h.head == 'w' && h.last == 'r')
 		)
 			ca.tail
 		else if (h.head == 'w' && h.last == 'h')

@@ -119,8 +119,8 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 	private[this] def transcodeLast(ca: Array[Char]) = {
 		val h = ca.take(2).padTo(2, '\0')
 
-		if ((h.last == 't' && (h.head == 'd' || h.head == 'r' || h.head == 'n')) ||
-			(h.last == 'd' && (h.head == 'r' || h.head == 'n'))
+		if ((h.last == 't' && (h.head == 'd' || h.head == 'r' || h.head == 'n'))
+			|| (h.last == 'd' && (h.head == 'r' || h.head == 'n'))
 		)
 			'd' +: ca.takeRight(ca.length - 2)
 		else if (h.last == 'e' && (h.head == 'i' || h.head == 'e'))
