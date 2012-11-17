@@ -30,22 +30,6 @@ gradle :stringmetric-cli:tar
 ```
 
 ## Using the API
-The easiest non-filtered example involves using the StringMetric convenience object.
-```scala
-import org.hashtree.stringmetric.StringMetric
-  
-if (StringMetric.compareWithJaroWinkler("string1", "string2") >= 0.9) 
-    println("It's likely you're a match!")
-```
-
-The easiest single filtered example involves using the StringMetric and StringFilter convenience objects.
-```scala
-import org.hashtree.stringmetric.{ StringFilter, StringMetric }
-  
-if (StringMetric.compareWithJaroWinkler("string1", "string2")(StringFilter.asciiLetterCase) >= 0.9) 
-    println("It's likely you're a match!")
-```
-
 Basic example with no filtering.
 ```scala
 import org.hashtree.stringmetric.similarity.JaroWinklerMetric  
@@ -75,6 +59,17 @@ val distance = JaroWinklerMetric.compare("string1", "string2")
     (new StringFilterDelegate with AsciiLetterCaseStringFilter with AsciiLetterOnlyStringFilter)
 
 if (distance >= 0.9) println("It's likely you're a match!")
+```
+
+You can also use the StringMetric, StringAlgorithm, and StringFilter convenience objects.
+```scala
+import org.hashtree.stringmetric.{ StringAlgorithm, StringFilter, StringMetric}
+  
+if (StringMetric.compareWithJaroWinkler("string1", "string2") >= 0.9) 
+    println("It's likely you're a match!")
+ 
+if (StringMetric.compareWithJaroWinkler("string1", "string2")(StringFilter.asciiLetterCase) >= 0.9) 
+    println("It's likely you're a match!")
 ```
 
 ## Using the CLI
