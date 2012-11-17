@@ -10,12 +10,12 @@ final class NysiisAlgorithmSpec extends ScalaTest {
 		"compute method" when passed {
 			"empty argument" should returns {
 				"None" in {
-					//NysiisAlgorithm.compute("").isDefined should be (false)
+					NysiisAlgorithm.compute("").isDefined should be (false)
 				}
 			}
 			"non-phonetic argument" should returns {
 				"None" in {
-					//NysiisAlgorithm.compute("123").isDefined should be (false)
+					NysiisAlgorithm.compute("123").isDefined should be (false)
 				}
 			}
 			"phonetic argument" should returns {
