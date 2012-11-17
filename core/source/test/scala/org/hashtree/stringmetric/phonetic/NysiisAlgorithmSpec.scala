@@ -176,7 +176,7 @@ final class NysiisAlgorithmSpec extends ScalaTest {
 					NysiisAlgorithm.compute("bowman").get should equal ("banan")
 					NysiisAlgorithm.compute("mcknight").get should equal ("mcnagt")
 					NysiisAlgorithm.compute("rickert").get should equal ("racad")
-					NysiisAlgorithm.compute("deutsch").get should equal ("dat") //
+					NysiisAlgorithm.compute("deutsch").get should equal ("dat") // dropby wrongly says dats
 					NysiisAlgorithm.compute("westphal").get should equal ("wastfal")
 					NysiisAlgorithm.compute("shriver").get should equal ("shravar")
 					NysiisAlgorithm.compute("kuhl").get should equal ("cal") // dropby wrongly says c
