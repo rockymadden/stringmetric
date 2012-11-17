@@ -2,10 +2,9 @@
 A small library of string metrics and phonetic algorithms. Each has a command line interface and [Google Caliper](http://code.google.com/p/caliper/) microbenchmark suite.
 
 * __Phonetic metrics__ determine if two arguments sound the same phonetically. 
-* __Phonetic algorithms__ provide a means to determine the phonetic representation of the argument passed. All phonetic metrics have an algorithm counterpart. 
+* __Phonetic algorithms__ determine the phonetic representation of the argument passed. All phonetic metrics have a standalone algorithm counterpart. 
 * __Similarity metrics__ determine the distance or coefficient between two arguments.
-* __Similarity algorithms__ provide a means to access underlying similarity metric functionality, when applicable. An example is the N-Gram algorithm, which provides a means to get n-grams for a given argument with a specific n.
-* __Filters__, which can optionally be applied to metrics and algorithms, clean up arguments prior to evaluation. Filtering rules can easily be combined via trait stacking.
+* __Filters__, which can optionally be applied to metrics and algorithms, clean up arguments prior to evaluation. Filters can be combined via trait stacking.
 
 ## Metrics and Algorithms
 * __[Dice / Sorensen](http://en.wikipedia.org/wiki/Dice%27s_coefficient)__ (Similarity metric)
@@ -19,20 +18,6 @@ A small library of string metrics and phonetic algorithms. Each has a command li
 * __[Refined Soundex](http://ntz-develop.blogspot.com/2011/03/phonetic-algorithms.html)__ (Phonetic metric and algorithm)
 * __[Soundex](http://en.wikipedia.org/wiki/Soundex)__ (Phonetic metric and algorithm)
 * __Weighted Levenshtein__ (Similarity metric)
-
-## Filters
-* __Ensure only ASCII control characters matter__
-* __Ensure ASCII controls do not matter__
-* __Ensure ASCII letter case-sensitivity does not matter__
-* __Ensure only ASCII letters and numbers matter__
-* __Ensure ASCII letters and numbers do not matter__
-* __Ensure only ASCII letters matter__
-* __Ensure ASCII letters do not matter__
-* __Ensure only ASCII numbers matter__
-* __Ensure ASCII numbers do not matter__
-* __Ensure ASCII spaces do not matter__
-* __Ensure only ASCII symbols matter__
-* __Ensure ASCII symbols do not matter__
 
 ## Building the API
 ```shell
