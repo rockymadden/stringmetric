@@ -130,9 +130,9 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 			lazy val take = ca.take(ca.length - 2)
 
 			l match {
-				case 'd' if (lm1 == 'r' || lm1 == 'n') => (take, Array('d'))
-				case 'e' if (lm1 == 'i' || lm1 == 'e') => (take, Array('y'))
-				case 't' if (lm1 == 'd' || lm1 == 'r' || lm1 == 'n') => (take, Array('d'))
+				case 'd' if (lm1 == 'n' || lm1 == 'r') => (take, Array('d'))
+				case 'e' if (lm1 == 'e' || lm1 == 'i') => (take, Array('y'))
+				case 't' if (lm1 == 'd' || lm1 == 'n' || lm1 == 'r') => (take, Array('d'))
 				case _ => (ca, Array.empty[Char])
 			}
 		} else (ca, Array.empty[Char])
