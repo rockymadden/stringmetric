@@ -84,11 +84,11 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 							shift(1, o :+ c)
 					case 'k' => if (r.length >= 1 && r.head == 'n') shift(2, o :+ 'n') else shift(1, o :+ 'c')
 					case 'm' => shift(1, o :+ 'n')
-					case 'p' => if (r.length >= 1 && r.head == 'h') shift(2, o ++ Array('f', 'f')) else shift(1, o :+ 'p')
+					case 'p' => if (r.length >= 1 && r.head == 'h') shift(2, o :+ 'f') else shift(1, o :+ 'p')
 					case 'q' => shift(1, o :+ 'g')
 					case 's' =>
 						if (r.length >= 2 && r.head == 'c' && r(1) == 'h')
-							shift(3, o ++ Array('s', 's', 's'))
+							shift(3, o :+ 's')
 						else
 							shift(1, o :+ c)
 					case 'w' =>
