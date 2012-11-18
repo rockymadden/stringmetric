@@ -43,11 +43,10 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 		if (ca.length == 0) ca
 		else
 			ca.last match {
-				// All vowels will be encoded as 'a' at the point this is called.
+				// All vowels will be encoded as 'a' at the point this is called. All 'z' will be encoded as 's' too.
 				case 'a' | 's' =>
 					ca.dropRight(ca.reverseIterator.takeWhile(c => c == 'a' || c == 's').length)
-				case 'y' if (ca.length >= 2 && ca(ca.length - 2) == 'a') =>
-					ca.dropRight(2) :+ 'y'
+				case 'y' if (ca.length >= 2 && ca(ca.length - 2) == 'a') => ca.dropRight(2) :+ 'y'
 				case _ => ca
 			}
 
@@ -78,29 +77,21 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 					case 'a' | 'i' | 'o' | 'u' => shift(1, o :+ 'a')
 					case 'b' | 'c' | 'd' | 'f' | 'g' | 'j' | 'l' | 'n' | 'r' | 't' | 'v' | 'x' | 'y' => shift(1, o :+ c)
 					case 'e' =>
-						if (r.length >= 1 && r.head == 'v')
-							shift(2, o ++ Array('a', 'f'))
-						else
-							shift(1, o :+ 'a')
+						if (r.length >= 1 && r.head == 'v') shift(2, o ++ Array('a', 'f'))
+						else shift(1, o :+ 'a')
 					case 'h' =>
-						if (l.length >= 1 && (!isVowel(l.last) || (r.length >= 1 && !isVowel(r.head))))
-							shift(1, o)
-						else
-							shift(1, o :+ c)
+						if (l.length >= 1 && (!isVowel(l.last) || (r.length >= 1 && !isVowel(r.head)))) shift(1, o)
+						else shift(1, o :+ c)
 					case 'k' => if (r.length >= 1 && r.head == 'n') shift(2, o :+ 'n') else shift(1, o :+ 'c')
 					case 'm' => shift(1, o :+ 'n')
 					case 'p' => if (r.length >= 1 && r.head == 'h') shift(2, o :+ 'f') else shift(1, o :+ 'p')
 					case 'q' => shift(1, o :+ 'g')
 					case 's' =>
-						if (r.length >= 2 && r.head == 'c' && r(1) == 'h')
-							shift(3, o :+ 's')
-						else
-							shift(1, o :+ c)
+						if (r.length >= 2 && r.head == 'c' && r(1) == 'h') shift(3, o :+ 's')
+						else shift(1, o :+ c)
 					case 'w' =>
-						if (l.length >= 1 && isVowel(l.last))
-							shift(1, o)
-						else
-							shift(1, o :+ c)
+						if (l.length >= 1 && isVowel(l.last)) shift(1, o)
+						else shift(1, o :+ c)
 					case 'z' => shift(1, o :+ 's')
 					case _ => shift(1, o)
 				}
@@ -114,16 +105,11 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 		if (ca.length == 0) (Array.empty[Char], ca)
 		else
 			ca.head match {
-				case 'k' if (ca.length >= 2 && ca(1) == 'n') =>
-					(Array('n', 'n'), ca.takeRight(ca.length - 2))
-				case 'k' =>
-					(Array('c'), ca.tail)
-				case 'm' if (ca.length >= 3 && (ca(1) == 'a' && ca(2) == 'c')) =>
-					(Array('m', 'c'), ca.takeRight(ca.length - 3))
-				case 'p' if (ca.length >= 2 && (ca(1) == 'h' || ca(1) == 'f')) =>
-					(Array('f', 'f'), ca.takeRight(ca.length - 2))
-				case 's' if (ca.length >= 3 && (ca(1) == 'c' && ca(2) == 'h')) =>
-					(Array('s', 's'), ca.takeRight(ca.length - 3))
+				case 'k' if (ca.length >= 2 && ca(1) == 'n') => (Array('n', 'n'), ca.takeRight(ca.length - 2))
+				case 'k' => (Array('c'), ca.tail)
+				case 'm' if (ca.length >= 3 && (ca(1) == 'a' && ca(2) == 'c')) => (Array('m', 'c'), ca.takeRight(ca.length - 3))
+				case 'p' if (ca.length >= 2 && (ca(1) == 'h' || ca(1) == 'f')) => (Array('f', 'f'), ca.takeRight(ca.length - 2))
+				case 's' if (ca.length >= 3 && (ca(1) == 'c' && ca(2) == 'h')) => (Array('s', 's'), ca.takeRight(ca.length - 3))
 				case _ => (Array(ca.head), ca.tail)
 			}
 	}
