@@ -109,16 +109,16 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 		if (ca.length == 0) (Array.empty[Char], ca)
 		else
 			ca.head match {
-				case 'm' if (ca.length >= 3 && (ca(1) == 'a' && ca(2) == 'c')) =>
-					(Array('m', 'c'), ca.takeRight(ca.length - 3))
-				case 's' if (ca.length >= 3 && (ca(1) == 'c' && ca(2) == 'h')) =>
-					(Array('s', 's'), ca.takeRight(ca.length - 3))
-				case 'p' if (ca.length >= 2 && (ca(1) == 'h' || ca(1) == 'f')) =>
-					(Array('f', 'f'), ca.takeRight(ca.length - 2))
 				case 'k' if (ca.length >= 2 && ca(1) == 'n') =>
 					(Array('n', 'n'), ca.takeRight(ca.length - 2))
 				case 'k' =>
 					(Array('c'), ca.tail)
+				case 'm' if (ca.length >= 3 && (ca(1) == 'a' && ca(2) == 'c')) =>
+					(Array('m', 'c'), ca.takeRight(ca.length - 3))
+				case 'p' if (ca.length >= 2 && (ca(1) == 'h' || ca(1) == 'f')) =>
+					(Array('f', 'f'), ca.takeRight(ca.length - 2))
+				case 's' if (ca.length >= 3 && (ca(1) == 'c' && ca(2) == 'h')) =>
+					(Array('s', 's'), ca.takeRight(ca.length - 3))
 				case _ => (Array(ca.head), ca.tail)
 			}
 	}
@@ -127,12 +127,14 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 		if (ca.length >= 2) {
 			val l = ca(ca.length - 1)
 			val lm1 = ca(ca.length - 2)
+			lazy val take = ca.take(ca.length - 2)
 
-			if ((l == 't' && (lm1 == 'd' || lm1 == 'r' || lm1 == 'n')) || (l == 'd' && (lm1 == 'r' || lm1 == 'n')))
-				(ca.take(ca.length - 2), Array('d'))
-			else if (l == 'e' && (lm1 == 'i' || lm1 == 'e'))
-				(ca.take(ca.length - 2), Array('y'))
-			else (ca, Array.empty[Char])
+			l match {
+				case 'd' if (lm1 == 'r' || lm1 == 'n') => (take, Array('d'))
+				case 'e' if (lm1 == 'i' || lm1 == 'e') => (take, Array('y'))
+				case 't' if (lm1 == 'd' || lm1 == 'r' || lm1 == 'n') => (take, Array('d'))
+				case _ => (ca, Array.empty[Char])
+			}
 		} else (ca, Array.empty[Char])
 	}
 }
