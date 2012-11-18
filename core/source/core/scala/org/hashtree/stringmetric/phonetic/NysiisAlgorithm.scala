@@ -40,11 +40,16 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 		}
 
 	private[this] def cleanRight(ca: Array[Char]) =
-		if (ca.length >= 1 && (ca.last == 'a' || ca.last == 's'))
-			ca.dropRight(ca.reverseIterator.takeWhile(c => c == 'a' || c == 's').length)
-		else if (ca.length >= 2 && ca.last == 'y' && ca(ca.length - 2) == 'a')
-			ca.dropRight(2) :+ 'y'
-		else ca
+		if (ca.length == 0) ca
+		else
+			ca.last match {
+				// All vowels will be encoded as 'a' at the point this is called.
+				case 'a' | 's' =>
+					ca.dropRight(ca.reverseIterator.takeWhile(c => c == 'a' || c == 's').length)
+				case 'y' if (ca.length >= 2 && ca(ca.length - 2) == 'a') =>
+					ca.dropRight(2) :+ 'y'
+				case _ => ca
+			}
 
 	private[this] def deduplicate(ca: Array[Char]) =
 		if (ca.length <= 1) ca
