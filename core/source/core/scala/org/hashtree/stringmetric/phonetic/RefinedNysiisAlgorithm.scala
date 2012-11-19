@@ -43,8 +43,7 @@ object RefinedNysiisAlgorithm extends StringAlgorithm with FilterableStringAlgor
 
 	private[this] def deduplicate(ca: Array[Char]) =
 		if (ca.length <= 1) ca
-		else
-			ca.sliding(2).withFilter(a => a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
+		else ca.sliding(2).withFilter(a => a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
 
 	@tailrec
 	private[this] def transcode(l: Array[Char], c: Char, r: Array[Char], o: Array[Char]): Array[Char] = {
@@ -120,14 +119,14 @@ object RefinedNysiisAlgorithm extends StringAlgorithm with FilterableStringAlgor
 		if (ca.length >= 2) {
 			val l = ca(ca.length - 1)
 			val lm1 = ca(ca.length - 2)
-			lazy val take2 = ca.take(ca.length - 2)
+			lazy val t2 = ca.take(ca.length - 2)
 
 			l match {
-				case 'd' if (lm1 == 'n' || lm1 == 'r') => take2 :+ 'd'
-				case 'e' if (lm1 == 'e' || lm1 == 'i' || lm1 =='y') => take2 :+ 'y'
-				case 't' if (lm1 == 'd' || lm1 == 'n' || lm1 == 'r') => take2 :+ 'd'
-				case 'x' if (lm1 == 'e') => take2 ++ Array('e', 'c')
-				case 'x' if (lm1 == 'i') => take2 ++ Array('i', 'c')
+				case 'd' if (lm1 == 'n' || lm1 == 'r') => t2 :+ 'd'
+				case 'e' if (lm1 == 'e' || lm1 == 'i' || lm1 =='y') => t2 :+ 'y'
+				case 't' if (lm1 == 'd' || lm1 == 'n' || lm1 == 'r') => t2 :+ 'd'
+				case 'x' if (lm1 == 'e') => t2 ++ Array('e', 'c')
+				case 'x' if (lm1 == 'i') => t2 ++ Array('i', 'c')
 				case _ => ca
 			}
 		} else ca

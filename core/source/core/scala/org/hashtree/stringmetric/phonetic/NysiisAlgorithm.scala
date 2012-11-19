@@ -47,8 +47,7 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 
 	private[this] def deduplicate(ca: Array[Char]) =
 		if (ca.length <= 1) ca
-		else
-			ca.sliding(2).withFilter(a => a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
+		else ca.sliding(2).withFilter(a => a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
 
 	@tailrec
 	private[this] def transcodeCenter(l: Array[Char], c: Char, r: Array[Char], o: Array[Char]): Array[Char] = {
@@ -96,15 +95,15 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 	private[this] def transcodeLeft(ca: Array[Char]) = {
 		if (ca.length == 0) (Array.empty[Char], ca)
 		else {
-			lazy val takeRight2 = ca.takeRight(ca.length - 2)
-			lazy val takeRight3 = ca.takeRight(ca.length - 3)
+			lazy val tr2 = ca.takeRight(ca.length - 2)
+			lazy val tr3 = ca.takeRight(ca.length - 3)
 
 			ca.head match {
-				case 'k' if (ca.length >= 2 && ca(1) == 'n') => (Array('n', 'n'), takeRight2)
+				case 'k' if (ca.length >= 2 && ca(1) == 'n') => (Array('n', 'n'), tr2)
 				case 'k' => (Array('c'), ca.tail)
-				case 'm' if (ca.length >= 3 && (ca(1) == 'a' && ca(2) == 'c')) => (Array('m', 'c'), takeRight3)
-				case 'p' if (ca.length >= 2 && (ca(1) == 'h' || ca(1) == 'f')) => (Array('f', 'f'), takeRight2)
-				case 's' if (ca.length >= 3 && (ca(1) == 'c' && ca(2) == 'h')) => (Array('s', 's'), takeRight3)
+				case 'm' if (ca.length >= 3 && (ca(1) == 'a' && ca(2) == 'c')) => (Array('m', 'c'), tr3)
+				case 'p' if (ca.length >= 2 && (ca(1) == 'h' || ca(1) == 'f')) => (Array('f', 'f'), tr2)
+				case 's' if (ca.length >= 3 && (ca(1) == 'c' && ca(2) == 'h')) => (Array('s', 's'), tr3)
 				case _ => (Array(ca.head), ca.tail)
 			}
 		}
@@ -114,12 +113,12 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 		if (ca.length >= 2) {
 			val l = ca(ca.length - 1)
 			val lm1 = ca(ca.length - 2)
-			lazy val take2 = ca.take(ca.length - 2)
+			lazy val t2 = ca.take(ca.length - 2)
 
 			l match {
-				case 'd' if (lm1 == 'n' || lm1 == 'r') => (take2, Array('d'))
-				case 'e' if (lm1 == 'e' || lm1 == 'i') => (take2, Array('y'))
-				case 't' if (lm1 == 'd' || lm1 == 'n' || lm1 == 'r') => (take2, Array('d'))
+				case 'd' if (lm1 == 'n' || lm1 == 'r') => (t2, Array('d'))
+				case 'e' if (lm1 == 'e' || lm1 == 'i') => (t2, Array('y'))
+				case 't' if (lm1 == 'd' || lm1 == 'n' || lm1 == 'r') => (t2, Array('d'))
 				case _ => (ca, Array.empty[Char])
 			}
 		} else (ca, Array.empty[Char])
