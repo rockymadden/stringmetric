@@ -20,15 +20,12 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 				val tr = transcodeRight(cal)
 				val tl = transcodeLeft(tr._1)
 				val t =
-					tl._2.length match {
-						case 0 => tl._1 ++ tr._2
-						case 1 =>
-							tl._1 ++ transcodeCenter(Array.empty[Char], tl._2.head, Array.empty[Char], Array.empty[Char]) ++ tr._2
-						case _ =>
-							tl._1 ++ transcodeCenter(Array.empty[Char], tl._2.head, tl._2.tail, Array.empty[Char]) ++ tr._2
-					}
+					if (tl._2.length == 0) tl._1 ++ tr._2
+					else
+						tl._1 ++ transcodeCenter(Array.empty[Char], tl._2.head, if (tl._2.length > 1) tl._2.tail else Array.empty[Char], Array.empty[Char]) ++ tr._2
 
-				Some(t.head +: deduplicate(cleanRight(t.tail)))
+				if (t.length == 1) Some(t)
+				else Some(t.head +: deduplicate(cleanTerminal(cleanLast(t.tail))))
 			}
 		}
 	}
@@ -39,23 +36,19 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 			case None => None
 		}
 
-	private[this] def cleanRight(ca: Array[Char]) =
+	private[this] def cleanLast(ca: Array[Char]) =
 		if (ca.length == 0) ca
-		else
-			ca.last match {
-				// All vowels will be encoded as 'a' at the point this is called. All 'z' will be encoded as 's' too.
-				case 'a' | 's' =>
-					ca.dropRight(ca.reverseIterator.takeWhile(c => c == 'a' || c == 's').length)
-				case 'y' if (ca.length >= 2 && ca(ca.length - 2) == 'a') => ca.dropRight(2) :+ 'y'
-				case _ => ca
-			}
+		else if(ca.last == 'a' || ca.last == 's') ca.dropRight(ca.reverseIterator.takeWhile(c => c == 'a' || c == 's').length)
+		else ca
+
+	private[this] def cleanTerminal(ca: Array[Char]) =
+		if (ca.length >= 2 && ca.last == 'y' && ca(ca.length - 2) == 'a') ca.dropRight(2) :+ 'y'
+		else ca
 
 	private[this] def deduplicate(ca: Array[Char]) =
 		if (ca.length <= 1) ca
 		else
 			ca.sliding(2).withFilter(a => a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
-
-	private[this] def isVowel(c: Char) = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
 
 	@tailrec
 	private[this] def transcodeCenter(l: Array[Char], c: Char, r: Array[Char], o: Array[Char]): Array[Char] = {
@@ -71,7 +64,6 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 					ca
 				)
 			}
-
 			val t = {
 				c match {
 					case 'a' | 'i' | 'o' | 'u' => shift(1, o :+ 'a')
@@ -80,17 +72,17 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 						if (r.length >= 1 && r.head == 'v') shift(2, o ++ Array('a', 'f'))
 						else shift(1, o :+ 'a')
 					case 'h' =>
-						if (l.length >= 1 && (!isVowel(l.last) || (r.length >= 1 && !isVowel(r.head)))) shift(1, o)
+						if (l.length >= 1 && (!Alphabet.isVowel(l.last) || (r.length >= 1 && !Alphabet.isVowel(r.head)))) shift(1, o)
 						else shift(1, o :+ c)
 					case 'k' => if (r.length >= 1 && r.head == 'n') shift(2, o :+ 'n') else shift(1, o :+ 'c')
 					case 'm' => shift(1, o :+ 'n')
-					case 'p' => if (r.length >= 1 && r.head == 'h') shift(2, o :+ 'f') else shift(1, o :+ 'p')
+					case 'p' => if (r.length >= 1 && r.head == 'h') shift(2, o :+ 'f') else shift(1, o :+ c)
 					case 'q' => shift(1, o :+ 'g')
 					case 's' =>
-						if (r.length >= 2 && r.head == 'c' && r(1) == 'h') shift(3, o :+ 's')
+						if (r.length >= 2 && r.head == 'c' && r(1) == 'h') shift(3, o :+ c)
 						else shift(1, o :+ c)
 					case 'w' =>
-						if (l.length >= 1 && isVowel(l.last)) shift(1, o)
+						if (l.length >= 1 && Alphabet.isVowel(l.last)) shift(1, o)
 						else shift(1, o :+ c)
 					case 'z' => shift(1, o :+ 's')
 					case _ => shift(1, o)
@@ -103,27 +95,31 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 
 	private[this] def transcodeLeft(ca: Array[Char]) = {
 		if (ca.length == 0) (Array.empty[Char], ca)
-		else
+		else {
+			lazy val takeRight2 = ca.takeRight(ca.length - 2)
+			lazy val takeRight3 = ca.takeRight(ca.length - 3)
+
 			ca.head match {
-				case 'k' if (ca.length >= 2 && ca(1) == 'n') => (Array('n', 'n'), ca.takeRight(ca.length - 2))
+				case 'k' if (ca.length >= 2 && ca(1) == 'n') => (Array('n', 'n'), takeRight2)
 				case 'k' => (Array('c'), ca.tail)
-				case 'm' if (ca.length >= 3 && (ca(1) == 'a' && ca(2) == 'c')) => (Array('m', 'c'), ca.takeRight(ca.length - 3))
-				case 'p' if (ca.length >= 2 && (ca(1) == 'h' || ca(1) == 'f')) => (Array('f', 'f'), ca.takeRight(ca.length - 2))
-				case 's' if (ca.length >= 3 && (ca(1) == 'c' && ca(2) == 'h')) => (Array('s', 's'), ca.takeRight(ca.length - 3))
+				case 'm' if (ca.length >= 3 && (ca(1) == 'a' && ca(2) == 'c')) => (Array('m', 'c'), takeRight3)
+				case 'p' if (ca.length >= 2 && (ca(1) == 'h' || ca(1) == 'f')) => (Array('f', 'f'), takeRight2)
+				case 's' if (ca.length >= 3 && (ca(1) == 'c' && ca(2) == 'h')) => (Array('s', 's'), takeRight3)
 				case _ => (Array(ca.head), ca.tail)
 			}
+		}
 	}
 
 	private[this] def transcodeRight(ca: Array[Char]) = {
 		if (ca.length >= 2) {
 			val l = ca(ca.length - 1)
 			val lm1 = ca(ca.length - 2)
-			lazy val take = ca.take(ca.length - 2)
+			lazy val take2 = ca.take(ca.length - 2)
 
 			l match {
-				case 'd' if (lm1 == 'n' || lm1 == 'r') => (take, Array('d'))
-				case 'e' if (lm1 == 'e' || lm1 == 'i') => (take, Array('y'))
-				case 't' if (lm1 == 'd' || lm1 == 'n' || lm1 == 'r') => (take, Array('d'))
+				case 'd' if (lm1 == 'n' || lm1 == 'r') => (take2, Array('d'))
+				case 'e' if (lm1 == 'e' || lm1 == 'i') => (take2, Array('y'))
+				case 't' if (lm1 == 'd' || lm1 == 'n' || lm1 == 'r') => (take2, Array('d'))
 				case _ => (ca, Array.empty[Char])
 			}
 		} else (ca, Array.empty[Char])

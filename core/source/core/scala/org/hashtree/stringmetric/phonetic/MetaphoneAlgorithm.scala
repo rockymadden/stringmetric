@@ -35,8 +35,6 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 		else
 			ca.sliding(2).withFilter(a => a(0) == 'c' || a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
 
-	private[this] def isVowel(c: Char) = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
-
 	@tailrec
 	private[this] def transcode(l: Array[Char], c: Char, r: Array[Char], o: Array[Char]): Array[Char] = {
 		if (c == '\0' && r.length == 0) o
@@ -92,7 +90,7 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 						else
 							shift(1, o :+ 'k')
 					case 'h' =>
-						if ((l.length >= 1 && isVowel(l.last) && (r.length == 0 || !isVowel(r.head)))
+						if ((l.length >= 1 && Alphabet.isVowel(l.last) && (r.length == 0 || !Alphabet.isVowel(r.head)))
 							|| (l.length >= 2 && l.last == 'h'
 								&& (l(l.length - 2) == 'c' || l(l.length - 2) == 's' || l(l.length - 2) == 'p'
 									|| l(l.length - 2) == 't' || l(l.length - 2) == 'g'
@@ -122,7 +120,7 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 						else
 							shift(1, o :+ 't')
 					case 'v' => shift(1, o :+ 'f')
-					case 'w' | 'y' => if (r.length == 0 || !isVowel(r.head)) shift(1, o) else shift(1, o :+ c)
+					case 'w' | 'y' => if (r.length == 0 || !Alphabet.isVowel(r.head)) shift(1, o) else shift(1, o :+ c)
 					case 'x' => shift(1, (o :+ 'k') :+ 's')
 					case 'z' => shift(1, o :+ 's')
 					case _ => shift(1, o)
