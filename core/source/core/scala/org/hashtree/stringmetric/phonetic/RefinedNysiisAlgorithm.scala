@@ -59,7 +59,6 @@ object RefinedNysiisAlgorithm extends StringAlgorithm with FilterableStringAlgor
 					ca
 				)
 			}
-
 			val t = {
 				c match {
 					case 'a' | 'i' | 'o' | 'u' =>
