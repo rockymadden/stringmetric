@@ -110,7 +110,7 @@ object RefinedNysiisAlgorithm extends StringAlgorithm with FilterableStringAlgor
 		if (ca.length == 0) ca
 		else
 			ca.head match {
-				case 'm' if (ca.length >= 3 && (ca(1) == 'a' && ca(2) == 'c')) => Array('m', 'c') ++ ca.takeRight(ca.length - 3)
+				case 'm' if (ca.length >= 3 && ca(1) == 'a' && ca(2) == 'c') => Array('m', 'c') ++ ca.takeRight(ca.length - 3)
 				case 'p' if (ca.length >= 2 && ca(1) == 'f') => 'f' +: ca.takeRight(ca.length - 2)
 				case _ => ca
 			}
