@@ -13,11 +13,9 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 
 		if (ca.length == 0) None
 		else {
-			val cal = ca.map(_.toLower)
-
-			if (cal.head < 97 || cal.head > 122) None
+			if (!Alphabet.is(ca.head)) None
 			else {
-				val tr = transcodeRight(cal)
+				val tr = transcodeRight(ca.map(_.toLower))
 				val tl = transcodeLeft(tr._1)
 				val t =
 					if (tl._2.length == 0) tl._1 ++ tr._2

@@ -13,10 +13,9 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 
 		if (ca.length == 0) None
 		else {
-			val th = deduplicate(transcodeHead(ca.map(_.toLower)))
-
-			if (th.head < 97 || th.head > 122) None
+			if (!Alphabet.is(ca.head)) None
 			else {
+				val th = deduplicate(transcodeHead(ca.map(_.toLower)))
 				val t = transcode(Array.empty[Char], th.head, th.tail, Array.empty[Char])
 
 				if (t.length == 0) None else Some(t) // Single Y or W would have 0 length.

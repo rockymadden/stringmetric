@@ -13,10 +13,9 @@ object RefinedNysiisAlgorithm extends StringAlgorithm with FilterableStringAlgor
 
 		if (ca.length == 0) None
 		else {
-			val cal = ca.map(_.toLower)
-
-			if (cal.head < 97 || cal.head > 122) None
+			if (!Alphabet.is(ca.head)) None
 			else {
+				val cal = ca.map(_.toLower)
 				val thl = transcodeLast(transcodeHead(cal.head +: cleanLast(cal.tail, Set('s', 'z'))))
 				val t = transcode(Array.empty[Char], thl.head, thl.tail, Array.empty[Char])
 

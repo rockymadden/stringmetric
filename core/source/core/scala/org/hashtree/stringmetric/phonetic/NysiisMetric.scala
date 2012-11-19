@@ -12,8 +12,15 @@ object NysiisMetric extends StringMetric with FilterableStringMetric {
 
 		val ca1 = stringFilter.filter(charArray1)
 		lazy val ca2 = stringFilter.filter(charArray2)
+		val unequal = (c1: Char, c2: Char) => {
+			val c1l = c1.toLower
+			val c2l = c2.toLower
 
-		if (ca1.length == 0 || ca2.length == 0) None
+			(if (c1l == 'k') 'c' else c1l) != (if (c2l == 'k') 'c' else c2l)
+		}
+
+		if (ca1.length == 0 || !Alphabet.is(ca1.head) || ca2.length == 0 || !Alphabet.is(ca2.head)) None
+		else if (unequal(ca1.head, ca2.head)) Some(false)
 		else {
 			val ny1 = NysiisAlgorithm.compute(ca1)
 			lazy val ny2 = NysiisAlgorithm.compute(ca2)

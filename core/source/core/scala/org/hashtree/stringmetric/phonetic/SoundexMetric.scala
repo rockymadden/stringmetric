@@ -13,7 +13,8 @@ object SoundexMetric extends StringMetric with FilterableStringMetric {
 		val ca1 = stringFilter.filter(charArray1)
 		lazy val ca2 = stringFilter.filter(charArray2)
 
-		if (ca1.length == 0 || ca2.length == 0) None
+		if (ca1.length == 0 || !Alphabet.is(ca1.head) || ca2.length == 0 || !Alphabet.is(ca2.head)) None
+		else if (ca1.head.toLower != ca2.head.toLower) Some(false)
 		else {
 			val se1 = SoundexAlgorithm.compute(ca1)
 			lazy val se2 = SoundexAlgorithm.compute(ca2)

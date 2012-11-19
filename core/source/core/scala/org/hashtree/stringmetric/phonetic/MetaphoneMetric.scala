@@ -13,7 +13,7 @@ object MetaphoneMetric extends StringMetric with FilterableStringMetric {
 		val ca1 = stringFilter.filter(charArray1)
 		lazy val ca2 = stringFilter.filter(charArray2)
 
-		if (ca1.length == 0 || ca2.length == 0) None
+		if (ca1.length == 0 || !Alphabet.is(ca1.head) || ca2.length == 0 || !Alphabet.is(ca2.head)) None
 		else {
 			val mp1 = MetaphoneAlgorithm.compute(ca1)
 			lazy val mp2 = MetaphoneAlgorithm.compute(ca2)

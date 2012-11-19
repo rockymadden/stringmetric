@@ -13,17 +13,12 @@ object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgo
 
 		if (ca.length == 0) None
 		else {
-			val fc = ca.head.toLower
+			if (!Alphabet.is(ca.head)) None
+			else {
+				val fc = ca.head.toLower
 
-			if (fc < 97 || fc > 122) None
-			else
-				Some(
-					transcode(
-						ca,
-						fc, // Pass first letter.
-						Array(fc) // Pass array with first letter.
-					)
-				)
+				Some(transcode(ca, fc, Array(fc)))
+			}
 		}
 	}
 

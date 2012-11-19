@@ -13,17 +13,12 @@ object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 
 		if (ca.length == 0) None
 		else {
-			val fc = ca.head.toLower
+			if (!Alphabet.is(ca.head)) None
+			else {
+				val fc = ca.head.toLower
 
-			if (fc < 97 || fc > 122) None
-			else
-				Some(
-					transcode(
-						ca.tail,
-						fc, // Pass first letter.
-						Array(fc) // Pass array with first letter.
-					).padTo(4, '0')
-				)
+				Some(transcode(ca.tail, fc, Array(fc)).padTo(4, '0'))
+			}
 		}
 	}
 
