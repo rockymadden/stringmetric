@@ -55,69 +55,42 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 					case 'f' | 'j' | 'l' | 'm' | 'n' | 'r' => shift(1, o :+ c)
 					case 'b' => if (l.length >= 1 && l.last == 'm' && r.length == 0) shift(1, o) else shift(1, o :+ 'b')
 					case 'c' =>
-						if (r.length >= 1 && r.head == 'h' && l.length >= 1 && l.last == 's')
-							shift(1, o :+ 'k')
-						else if (r.length >= 2 && r.head == 'i' && r(1) == 'a')
-							shift(3, o :+ 'x')
+						if (r.length >= 1 && r.head == 'h' && l.length >= 1 && l.last == 's') shift(1, o :+ 'k')
+						else if (r.length >= 2 && r.head == 'i' && r(1) == 'a') shift(3, o :+ 'x')
 						else if ((r.length >= 1 && r.head == 'h')
-							|| (l.length >= 1 && r.length >= 1 && l.last == 's' && r.head == 'h')
-						)
-							shift(2, o :+ 'x')
+							|| (l.length >= 1 && r.length >= 1 && l.last == 's' && r.head == 'h')) shift(2, o :+ 'x')
 						else if (l.length >= 1 && r.length >= 1 && l.last == 's'
-							&& (r.head == 'i' || r.head == 'e' || r.head == 'y')
-						)
-							shift(1, o)
-						else if (r.length >= 1 && (r.head == 'i' || r.head == 'e' || r.head == 'y'))
-							shift(1, o :+ 's')
-						else
-							shift(1, o :+ 'k')
+							&& (r.head == 'i' || r.head == 'e' || r.head == 'y')) shift(1, o)
+						else if (r.length >= 1 && (r.head == 'i' || r.head == 'e' || r.head == 'y')) shift(1, o :+ 's')
+						else shift(1, o :+ 'k')
 					case 'd' =>
 						if (r.length >= 2 && r.head == 'g'
-							&& (r(1) == 'e' || r(1) == 'y' || r(1) == 'i')
-						)
-							shift(1, o :+ 'j')
-						else
-							shift(1, o :+ 't')
+							&& (r(1) == 'e' || r(1) == 'y' || r(1) == 'i')) shift(1, o :+ 'j')
+						else shift(1, o :+ 't')
 					case 'g' =>
 						if ((r.length > 1 && r.head == 'h')
 							|| (r.length == 1 && r.head == 'n')
-							|| (r.length == 3 && r.head == 'n' && r(1) == 'e' && r(2) == 'd')
-						)
-							shift(1, o)
-						else if (r.length >= 1 && (r.head == 'i' || r.head == 'e' || r.head == 'y'))
-							shift(2, o :+ 'j')
-						else
-							shift(1, o :+ 'k')
+							|| (r.length == 3 && r.head == 'n' && r(1) == 'e' && r(2) == 'd')) shift(1, o)
+						else if (r.length >= 1 && (r.head == 'i' || r.head == 'e' || r.head == 'y')) shift(2, o :+ 'j')
+						else shift(1, o :+ 'k')
 					case 'h' =>
 						if ((l.length >= 1 && Alphabet.isVowel(l.last) && (r.length == 0 || !Alphabet.isVowel(r.head)))
 							|| (l.length >= 2 && l.last == 'h'
 								&& (l(l.length - 2) == 'c' || l(l.length - 2) == 's' || l(l.length - 2) == 'p'
-									|| l(l.length - 2) == 't' || l(l.length - 2) == 'g'
-								)
-							)
-						)
-							shift(1, o)
-						else
-							shift(1, o :+ 'h')
+									|| l(l.length - 2) == 't' || l(l.length - 2) == 'g'))) shift(1, o)
+						else shift(1, o :+ 'h')
 					case 'k' => if (l.length >= 1 && l.last == 'c') shift(1, o) else shift(1, o :+ 'k')
 					case 'p' => if (r.length >= 1 && r.head == 'h') shift(2, o :+ 'f') else shift(1, o :+ 'p')
 					case 'q' => shift(1, o :+ 'k')
 					case 's' =>
-						if (r.length >= 2 && r.head == 'i' && (r(1) == 'o' || r(1) == 'a'))
-							shift(3, o :+ 'x')
-						else if (r.length >= 1 && r.head == 'h')
-							shift(2, o :+ 'x')
-						else
-							shift(1, o :+ 's')
+						if (r.length >= 2 && r.head == 'i' && (r(1) == 'o' || r(1) == 'a')) shift(3, o :+ 'x')
+						else if (r.length >= 1 && r.head == 'h') shift(2, o :+ 'x')
+						else shift(1, o :+ 's')
 					case 't' =>
-						if (r.length >= 2 && r.head == 'i' && (r(1) == 'a' || r(1) == 'o'))
-							shift(3, o :+ 'x')
-						else if (r.length >= 1 && r.head == 'h')
-							shift(2, o :+ '0')
-						else if (r.length >= 2 && r.head == 'c' && r(1) == 'h')
-							shift(1, o)
-						else
-							shift(1, o :+ 't')
+						if (r.length >= 2 && r.head == 'i' && (r(1) == 'a' || r(1) == 'o')) shift(3, o :+ 'x')
+						else if (r.length >= 1 && r.head == 'h') shift(2, o :+ '0')
+						else if (r.length >= 2 && r.head == 'c' && r(1) == 'h') shift(1, o)
+						else shift(1, o :+ 't')
 					case 'v' => shift(1, o :+ 'f')
 					case 'w' | 'y' => if (r.length == 0 || !Alphabet.isVowel(r.head)) shift(1, o) else shift(1, o :+ c)
 					case 'x' => shift(1, (o :+ 'k') :+ 's')

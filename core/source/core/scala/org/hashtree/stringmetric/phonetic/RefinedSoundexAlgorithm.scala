@@ -63,17 +63,15 @@ object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgo
 			}
 			val a =
 				// Code twice.
-				if (o.length == 1)
-					m2(c)
+				if (o.length == 1) m2(c)
 				// Code once.
-				else
-					m1(
-						c,
-						o.last match {
-							case '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' => o.last
-							case _ => m2(o.last)
-						}
-					)
+				else m1(
+					c,
+					o.last match {
+						case '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' => o.last
+						case _ => m2(o.last)
+					}
+				)
 
 			transcode(i.tail, c, if (a != '\0') o :+ a else o)
 		}

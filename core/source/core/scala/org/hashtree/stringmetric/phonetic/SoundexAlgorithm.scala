@@ -57,19 +57,17 @@ object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 				// Code twice.
 				case 'a' | 'e' | 'i' | 'o' | 'u' | 'y' => m2(c)
 				// Code once.
-				case _ =>
-					m1(
-						c,
-						o.last match {
-							case '1' | '2' | '3' | '4' | '5' | '6' => o.last
-							case _ => m2(o.last)
-						}
-					)
+				case _ => m1(
+					c,
+					o.last match {
+						case '1' | '2' | '3' | '4' | '5' | '6' => o.last
+						case _ => m2(o.last)
+					}
+				)
 			}
 
 			if (o.length == 3 && a != '\0') o :+ a
-			else
-				transcode(i.tail, c, if (a != '\0') o :+ a else o)
+			else transcode(i.tail, c, if (a != '\0') o :+ a else o)
 		}
 	}
 }
