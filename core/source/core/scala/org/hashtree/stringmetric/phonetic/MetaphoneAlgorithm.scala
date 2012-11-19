@@ -104,17 +104,18 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 	}
 
 	private[this] def transcodeHead(ca: Array[Char]) = {
-		val h = ca.take(2).padTo(2, '\0')
-
-		if ((h.head == 'a' && h.last == 'e')
-			|| (h.last == 'n' && (h.head == 'g' || h.head == 'k' || h.head == 'p'))
-			|| (h.head == 'w' && h.last == 'r')
-		)
-			ca.tail
-		else if (h.head == 'w' && h.last == 'h')
-			'w' +: ca.drop(2)
-		else if (h.head == 'x')
-			's' +: ca.tail
-		else ca
+		if (ca.length == 0) ca
+		else if (ca.length == 1) if (ca.head == 'x') Array('s') else ca
+		else
+			ca.head match {
+				case 'a' if (ca(1) == 'e') => ca.tail
+				case 'g' if (ca(1) == 'n') => ca.tail
+				case 'k' if (ca(1) == 'n') => ca.tail
+				case 'p' if (ca(1) == 'n') => ca.tail
+				case 'w' if (ca(1) == 'r') => ca.tail
+				case 'w' if (ca(1) == 'h') => 'w' +: ca.drop(2)
+				case 'x' => 's' +: ca.tail
+				case _ => ca
+			}
 	}
 }
