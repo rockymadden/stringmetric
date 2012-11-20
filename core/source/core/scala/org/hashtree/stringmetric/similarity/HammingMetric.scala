@@ -30,7 +30,6 @@ object HammingMetric extends StringMetric with FilterableStringMetric {
 		require(ct._1.length == ct._2.length)
 
 		if (ct._1.length == 0) 0
-		else
-			ct._1.zip(ct._2).count(t => t._1 != t._2)
+		else ct._1.zip(ct._2).count(t => t._1 != t._2)
 	}
 }

@@ -16,8 +16,7 @@ object NGramAlgorithm extends StringAlgorithm with FilterableConfigurableStringA
 		val ca = stringFilter.filter(charArray)
 
 		if (ca.length < n) None
-		else
-			Some(sequence(ca, Array.empty[Array[Char]], n))
+		else Some(sequence(ca, Array.empty[Array[Char]], n))
 	}
 
 	override def compute(string: String)(n: Int)
@@ -33,7 +32,6 @@ object NGramAlgorithm extends StringAlgorithm with FilterableConfigurableStringA
 		require(n > 0)
 
 		if (i.length <= n) o :+ i
-		else
-			sequence(i.tail, o :+ i.take(n), n)
+		else sequence(i.tail, o :+ i.take(n), n)
 	}
 }

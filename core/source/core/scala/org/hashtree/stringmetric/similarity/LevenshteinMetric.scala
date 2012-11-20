@@ -37,16 +37,14 @@ object LevenshteinMetric extends StringMetric with FilterableStringMetric {
 				case (r, c) if m(r)(c) != -1 => m(r)(c)
 				case (r, c) => {
 					val min = {
-						if (ct._1(r - 1) == ct._2(c - 1))
-							distance(r - 1, c - 1)
-						else
+						if (ct._1(r - 1) == ct._2(c - 1)) distance(r - 1, c - 1)
+						else math.min(
 							math.min(
-								math.min(
-									distance(r - 1, c) + 1, // Delete (left).
-									distance(r, c - 1) + 1 // Insert (up).
-								),
-								distance(r - 1, c - 1) + 1 // Substitute (left-up).
-							)
+								distance(r - 1, c) + 1, // Delete (left).
+								distance(r, c - 1) + 1 // Insert (up).
+							),
+							distance(r - 1, c - 1) + 1 // Substitute (left-up).
+						)
 					}
 
 					m(r)(c) = min
