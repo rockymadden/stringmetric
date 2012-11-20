@@ -19,14 +19,12 @@ object NGramMetric extends StringMetric with FilterableConfigurableStringMetric[
 		if (ca1.length < n || ca2.length < n) None // Because length is less than n, it is not possible to compare.
 		else if (ca1.sameElements(ca2)) Some(1d)
 		else {
-			val ca1bg = NGramAlgorithm.compute(ca1)(n)
-			lazy val ca2bg = NGramAlgorithm.compute(ca2)(n)
+			NGramAlgorithm.compute(ca1)(n).flatMap { ca1bg =>
+				NGramAlgorithm.compute(ca2)(n).map { ca2bg =>
+					val ms = scoreMatches((ca1bg.map(_.mkString), ca2bg.map(_.mkString)))
 
-			if (!ca1bg.isDefined || !ca2bg.isDefined) None
-			else {
-				val ms = scoreMatches((ca1bg.get.map(_.mkString), ca2bg.get.map(_.mkString)))
-
-				Some(ms.toDouble / math.max(ca1bg.get.length, ca2bg.get.length))
+					ms.toDouble / math.max(ca1bg.length, ca2bg.length)
+				}
 			}
 		}
 	}

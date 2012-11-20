@@ -15,13 +15,9 @@ object SoundexMetric extends StringMetric with FilterableStringMetric {
 
 		if (ca1.length == 0 || !Alphabet.is(ca1.head) || ca2.length == 0 || !Alphabet.is(ca2.head)) None
 		else if (ca1.head.toLower != ca2.head.toLower) Some(false)
-		else {
-			val se1 = SoundexAlgorithm.compute(ca1)
-			lazy val se2 = SoundexAlgorithm.compute(ca2)
-
-			if (!se1.isDefined || se1.get.length == 0 || !se2.isDefined || se2.get.length == 0) None
-			else Some(se1.get.sameElements(se2.get))
-		}
+		else SoundexAlgorithm.compute(ca1).filter(_.length > 0).flatMap(se1 =>
+			SoundexAlgorithm.compute(ca2).filter(_.length > 0).map(se1.sameElements(_))
+		)
 	}
 
 	override def compare(string1: String, string2: String)

@@ -6,9 +6,7 @@ import org.hashtree.stringmetric.StringFilter
 trait AsciiNumberStringFilter extends StringFilter {
 	abstract override def filter(charArray: Array[Char]): Array[Char] =
 		super.filter(
-			charArray.filter { c =>
-				!(c >= 48 && c <= 57)
-			}
+			charArray.filter(c => !(c >= 48 && c <= 57))
 		)
 
 	abstract override def filter(string: String): String = filter(string.toCharArray).mkString

@@ -21,13 +21,9 @@ object RefinedNysiisMetric extends StringMetric with FilterableStringMetric {
 
 		if (ca1.length == 0 || !Alphabet.is(ca1.head) || ca2.length == 0 || !Alphabet.is(ca2.head)) None
 		else if (unequal(ca1.head, ca2.head)) Some(false)
-		else {
-			val rny1 = RefinedNysiisAlgorithm.compute(ca1)
-			lazy val rny2 = RefinedNysiisAlgorithm.compute(ca2)
-
-			if (!rny1.isDefined || rny1.get.length == 0 || !rny2.isDefined || rny2.get.length == 0) None
-			else Some(rny1.get.sameElements(rny2.get))
-		}
+		else RefinedNysiisAlgorithm.compute(ca1).filter(_.length > 0).flatMap(rny1 =>
+			RefinedNysiisAlgorithm.compute(ca2).filter(_.length > 0).map(rny1.sameElements(_))
+		)
 	}
 
 	override def compare(string1: String, string2: String)
