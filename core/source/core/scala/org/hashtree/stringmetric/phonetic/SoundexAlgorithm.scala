@@ -23,10 +23,7 @@ object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 	}
 
 	override def compute(string: String)(implicit stringFilter: StringFilter): Option[ComputeReturn] =
-		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate) match {
-			case Some(se) => Some(se.mkString)
-			case None => None
-		}
+		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate).map(_.mkString)
 
 	@tailrec
 	private[this] def transcode(i: Array[Char], p: Char, o: Array[Char]): Array[Char] = {

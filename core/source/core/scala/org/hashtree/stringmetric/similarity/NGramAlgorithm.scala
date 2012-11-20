@@ -22,10 +22,7 @@ object NGramAlgorithm extends StringAlgorithm with FilterableConfigurableStringA
 	override def compute(string: String)(n: Int)
 		(implicit stringFilter: StringFilter): Option[ComputeReturn] =
 
-		compute(stringFilter.filter(string.toCharArray))(n)(new StringFilterDelegate) match {
-			case Some(mp) => Some(mp.map(_.mkString))
-			case None => None
-		}
+		compute(stringFilter.filter(string.toCharArray))(n)(new StringFilterDelegate).map(_.map(_.mkString))
 
 	@tailrec
 	private[this] def sequence(i: Array[Char], o: Array[Array[Char]], n: Int): Array[Array[Char]] = {

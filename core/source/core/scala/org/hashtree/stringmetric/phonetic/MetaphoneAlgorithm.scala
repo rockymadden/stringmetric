@@ -24,10 +24,7 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 	}
 
 	override def compute(string: String)(implicit stringFilter: StringFilter): Option[ComputeReturn] =
-		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate) match {
-			case Some(mp) => Some(mp.mkString)
-			case None => None
-		}
+		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate).map(_.mkString)
 
 	private[this] def deduplicate(ca: Array[Char]) =
 		if (ca.length <= 1) ca

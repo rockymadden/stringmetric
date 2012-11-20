@@ -26,10 +26,7 @@ object RefinedNysiisAlgorithm extends StringAlgorithm with FilterableStringAlgor
 	}
 
 	override def compute(string: String)(implicit stringFilter: StringFilter): Option[ComputeReturn] =
-		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate) match {
-			case Some(ny) => Some(ny.mkString)
-			case None => None
-		}
+		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate).map(_.mkString)
 
 	private[this] def cleanLast(ca: Array[Char], s: Set[Char]) =
 		if (ca.length == 0) ca
