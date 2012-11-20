@@ -11,15 +11,12 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
 		val ca = stringFilter.filter(charArray)
 
-		if (ca.length == 0) None
+		if (ca.length == 0 || !Alphabet.is(ca.head)) None
 		else {
-			if (!Alphabet.is(ca.head)) None
-			else {
-				val th = deduplicate(transcodeHead(ca.map(_.toLower)))
-				val t = transcode(Array.empty[Char], th.head, th.tail, Array.empty[Char])
+			val th = deduplicate(transcodeHead(ca.map(_.toLower)))
+			val t = transcode(Array.empty[Char], th.head, th.tail, Array.empty[Char])
 
-				if (t.length == 0) None else Some(t) // Single Y or W would have 0 length.
-			}
+			if (t.length == 0) None else Some(t) // Single Y or W would have 0 length.
 		}
 	}
 
@@ -28,8 +25,7 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 
 	private[this] def deduplicate(ca: Array[Char]) =
 		if (ca.length <= 1) ca
-		else
-			ca.sliding(2).withFilter(a => a(0) == 'c' || a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
+		else ca.sliding(2).withFilter(a => a(0) == 'c' || a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
 
 	@tailrec
 	private[this] def transcode(l: Array[Char], c: Char, r: Array[Char], o: Array[Char]): Array[Char] = {

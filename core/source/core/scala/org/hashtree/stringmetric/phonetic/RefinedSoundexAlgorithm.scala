@@ -11,14 +11,11 @@ object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgo
 	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
 		val ca = stringFilter.filter(charArray)
 
-		if (ca.length == 0) None
+		if (ca.length == 0 || !Alphabet.is(ca.head)) None
 		else {
-			if (!Alphabet.is(ca.head)) None
-			else {
-				val fc = ca.head.toLower
+			val fc = ca.head.toLower
 
-				Some(transcode(ca, fc, Array(fc)))
-			}
+			Some(transcode(ca, fc, Array(fc)))
 		}
 	}
 

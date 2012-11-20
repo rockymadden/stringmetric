@@ -11,14 +11,11 @@ object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
 		val ca = stringFilter.filter(charArray)
 
-		if (ca.length == 0) None
+		if (ca.length == 0 || !Alphabet.is(ca.head)) None
 		else {
-			if (!Alphabet.is(ca.head)) None
-			else {
-				val fc = ca.head.toLower
+			val fc = ca.head.toLower
 
-				Some(transcode(ca.tail, fc, Array(fc)).padTo(4, '0'))
-			}
+			Some(transcode(ca.tail, fc, Array(fc)).padTo(4, '0'))
 		}
 	}
 

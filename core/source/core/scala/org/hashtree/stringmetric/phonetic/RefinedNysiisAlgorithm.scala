@@ -11,17 +11,14 @@ object RefinedNysiisAlgorithm extends StringAlgorithm with FilterableStringAlgor
 	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
 		val ca = stringFilter.filter(charArray)
 
-		if (ca.length == 0) None
+		if (ca.length == 0 || !Alphabet.is(ca.head)) None
 		else {
-			if (!Alphabet.is(ca.head)) None
-			else {
-				val cal = ca.map(_.toLower)
-				val thl = transcodeLast(transcodeHead(cal.head +: cleanLast(cal.tail, Set('s', 'z'))))
-				val t = transcode(Array.empty[Char], thl.head, thl.tail, Array.empty[Char])
+			val cal = ca.map(_.toLower)
+			val thl = transcodeLast(transcodeHead(cal.head +: cleanLast(cal.tail, Set('s', 'z'))))
+			val t = transcode(Array.empty[Char], thl.head, thl.tail, Array.empty[Char])
 
-				if (t.length == 1) Some(t)
-				else Some(deduplicate(t.head +: cleanTerminal(cleanLast(t.tail, Set('a')))))
-			}
+			if (t.length == 1) Some(t)
+			else Some(deduplicate(t.head +: cleanTerminal(cleanLast(t.tail, Set('a')))))
 		}
 	}
 
