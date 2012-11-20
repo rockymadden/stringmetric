@@ -2,7 +2,7 @@ package org.hashtree.stringmetric.phonetic
 
 import org.hashtree.stringmetric.{ FilterableStringAlgorithm, StringAlgorithm, StringFilter }
 import org.hashtree.stringmetric.filter.StringFilterDelegate
-import scala.annotation.tailrec
+import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the Metaphone [[org.hashtree.stringmetric.StringAlgorithm]]. */
 object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
@@ -97,18 +97,20 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 	}
 
 	private[this] def transcodeHead(ca: Array[Char]) = {
-		if (ca.length == 0) ca
-		else if (ca.length == 1) if (ca.head == 'x') Array('s') else ca
-		else
-			ca.head match {
-				case 'a' if (ca(1) == 'e') => ca.tail
-				case 'g' if (ca(1) == 'n') => ca.tail
-				case 'k' if (ca(1) == 'n') => ca.tail
-				case 'p' if (ca(1) == 'n') => ca.tail
-				case 'w' if (ca(1) == 'r') => ca.tail
-				case 'w' if (ca(1) == 'h') => 'w' +: ca.drop(2)
-				case 'x' => 's' +: ca.tail
-				case _ => ca
-			}
+		(ca.length: @switch) match {
+			case 0 => ca
+			case 1 => if (ca.head == 'x') Array('s') else ca
+			case _ =>
+				ca.head match {
+					case 'a' if (ca(1) == 'e') => ca.tail
+					case 'g' if (ca(1) == 'n') => ca.tail
+					case 'k' if (ca(1) == 'n') => ca.tail
+					case 'p' if (ca(1) == 'n') => ca.tail
+					case 'w' if (ca(1) == 'r') => ca.tail
+					case 'w' if (ca(1) == 'h') => 'w' +: ca.drop(2)
+					case 'x' => 's' +: ca.tail
+					case _ => ca
+				}
+		}
 	}
 }
