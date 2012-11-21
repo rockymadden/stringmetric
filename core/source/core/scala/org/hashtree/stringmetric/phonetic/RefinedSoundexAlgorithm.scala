@@ -20,8 +20,6 @@ object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgo
 
 	@tailrec
 	private[this] def transcode(i: Array[Char], o: Array[Char]): Array[Char] = {
-		require(o.length > 0)
-
 		if (i.length == 0) o
 		else {
 			val c = i.head.toLower

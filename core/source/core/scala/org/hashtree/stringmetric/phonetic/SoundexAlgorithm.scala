@@ -24,8 +24,6 @@ object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 
 	@tailrec
 	private[this] def transcode(i: Array[Char], p: Char, o: Array[Char]): Array[Char] = {
-		require(o.length > 0)
-
 		if (i.length == 0) o
 		else {
 			val c = i.head.toLower
