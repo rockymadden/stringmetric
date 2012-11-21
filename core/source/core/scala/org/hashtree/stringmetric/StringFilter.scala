@@ -9,6 +9,8 @@ trait StringFilter extends Filter[String] {
 
 /** Convenience object for those extending [[org.hashtree.stringmetric.StringFilter]]. */
 object StringFilter {
+	implicit val stringFilter = delegate
+
 	def asciiControl = new StringFilterDelegate with AsciiControlStringFilter
 
 	def asciiControlOnly = new StringFilterDelegate with AsciiControlOnlyStringFilter

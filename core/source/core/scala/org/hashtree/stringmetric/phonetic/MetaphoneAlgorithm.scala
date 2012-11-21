@@ -1,7 +1,6 @@
 package org.hashtree.stringmetric.phonetic
 
 import org.hashtree.stringmetric.{ FilterableStringAlgorithm, StringAlgorithm, StringFilter }
-import org.hashtree.stringmetric.filter.StringFilterDelegate
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the Metaphone [[org.hashtree.stringmetric.StringAlgorithm]]. */
@@ -21,7 +20,7 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 	}
 
 	override def compute(string: String)(implicit stringFilter: StringFilter): Option[ComputeReturn] =
-		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate).map(_.mkString)
+		compute(stringFilter.filter(string.toCharArray)).map(_.mkString)
 
 	private[this] def deduplicate(ca: Array[Char]) =
 		if (ca.length <= 1) ca

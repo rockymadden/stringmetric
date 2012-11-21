@@ -1,7 +1,6 @@
 package org.hashtree.stringmetric.similarity
 
 import org.hashtree.stringmetric.{ CompareTuple, FilterableStringMetric, MatchTuple, StringFilter, StringMetric }
-import org.hashtree.stringmetric.filter.StringFilterDelegate
 import scala.collection.mutable.{ ArrayBuffer, HashSet }
 
 /**
@@ -39,7 +38,7 @@ object JaroMetric extends StringMetric with FilterableStringMetric {
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
-		)(new StringFilterDelegate)
+		)
 
 	private[this] def `match`(ct: CompareTuple[Char]): MatchTuple[Char] = {
 		lazy val window = math.abs((math.max(ct._1.length, ct._2.length) / 2d).floor.toInt - 1)

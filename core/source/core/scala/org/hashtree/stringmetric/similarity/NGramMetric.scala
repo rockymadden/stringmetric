@@ -1,7 +1,6 @@
 package org.hashtree.stringmetric.similarity
 
 import org.hashtree.stringmetric.{ FilterableConfigurableStringMetric, MatchTuple, StringFilter, StringMetric }
-import org.hashtree.stringmetric.filter.StringFilterDelegate
 import scala.math
 
 /** An implementation of the N-Gram [[org.hashtree.stringmetric.StringMetric]]. */
@@ -34,7 +33,7 @@ object NGramMetric extends StringMetric with FilterableConfigurableStringMetric[
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
-		)(n)(new StringFilterDelegate)
+		)(n)
 
 	private[this] def scoreMatches(mt: MatchTuple[String]) = mt._1.intersect(mt._2).length
 }

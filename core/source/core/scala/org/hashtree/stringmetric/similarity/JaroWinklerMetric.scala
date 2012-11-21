@@ -1,7 +1,6 @@
 package org.hashtree.stringmetric.similarity
 
 import org.hashtree.stringmetric.{ FilterableStringMetric, StringFilter, StringMetric }
-import org.hashtree.stringmetric.filter.StringFilterDelegate
 
 /**
  * An implementation of the Jaro-Winkler [[org.hashtree.stringmetric.StringMetric]]. One differing detail in this
@@ -17,7 +16,7 @@ object JaroWinklerMetric extends StringMetric with FilterableStringMetric {
 		val fca1 = stringFilter.filter(charArray1)
 		val fca2 = stringFilter.filter(charArray2)
 
-		JaroMetric.compare(fca1, fca2)(new StringFilterDelegate) match {
+		JaroMetric.compare(fca1, fca2) match {
 			case Some(0d) => Some(0d)
 			case Some(1d) => Some(1d)
 			case Some(jaro) => {
@@ -35,5 +34,5 @@ object JaroWinklerMetric extends StringMetric with FilterableStringMetric {
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
-		)(new StringFilterDelegate)
+		)
 }

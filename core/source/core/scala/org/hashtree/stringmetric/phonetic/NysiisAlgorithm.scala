@@ -1,7 +1,6 @@
 package org.hashtree.stringmetric.phonetic
 
 import org.hashtree.stringmetric.{ FilterableStringAlgorithm, StringAlgorithm, StringFilter }
-import org.hashtree.stringmetric.filter.StringFilterDelegate
 import scala.annotation.tailrec
 
 /** An implementation of the NYSIIS [[org.hashtree.stringmetric.StringAlgorithm]]. */
@@ -26,7 +25,7 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 	}
 
 	override def compute(string: String)(implicit stringFilter: StringFilter): Option[ComputeReturn] =
-		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate).map(_.mkString)
+		compute(stringFilter.filter(string.toCharArray)).map(_.mkString)
 
 	private[this] def cleanLast(ca: Array[Char]) =
 		if (ca.length == 0) ca

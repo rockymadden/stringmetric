@@ -1,7 +1,6 @@
 package org.hashtree.stringmetric.phonetic
 
 import org.hashtree.stringmetric.{ FilterableStringMetric, StringFilter, StringMetric }
-import org.hashtree.stringmetric.filter.StringFilterDelegate
 
 /** An implementation of the Metaphone [[org.hashtree.stringmetric.StringMetric]]. */
 object MetaphoneMetric extends StringMetric with FilterableStringMetric {
@@ -25,5 +24,5 @@ object MetaphoneMetric extends StringMetric with FilterableStringMetric {
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
-		)(new StringFilterDelegate)
+		)
 }

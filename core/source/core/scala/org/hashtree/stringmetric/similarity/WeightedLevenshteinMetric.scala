@@ -1,7 +1,6 @@
 package org.hashtree.stringmetric.similarity
 
 import org.hashtree.stringmetric.{ CompareTuple, FilterableConfigurableStringMetric, StringFilter, StringMetric }
-import org.hashtree.stringmetric.filter.StringFilterDelegate
 import scala.math.BigDecimal
 
 /** An implementation of a weighted Levenshtein [[org.hashtree.stringmetric.StringMetric]]. */
@@ -35,7 +34,7 @@ object WeightedLevenshteinMetric
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
-		)(options)(new StringFilterDelegate)
+		)(options)
 
 	private[this] def weightedLevenshtein(ct: CompareTuple[Char], w: Options) = {
 		val m = Array.ofDim[BigDecimal](ct._1.length + 1, ct._2.length + 1)

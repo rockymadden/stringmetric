@@ -1,7 +1,6 @@
 package org.hashtree.stringmetric.similarity
 
 import org.hashtree.stringmetric.{ CompareTuple, FilterableStringMetric, StringFilter, StringMetric }
-import org.hashtree.stringmetric.filter.StringFilterDelegate
 
 /** An implementation of the Levenshtein [[org.hashtree.stringmetric.StringMetric]]. */
 object LevenshteinMetric extends StringMetric with FilterableStringMetric {
@@ -25,7 +24,7 @@ object LevenshteinMetric extends StringMetric with FilterableStringMetric {
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
-		)(new StringFilterDelegate)
+		)
 
 	private[this] def levenshtein(ct: CompareTuple[Char]) = {
 		val m = Array.fill[Int](ct._1.length + 1, ct._2.length + 1)(-1)

@@ -1,7 +1,6 @@
 package org.hashtree.stringmetric.similarity
 
 import org.hashtree.stringmetric.{ FilterableConfigurableStringMetric, MatchTuple, StringFilter, StringMetric }
-import org.hashtree.stringmetric.filter.StringFilterDelegate
 
 /**
  * An implementation of the Dice, and lesser known Sorensen, [[org.hashtree.stringmetric.StringMetric]]. This
@@ -36,7 +35,7 @@ object DiceSorensenMetric extends StringMetric with FilterableConfigurableString
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
-		)(n: Int)(new StringFilterDelegate)
+		)(n: Int)
 
 	private[this] def scoreMatches(mt: MatchTuple[String]) = mt._1.intersect(mt._2).length
 }

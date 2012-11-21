@@ -1,7 +1,6 @@
 package org.hashtree.stringmetric.similarity
 
 import org.hashtree.stringmetric.{ CompareTuple, FilterableStringMetric, StringFilter, StringMetric }
-import org.hashtree.stringmetric.filter.StringFilterDelegate
 
 /** An implementation of the Hamming [[org.hashtree.stringmetric.StringMetric]]. */
 object HammingMetric extends StringMetric with FilterableStringMetric {
@@ -24,7 +23,7 @@ object HammingMetric extends StringMetric with FilterableStringMetric {
 		compare(
 			stringFilter.filter(string1.toCharArray),
 			stringFilter.filter(string2.toCharArray)
-		)(new StringFilterDelegate)
+		)
 
 	private[this] def hamming(ct: CompareTuple[Char]) = {
 		require(ct._1.length == ct._2.length)

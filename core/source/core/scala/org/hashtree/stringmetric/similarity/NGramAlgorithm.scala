@@ -1,7 +1,6 @@
 package org.hashtree.stringmetric.similarity
 
 import org.hashtree.stringmetric.{ FilterableConfigurableStringAlgorithm, StringAlgorithm, StringFilter }
-import org.hashtree.stringmetric.filter.StringFilterDelegate
 import scala.annotation.tailrec
 
 /** An implementation of the N-Gram [[org.hashtree.stringmetric.StringAlgorithm]]. */
@@ -22,7 +21,7 @@ object NGramAlgorithm extends StringAlgorithm with FilterableConfigurableStringA
 	override def compute(string: String)(n: Int)
 		(implicit stringFilter: StringFilter): Option[ComputeReturn] =
 
-		compute(stringFilter.filter(string.toCharArray))(n)(new StringFilterDelegate).map(_.map(_.mkString))
+		compute(stringFilter.filter(string.toCharArray))(n).map(_.map(_.mkString))
 
 	@tailrec
 	private[this] def sequence(i: Array[Char], o: Array[Array[Char]], n: Int): Array[Array[Char]] = {

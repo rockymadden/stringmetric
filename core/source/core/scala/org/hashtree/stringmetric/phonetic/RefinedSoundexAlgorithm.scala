@@ -1,7 +1,6 @@
 package org.hashtree.stringmetric.phonetic
 
 import org.hashtree.stringmetric.{ FilterableStringAlgorithm, StringAlgorithm, StringFilter }
-import org.hashtree.stringmetric.filter.StringFilterDelegate
 import scala.annotation.tailrec
 
 /** An implementation of the refined Soundex [[org.hashtree.stringmetric.StringAlgorithm]]. */
@@ -16,7 +15,7 @@ object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgo
 	}
 
 	override def compute(string: String)(implicit stringFilter: StringFilter): Option[ComputeReturn] =
-		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate).map(_.mkString)
+		compute(stringFilter.filter(string.toCharArray)).map(_.mkString)
 
 	@tailrec
 	private[this] def transcode(i: Array[Char], o: Array[Char]): Array[Char] = {
