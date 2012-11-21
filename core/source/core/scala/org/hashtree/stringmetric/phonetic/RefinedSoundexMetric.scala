@@ -10,13 +10,13 @@ object RefinedSoundexMetric extends StringMetric with FilterableStringMetric {
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])
 		(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 
-		val ca1 = stringFilter.filter(charArray1)
-		lazy val ca2 = stringFilter.filter(charArray2)
+		val fca1 = stringFilter.filter(charArray1)
+		lazy val fca2 = stringFilter.filter(charArray2)
 
-		if (ca1.length == 0 || !Alphabet.is(ca1.head) || ca2.length == 0 || !Alphabet.is(ca2.head)) None
-		else if (ca1.head.toLower != ca2.head.toLower) Some(false)
-		else RefinedSoundexAlgorithm.compute(ca1).filter(_.length > 0).flatMap(rse1 =>
-			RefinedSoundexAlgorithm.compute(ca2).filter(_.length > 0).map(rse1.sameElements(_))
+		if (fca1.length == 0 || !Alphabet.is(fca1.head) || fca2.length == 0 || !Alphabet.is(fca2.head)) None
+		else if (fca1.head.toLower != fca2.head.toLower) Some(false)
+		else RefinedSoundexAlgorithm.compute(fca1).filter(_.length > 0).flatMap(rse1 =>
+			RefinedSoundexAlgorithm.compute(fca2).filter(_.length > 0).map(rse1.sameElements(_))
 		)
 	}
 

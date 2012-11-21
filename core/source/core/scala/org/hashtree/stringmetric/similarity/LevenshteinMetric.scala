@@ -10,13 +10,13 @@ object LevenshteinMetric extends StringMetric with FilterableStringMetric {
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])
 		(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 
-		val ca1 = stringFilter.filter(charArray1)
-		val ca2 = stringFilter.filter(charArray2)
+		val fca1 = stringFilter.filter(charArray1)
+		val fca2 = stringFilter.filter(charArray2)
 
-		if (ca1.length == 0 && ca2.length == 0) None
-		else if (ca1.length == 0) Some(ca2.length)
-		else if (ca2.length == 0) Some(ca1.length)
-		else Some(levenshtein(ca1, ca2))
+		if (fca1.length == 0 && fca2.length == 0) None
+		else if (fca1.length == 0) Some(fca2.length)
+		else if (fca2.length == 0) Some(fca1.length)
+		else Some(levenshtein(fca1, fca2))
 	}
 
 	override def compare(string1: String, string2: String)

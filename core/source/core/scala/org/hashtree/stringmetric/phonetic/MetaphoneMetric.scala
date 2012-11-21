@@ -10,12 +10,12 @@ object MetaphoneMetric extends StringMetric with FilterableStringMetric {
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])
 		(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 
-		val ca1 = stringFilter.filter(charArray1)
-		lazy val ca2 = stringFilter.filter(charArray2)
+		val fca1 = stringFilter.filter(charArray1)
+		lazy val fca2 = stringFilter.filter(charArray2)
 
-		if (ca1.length == 0 || !Alphabet.is(ca1.head) || ca2.length == 0 || !Alphabet.is(ca2.head)) None
-		else MetaphoneAlgorithm.compute(ca1).filter(_.length > 0).flatMap(mp1 =>
-			MetaphoneAlgorithm.compute(ca2).filter(_.length > 0).map(mp1.sameElements(_))
+		if (fca1.length == 0 || !Alphabet.is(fca1.head) || fca2.length == 0 || !Alphabet.is(fca2.head)) None
+		else MetaphoneAlgorithm.compute(fca1).filter(_.length > 0).flatMap(mp1 =>
+			MetaphoneAlgorithm.compute(fca2).filter(_.length > 0).map(mp1.sameElements(_))
 		)
 	}
 

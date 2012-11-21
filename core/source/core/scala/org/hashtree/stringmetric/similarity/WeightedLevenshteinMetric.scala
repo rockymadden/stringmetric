@@ -18,14 +18,14 @@ object WeightedLevenshteinMetric
 		if (options._1 < 0 || options._2 < 0 || options._3 < 0)
 			throw new IllegalArgumentException("Expected valid weight options.")
 
-		val ca1 = stringFilter.filter(charArray1)
-		val ca2 = stringFilter.filter(charArray2)
+		val fca1 = stringFilter.filter(charArray1)
+		val fca2 = stringFilter.filter(charArray2)
 
-		if (ca1.length == 0 && ca2.length == 0) None
-		else if (ca1.length == 0) Some((options._2 * ca2.length).toDouble)
-		else if (ca2.length == 0) Some((options._1 * ca1.length).toDouble)
-		else if (ca1.sameElements(ca2)) Some(0d)
-		else Some(weightedLevenshtein((ca1, ca2), options).toDouble)
+		if (fca1.length == 0 && fca2.length == 0) None
+		else if (fca1.length == 0) Some((options._2 * fca2.length).toDouble)
+		else if (fca2.length == 0) Some((options._1 * fca1.length).toDouble)
+		else if (fca1.sameElements(fca2)) Some(0d)
+		else Some(weightedLevenshtein((fca1, fca2), options).toDouble)
 	}
 
 	/** Options order is delete, insert, then substitute weight. */

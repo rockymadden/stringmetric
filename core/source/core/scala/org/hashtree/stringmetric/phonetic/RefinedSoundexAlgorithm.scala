@@ -9,10 +9,10 @@ object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgo
 	type ComputeReturn = String
 
 	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
-		val ca = stringFilter.filter(charArray)
+		val fca = stringFilter.filter(charArray)
 
-		if (ca.length == 0 || !Alphabet.is(ca.head)) None
-		else Some(transcode(ca, Array(ca.head.toLower)))
+		if (fca.length == 0 || !Alphabet.is(fca.head)) None
+		else Some(transcode(fca, Array(fca.head.toLower)))
 	}
 
 	override def compute(string: String)(implicit stringFilter: StringFilter): Option[ComputeReturn] =

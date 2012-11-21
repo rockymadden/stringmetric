@@ -10,12 +10,12 @@ object HammingMetric extends StringMetric with FilterableStringMetric {
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])
 		(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 
-		val ca1 = stringFilter.filter(charArray1)
-		lazy val ca2 = stringFilter.filter(charArray2)
+		val fca1 = stringFilter.filter(charArray1)
+		lazy val fca2 = stringFilter.filter(charArray2)
 
-		if (ca1.length == 0 || ca2.length == 0 || ca1.length != ca2.length) None
-		else if (ca1.sameElements(ca2)) Some(0)
-		else Some(hamming(ca1, ca2))
+		if (fca1.length == 0 || fca2.length == 0 || fca1.length != fca2.length) None
+		else if (fca1.sameElements(fca2)) Some(0)
+		else Some(hamming(fca1, fca2))
 	}
 
 	override def compare(string1: String, string2: String)

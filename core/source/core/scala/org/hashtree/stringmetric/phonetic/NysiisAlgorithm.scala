@@ -9,11 +9,11 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 	type ComputeReturn = String
 
 	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
-		val ca = stringFilter.filter(charArray)
+		val fca = stringFilter.filter(charArray)
 
-		if (ca.length == 0 || !Alphabet.is(ca.head)) None
+		if (fca.length == 0 || !Alphabet.is(fca.head)) None
 		else {
-			val tr = transcodeRight(ca.map(_.toLower))
+			val tr = transcodeRight(fca.map(_.toLower))
 			val tl = transcodeLeft(tr._1)
 			val t =
 				if (tl._2.length == 0) tl._1 ++ tr._2
@@ -46,15 +46,16 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 		if (c == '\0' && r.length == 0) o
 		else {
 			val shift = (d: Int, ca: Array[Char]) => {
-				val sa = r.splitAt(d - 1)
+				val sca = r.splitAt(d - 1)
 
 				(
-					if (sa._1.length > 0) (l :+ c) ++ sa._1 else l :+ c,
-					if (sa._2.length > 0) sa._2.head else '\0',
-					if (sa._2.length > 1) sa._2.tail else Array.empty[Char],
+					if (sca._1.length > 0) (l :+ c) ++ sca._1 else l :+ c,
+					if (sca._2.length > 0) sca._2.head else '\0',
+					if (sca._2.length > 1) sca._2.tail else Array.empty[Char],
 					ca
 				)
 			}
+
 			val t = {
 				c match {
 					case 'a' | 'i' | 'o' | 'u' => shift(1, o :+ 'a')
@@ -103,14 +104,14 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 
 	private[this] def transcodeRight(ca: Array[Char]) = {
 		if (ca.length >= 2) {
-			val l = ca(ca.length - 1)
-			val lm1 = ca(ca.length - 2)
+			val lc = ca(ca.length - 1)
+			val lcm1 = ca(ca.length - 2)
 			lazy val t2 = ca.take(ca.length - 2)
 
-			l match {
-				case 'd' if (lm1 == 'n' || lm1 == 'r') => (t2, Array('d'))
-				case 'e' if (lm1 == 'e' || lm1 == 'i') => (t2, Array('y'))
-				case 't' if (lm1 == 'd' || lm1 == 'n' || lm1 == 'r') => (t2, Array('d'))
+			lc match {
+				case 'd' if (lcm1 == 'n' || lcm1 == 'r') => (t2, Array('d'))
+				case 'e' if (lcm1 == 'e' || lcm1 == 'i') => (t2, Array('y'))
+				case 't' if (lcm1 == 'd' || lcm1 == 'n' || lcm1 == 'r') => (t2, Array('d'))
 				case _ => (ca, Array.empty[Char])
 			}
 		} else (ca, Array.empty[Char])

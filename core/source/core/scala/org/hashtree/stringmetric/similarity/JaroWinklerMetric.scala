@@ -14,14 +14,14 @@ object JaroWinklerMetric extends StringMetric with FilterableStringMetric {
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])
 		(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 
-		val ca1 = stringFilter.filter(charArray1)
-		val ca2 = stringFilter.filter(charArray2)
+		val fca1 = stringFilter.filter(charArray1)
+		val fca2 = stringFilter.filter(charArray2)
 
-		JaroMetric.compare(ca1, ca2)(new StringFilterDelegate) match {
+		JaroMetric.compare(fca1, fca2)(new StringFilterDelegate) match {
 			case Some(0d) => Some(0d)
 			case Some(1d) => Some(1d)
 			case Some(jaro) => {
-				val prefix = ca1.zip(ca2).takeWhile(t => t._1 == t._2)
+				val prefix = fca1.zip(fca2).takeWhile(t => t._1 == t._2)
 
 				Some(jaro + ((if (prefix.length <= 4) prefix.length else 4) * 0.1d * (1 - jaro)))
 			}

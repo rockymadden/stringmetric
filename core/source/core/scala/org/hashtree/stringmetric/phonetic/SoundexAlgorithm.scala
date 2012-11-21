@@ -9,13 +9,13 @@ object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 	type ComputeReturn = String
 
 	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
-		val ca = stringFilter.filter(charArray)
+		val fca = stringFilter.filter(charArray)
 
-		if (ca.length == 0 || !Alphabet.is(ca.head)) None
+		if (fca.length == 0 || !Alphabet.is(fca.head)) None
 		else {
-			val fc = ca.head.toLower
+			val fc = fca.head.toLower
 
-			Some(transcode(ca.tail, fc, Array(fc)).padTo(4, '0'))
+			Some(transcode(fca.tail, fc, Array(fc)).padTo(4, '0'))
 		}
 	}
 
@@ -23,7 +23,7 @@ object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate).map(_.mkString)
 
 	@tailrec
-	private[this] def transcode(i: Array[Char], p: Char, o: Array[Char]): Array[Char] = {
+	private[this] def transcode(i: Array[Char], pc: Char, o: Array[Char]): Array[Char] = {
 		if (i.length == 0) o
 		else {
 			val c = i.head.toLower
@@ -45,7 +45,7 @@ object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 				case 'r' if pc != '6' => '6'
 				case _ => '\0'
 			}
-			val a = p match {
+			val a = pc match {
 				// Code twice.
 				case 'a' | 'e' | 'i' | 'o' | 'u' | 'y' => m2(c)
 				// Code once.

@@ -15,20 +15,20 @@ object JaroMetric extends StringMetric with FilterableStringMetric {
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])
 		(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 
-		val ca1 = stringFilter.filter(charArray1)
-		lazy val ca2 = stringFilter.filter(charArray2)
+		val fca1 = stringFilter.filter(charArray1)
+		lazy val fca2 = stringFilter.filter(charArray2)
 
-		if (ca1.length == 0 || ca2.length == 0) None
-		else if (ca1.sameElements(ca2)) Some(1d)
+		if (fca1.length == 0 || fca2.length == 0) None
+		else if (fca1.sameElements(fca2)) Some(1d)
 		else {
-			val mt = `match`((ca1, ca2))
+			val mt = `match`((fca1, fca2))
 			val ms = scoreMatches((mt._1, mt._2))
 
 			if (ms == 0) Some(0d)
 			else {
 				val ts = scoreTranspositions((mt._1, mt._2))
 
-				Some(((ms.toDouble / ca1.length) + (ms.toDouble / ca2.length) + ((ms.toDouble - ts) / ms)) / 3)
+				Some(((ms.toDouble / fca1.length) + (ms.toDouble / fca2.length) + ((ms.toDouble - ts) / ms)) / 3)
 			}
 		}
 	}

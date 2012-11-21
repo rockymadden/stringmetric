@@ -13,10 +13,10 @@ object NGramAlgorithm extends StringAlgorithm with FilterableConfigurableStringA
 
 		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
 
-		val ca = stringFilter.filter(charArray)
+		val fca = stringFilter.filter(charArray)
 
-		if (ca.length < n) None
-		else Some(sequence(ca, Array.empty[Array[Char]], n))
+		if (fca.length < n) None
+		else Some(sequence(fca, Array.empty[Array[Char]], n))
 	}
 
 	override def compute(string: String)(n: Int)

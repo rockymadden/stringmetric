@@ -9,11 +9,11 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 	type ComputeReturn = String
 
 	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
-		val ca = stringFilter.filter(charArray)
+		val fca = stringFilter.filter(charArray)
 
-		if (ca.length == 0 || !Alphabet.is(ca.head)) None
+		if (fca.length == 0 || !Alphabet.is(fca.head)) None
 		else {
-			val th = deduplicate(transcodeHead(ca.map(_.toLower)))
+			val th = deduplicate(transcodeHead(fca.map(_.toLower)))
 			val t = transcode(Array.empty[Char], th.head, th.tail, Array.empty[Char])
 
 			if (t.length == 0) None else Some(t) // Single Y or W would have 0 length.
@@ -32,12 +32,12 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 		if (c == '\0' && r.length == 0) o
 		else {
 			val shift = (d: Int, ca: Array[Char]) => {
-				val sa = r.splitAt(d - 1)
+				val sca = r.splitAt(d - 1)
 
 				(
-					if (sa._1.length > 0) (l :+ c) ++ sa._1 else l :+ c,
-					if (sa._2.length > 0) sa._2.head else '\0',
-					if (sa._2.length > 1) sa._2.tail else Array.empty[Char],
+					if (sca._1.length > 0) (l :+ c) ++ sca._1 else l :+ c,
+					if (sca._2.length > 0) sca._2.head else '\0',
+					if (sca._2.length > 1) sca._2.tail else Array.empty[Char],
 					ca
 				)
 			}

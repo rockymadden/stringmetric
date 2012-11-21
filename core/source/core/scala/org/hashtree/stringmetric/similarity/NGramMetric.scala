@@ -13,14 +13,14 @@ object NGramMetric extends StringMetric with FilterableConfigurableStringMetric[
 
 		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
 
-		val ca1 = stringFilter.filter(charArray1)
-		lazy val ca2 = stringFilter.filter(charArray2)
+		val fca1 = stringFilter.filter(charArray1)
+		lazy val fca2 = stringFilter.filter(charArray2)
 
-		if (ca1.length < n || ca2.length < n) None // Because length is less than n, it is not possible to compare.
-		else if (ca1.sameElements(ca2)) Some(1d)
+		if (fca1.length < n || fca2.length < n) None // Because length is less than n, it is not possible to compare.
+		else if (fca1.sameElements(fca2)) Some(1d)
 		else
-			NGramAlgorithm.compute(ca1)(n).flatMap { ca1bg =>
-				NGramAlgorithm.compute(ca2)(n).map { ca2bg =>
+			NGramAlgorithm.compute(fca1)(n).flatMap { ca1bg =>
+				NGramAlgorithm.compute(fca2)(n).map { ca2bg =>
 					val ms = scoreMatches((ca1bg.map(_.mkString), ca2bg.map(_.mkString)))
 
 					ms.toDouble / math.max(ca1bg.length, ca2bg.length)
