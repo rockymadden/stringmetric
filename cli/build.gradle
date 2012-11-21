@@ -2,7 +2,7 @@ apply plugin: 'eclipse'
 apply plugin: 'scala'
 
 compileScala {
-	compileScala.scalaCompileOptions.additionalParameters = ['optimise', '–Xdisable-assertions']
+	compileScala.scalaCompileOptions.additionalParameters = ['-optimise', '–Xdisable-assertions']
 }
 
 evaluationDependsOn(':stringmetric-core')
