@@ -12,18 +12,14 @@ object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgo
 		val ca = stringFilter.filter(charArray)
 
 		if (ca.length == 0 || !Alphabet.is(ca.head)) None
-		else {
-			val fc = ca.head.toLower
-
-			Some(transcode(ca, fc, Array(fc)))
-		}
+		else Some(transcode(ca, Array(ca.head.toLower)))
 	}
 
 	override def compute(string: String)(implicit stringFilter: StringFilter): Option[ComputeReturn] =
 		compute(stringFilter.filter(string.toCharArray))(new StringFilterDelegate).map(_.mkString)
 
 	@tailrec
-	private[this] def transcode(i: Array[Char], p: Char, o: Array[Char]): Array[Char] = {
+	private[this] def transcode(i: Array[Char], o: Array[Char]): Array[Char] = {
 		require(o.length > 0)
 
 		if (i.length == 0) o
@@ -67,7 +63,7 @@ object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgo
 					}
 				)
 
-			transcode(i.tail, c, if (a != '\0') o :+ a else o)
+			transcode(i.tail, if (a != '\0') o :+ a else o)
 		}
 	}
 }
