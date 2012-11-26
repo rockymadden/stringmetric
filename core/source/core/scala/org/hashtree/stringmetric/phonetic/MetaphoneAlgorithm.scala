@@ -42,7 +42,7 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 			}
 
 			val t = {
-				c match {
+				(c: @switch) match {
 					case 'a' | 'e' | 'i' | 'o' | 'u' => if (l.length == 0) shift(1, o:+ c) else shift(1, o)
 					case 'f' | 'j' | 'l' | 'm' | 'n' | 'r' => shift(1, o :+ c)
 					case 'b' => if (l.length >= 1 && l.last == 'm' && r.length == 0) shift(1, o) else shift(1, o :+ 'b')
@@ -100,7 +100,7 @@ object MetaphoneAlgorithm extends StringAlgorithm with FilterableStringAlgorithm
 			case 0 => ca
 			case 1 => if (ca.head == 'x') Array('s') else ca
 			case _ =>
-				ca.head match {
+				(ca.head: @switch) match {
 					case 'a' if (ca(1) == 'e') => ca.tail
 					case 'g' if (ca(1) == 'n') => ca.tail
 					case 'k' if (ca(1) == 'n') => ca.tail

@@ -1,7 +1,7 @@
 package org.hashtree.stringmetric.phonetic
 
 import org.hashtree.stringmetric.{ FilterableStringAlgorithm, StringAlgorithm, StringFilter }
-import scala.annotation.tailrec
+import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the refined Soundex [[org.hashtree.stringmetric.StringAlgorithm]]. */
 object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
@@ -22,7 +22,7 @@ object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgo
 		if (i.length == 0) o
 		else {
 			val c = i.head.toLower
-			val m2 = (mc: Char) => mc match {
+			val m2 = (mc: Char) => (mc: @switch) match {
 				case 'a' | 'e' | 'h' | 'i' | 'o' | 'u' | 'w' | 'y' => '0'
 				case 'b' | 'p' => '1'
 				case 'f' | 'v' => '2'
@@ -35,7 +35,7 @@ object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgo
 				case 'r' => '9'
 				case _ => '\0'
 			}
-			val m1 = (mc: Char, pc: Char) => mc match {
+			val m1 = (mc: Char, pc: Char) => (mc: @switch) match {
 				case 'a' | 'e' | 'h' | 'i' | 'o' | 'u' | 'w' | 'y' if pc != '0' => '0'
 				case 'b' | 'p' if pc != '1' => '1'
 				case 'f' | 'v' if pc != '2' => '2'
@@ -54,7 +54,7 @@ object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgo
 				// Code once.
 				else m1(
 					c,
-					o.last match {
+					(o.last: @switch) match {
 						case '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' => o.last
 						case _ => m2(o.last)
 					}

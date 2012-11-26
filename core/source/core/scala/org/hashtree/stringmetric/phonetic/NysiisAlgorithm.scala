@@ -1,7 +1,7 @@
 package org.hashtree.stringmetric.phonetic
 
 import org.hashtree.stringmetric.{ FilterableStringAlgorithm, StringAlgorithm, StringFilter }
-import scala.annotation.tailrec
+import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the NYSIIS [[org.hashtree.stringmetric.StringAlgorithm]]. */
 object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
@@ -56,7 +56,7 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 			}
 
 			val t = {
-				c match {
+				(c: @switch) match {
 					case 'a' | 'i' | 'o' | 'u' => shift(1, o :+ 'a')
 					case 'b' | 'c' | 'd' | 'f' | 'g' | 'j' | 'l' | 'n' | 'r' | 't' | 'v' | 'x' | 'y' => shift(1, o :+ c)
 					case 'e' =>
@@ -90,7 +90,7 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 			lazy val tr2 = ca.takeRight(ca.length - 2)
 			lazy val tr3 = ca.takeRight(ca.length - 3)
 
-			ca.head match {
+			(ca.head: @switch) match {
 				case 'k' if (ca.length >= 2 && ca(1) == 'n') => (Array('n', 'n'), tr2)
 				case 'k' => (Array('c'), ca.tail)
 				case 'm' if (ca.length >= 3 && (ca(1) == 'a' && ca(2) == 'c')) => (Array('m', 'c'), tr3)
@@ -107,7 +107,7 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 			val lcm1 = ca(ca.length - 2)
 			lazy val t2 = ca.take(ca.length - 2)
 
-			lc match {
+			(lc: @switch) match {
 				case 'd' if (lcm1 == 'n' || lcm1 == 'r') => (t2, Array('d'))
 				case 'e' if (lcm1 == 'e' || lcm1 == 'i') => (t2, Array('y'))
 				case 't' if (lcm1 == 'd' || lcm1 == 'n' || lcm1 == 'r') => (t2, Array('d'))

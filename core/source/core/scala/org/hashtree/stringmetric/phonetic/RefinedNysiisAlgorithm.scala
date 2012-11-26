@@ -1,7 +1,7 @@
 package org.hashtree.stringmetric.phonetic
 
 import org.hashtree.stringmetric.{ FilterableStringAlgorithm, StringAlgorithm, StringFilter }
-import scala.annotation.tailrec
+import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the refined NYSIIS [[org.hashtree.stringmetric.StringAlgorithm]]. */
 object RefinedNysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
@@ -53,7 +53,7 @@ object RefinedNysiisAlgorithm extends StringAlgorithm with FilterableStringAlgor
 			}
 
 			val t = {
-				c match {
+				(c: @switch) match {
 					case 'a' | 'i' | 'o' | 'u' =>
 						if (l.length == 0) shift(1, o :+ c)
 						else shift(1, o :+ 'a')
@@ -100,7 +100,7 @@ object RefinedNysiisAlgorithm extends StringAlgorithm with FilterableStringAlgor
 	private[this] def transcodeHead(ca: Array[Char]) = {
 		if (ca.length == 0) ca
 		else
-			ca.head match {
+			(ca.head: @switch) match {
 				case 'm' if (ca.length >= 3 && ca(1) == 'a' && ca(2) == 'c') => Array('m', 'c') ++ ca.takeRight(ca.length - 3)
 				case 'p' if (ca.length >= 2 && ca(1) == 'f') => 'f' +: ca.takeRight(ca.length - 2)
 				case _ => ca
@@ -113,7 +113,7 @@ object RefinedNysiisAlgorithm extends StringAlgorithm with FilterableStringAlgor
 			val lcm1 = ca(ca.length - 2)
 			lazy val t2 = ca.take(ca.length - 2)
 
-			lc match {
+			(lc: @switch) match {
 				case 'd' if (lcm1 == 'n' || lcm1 == 'r') => t2 :+ 'd'
 				case 'e' if (lcm1 == 'e' || lcm1 == 'i' || lcm1 =='y') => t2 :+ 'y'
 				case 't' if (lcm1 == 'd' || lcm1 == 'n' || lcm1 == 'r') => t2 :+ 'd'
