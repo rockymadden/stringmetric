@@ -45,6 +45,6 @@ object metaphoneAlgorithm extends Command {
 		println(
 			MetaphoneAlgorithm.compute(
 				options('dashless)
-			).getOrElse("not computable").toString
+			).getOrElse("not computable")
 		)
 }

@@ -45,6 +45,6 @@ object refinedNysiisAlgorithm extends Command {
 		println(
 			RefinedNysiisAlgorithm.compute(
 				options('dashless)
-			).getOrElse("not computable").toString
+			).getOrElse("not computable")
 		)
 }

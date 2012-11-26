@@ -45,6 +45,6 @@ object soundexAlgorithm extends Command {
 		println(
 			SoundexAlgorithm.compute(
 				options('dashless)
-			).getOrElse("not computable").toString
+			).getOrElse("not computable")
 		)
 }

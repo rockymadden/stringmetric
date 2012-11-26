@@ -49,7 +49,7 @@ object levenshteinMetric extends Command {
 			LevenshteinMetric.compare(
 				strings(0),
 				strings(1)
-			).getOrElse("not comparable").toString
+			).getOrElse("not comparable")
 		)
 	}
 }

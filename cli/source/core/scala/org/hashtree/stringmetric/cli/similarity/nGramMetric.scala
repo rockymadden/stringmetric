@@ -53,7 +53,7 @@ object nGramMetric extends Command {
 			NGramMetric.compare(
 				strings(0),
 				strings(1)
-			)(n).getOrElse("not comparable").toString
+			)(n).getOrElse("not comparable")
 		)
 	}
 }

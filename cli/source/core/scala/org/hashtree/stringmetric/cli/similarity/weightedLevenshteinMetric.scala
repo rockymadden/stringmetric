@@ -66,7 +66,7 @@ object weightedLevenshteinMetric extends Command {
 			WeightedLevenshteinMetric.compare(
 				strings(0),
 				strings(1)
-			)(weights).getOrElse("not comparable").toString
+			)(weights).getOrElse("not comparable")
 		)
 	}
 }

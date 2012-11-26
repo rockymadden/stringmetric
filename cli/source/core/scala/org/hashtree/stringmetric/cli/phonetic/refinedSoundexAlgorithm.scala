@@ -45,6 +45,6 @@ object refinedSoundexAlgorithm extends Command {
 		println(
 			RefinedSoundexAlgorithm.compute(
 				options('dashless)
-			).getOrElse("not computable").toString
+			).getOrElse("not computable")
 		)
 }
