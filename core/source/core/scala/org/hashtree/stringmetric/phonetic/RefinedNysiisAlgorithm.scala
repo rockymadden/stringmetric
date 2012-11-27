@@ -41,7 +41,7 @@ object RefinedNysiisAlgorithm extends StringAlgorithm with FilterableStringAlgor
 	private[this] def transcode(l: Array[Char], c: Char, r: Array[Char], o: Array[Char]): Array[Char] = {
 		if (c == '\0' && r.length == 0) o
 		else {
-			val shift = (d: Int, ca: Array[Char]) => {
+			def shift(d: Int, ca: Array[Char]) = {
 				val sca = r.splitAt(d - 1)
 
 				(
