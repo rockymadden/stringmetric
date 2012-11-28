@@ -19,11 +19,13 @@ final class JaroMetricSpec extends ScalaTest {
 				"1" in {
 					JaroMetric.compare("a", "a").get should be (1)
 					JaroMetric.compare("abc", "abc").get should be (1)
+					JaroMetric.compare("123", "123").get should be (1)
 				}
 			}
 			"unequal arguments" should returns {
 				"0" in {
 					JaroMetric.compare("abc", "xyz").get should be (0)
+					JaroMetric.compare("123", "456").get should be (0)
 				}
 			}
 			"valid arguments" should returns {

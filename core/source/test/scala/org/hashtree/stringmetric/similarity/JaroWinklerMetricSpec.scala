@@ -19,11 +19,13 @@ final class JaroWinklerMetricSpec extends ScalaTest {
 				"1" in {
 					JaroWinklerMetric.compare("a", "a").get should be (1)
 					JaroWinklerMetric.compare("abc", "abc").get should be (1)
+					JaroWinklerMetric.compare("123", "123").get should be (1)
 				}
 			}
 			"unequal arguments" should returns {
 				"0" in {
 					JaroWinklerMetric.compare("abc", "xyz").get should be (0)
+					JaroWinklerMetric.compare("123", "456").get should be (0)
 				}
 			}
 			"valid arguments" should returns {

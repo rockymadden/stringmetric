@@ -16,6 +16,7 @@ final class LevenshteinMetricSpec extends ScalaTest {
 			"equal arguments" should returns {
 				"0" in {
 					LevenshteinMetric.compare("abc", "abc").get should be (0)
+					LevenshteinMetric.compare("123", "123").get should be (0)
 				}
 			}
 			"unequal arguments" should returns {
@@ -23,6 +24,7 @@ final class LevenshteinMetricSpec extends ScalaTest {
 					LevenshteinMetric.compare("abc", "").get should be (3)
 					LevenshteinMetric.compare("", "xyz").get should be (3)
 					LevenshteinMetric.compare("abc", "xyz").get should be (3)
+					LevenshteinMetric.compare("123", "456").get should be (3)
 				}
 			}
 			"valid arguments" should returns {

@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class WeightedLevenshteinMetricSpec extends ScalaTest {
-	private final val Options = Tuple3[BigDecimal, BigDecimal, BigDecimal](10, 0.1, 1)
+	private[this] val Options = Tuple3[BigDecimal, BigDecimal, BigDecimal](10, 0.1, 1)
 
 	"WeightedLevenshteinMetric" should provide {
 		"compare method" when passed {
@@ -18,12 +18,14 @@ final class WeightedLevenshteinMetricSpec extends ScalaTest {
 			"equal arguments" should returns {
 				"0" in {
 					WeightedLevenshteinMetric.compare("abc", "abc")(Options).get should be (0)
+					WeightedLevenshteinMetric.compare("123", "123")(Options).get should be (0)
 				}
 			}
 			"unequal arguments" should returns {
 				"Double indicating distance" in {
 					WeightedLevenshteinMetric.compare("abc", "")(Options).get should be (30)
 					WeightedLevenshteinMetric.compare("", "xyz")(Options).get should be (0.3)
+					WeightedLevenshteinMetric.compare("123", "456")(Options).get should be (3)
 				}
 			}
 			"valid arguments" should returns {

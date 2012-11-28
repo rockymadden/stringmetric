@@ -18,11 +18,13 @@ final class HammingMetricSpec extends ScalaTest {
 			"equal arguments" should returns {
 				"0" in {
 					HammingMetric.compare("abc", "abc").get should be (0)
+					HammingMetric.compare("123", "123").get should be (0)
 				}
 			}
 			"unequal arguments" should returns {
 				"Int indicating distance" in {
 					HammingMetric.compare("abc", "xyz").get should be (3)
+					HammingMetric.compare("123", "456").get should be (3)
 				}
 			}
 			"valid arguments" should returns {
