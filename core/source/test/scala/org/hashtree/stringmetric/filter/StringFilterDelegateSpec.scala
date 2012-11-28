@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class StringFilterDelegateSpec extends ScalaTest {
-	private final val Filter = new StringFilterDelegate
+	private[this] val Filter = new StringFilterDelegate
 
 	"StringFilterDelegate" should provide {
 		"overloaded filter method" when passed {

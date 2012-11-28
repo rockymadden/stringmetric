@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class AsciiSpaceStringFilterSpec extends ScalaTest {
-	private final val Filter = new StringFilterDelegate with AsciiSpaceStringFilter
+	private[this] val Filter = new StringFilterDelegate with AsciiSpaceStringFilter
 
 	"AsciiSpaceStringFilter" should provide {
 		"overloaded filter method" when passed {

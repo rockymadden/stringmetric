@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class AsciiLetterCaseStringFilterSpec extends ScalaTest {
-	private final val Filter = new StringFilterDelegate with AsciiLetterCaseStringFilter
+	private[this] val Filter = new StringFilterDelegate with AsciiLetterCaseStringFilter
 
 	"AsciiLetterCaseStringFilter" should provide {
 		"overloaded filter method" when passed {
