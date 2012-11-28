@@ -13,11 +13,13 @@ final class StringFilterDelegateSpec extends ScalaTest {
 			"String" should returns {
 				"the same String" in {
 					Filter.filter("Hello World") should equal ("Hello World")
+					Filter.filter("	Hello! World]") should equal ("	Hello! World]")
 				}
 			}
 			"character array" should returns {
 				"the same character array" in {
 					Filter.filter("Hello World".toCharArray) should equal ("Hello World".toCharArray)
+					Filter.filter("	Hello! World]".toCharArray) should equal ("	Hello! World]".toCharArray)
 				}
 			}
 		}

@@ -13,11 +13,15 @@ final class AsciiControlOnlyStringFilterSpec extends ScalaTest {
 			"String with mixed characters" should returns {
 				"String with non-controls removed" in {
 					Filter.filter("!@#$%	^&*()abc") should equal ("	")
+					Filter.filter("	^&*()abc") should equal ("	")
+					Filter.filter("%^&*()abc	") should equal ("	")
 				}
 			}
 			"character array with mixed characters" should returns {
 				"character array with non-controls removed" in {
 					Filter.filter("!@#$%	^&*()abc".toCharArray) should equal ("	".toCharArray)
+					Filter.filter("	^&*()abc") should equal ("	".toCharArray)
+					Filter.filter("%^&*()abc	") should equal ("	".toCharArray)
 				}
 			}
 		}

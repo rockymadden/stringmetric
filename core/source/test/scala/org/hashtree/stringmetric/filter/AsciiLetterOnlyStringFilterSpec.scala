@@ -14,12 +14,14 @@ final class AsciiLetterOnlyStringFilterSpec extends ScalaTest {
 				"String with non-letters removed" in {
 					Filter.filter("!@#$%^&*()abc") should equal ("abc")
 					Filter.filter("!@#$%^&*()abc123") should equal ("abc")
+					Filter.filter("abc!@#$%^&*()123") should equal ("abc")
 				}
 			}
 			"character array with mixed characters" should returns {
 				"character array with non-letters removed" in {
 					Filter.filter("!@#$%^&*()abc".toCharArray) should equal ("abc".toCharArray)
 					Filter.filter("!@#$%^&*()abc123".toCharArray) should equal ("abc".toCharArray)
+					Filter.filter("abc!@#$%^&*()123".toCharArray) should equal ("abc".toCharArray)
 				}
 			}
 		}

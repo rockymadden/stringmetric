@@ -13,11 +13,13 @@ final class AsciiSymbolStringFilterSpec extends ScalaTest {
 			"String with symbols" should returns {
 				"String with symbols removed" in {
 					Filter.filter("[HelloWorld]") should equal ("HelloWorld")
+					Filter.filter("Hello!World") should equal ("HelloWorld")
 				}
 			}
 			"character array with symbols" should returns {
 				"character array with symbols removed" in {
 					Filter.filter("[HelloWorld]".toCharArray) should equal ("HelloWorld".toCharArray)
+					Filter.filter("Hello!World".toCharArray) should equal ("HelloWorld".toCharArray)
 				}
 			}
 		}

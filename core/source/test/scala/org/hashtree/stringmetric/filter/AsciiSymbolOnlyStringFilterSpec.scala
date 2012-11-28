@@ -13,11 +13,15 @@ final class AsciiSymbolOnlyStringFilterSpec extends ScalaTest {
 			"String with mixed characters" should returns {
 				"String with non-symbols removed" in {
 					Filter.filter("!@#$%^&*()abc123") should equal ("!@#$%^&*()")
+					Filter.filter("abc123!@#$%^&*()") should equal ("!@#$%^&*()")
+					Filter.filter("!@#$%abc123^&*()") should equal ("!@#$%^&*()")
 				}
 			}
 			"character array with mixed characters" should returns {
 				"character array with non-symbols removed" in {
 					Filter.filter("!@#$%^&*()abc123".toCharArray) should equal ("!@#$%^&*()".toCharArray)
+					Filter.filter("abc123!@#$%^&*()".toCharArray) should equal ("!@#$%^&*()".toCharArray)
+					Filter.filter("!@#$%abc123^&*()".toCharArray) should equal ("!@#$%^&*()".toCharArray)
 				}
 			}
 		}

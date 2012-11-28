@@ -14,12 +14,16 @@ final class AsciiLetterNumberOnlyStringFilterSpec extends ScalaTest {
 				"String with non-letters and non-numbers removed" in {
 					Filter.filter("!@#$%^&*()abc") should equal ("abc")
 					Filter.filter("!@#$%^&*()abc123") should equal ("abc123")
+					Filter.filter("abc123!@#$%^&*()") should equal ("abc123")
+					Filter.filter("!@#$%abc123^&*()") should equal ("abc123")
 				}
 			}
 			"character array with mixed characters" should returns {
 				"character array with non-letters and non-numbers removed" in {
 					Filter.filter("!@#$%^&*()abc".toCharArray) should equal ("abc".toCharArray)
 					Filter.filter("!@#$%^&*()abc123".toCharArray) should equal ("abc123".toCharArray)
+					Filter.filter("abc123!@#$%^&*()".toCharArray) should equal ("abc123".toCharArray)
+					Filter.filter("!@#$%abc123^&*()".toCharArray) should equal ("abc123".toCharArray)
 				}
 			}
 		}

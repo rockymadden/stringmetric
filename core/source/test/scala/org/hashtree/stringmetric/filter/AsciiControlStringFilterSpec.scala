@@ -13,11 +13,15 @@ final class AsciiControlStringFilterSpec extends ScalaTest {
 			"String with controls" should returns {
 				"String with controls removed" in {
 					Filter.filter("	HelloWorld") should equal ("HelloWorld")
+					Filter.filter("HelloWorld	") should equal ("HelloWorld")
+					Filter.filter("Hello	World") should equal ("HelloWorld")
 				}
 			}
 			"character array with controls" should returns {
 				"character array with controls removed" in {
 					Filter.filter("	HelloWorld".toCharArray) should equal ("HelloWorld".toCharArray)
+					Filter.filter("HelloWorld	".toCharArray) should equal ("HelloWorld".toCharArray)
+					Filter.filter("Hello	World".toCharArray) should equal ("HelloWorld".toCharArray)
 				}
 			}
 		}
