@@ -10,11 +10,10 @@ object LevenshteinMetric extends StringMetric with FilterableStringMetric {
 		(implicit stringFilter: StringFilter): Option[CompareReturn] = {
 
 		val fca1 = stringFilter.filter(charArray1)
-		val fca2 = stringFilter.filter(charArray2)
+		lazy val fca2 = stringFilter.filter(charArray2)
 
-		if (fca1.length == 0 && fca2.length == 0) None
-		else if (fca1.length == 0) Some(fca2.length)
-		else if (fca2.length == 0) Some(fca1.length)
+		if (fca1.length == 0 || fca2.length == 0) None
+		else if (fca1.sameElements(fca2)) Some(0)
 		else Some(levenshtein(fca1, fca2))
 	}
 

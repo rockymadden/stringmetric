@@ -13,6 +13,8 @@ final class WeightedLevenshteinMetricSpec extends ScalaTest {
 			"empty arguments" should returns {
 				"None" in {
 					WeightedLevenshteinMetric.compare("", "")(Options).isDefined should be (false)
+					WeightedLevenshteinMetric.compare("abc", "")(Options).isDefined should be (false)
+					WeightedLevenshteinMetric.compare("", "xyz")(Options).isDefined should be (false)
 				}
 			}
 			"equal arguments" should returns {
@@ -23,8 +25,7 @@ final class WeightedLevenshteinMetricSpec extends ScalaTest {
 			}
 			"unequal arguments" should returns {
 				"Double indicating distance" in {
-					WeightedLevenshteinMetric.compare("abc", "")(Options).get should be (30)
-					WeightedLevenshteinMetric.compare("", "xyz")(Options).get should be (0.3)
+					WeightedLevenshteinMetric.compare("abc", "xyz")(Options).get should be (3)
 					WeightedLevenshteinMetric.compare("123", "456")(Options).get should be (3)
 				}
 			}

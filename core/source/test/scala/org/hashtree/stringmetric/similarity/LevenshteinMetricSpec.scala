@@ -11,6 +11,8 @@ final class LevenshteinMetricSpec extends ScalaTest {
 			"empty arguments" should returns {
 				"None" in {
 					LevenshteinMetric.compare("", "").isDefined should be (false)
+					LevenshteinMetric.compare("abc", "").isDefined should be (false)
+					LevenshteinMetric.compare("", "xyz").isDefined should be (false)
 				}
 			}
 			"equal arguments" should returns {
@@ -21,8 +23,6 @@ final class LevenshteinMetricSpec extends ScalaTest {
 			}
 			"unequal arguments" should returns {
 				"Int indicating distance" in {
-					LevenshteinMetric.compare("abc", "").get should be (3)
-					LevenshteinMetric.compare("", "xyz").get should be (3)
 					LevenshteinMetric.compare("abc", "xyz").get should be (3)
 					LevenshteinMetric.compare("123", "456").get should be (3)
 				}
