@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class WeightedLevenshteinMetricSpec extends ScalaTest {
-	private[this] val Options = Tuple3[BigDecimal, BigDecimal, BigDecimal](10, 0.1, 1)
+	import WeightedLevenshteinMetricSpec.Options
 
 	"WeightedLevenshteinMetric" should provide {
 		"compare method" when passed {
@@ -49,4 +49,8 @@ final class WeightedLevenshteinMetricSpec extends ScalaTest {
 			}
 		}
 	}
+}
+
+object WeightedLevenshteinMetricSpec {
+	private final val Options = Tuple3[BigDecimal, BigDecimal, BigDecimal](10, 0.1, 1)
 }
