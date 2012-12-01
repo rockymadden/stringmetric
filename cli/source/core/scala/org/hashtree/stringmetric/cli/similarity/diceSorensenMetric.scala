@@ -9,7 +9,7 @@ import org.hashtree.stringmetric.similarity.DiceSorensenMetric
  */
 object diceSorensenMetric extends Command {
 	override def main(args: Array[String]): Unit = {
-		val options = OptionMapUtility.toOptionMap(args)
+		val options = OptionMap(args)
 
 		try {
 			// Help.
@@ -17,8 +17,8 @@ object diceSorensenMetric extends Command {
 				help()
 				exit(options)
 			// Execute.
-			} else if (options.contains('dashless) && options('dashless).count(_ == ' ') == 1 &&
-				options.contains('n) && ParseUtility.parseInt(options('n)).isDefined
+			} else if (options.contains('dashless) && options('dashless).count(_ == ' ') == 1
+				&& options.contains('n) && OptionMapInt(options('n)).isDefined
 			) {
 				execute(options)
 				exit(options)
@@ -47,7 +47,7 @@ object diceSorensenMetric extends Command {
 
 	override def execute(options: OptionMap): Unit = {
 		val strings = options('dashless).split(" ")
-		val n = ParseUtility.parseInt(options('n)).get
+		val n = OptionMapInt(options('n))
 
 		println(
 			DiceSorensenMetric.compare(

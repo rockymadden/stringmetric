@@ -9,7 +9,7 @@ import org.hashtree.stringmetric.phonetic.RefinedNysiisMetric
  */
 object refinedNysiisMetric extends Command {
 	override def main(args: Array[String]): Unit = {
-		val options = OptionMapUtility.toOptionMap(args)
+		val options = OptionMap(args)
 
 		try {
 			// Help.
