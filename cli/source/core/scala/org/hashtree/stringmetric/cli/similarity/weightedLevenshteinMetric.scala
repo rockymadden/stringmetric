@@ -19,10 +19,10 @@ object weightedLevenshteinMetric extends Command {
 				help()
 				exit(options)
 			// Execute.
-			} else if (options.contains('dashless) && (OptionMapArray(options('dashless)): Array[String]).length == 2
-				&& options.contains('deleteWeight) && OptionMapDouble(options('deleteWeight)).isDefined
-				&& options.contains('insertWeight) && OptionMapDouble(options('insertWeight)).isDefined
-				&& options.contains('substituteWeight) && OptionMapDouble(options('substituteWeight)).isDefined
+			} else if (options.contains('dashless) && (options('dashless): OptionMapArray).length == 2
+				&& options.contains('deleteWeight) && (options('deleteWeight): OptionMapDouble).isDefined
+				&& options.contains('insertWeight) && (options('insertWeight): OptionMapDouble).isDefined
+				&& options.contains('substituteWeight) && (options('substituteWeight): OptionMapDouble).isDefined
 			) {
 				execute(options)
 				exit(options)
@@ -55,11 +55,11 @@ object weightedLevenshteinMetric extends Command {
 	}
 
 	override def execute(options: OptionMap): Unit = {
-		val strings = OptionMapArray(options('dashless))
+		val strings: OptionMapArray = options('dashless)
 		val weights = Tuple3[BigDecimal, BigDecimal, BigDecimal](
-			OptionMapBigDecimal(options('deleteWeight)),
-			OptionMapBigDecimal(options('insertWeight)),
-			OptionMapBigDecimal(options('substituteWeight))
+			(options('deleteWeight): OptionMapBigDecimal),
+			(options('insertWeight): OptionMapBigDecimal),
+			(options('substituteWeight): OptionMapBigDecimal)
 		)
 
 		println(

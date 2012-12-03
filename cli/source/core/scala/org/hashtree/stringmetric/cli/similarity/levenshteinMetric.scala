@@ -17,7 +17,7 @@ object levenshteinMetric extends Command {
 				help()
 				exit(options)
 			// Execute.
-			} else if (options.contains('dashless) && (OptionMapArray(options('dashless)): Array[String]).length == 2) {
+			} else if (options.contains('dashless) && (options('dashless): OptionMapArray).length == 2) {
 				execute(options)
 				exit(options)
 			// Invalid syntax.
@@ -43,7 +43,7 @@ object levenshteinMetric extends Command {
 	}
 
 	override def execute(options: OptionMap): Unit = {
-		val strings = OptionMapArray(options('dashless))
+		val strings: OptionMapArray = options('dashless)
 
 		println(
 			LevenshteinMetric.compare(

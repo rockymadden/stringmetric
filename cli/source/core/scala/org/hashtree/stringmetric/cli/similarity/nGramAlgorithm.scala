@@ -16,8 +16,8 @@ object nGramAlgorithm extends Command {
 				help()
 				exit(options)
 			// Execute.
-			} else if (options.contains('dashless) && (OptionMapArray(options('dashless)): Array[String]).length == 1
-				&& options.contains('n) && OptionMapInt(options('n)).isDefined
+			} else if (options.contains('dashless) && (options('dashless): OptionMapArray).length == 1
+				&& options.contains('n) && (options('n): OptionMapInt).isDefined
 			) {
 				execute(options)
 				exit(options)
@@ -45,7 +45,7 @@ object nGramAlgorithm extends Command {
 	}
 
 	override def execute(options: OptionMap): Unit = {
-		val n = OptionMapInt(options('n))
+		val n: OptionMapInt = options('n)
 
 		println(
 			NGramAlgorithm.compute(options('dashless))(n).map(_.mkString("|")).getOrElse("not computable")

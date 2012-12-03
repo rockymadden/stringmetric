@@ -17,7 +17,7 @@ object nysiisAlgorithm extends Command {
 				help()
 				exit(options)
 			// Execute.
-			} else if (options.contains('dashless) && (OptionMapArray(options('dashless)): Array[String]).length == 1) {
+			} else if (options.contains('dashless) && (options('dashless): OptionMapArray).length == 1) {
 				execute(options)
 				exit(options)
 			// Invalid syntax.

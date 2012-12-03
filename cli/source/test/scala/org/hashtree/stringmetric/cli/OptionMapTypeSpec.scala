@@ -42,8 +42,6 @@ final class OptionMapTypeSpec extends ScalaTest {
 					OptionMapBigDecimal("1").get.get should equal (1: BigDecimal)
 
 					(OptionMapBigDecimal("1"): BigDecimal) should equal (1: BigDecimal)
-
-					(OptionMapBigDecimal("1"): String) should equal ("1")
 				}
 			}
 		}
@@ -64,8 +62,6 @@ final class OptionMapTypeSpec extends ScalaTest {
 					OptionMapBigInt("1").get.get should equal (1: BigInt)
 
 					(OptionMapBigInt("1"): BigInt) should equal (1: BigInt)
-
-					(OptionMapBigInt("1"): String) should equal ("1")
 				}
 			}
 		}
@@ -86,8 +82,6 @@ final class OptionMapTypeSpec extends ScalaTest {
 					OptionMapDouble("1").get.get should equal (1d)
 
 					(OptionMapDouble("1"): Double) should equal (1d)
-
-					(OptionMapDouble("1"): String) should equal ("1.0")
 				}
 			}
 		}
@@ -108,8 +102,6 @@ final class OptionMapTypeSpec extends ScalaTest {
 					OptionMapFloat("1").get.get should equal (1f)
 
 					(OptionMapFloat("1"): Float) should equal (1f)
-
-					(OptionMapFloat("1"): String) should equal ("1.0")
 				}
 			}
 		}
@@ -130,8 +122,6 @@ final class OptionMapTypeSpec extends ScalaTest {
 					OptionMapInt("1").get.get should equal (1)
 
 					(OptionMapInt("1"): Int) should equal (1)
-
-					(OptionMapInt("1"): String) should equal ("1")
 				}
 			}
 		}
@@ -152,8 +142,6 @@ final class OptionMapTypeSpec extends ScalaTest {
 					OptionMapList("1 2 3").get.get should equal (List("1", "2", "3"))
 
 					(OptionMapList("1 2 3"): List[String]) should equal (List("1", "2", "3"))
-
-					(OptionMapList("1 2 3"): String) should equal ("List(1, 2, 3)")
 				}
 			}
 		}
@@ -174,8 +162,6 @@ final class OptionMapTypeSpec extends ScalaTest {
 					OptionMapLong("1").get.get should equal (1l)
 
 					(OptionMapLong("1"): Long) should equal (1l)
-
-					(OptionMapLong("1"): String) should equal ("1")
 				}
 			}
 		}
@@ -196,8 +182,6 @@ final class OptionMapTypeSpec extends ScalaTest {
 					OptionMapShort("1").get.get should equal (1: Short)
 
 					(OptionMapShort("1"): Short) should equal (1: Short)
-
-					(OptionMapShort("1"): String) should equal ("1")
 				}
 			}
 		}
