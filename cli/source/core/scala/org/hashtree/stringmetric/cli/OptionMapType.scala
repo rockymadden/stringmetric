@@ -4,6 +4,15 @@ sealed abstract class OptionMapType[T](protected[this] val stringSelf: String) {
 	def get(): Option[T]
 }
 
+final case class OptionMapArray(arrayString: String) extends OptionMapType[Array[String]](arrayString) {
+	private[this] lazy val self = try {
+		if (stringSelf.length == 0) None
+		else Some(stringSelf.split(" "))
+	} catch { case _ => None }
+
+	override def get() = self
+}
+
 final case class OptionMapBigDecimal(bigDecimalString: String) extends OptionMapType[BigDecimal](bigDecimalString) {
 	private[this] lazy val self = try { Some(BigDecimal(stringSelf)) } catch { case _ => None }
 
@@ -34,6 +43,15 @@ final case class OptionMapInt(intString: String) extends OptionMapType[Int](intS
 	override def get() = self
 }
 
+final case class OptionMapList(listString: String) extends OptionMapType[List[String]](listString) {
+	private[this] lazy val self = try {
+		if (stringSelf.length == 0) None
+		else Some(stringSelf.split(" ").toList)
+	} catch { case _ => None }
+
+	override def get() = self
+}
+
 final case class OptionMapLong(longString: String) extends OptionMapType[Long](longString) {
 	private[this] lazy val self = try { Some(stringSelf.toLong) } catch { case _ => None }
 
@@ -53,6 +71,8 @@ object OptionMapType {
 
 	implicit def OptionMapTypeToT[T](optionMapType: OptionMapType[T]): T = optionMapType.get.get
 
+	implicit def StringToOptionMapArray(string: String): OptionMapArray = new OptionMapArray(string)
+
 	implicit def StringToOptionMapBigDecimal(string: String): OptionMapBigDecimal = new OptionMapBigDecimal(string)
 
 	implicit def StringToOptionMapBigInt(string: String): OptionMapBigInt = new OptionMapBigInt(string)
@@ -62,6 +82,8 @@ object OptionMapType {
 	implicit def StringToOptionMapFloat(string: String): OptionMapFloat = new OptionMapFloat(string)
 
 	implicit def StringToOptionMapInt(string: String): OptionMapInt = new OptionMapInt(string)
+
+	implicit def StringToOptionMapList(string: String): OptionMapList = new OptionMapList(string)
 
 	implicit def StringToOptionMapLong(string: String): OptionMapLong = new OptionMapLong(string)
 

@@ -19,7 +19,7 @@ object weightedLevenshteinMetric extends Command {
 				help()
 				exit(options)
 			// Execute.
-			} else if (options.contains('dashless) && options('dashless).count(_ == ' ') == 1
+			} else if (options.contains('dashless) && (OptionMapArray(options('dashless)): Array[String]).length == 2
 				&& options.contains('deleteWeight) && OptionMapDouble(options('deleteWeight)).isDefined
 				&& options.contains('insertWeight) && OptionMapDouble(options('insertWeight)).isDefined
 				&& options.contains('substituteWeight) && OptionMapDouble(options('substituteWeight)).isDefined
@@ -55,7 +55,7 @@ object weightedLevenshteinMetric extends Command {
 	}
 
 	override def execute(options: OptionMap): Unit = {
-		val strings = options('dashless).split(" ")
+		val strings = OptionMapArray(options('dashless))
 		val weights = Tuple3[BigDecimal, BigDecimal, BigDecimal](
 			OptionMapBigDecimal(options('deleteWeight)),
 			OptionMapBigDecimal(options('insertWeight)),

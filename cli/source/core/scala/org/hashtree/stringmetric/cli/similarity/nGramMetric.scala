@@ -17,7 +17,7 @@ object nGramMetric extends Command {
 				help()
 				exit(options)
 			// Execute.
-			} else if (options.contains('dashless) && options('dashless).count(_ == ' ') == 1
+			} else if (options.contains('dashless) && (OptionMapArray(options('dashless)): Array[String]).length == 2
 				&& options.contains('n) && OptionMapInt(options('n)).isDefined
 			) {
 				execute(options)
@@ -46,7 +46,7 @@ object nGramMetric extends Command {
 	}
 
 	override def execute(options: OptionMap): Unit = {
-		val strings = options('dashless).split(" ")
+		val strings = OptionMapArray(options('dashless))
 		val n = OptionMapInt(options('n))
 
 		println(

@@ -16,7 +16,7 @@ object nGramAlgorithm extends Command {
 				help()
 				exit(options)
 			// Execute.
-			} else if (options.contains('dashless) && options('dashless).count(_ == ' ') == 0
+			} else if (options.contains('dashless) && (OptionMapArray(options('dashless)): Array[String]).length == 1
 				&& options.contains('n) && OptionMapInt(options('n)).isDefined
 			) {
 				execute(options)
