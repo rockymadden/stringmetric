@@ -99,8 +99,8 @@ metaphoneAlgorithm abc
 ```
 
 ## Requirements
-* Scala 2.9.2
-* Gradle 1.0 or above
+* Scala 2.9.x
+* Gradle 1.x
 
 ## Todo
 * Maven central integration
