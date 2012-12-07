@@ -112,7 +112,7 @@ metaphoneAlgorithm abc
 * Memoization decorator
 
 ## Versioning
-[Semantic Versioning 2.0.0](http://semver.org/)
+[Semantic Versioning v2.0](http://semver.org/)
 
 ## License
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+[Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
