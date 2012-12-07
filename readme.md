@@ -103,6 +103,7 @@ metaphoneAlgorithm abc
 * Gradle 1.0 or above
 
 ## Todo
+* Maven central integration
 * SmithWaterman
 * MongeElkan
 * NeedlemanWunch
