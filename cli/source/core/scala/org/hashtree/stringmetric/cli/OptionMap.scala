@@ -3,7 +3,9 @@ package org.hashtree.stringmetric.cli
 import scala.annotation.tailrec
 
 object OptionMap {
-	def apply(args: Array[String]): OptionMap = {
+	def apply(args: Array[String]): OptionMap = apply(args: _*)
+
+	def apply(varargs: String*): OptionMap = {
 		@tailrec
 		def next(om: OptionMap, a: List[String]): OptionMap = {
 			val double = """^(--[a-zA-Z0-9]+)(\=[a-zA-Z0-9\.\-\_]+)?""".r
@@ -33,8 +35,6 @@ object OptionMap {
 			}
 		}
 
-		next(Map.empty[Symbol, String], args.toList)
+		next(Map.empty[Symbol, String], varargs.toList)
 	}
-
-	def apply(strings: String*): OptionMap = apply(strings.toArray)
 }
