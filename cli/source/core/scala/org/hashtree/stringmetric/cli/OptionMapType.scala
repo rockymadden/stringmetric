@@ -67,7 +67,9 @@ final case class OptionMapShort(shortString: String) extends OptionMapType[Short
 object OptionMapType {
 	implicit def OptionMapTypeToOptionT[T](optionMapType: OptionMapType[T]): Option[T] = optionMapType.get
 
-	implicit def OptionMapTypeToT[T](optionMapType: OptionMapType[T]): T = optionMapType.get.get
+	implicit def OptionMapTypeToT[T](optionMapType: OptionMapType[T]): T =
+		if(!optionMapType.isDefined) throw new IllegalArgumentException("Expected successful type conversion.")
+		else optionMapType.get.get
 
 	implicit def StringToOptionMapArray(string: String): OptionMapArray = new OptionMapArray(string)
 

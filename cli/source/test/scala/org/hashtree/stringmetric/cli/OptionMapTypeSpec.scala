@@ -15,6 +15,13 @@ final class OptionMapTypeSpec extends ScalaTest {
 					(OptionMapArray(""): Option[Array[String]]).isDefined should be (false)
 				}
 			}
+			"invalid argument accessed via implicit to type" should throws {
+				"IllegalArgumentException" in {
+					evaluating {
+						OptionMapArray(""): Array[String]
+					} should produce[IllegalArgumentException]
+				}
+			}
 			"valid argument" should returns {
 				"Array" in {
 					OptionMapArray("1").get.get should equal (Array("1"))
@@ -37,6 +44,13 @@ final class OptionMapTypeSpec extends ScalaTest {
 					(OptionMapBigDecimal("one"): Option[BigDecimal]).isDefined should be (false)
 				}
 			}
+			"invalid argument accessed via implicit to type" should throws {
+				"IllegalArgumentException" in {
+					evaluating {
+						OptionMapBigDecimal("one"): BigDecimal
+					} should produce[IllegalArgumentException]
+				}
+			}
 			"valid argument" should returns {
 				"BigDecimal" in {
 					OptionMapBigDecimal("1").get.get should equal (1: BigDecimal)
@@ -55,6 +69,13 @@ final class OptionMapTypeSpec extends ScalaTest {
 					OptionMapBigInt("one").get.isDefined should be (false)
 
 					(OptionMapBigInt("one"): Option[BigInt]).isDefined should be (false)
+				}
+			}
+			"invalid argument accessed via implicit to type" should throws {
+				"IllegalArgumentException" in {
+					evaluating {
+						OptionMapBigInt("one"): BigInt
+					} should produce[IllegalArgumentException]
 				}
 			}
 			"valid argument" should returns {
@@ -77,6 +98,13 @@ final class OptionMapTypeSpec extends ScalaTest {
 					(OptionMapDouble("one"): Option[Double]).isDefined should be (false)
 				}
 			}
+			"invalid argument accessed via implicit to type" should throws {
+				"IllegalArgumentException" in {
+					evaluating {
+						OptionMapDouble("one"): Double
+					} should produce[IllegalArgumentException]
+				}
+			}
 			"valid argument" should returns {
 				"Double" in {
 					OptionMapDouble("1").get.get should equal (1d)
@@ -95,6 +123,13 @@ final class OptionMapTypeSpec extends ScalaTest {
 					OptionMapFloat("one").get.isDefined should be (false)
 
 					(OptionMapFloat("one"): Option[Float]).isDefined should be (false)
+				}
+			}
+			"invalid argument accessed via implicit to type" should throws {
+				"IllegalArgumentException" in {
+					evaluating {
+						OptionMapFloat("one"): Float
+					} should produce[IllegalArgumentException]
 				}
 			}
 			"valid argument" should returns {
@@ -117,6 +152,13 @@ final class OptionMapTypeSpec extends ScalaTest {
 					(OptionMapInt("one"): Option[Int]).isDefined should be (false)
 				}
 			}
+			"invalid argument accessed via implicit to type" should throws {
+				"IllegalArgumentException" in {
+					evaluating {
+						OptionMapInt("one"): Int
+					} should produce[IllegalArgumentException]
+				}
+			}
 			"valid argument" should returns {
 				"Int" in {
 					OptionMapInt("1").get.get should equal (1)
@@ -133,6 +175,13 @@ final class OptionMapTypeSpec extends ScalaTest {
 					OptionMapList("").get.isDefined should be (false)
 
 					(OptionMapList(""): Option[List[String]]).isDefined should be (false)
+				}
+			}
+			"invalid argument accessed via implicit to type" should throws {
+				"IllegalArgumentException" in {
+					evaluating {
+						OptionMapList(""): List[String]
+					} should produce[IllegalArgumentException]
 				}
 			}
 			"valid argument" should returns {
@@ -157,6 +206,13 @@ final class OptionMapTypeSpec extends ScalaTest {
 					(OptionMapLong("one"): Option[Long]).isDefined should be (false)
 				}
 			}
+			"invalid argument accessed via implicit to type" should throws {
+				"IllegalArgumentException" in {
+					evaluating {
+						OptionMapLong("one"): Long
+					} should produce[IllegalArgumentException]
+				}
+			}
 			"valid argument" should returns {
 				"Long" in {
 					OptionMapLong("1").get.get should equal (1l)
@@ -175,6 +231,13 @@ final class OptionMapTypeSpec extends ScalaTest {
 					OptionMapShort("one").get.isDefined should be (false)
 
 					(OptionMapShort("one"): Option[Short]).isDefined should be (false)
+				}
+			}
+			"invalid argument accessed via implicit to type" should throws {
+				"IllegalArgumentException" in {
+					evaluating {
+						OptionMapShort("one"): Short
+					} should produce[IllegalArgumentException]
 				}
 			}
 			"valid argument" should returns {
