@@ -20,24 +20,6 @@ A small library of string metrics and phonetic algorithms. Each has a command li
 * __[Soundex](http://en.wikipedia.org/wiki/Soundex)__ (Phonetic metric and algorithm)
 * __Weighted Levenshtein__ (Similarity metric)
 
-## Depending on the API (via the [Maven Central Repository](http://search.maven.org/))
-* __groupId__: org.hashtree.stringmetric
-* __artifactId__: stringmetric-core
-
-## Depending on the CLI (via the [Maven Central Repository](http://search.maven.org/))
-* __groupId__: org.hashtree.stringmetric
-* __artifactId__: stringmetric-cli
-
-## Building the API (via Gradle)
-```shell
-gradle :stringmetric-core:jar
-```
-
-## Building the CLI (via Gradle)
-```shell
-gradle :stringmetric-cli:tar
-```
-
 ## Using the API
 Basic example with no filtering.
 ```scala
@@ -104,6 +86,24 @@ metaphoneMetric abc xyz
 Get the phonetic representation of "abc" using the Metaphone phonetic algorithm.
 ```shell 
 metaphoneAlgorithm abc
+```
+
+## Depending on the API (via the [Maven Central Repository](http://search.maven.org/))
+* __groupId__: org.hashtree.stringmetric
+* __artifactId__: stringmetric-core
+
+## Depending on the CLI (via the [Maven Central Repository](http://search.maven.org/))
+* __groupId__: org.hashtree.stringmetric
+* __artifactId__: stringmetric-cli
+
+## Building the API (via Gradle)
+```shell
+gradle :stringmetric-core:jar
+```
+
+## Building the CLI (via Gradle)
+```shell
+gradle :stringmetric-cli:tar
 ```
 
 ## Requirements
