@@ -5,6 +5,8 @@ apply plugin: 'signing'
 
 evaluationDependsOn(':stringmetric-core')
 
+def isMavenDeployable = hasProperty('mavenRepositoryUrl') && hasProperty('mavenRepositoryUsername') && hasProperty('mavenRepositoryPassword')
+
 compileScala {
 	compileScala.scalaCompileOptions.additionalParameters = ['-optimise', '–Xdisable-assertions']
 }
@@ -20,10 +22,6 @@ dependencies {
 	testCompile project(':stringmetric-core').sourceSets.test.output
 	testCompile 'junit:junit:4.10'
 	testCompile 'org.scalatest:scalatest_2.9.2:1.8'
-}
-
-signing {
-	sign configurations.archives
 }
 
 sourceSets {
@@ -53,16 +51,6 @@ sourceSets {
 			srcDir 'source/test/scala'
 		}
 	}
-}
-
-task scaladocJar(type: Jar, dependsOn: scaladoc) {
-	classifier = 'javadoc'
-	from "${project.buildDir}/docs/scaladoc"
-}
-
-task sourceJar(type: Jar, dependsOn: classes) {
-	classifier = 'sources'
-	from sourceSets.main.allSource
 }
 
 task tar(description: 'Assembles a compressed tar archive of source files.', dependsOn: [':stringmetric-cli:jar', ':stringmetric-core:jar']) {
@@ -128,22 +116,34 @@ task tar(description: 'Assembles a compressed tar archive of source files.', dep
 	}
 }
 
-artifacts {
-	archives jar
-	archives scaladocJar
-	archives sourceJar
-}
+if (isMavenDeployable) {
+	signing {
+		sign configurations.archives
+	}
 
-def isDeployable = hasProperty('sonatypeRepositoryUrl') && hasProperty('sonatypeUsername') && hasProperty('sonatypePassword')
+	task scaladocJar(type: Jar, dependsOn: scaladoc) {
+		classifier = 'javadoc'
+		from "${project.buildDir}/docs/scaladoc"
+	}
 
-uploadArchives {
-	repositories {
-		if(isDeployable) {
+	task sourceJar(type: Jar, dependsOn: classes) {
+		classifier = 'sources'
+		from sourceSets.main.allSource
+	}
+
+	artifacts {
+		archives jar
+		archives scaladocJar
+		archives sourceJar
+	}
+
+	uploadArchives {
+		repositories {
 			mavenDeployer {
 				beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-				repository(url: sonatypeRepositoryUrl) {
-					authentication(userName: sonatypeUsername, password: sonatypePassword)
+				repository(url: mavenRepositoryUrl) {
+					authentication(userName: mavenRepositoryUsername, password: mavenRepositoryPassword)
 				}
 
 				pom.project {
@@ -175,6 +175,6 @@ uploadArchives {
 					}
 				}
 			}
-		} else { mavenLocal() }
+		}
 	}
 }

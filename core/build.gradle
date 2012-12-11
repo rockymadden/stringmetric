@@ -3,6 +3,8 @@ apply plugin: 'maven'
 apply plugin: 'scala'
 apply plugin: 'signing'
 
+def isMavenDeployable = hasProperty('mavenRepositoryUrl') && hasProperty('mavenRepositoryUsername') && hasProperty('mavenRepositoryPassword')
+
 compileScala {
 	compileScala.scalaCompileOptions.additionalParameters = ['-optimise', '–Xdisable-assertions']
 }
@@ -17,10 +19,6 @@ dependencies {
 	testCompile 'com.google.caliper:caliper:0.5-rc1'
 	testCompile 'junit:junit:4.10'
 	testCompile 'org.scalatest:scalatest_2.9.2:1.8'
-}
-
-signing {
-	sign configurations.archives
 }
 
 sourceSets {
@@ -65,32 +63,34 @@ sourceSets {
 	}
 }
 
-task scaladocJar(type: Jar, dependsOn: scaladoc) {
-	classifier = 'javadoc'
-	from "${project.buildDir}/docs/scaladoc"
-}
+if (isMavenDeployable) {
+	signing {
+		sign configurations.archives
+	}
 
-task sourceJar(type: Jar, dependsOn: classes) {
-	classifier = 'sources'
-	from sourceSets.main.allSource
-}
+	task scaladocJar(type: Jar, dependsOn: scaladoc) {
+		classifier = 'javadoc'
+		from "${project.buildDir}/docs/scaladoc"
+	}
 
-artifacts {
-	archives jar
-	archives scaladocJar
-	archives sourceJar
-}
+	task sourceJar(type: Jar, dependsOn: classes) {
+		classifier = 'sources'
+		from sourceSets.main.allSource
+	}
 
-def isDeployable = hasProperty('sonatypeRepositoryUrl') && hasProperty('sonatypeUsername') && hasProperty('sonatypePassword')
+	artifacts {
+		archives jar
+		archives scaladocJar
+		archives sourceJar
+	}
 
-uploadArchives {
-	repositories {
-		if(isDeployable) {
+	uploadArchives {
+		repositories {
 			mavenDeployer {
 				beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-				repository(url: sonatypeRepositoryUrl) {
-					authentication(userName: sonatypeUsername, password: sonatypePassword)
+				repository(url: mavenRepositoryUrl) {
+					authentication(userName: mavenRepositoryUsername, password: mavenRepositoryPassword)
 				}
 
 				pom.project {
@@ -122,6 +122,6 @@ uploadArchives {
 					}
 				}
 			}
-		} else { mavenLocal() }
+		}
 	}
 }
