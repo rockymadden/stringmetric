@@ -1,11 +1,13 @@
 apply plugin: 'eclipse'
+apply plugin: 'maven'
 apply plugin: 'scala'
+apply plugin: 'signing'
+
+evaluationDependsOn(':stringmetric-core')
 
 compileScala {
 	compileScala.scalaCompileOptions.additionalParameters = ['-optimise', '–Xdisable-assertions']
 }
-
-evaluationDependsOn(':stringmetric-core')
 
 dependencies {
 	compile project(':stringmetric-core')
@@ -18,6 +20,10 @@ dependencies {
 	testCompile project(':stringmetric-core').sourceSets.test.output
 	testCompile 'junit:junit:4.10'
 	testCompile 'org.scalatest:scalatest_2.9.2:1.8'
+}
+
+signing {
+	sign configurations.archives
 }
 
 sourceSets {
@@ -47,6 +53,16 @@ sourceSets {
 			srcDir 'source/test/scala'
 		}
 	}
+}
+
+task scaladocJar(type: Jar, dependsOn: scaladoc) {
+	classifier = 'javadoc'
+	from "${project.buildDir}/docs/scaladoc"
+}
+
+task sourceJar(type: Jar, dependsOn: classes) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
 }
 
 task tar(description: 'Assembles a compressed tar archive of source files.', dependsOn: [':stringmetric-cli:jar', ':stringmetric-core:jar']) {
@@ -109,5 +125,56 @@ task tar(description: 'Assembles a compressed tar archive of source files.', dep
 		ant.tar(compression: 'gzip', destFile: "${project.buildDir}/${project.name}.tar.gz") {
 			tarfileset(dir: workingPath, fileMode: 755, prefix: project.name)
 		}
+	}
+}
+
+artifacts {
+	archives jar
+	archives scaladocJar
+	archives sourceJar
+}
+
+def isDeployable = hasProperty('sonatypeRepositoryUrl') && hasProperty('sonatypeUsername') && hasProperty('sonatypePassword')
+
+uploadArchives {
+	repositories {
+		if(isDeployable) {
+			mavenDeployer {
+				beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+				repository(url: sonatypeRepositoryUrl) {
+					authentication(userName: sonatypeUsername, password: sonatypePassword)
+				}
+
+				pom.project {
+					description "${parent.project.description}"
+					groupId "${parent.project.group}"
+					name "${project.name}"
+					packaging 'jar'
+					url "${parent.project.url}"
+					version "${parent.project.version}"
+
+					developers {
+						developer {
+							id 'rockymadden'
+							name 'Rocky Madden'
+						}
+					}
+	 
+					licenses {
+						license {
+							name 'Apache License v2.0'
+							url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+							distribution 'repo'
+						}
+					}
+
+					scm {
+						url "${parent.project.scm}"
+						connection "${parent.project.scm}"
+					}
+				}
+			}
+		} else { mavenLocal() }
 	}
 }

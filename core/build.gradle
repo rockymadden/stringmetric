@@ -1,5 +1,7 @@
 apply plugin: 'eclipse'
+apply plugin: 'maven'
 apply plugin: 'scala'
+apply plugin: 'signing'
 
 compileScala {
 	compileScala.scalaCompileOptions.additionalParameters = ['-optimise', '–Xdisable-assertions']
@@ -15,6 +17,10 @@ dependencies {
 	testCompile 'com.google.caliper:caliper:0.5-rc1'
 	testCompile 'junit:junit:4.10'
 	testCompile 'org.scalatest:scalatest_2.9.2:1.8'
+}
+
+signing {
+	sign configurations.archives
 }
 
 sourceSets {
@@ -56,5 +62,66 @@ sourceSets {
 		scala {
 			srcDir 'source/test/scala'
 		}
+	}
+}
+
+task scaladocJar(type: Jar, dependsOn: scaladoc) {
+	classifier = 'javadoc'
+	from "${project.buildDir}/docs/scaladoc"
+}
+
+task sourceJar(type: Jar, dependsOn: classes) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+artifacts {
+	archives jar
+	archives scaladocJar
+	archives sourceJar
+}
+
+def isDeployable = hasProperty('sonatypeRepositoryUrl') && hasProperty('sonatypeUsername') && hasProperty('sonatypePassword')
+
+uploadArchives {
+	repositories {
+		if(isDeployable) {
+			mavenDeployer {
+				beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+				repository(url: sonatypeRepositoryUrl) {
+					authentication(userName: sonatypeUsername, password: sonatypePassword)
+				}
+
+				pom.project {
+					description "${parent.project.description}"
+					groupId "${parent.project.group}"
+					name "${project.name}"
+					packaging 'jar'
+					url "${parent.project.url}"
+					version "${parent.project.version}"
+
+					developers {
+						developer {
+							id 'rockymadden'
+							name 'Rocky Madden'
+						}
+					}
+	 
+					licenses {
+						license {
+							name 'Apache License v2.0'
+							url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+							distribution 'repo'
+						}
+					}
+
+					scm {
+						url "${parent.project.scm}"
+						connection "${parent.project.scm}"
+					}
+				}
+			}
+		} else { mavenLocal() }
 	}
 }
