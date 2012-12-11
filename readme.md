@@ -1,5 +1,5 @@
 #stringmetric [![Build Status](https://secure.travis-ci.org/rockymadden/stringmetric.png)](http://travis-ci.org/rockymadden/stringmetric)
-A small library of string metrics and phonetic algorithms. Each has a command line interface and [Google Caliper](http://code.google.com/p/caliper/) microbenchmark suite.
+A small library of string metrics and phonetic algorithms. Each has a command line interface, is throughly unit tested, and performant (verified via microbenchmark suites).
 
 * __Phonetic metrics__ determine if two arguments sound the same phonetically. 
 * __Phonetic algorithms__ determine the phonetic representation of the argument passed. All phonetic metrics have a standalone algorithm counterpart. 
