@@ -113,3 +113,6 @@ gradle :stringmetric-cli:tar
 
 ## License
 [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+## Questions and Comments
+You can reach me at <stringmetric@rockymadden.com>.
