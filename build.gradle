@@ -1,6 +1,6 @@
 description = 'A small library of string metrics and phonetic algorithms.'
 group = 'com.rockymadden.stringmetric'
-version = '0.18.7'
+version = '0.19.0'
 
 ext.scm = 'scm:git@github.com:rockymadden/stringmetric.git'
 ext.url = 'https://github.com/rockymadden/stringmetric/'
