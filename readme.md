@@ -23,8 +23,6 @@ A small library of string metrics and phonetic algorithms. Each has a command li
 ## Using the API
 Basic example with no filtering.
 ```scala
-import com.rockymadden.stringmetric.similarity.JaroWinklerMetric  
-  
 val distance = JaroWinklerMetric.compare("string1", "string2")
 
 if (distance >= 0.9) println("It's likely you're a match!")
@@ -32,9 +30,6 @@ if (distance >= 0.9) println("It's likely you're a match!")
 
 Basic example with single filter.
 ```scala
-import com.rockymadden.stringmetric.filter.{ AsciiLetterCaseStringFilter, StringFilterDelegate }
-import com.rockymadden.stringmetric.similarity.JaroWinklerMetric
-
 val distance = JaroWinklerMetric.compare("string1", "string2")
     (new StringFilterDelegate with AsciiLetterCaseStringFilter)
 
@@ -43,9 +38,6 @@ if (distance >= 0.9) println("It's likely you're a match!")
 
 Basic example with stacked filter. Filters are applied in reverse order.
 ```scala
-import com.rockymadden.stringmetric.filter.{ AsciiLetterCaseStringFilter, AsciiLetterOnlyStringFilter, StringFilterDelegate }
-import com.rockymadden.stringmetric.similarity.JaroWinklerMetric
-
 val distance = JaroWinklerMetric.compare("string1", "string2")
     (new StringFilterDelegate with AsciiLetterCaseStringFilter with AsciiLetterOnlyStringFilter)
 
@@ -54,8 +46,6 @@ if (distance >= 0.9) println("It's likely you're a match!")
 
 You can also use the StringMetric, StringAlgorithm, and StringFilter convenience objects.
 ```scala
-import com.rockymadden.stringmetric.{ StringAlgorithm, StringFilter, StringMetric}
-  
 if (StringMetric.compareWithJaroWinkler("string1", "string2") >= 0.9) 
     println("It's likely you're a match!")
  
