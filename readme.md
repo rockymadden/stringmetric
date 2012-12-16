@@ -21,14 +21,14 @@ A small library of string metrics and phonetic algorithms. Each has a command li
 * __Weighted Levenshtein__ (Similarity metric)
 
 ## Using the API
-Basic example with no filtering.
+Basic example with no filtering:
 ```scala
 val distance = JaroWinklerMetric.compare("string1", "string2")
 
 if (distance >= 0.9) println("It's likely you're a match!")
 ```
 
-Basic example with single filter.
+Basic example with single filter:
 ```scala
 val distance = JaroWinklerMetric.compare("string1", "string2")
     (new StringFilterDelegate with AsciiLetterCaseStringFilter)
@@ -36,7 +36,7 @@ val distance = JaroWinklerMetric.compare("string1", "string2")
 if (distance >= 0.9) println("It's likely you're a match!")
 ```
 
-Basic example with stacked filter. Filters are applied in reverse order.
+Basic example with stacked filter. Filters are applied in reverse order:
 ```scala
 val distance = JaroWinklerMetric.compare("string1", "string2")
     (new StringFilterDelegate with AsciiLetterCaseStringFilter with AsciiLetterOnlyStringFilter)
@@ -44,7 +44,7 @@ val distance = JaroWinklerMetric.compare("string1", "string2")
 if (distance >= 0.9) println("It's likely you're a match!")
 ```
 
-You can also use the StringMetric, StringAlgorithm, and StringFilter convenience objects.
+You can also use the StringMetric, StringAlgorithm, and StringFilter convenience objects:
 ```scala
 if (StringMetric.compareWithJaroWinkler("string1", "string2") >= 0.9) 
     println("It's likely you're a match!")
@@ -56,24 +56,24 @@ if (StringMetric.compareWithJaroWinkler("string1", "string2")(StringFilter.ascii
 ## Using the CLI
 Uncompress the built tar and ensure you have ability to execute the commands. Execute the metric of choice via the command line:
 
-The help option prints command syntax and usage.
+The help option prints command syntax and usage:
 ```shell
 jaroWinklerMetric --help
 metaphoneMetric --help
 metaphoneAlgorithm --help
 ```
 
-Compare "abc" to "xyz" using the Jaro-Winkler metric.
+Compare "abc" to "xyz" using the Jaro-Winkler metric:
 ```shell
 jaroWinklerMetric abc xyz
 ```
 
-Compare "abc "to "xyz" using the Metaphone metric.
+Compare "abc "to "xyz" using the Metaphone metric:
 ```shell
 metaphoneMetric abc xyz
 ```
 
-Get the phonetic representation of "abc" using the Metaphone phonetic algorithm.
+Get the phonetic representation of "abc" using the Metaphone phonetic algorithm:
 ```shell 
 metaphoneAlgorithm abc
 ```
