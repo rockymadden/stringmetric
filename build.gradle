@@ -1,5 +1,5 @@
 description = 'A small library of string metrics and phonetic algorithms.'
-group = 'org.hashtree.stringmetric'
+group = 'com.rockymadden.stringmetric'
 version = '0.18.7'
 
 ext.scm = 'scm:git@github.com:rockymadden/stringmetric.git'
