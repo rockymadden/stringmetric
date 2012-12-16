@@ -54,7 +54,7 @@ if (StringMetric.compareWithJaroWinkler("string1", "string2")(StringFilter.ascii
 ```
 
 ## Using the CLI
-Uncompress the built tar and ensure you have ability to execute the commands. Execute the metric of choice via the command line:
+Uncompress the built tar and ensure you have ability to execute the commands, then execute the metric of choice via the command line.
 
 The help option prints command syntax and usage:
 ```shell
