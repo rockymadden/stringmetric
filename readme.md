@@ -1,10 +1,10 @@
 #stringmetric [![Build Status](https://secure.travis-ci.org/rockymadden/stringmetric.png)](http://travis-ci.org/rockymadden/stringmetric)
 A small library of string metrics and phonetic algorithms. Each has a command line interface, is thoroughly unit tested, and performant (verified via microbenchmark suites). 
 
+* __Similarity metrics__ determine the distance or coefficient between two arguments.
 * __Phonetic metrics__ determine if two arguments sound the same phonetically. 
 * __Phonetic algorithms__ determine the phonetic representation of the argument passed. All phonetic metrics have a standalone algorithm counterpart. 
-* __Similarity metrics__ determine the distance or coefficient between two arguments.
-* __Filters__, which can optionally be applied to metrics and algorithms, clean up arguments prior to evaluation. Filters can be combined via trait stacking.
+* __Filters__ clean up arguments prior to evaluation. Filters can be combined via trait stacking.
 
 ## Metrics and Algorithms
 * __[Dice / Sorensen](http://en.wikipedia.org/wiki/Dice%27s_coefficient)__ (Similarity metric)
@@ -54,46 +54,48 @@ if (StringMetric.compareWithJaroWinkler("string1", "string2")(StringFilter.ascii
 ```
 
 ## Using the CLI
-Uncompress the built tar and ensure you have ability to execute the commands, then execute the metric of choice via the command line.
-
 The help option prints command syntax and usage:
 ```shell
-jaroWinklerMetric --help
-metaphoneMetric --help
-metaphoneAlgorithm --help
+$ jaroWinklerMetric --help
+$ metaphoneMetric --help
+$ metaphoneAlgorithm --help
 ```
 
 Compare "abc" to "xyz" using the Jaro-Winkler metric:
 ```shell
-jaroWinklerMetric abc xyz
+$ jaroWinklerMetric abc xyz
 ```
 
 Compare "abc "to "xyz" using the Metaphone metric:
 ```shell
-metaphoneMetric abc xyz
+$ metaphoneMetric abc xyz
 ```
 
 Get the phonetic representation of "abc" using the Metaphone phonetic algorithm:
 ```shell 
-metaphoneAlgorithm abc
+$ metaphoneAlgorithm abc
 ```
 
-## Depending on the API (via the [Maven Central Repository](http://search.maven.org/))
+## Depending on the API
+Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22):
+
 * __groupId__: com.rockymadden.stringmetric
 * __artifactId__: stringmetric-core
 
-## Depending on the CLI (via the [Maven Central Repository](http://search.maven.org/))
+## Depending on the CLI
+Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22):
+
 * __groupId__: com.rockymadden.stringmetric
 * __artifactId__: stringmetric-cli
 
-## Building the API (via Gradle)
+## Building the API
 ```shell
-gradle :stringmetric-core:jar
+$ gradle :stringmetric-core:jar
 ```
 
-## Building the CLI (via Gradle)
+## Building the CLI
 ```shell
-gradle :stringmetric-cli:tar
+$ gradle :stringmetric-cli:tar
 ```
 
 ## Requirements
@@ -115,4 +117,4 @@ gradle :stringmetric-cli:tar
 [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 ## Questions and Comments
-You can reach me at <stringmetric@rockymadden.com>.
+Reach me at <stringmetric@rockymadden.com>.
