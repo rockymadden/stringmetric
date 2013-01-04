@@ -15,14 +15,11 @@
 .DS_Store
 
 # Editor ignores.
-.cache
-.project
-.settings
-.settings/
-bin/
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
 
 # Build ignores.
 build/
-
-# Project ignores.
-.classpath
