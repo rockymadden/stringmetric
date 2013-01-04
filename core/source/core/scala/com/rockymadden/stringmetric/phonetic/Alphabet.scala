@@ -1,7 +1,5 @@
 package com.rockymadden.stringmetric.phonetic
 
-import scala.annotation.tailrec
-
 object Alphabet {
 	def is(char: Char): Boolean = (char >= 65 && char <= 90) || (char >= 97 && char <= 122)
 
