@@ -1,5 +1,5 @@
 #stringmetric [![Build Status](https://secure.travis-ci.org/rockymadden/stringmetric.png)](http://travis-ci.org/rockymadden/stringmetric)
-A small library of string metrics and phonetic algorithms. Each has a command line interface, is thoroughly unit tested, and performant (verified via microbenchmark suites). 
+A Scala library of string metrics and phonetic algorithms. Each has a command line interface, is thoroughly unit tested, and performant (verified via microbenchmark suites). 
 
 * __Similarity metrics__ determine the distance or coefficient between two arguments.
 * __Phonetic metrics__ determine if two arguments sound the same phonetically. 
@@ -103,6 +103,7 @@ $ gradle :stringmetric-cli:tar
 * Gradle 1.x
 
 ## Todo
+* Scala 2.10.x
 * SmithWaterman
 * MongeElkan
 * NeedlemanWunch
