@@ -22,7 +22,7 @@ __Concepts:__
 * __[Soundex](http://en.wikipedia.org/wiki/Soundex)__ (Phonetic metric and algorithm)
 * __Weighted Levenshtein__ (Similarity metric)
 
-## Using the API
+## Using the Core
 Basic example with no filtering:
 ```scala
 val distance = JaroWinklerMetric.compare("string1", "string2")
@@ -78,41 +78,44 @@ Get the phonetic representation of "abc" using the Metaphone phonetic algorithm:
 $ metaphoneAlgorithm abc
 ```
 
-## Testing the API
+## Testing
 ```shell
 $ gradle :stringmetric-core:test
 ```
 
-## Testing the CLI
+and
+
 ```shell
 $ gradle :stringmetric-cli:test
 ```
 
-## Building the API
+## Building
 ```shell
 $ gradle :stringmetric-core:jar
 ```
 
-## Building the CLI
+and
+
 ```shell
 $ gradle :stringmetric-cli:tar
 ```
 
-## Depending on the API
+## Depending Upon
 Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22):
 
 * __groupId__: com.rockymadden.stringmetric
 * __artifactId__: stringmetric-core
-
-## Depending on the CLI
-Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22):
-
-* __groupId__: com.rockymadden.stringmetric
 * __artifactId__: stringmetric-cli
 
 ## Requirements
 * Scala 2.9.x
 * Gradle 1.x
+
+## Versioning
+[Semantic Versioning v2.0](http://semver.org/)
+
+## License
+[Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 ## Todo
 * Scala 2.10.x
@@ -122,12 +125,6 @@ Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga
 * Jaccard
 * Double Metaphone
 * Memoization decorator
-
-## Versioning
-[Semantic Versioning v2.0](http://semver.org/)
-
-## License
-[Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 ## Questions and Comments
 Reach me at <stringmetric@rockymadden.com>.
