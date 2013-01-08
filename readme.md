@@ -1,6 +1,8 @@
 #stringmetric [![Build Status](https://secure.travis-ci.org/rockymadden/stringmetric.png)](http://travis-ci.org/rockymadden/stringmetric)
 A Scala library of string metrics and phonetic algorithms. Each has a command line interface, is thoroughly unit tested, and performant (verified via microbenchmark suites). 
 
+__Concepts:__
+
 * __Similarity metrics__ determine the distance or coefficient between two arguments.
 * __Phonetic metrics__ determine if two arguments sound the same phonetically. 
 * __Phonetic algorithms__ determine the phonetic representation of the argument passed. All phonetic metrics have a standalone algorithm counterpart. 
@@ -76,6 +78,26 @@ Get the phonetic representation of "abc" using the Metaphone phonetic algorithm:
 $ metaphoneAlgorithm abc
 ```
 
+## Testing the API
+```shell
+$ gradle :stringmetric-core:test
+```
+
+## Testing the CLI
+```shell
+$ gradle :stringmetric-cli:test
+```
+
+## Building the API
+```shell
+$ gradle :stringmetric-core:jar
+```
+
+## Building the CLI
+```shell
+$ gradle :stringmetric-cli:tar
+```
+
 ## Depending on the API
 Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22):
 
@@ -87,16 +109,6 @@ Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga
 
 * __groupId__: com.rockymadden.stringmetric
 * __artifactId__: stringmetric-cli
-
-## Building the API
-```shell
-$ gradle :stringmetric-core:jar
-```
-
-## Building the CLI
-```shell
-$ gradle :stringmetric-cli:tar
-```
 
 ## Requirements
 * Scala 2.9.x
