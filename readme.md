@@ -1,6 +1,5 @@
 #stringmetric [![Build Status](https://secure.travis-ci.org/rockymadden/stringmetric.png)](http://travis-ci.org/rockymadden/stringmetric)
-A Scala library of string metrics and phonetic algorithms. It provides implementations to perform approximate string matching, fuzzy searching, measurement of string similarity and/or dissimilarity, word pronounciation, and more. Common applications of said metrics and algorithms include spell checkers, search functionality, plagirism detection, fraud detection, data deduplication, and data mining. In addition to the core library, each metric and algorithm has a command line interface, is thoroughly unit tested, and performant (verified via microbenchmark suites).
-
+A Scala library of string metrics and phonetic algorithms. It provides implementations to perform approximate string matching, fuzzy searching, measurement of string similarity and/or dissimilarity, word pronunciation, and more. Common applications of said metrics and algorithms include spell checkers, search functionality, plagiarism detection, fraud detection, data deduplication, and data mining. In addition to the core library, each metric and algorithm has a command line interface, is thoroughly unit tested, and performant (verified via microbenchmark suites).
 ![stringmetric](http://dl.dropbox.com/u/51819310/stringmetric.png)
 
 ## Metrics and Algorithms
