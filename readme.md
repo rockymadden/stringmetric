@@ -1,7 +1,7 @@
 #stringmetric [![Build Status](https://secure.travis-ci.org/rockymadden/stringmetric.png)](http://travis-ci.org/rockymadden/stringmetric)
 A Scala library of string metrics and phonetic algorithms. It provides implementations to perform approximate string matching, fuzzy searching, measurement of string similarity and/or dissimilarity, word pronunciation, and more. Common applications of said metrics and algorithms include spell checkers, search algorithms, plagiarism detection, fraud detection, and data deduplication. In addition to the core library, each metric and algorithm has a command line interface, is thoroughly unit tested, and performant (verified via microbenchmark suites).
 
-![stringmetric](http://dl.dropbox.com/u/51819310/stringmetric.png)
+[![stringmetric](http://dl.dropbox.com/u/51819310/stringmetric.png)](http://dl.dropbox.com/u/51819310/stringmetric.png)
 
 ## Metrics and Algorithms
 * __[Dice / Sorensen](http://en.wikipedia.org/wiki/Dice%27s_coefficient)__ (Similarity metric)
