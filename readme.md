@@ -113,7 +113,6 @@ Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga
 [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 ## Todo
-* Scala 2.10.x
 * SmithWaterman
 * MongeElkan
 * NeedlemanWunch
