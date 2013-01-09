@@ -8,37 +8,37 @@ final case class OptionMapArray(arrayString: String) extends OptionMapType[Array
 	private[this] lazy val self = try {
 		if (stringSelf.length == 0) None
 		else Some(stringSelf.split(" "))
-	} catch { case _ => None }
+	} catch { case _: Throwable => None }
 
 	override def get() = self
 }
 
 final case class OptionMapBigDecimal(bigDecimalString: String) extends OptionMapType[BigDecimal](bigDecimalString) {
-	private[this] lazy val self = try { Some(BigDecimal(stringSelf)) } catch { case _ => None }
+	private[this] lazy val self = try { Some(BigDecimal(stringSelf)) } catch { case _: Throwable => None }
 
 	override def get() = self
 }
 
 final case class OptionMapBigInt(bigIntString: String) extends OptionMapType[BigInt](bigIntString) {
-	private[this] lazy val self = try { Some(BigInt(stringSelf)) } catch { case _ => None }
+	private[this] lazy val self = try { Some(BigInt(stringSelf)) } catch { case _: Throwable => None }
 
 	override def get() = self
 }
 
 final case class OptionMapDouble(doubleString: String) extends OptionMapType[Double](doubleString) {
-	private[this] lazy val self = try { Some(stringSelf.toDouble) } catch { case _ => None }
+	private[this] lazy val self = try { Some(stringSelf.toDouble) } catch { case _: Throwable => None }
 
 	override def get() = self
 }
 
 final case class OptionMapFloat(floatString: String) extends OptionMapType[Float](floatString) {
-	private[this] lazy val self = try { Some(stringSelf.toFloat) } catch { case _ => None }
+	private[this] lazy val self = try { Some(stringSelf.toFloat) } catch { case _: Throwable => None }
 
 	override def get() = self
 }
 
 final case class OptionMapInt(intString: String) extends OptionMapType[Int](intString) {
-	private[this] lazy val self = try { Some(stringSelf.toInt) } catch { case _ => None }
+	private[this] lazy val self = try { Some(stringSelf.toInt) } catch { case _: Throwable => None }
 
 	override def get() = self
 }
@@ -47,19 +47,19 @@ final case class OptionMapList(listString: String) extends OptionMapType[List[St
 	private[this] lazy val self = try {
 		if (stringSelf.length == 0) None
 		else Some(stringSelf.split(" ").toList)
-	} catch { case _ => None }
+	} catch { case _: Throwable => None }
 
 	override def get() = self
 }
 
 final case class OptionMapLong(longString: String) extends OptionMapType[Long](longString) {
-	private[this] lazy val self = try { Some(stringSelf.toLong) } catch { case _ => None }
+	private[this] lazy val self = try { Some(stringSelf.toLong) } catch { case _: Throwable => None }
 
 	override def get() = self
 }
 
 final case class OptionMapShort(shortString: String) extends OptionMapType[Short](shortString) {
-	private[this] lazy val self = try { Some(stringSelf.toShort) } catch { case _ => None }
+	private[this] lazy val self = try { Some(stringSelf.toShort) } catch { case _: Throwable => None }
 
 	override def get() = self
 }
