@@ -1,6 +1,8 @@
 package com.rockymadden.stringmetric
 
-/** Marks those which leverage traits of a string based [[com.rockymadden.stringmetric.FilterableConfigurableMetric]]. */
+/**
+ * Marks those which leverage traits of a string based [[com.rockymadden.stringmetric.FilterableConfigurableMetric]].
+ */
 trait FilterableConfigurableStringMetric[O]
 	extends FilterableConfigurableMetric[String, O, StringFilter] with StringMetric {
 

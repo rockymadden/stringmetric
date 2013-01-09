@@ -4,9 +4,9 @@ import com.rockymadden.stringmetric.{ CompareTuple, FilterableStringMetric, Matc
 import scala.collection.mutable.{ ArrayBuffer, HashSet }
 
 /**
- * An implementation of the Jaro [[com.rockymadden.stringmetric.StringMetric]]. One differing detail in this implementation
- * is that if a character is matched in string2, it cannot be matched upon again. This results in a more penalized
- * distance in these scenarios.
+ * An implementation of the Jaro [[com.rockymadden.stringmetric.StringMetric]]. One differing detail in this
+ * implementation is that if a character is matched in string2, it cannot be matched upon again. This results in a more
+ * penalized distance in these scenarios.
  */
 object JaroMetric extends StringMetric with FilterableStringMetric {
 	type CompareReturn = Double

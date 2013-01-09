@@ -4,7 +4,8 @@ import com.rockymadden.stringmetric.cli._
 import com.rockymadden.stringmetric.similarity.NGramAlgorithm
 
 /**
- * The nGramAlgorithm [[com.rockymadden.stringmetric.cli.Command]]. Returns the N-Gram representation of the passed string.
+ * The nGramAlgorithm [[com.rockymadden.stringmetric.cli.Command]]. Returns the N-Gram representation of the passed
+ * string.
  */
 object nGramAlgorithm extends Command {
 	override def main(args: Array[String]): Unit = {

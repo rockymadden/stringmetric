@@ -4,8 +4,8 @@ import com.rockymadden.stringmetric.cli._
 import com.rockymadden.stringmetric.similarity.HammingMetric
 
 /**
- * The hammingMetric [[com.rockymadden.stringmetric.cli.Command]]. Compares the number of characters that two equal length
- * strings are different from one another.
+ * The hammingMetric [[com.rockymadden.stringmetric.cli.Command]]. Compares the number of characters that two equal
+ * length strings are different from one another.
  */
 object hammingMetric extends Command {
 	override def main(args: Array[String]): Unit = {

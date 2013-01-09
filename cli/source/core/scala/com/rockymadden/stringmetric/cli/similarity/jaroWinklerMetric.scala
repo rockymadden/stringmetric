@@ -4,8 +4,8 @@ import com.rockymadden.stringmetric.cli._
 import com.rockymadden.stringmetric.similarity.JaroWinklerMetric
 
 /**
- * The jaroWinklerMetric [[com.rockymadden.stringmetric.cli.Command]]. Compares two strings to calculate the Jaro-Winkler
- * distance.
+ * The jaroWinklerMetric [[com.rockymadden.stringmetric.cli.Command]]. Compares two strings to calculate the
+ * Jaro-Winkler distance.
  */
 object jaroWinklerMetric extends Command {
 	override def main(args: Array[String]): Unit = {

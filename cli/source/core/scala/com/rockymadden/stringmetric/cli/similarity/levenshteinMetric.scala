@@ -4,8 +4,8 @@ import com.rockymadden.stringmetric.cli._
 import com.rockymadden.stringmetric.similarity.LevenshteinMetric
 
 /**
- * The levenshteinMetric [[com.rockymadden.stringmetric.cli.Command]]. Compares the number of characters that two strings
- * are different from one another via insertion, deletion, and substitution.
+ * The levenshteinMetric [[com.rockymadden.stringmetric.cli.Command]]. Compares the number of characters that two
+ * strings are different from one another via insertion, deletion, and substitution.
  */
 object levenshteinMetric extends Command {
 	override def main(args: Array[String]): Unit = {

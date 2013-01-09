@@ -5,8 +5,8 @@ import com.rockymadden.stringmetric.similarity.WeightedLevenshteinMetric
 import scala.math.BigDecimal
 
 /**
- * The weightedLevenshteinMetric [[com.rockymadden.stringmetric.cli.Command]]. Compares the number of characters that two
- * strings are different from one another via insertion, deletion, and substitution. Allows the invoker to indicate
+ * The weightedLevenshteinMetric [[com.rockymadden.stringmetric.cli.Command]]. Compares the number of characters that
+ * two strings are different from one another via insertion, deletion, and substitution. Allows the invoker to indicate
  * the weight each operation takes.
  */
 object weightedLevenshteinMetric extends Command {
