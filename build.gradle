@@ -7,8 +7,98 @@ ext.url = 'http://rockymadden.com/stringmetric/'
 
 allprojects {
 	apply plugin: 'idea'
+}
+
+subprojects {
+	apply plugin: 'maven'
+	apply plugin: 'scala'
+	apply plugin: 'signing'
+
+	compileScala {
+		compileScala.scalaCompileOptions.additionalParameters = ['-optimise', '-target:jvm-1.6', '–Xdisable-assertions']
+	}
+
+	compileTestScala {
+		compileTestScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6']
+	}
+
+	dependencies {
+		compile 'org.scala-lang:scala-compiler:2.10.0'
+		compile 'org.scala-lang:scala-library:2.10.0'
+
+		scalaTools 'org.scala-lang:scala-compiler:2.10.0'
+		scalaTools 'org.scala-lang:scala-library:2.10.0'
+
+		testCompile 'junit:junit:4.11'
+		testCompile 'org.scalatest:scalatest_2.10.0:2.0.M5'
+	}
 
 	repositories {
 		mavenCentral()
+	}
+
+	def isMavenDeployable = hasProperty('mavenRepositoryUrl') && hasProperty('mavenRepositoryUsername') && hasProperty('mavenRepositoryPassword')
+
+	if (isMavenDeployable) {
+		signing {
+			sign configurations.archives
+		}
+
+		task scaladocJar(type: Jar, dependsOn: scaladoc) {
+			classifier = 'javadoc'
+			from "${project.buildDir}/docs/scaladoc"
+		}
+
+		task sourceJar(type: Jar, dependsOn: classes) {
+			classifier = 'sources'
+			from sourceSets.main.allSource
+		}
+
+		artifacts {
+			archives jar
+			archives scaladocJar
+			archives sourceJar
+		}
+
+		uploadArchives {
+			repositories {
+				mavenDeployer {
+					beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+					repository(url: mavenRepositoryUrl) {
+						authentication(userName: mavenRepositoryUsername, password: mavenRepositoryPassword)
+					}
+
+					pom.project {
+						description "${parent.project.description}"
+						groupId "${parent.project.group}"
+						name "${project.name}"
+						packaging 'jar'
+						url "${parent.project.url}"
+						version "${parent.project.version}"
+
+						developers {
+							developer {
+								id 'rockymadden'
+								name 'Rocky Madden'
+							}
+						}
+		 
+						licenses {
+							license {
+								name 'Apache License v2.0'
+								url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+								distribution 'repo'
+							}
+						}
+
+						scm {
+							url "${parent.project.scm}"
+							connection "${parent.project.scm}"
+						}
+					}
+				}
+			}
+		}
 	}
 }
