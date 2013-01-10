@@ -104,7 +104,7 @@ Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga
 * __artifactId__: stringmetric-cli
 
 ## Requirements
-* Scala 2.9.x
+* Scala 2.10.x
 * Gradle 1.x
 
 ## Versioning
