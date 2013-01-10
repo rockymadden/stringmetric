@@ -1,5 +1,7 @@
 package com.rockymadden.stringmetric.cli
 
+import language.implicitConversions
+
 sealed abstract class OptionMapType[T](protected[this] val stringSelf: String) {
 	def get(): Option[T]
 }
