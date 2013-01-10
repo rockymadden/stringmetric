@@ -12,6 +12,7 @@ A Scala library of string metrics and phonetic algorithms. It provides implement
 * __[Metaphone](http://en.wikipedia.org/wiki/Metaphone)__ (Phonetic metric and algorithm)
 * __[N-Gram](http://en.wikipedia.org/wiki/N-gram)__ (Similarity metric and algorithm)
 * __[NYSIIS](http://en.wikipedia.org/wiki/New_York_State_Identification_and_Intelligence_System)__ (Phonetic metric and algorithm)
+* __[Ratcliff / Obershelp](http://xlinux.nist.gov/dads/HTML/ratcliffObershelp.html)__ (Similarity metric)
 * __[Refined NYSIIS](http://www.markcrocker.com/rexxtipsntricks/rxtt28.2.0482.html)__ (Phonetic metric and algorithm)
 * __[Refined Soundex](http://ntz-develop.blogspot.com/2011/03/phonetic-algorithms.html)__ (Phonetic metric and algorithm)
 * __[Soundex](http://en.wikipedia.org/wiki/Soundex)__ (Phonetic metric and algorithm)
@@ -43,10 +44,10 @@ if (distance >= 0.9) println("It's likely you're a match!")
 
 You can also use the StringMetric, StringAlgorithm, and StringFilter convenience objects:
 ```scala
-if (StringMetric.compareWithJaroWinkler("string1", "string2") >= 0.9) 
+if (StringMetric.compareWithJaroWinkler("string1", "string2") >= 0.9)
     println("It's likely you're a match!")
- 
-if (StringMetric.compareWithJaroWinkler("string1", "string2")(StringFilter.asciiLetterCase) >= 0.9) 
+
+if (StringMetric.compareWithJaroWinkler("string1", "string2")(StringFilter.asciiLetterCase) >= 0.9)
     println("It's likely you're a match!")
 ```
 
@@ -69,7 +70,7 @@ $ metaphoneMetric abc xyz
 ```
 
 Get the phonetic representation of "abc" using the Metaphone phonetic algorithm:
-```shell 
+```shell
 $ metaphoneAlgorithm abc
 ```
 
