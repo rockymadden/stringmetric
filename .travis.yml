@@ -1,5 +1,5 @@
 language: scala
 scala:
-  - 2.9.2
+  - 2.10.0
 script:
   - "gradle test"
