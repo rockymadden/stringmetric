@@ -15,7 +15,7 @@ subprojects {
 	apply plugin: 'signing'
 
 	compileScala {
-		compileScala.scalaCompileOptions.additionalParameters = ['-optimise', '-target:jvm-1.6', '–Xdisable-assertions']
+		compileScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6', '–Xdisable-assertions']
 	}
 
 	compileTestScala {
