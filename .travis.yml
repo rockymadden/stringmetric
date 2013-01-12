@@ -3,3 +3,5 @@ scala:
   - 2.10.0
 script:
   - "gradle test"
+before_script:
+  'rm -f gradle.properties'
