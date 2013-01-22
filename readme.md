@@ -54,24 +54,45 @@ if (StringMetric.compareWithJaroWinkler("string1", "string2")(StringFilter.ascii
 ## Using the CLI
 The help option prints command syntax and usage:
 ```shell
-$ jaroWinklerMetric --help
 $ metaphoneMetric --help
-$ metaphoneAlgorithm --help
+
+Compares two strings to determine if they are phonetically similarly, per the Metaphone algorithm.
+
+Syntax:
+  metaphoneMetric [Options] string1 string2...
+
+Options:
+  -h, --help
+    Outputs description, syntax, and options.
+
+$ jaroWinklerMetric --help
+
+Compares two strings to calculate the Jaro-Winkler distance.
+
+Syntax:
+  jaroWinklerMetric [Options] string1 string2...
+
+Options:
+  -h, --help
+    Outputs description, syntax, and options.
 ```
 
-Compare "abc" to "xyz" using the Jaro-Winkler metric:
+Compare "dog" to "dawg":
 ```shell
-$ jaroWinklerMetric abc xyz
+$ metaphoneMetric dog dawg
+
+true
+
+$ jaroWinklerMetric dog dawg
+
+0.75
 ```
 
-Compare "abc "to "xyz" using the Metaphone metric:
+Get the phonetic representation of "dog" using the Metaphone phonetic algorithm:
 ```shell
-$ metaphoneMetric abc xyz
-```
+$ metaphoneAlgorithm dog
 
-Get the phonetic representation of "abc" using the Metaphone phonetic algorithm:
-```shell
-$ metaphoneAlgorithm abc
+tk
 ```
 
 ## Testing
