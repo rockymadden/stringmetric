@@ -99,8 +99,6 @@ tk
 $ gradle :stringmetric-core:test
 ```
 
-and
-
 ```shell
 $ gradle :stringmetric-cli:test
 ```
@@ -109,8 +107,6 @@ $ gradle :stringmetric-cli:test
 ```shell
 $ gradle :stringmetric-core:jar
 ```
-
-and
 
 ```shell
 $ gradle :stringmetric-cli:tar
