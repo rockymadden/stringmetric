@@ -1,7 +1,5 @@
 #stringmetric [![Build Status](https://travis-ci.org/rockymadden/stringmetric.png?branch=master)](http://travis-ci.org/rockymadden/stringmetric)
-A Scala library of string metrics and phonetic algorithms. It provides implementations to perform approximate string matching (sometimes called fuzzy string matching), measurement of strings similarity/distance, indexing by word pronunciation, and more. Common applications of said metrics and algorithms include spell checkers, search algorithms, plagiarism detection, fraud detection, data deduplication, and record linkage. In addition to the core library, each metric and algorithm has a command line interface, is thoroughly unit tested, and performant (verified via microbenchmark suites).
-
-[![stringmetric](http://dl.dropbox.com/u/51819310/stringmetric.png)](http://dl.dropbox.com/u/51819310/stringmetric.png)
+A Scala library of string metrics and phonetic algorithms. It provides implementations to perform approximate string matching (sometimes called fuzzy string matching), measurement of strings similarity/distance, indexing by word pronunciation, and more. Common applications of said metrics and algorithms include spell checkers, search algorithms, plagiarism detection, fraud detection, data deduplication, and record linkage. In addition to the core library, each metric and algorithm has a command line interface. Both subprojects are heavily unit tested and performant (verified via microbenchmark suites).
 
 ## Metrics and Algorithms
 * __[Dice / Sorensen](http://en.wikipedia.org/wiki/Dice%27s_coefficient)__ (Similarity metric)
@@ -17,6 +15,9 @@ A Scala library of string metrics and phonetic algorithms. It provides implement
 * __[Refined Soundex](http://ntz-develop.blogspot.com/2011/03/phonetic-algorithms.html)__ (Phonetic metric and algorithm)
 * __[Soundex](http://en.wikipedia.org/wiki/Soundex)__ (Phonetic metric and algorithm)
 * __Weighted Levenshtein__ (Similarity metric)
+
+## Visualization
+[![stringmetric](http://dl.dropbox.com/u/51819310/stringmetric.png)](http://dl.dropbox.com/u/51819310/stringmetric.png)
 
 ## Using the Core
 Basic example with no filtering:
