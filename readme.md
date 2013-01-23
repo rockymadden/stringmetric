@@ -267,6 +267,24 @@ r163
 l222
 ```
 
+## Filter package
+Useful for filtering strings prior to evaluation (e.g. ignore case, ignore non-alpha, ignore spaces). Filters can be used implicitly.
+
+Basic example with no filtering:
+```scala
+JaroWinklerMetric.compare("string1", "string2")
+```
+
+Basic example with single filter:
+```scala
+JaroWinklerMetric.compare("string1", "string2")(new StringFilterDelegate with AsciiLetterCaseStringFilter)
+```
+
+Basic example with stacked filter. Filters are applied in reverse order:
+```scala
+JaroWinklerMetric.compare("string1", "string2")(new StringFilterDelegate with AsciiLetterCaseStringFilter with AsciiLetterOnlyStringFilter)
+```
+
 ## Todo
 * SmithWaterman
 * MongeElkan
