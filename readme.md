@@ -111,6 +111,18 @@ Array("ab", "bc", "cd", "de", "ef", "fg", "gh", "hi", "ij", "jk", "kl", "lm", "m
 Array("abc", "bcd", "cde", "def", "efg", "fgh", "ghi", "hij", "ijk", "jkl", "klm", "lmn", "mno", "nop", "opq", "pqr", "qrs", "rst", "stu", "tuv", "uvw", "vwx", "wxy", "xyz")
 ```
 
+__Ratcliff/Obershelp Metric:__
+```scala
+println(RatcliffObershelpMetric.compare("aleksander", "alexandre"))
+println(RatcliffObershelpMetric.compare("pennsylvania", "pencilvaneya"))
+```
+
+Output:
+```shell
+0.7368421052631579
+0.6666666666666666
+```
+
 ## Testing
 ```shell
 $ gradle :stringmetric-core:test
