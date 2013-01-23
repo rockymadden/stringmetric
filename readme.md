@@ -19,13 +19,13 @@ String metrics and phonetic algorithms implemented in Scala. The library provide
 ## Similarity package
 Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.
 
-Dice / Sorensen Metric:
+__Dice / Sorensen Metric:__
 ```scala
 println(DiceSorensenMetric.compare("night", "nacht"))
 println(DiceSorensenMetric.compare("context", "contact")
 ```
 
-Outputs:
+Output:
 ```shell
 0.6
 0.7142857142857143
