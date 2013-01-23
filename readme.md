@@ -16,7 +16,7 @@ String metrics and phonetic algorithms implemented in Scala. The library provide
 * __[Soundex](http://en.wikipedia.org/wiki/Soundex)__ (Phonetic metric and algorithm)
 * __Weighted Levenshtein__ (Similarity metric)
 
-## Depending Upon
+## Installation
 Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22):
 
 * __groupId__: com.rockymadden.stringmetric
@@ -336,6 +336,7 @@ Get the phonetic representation of "dog" using the Metaphone phonetic algorithm:
 ```shell
 $ metaphoneAlgorithm dog
 tk
+```
 
 ## Todo
 * SmithWaterman
