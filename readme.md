@@ -45,14 +45,30 @@ Output (note the exception of integers, rather than doubles, being returned):
 
 __Jaro Metric:__
 ```scala
-println(HammingMetric.compare("dwayne", "duane"))
-println(HammingMetric.compare("jones", "johnson"))
+println(JaroMetric.compare("dwayne", "duane"))
+println(JaroMetric.compare("jones", "johnson"))
+println(JaroMetric.compare("fvie", "ten"))
 ```
 
 Output:
 ```shell
 0.8222222222222223
 0.7904761904761904
+0
+```
+
+__Jaro-Winkler Metric:__
+```scala
+println(JaroWinklerMetric.compare("dwayne", "duane"))
+println(JaroWinklerMetric.compare("jones", "johnson"))
+println(JaroWinklerMetric.compare("fvie", "ten"))
+```
+
+Output:
+```shell
+0.8400000000000001
+0.8323809523809523
+0
 ```
 
 ## Testing
