@@ -16,9 +16,6 @@ A Scala library of string metrics and phonetic algorithms. It provides implement
 * __[Soundex](http://en.wikipedia.org/wiki/Soundex)__ (Phonetic metric and algorithm)
 * __Weighted Levenshtein__ (Similarity metric)
 
-## Visualization
-[![stringmetric](http://dl.dropbox.com/u/51819310/stringmetric.png)](http://dl.dropbox.com/u/51819310/stringmetric.png)
-
 ## Using the Core
 Basic example with no filtering:
 ```scala
