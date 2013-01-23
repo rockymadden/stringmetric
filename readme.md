@@ -71,6 +71,18 @@ Output:
 0
 ```
 
+__Levenshtein Metric:__
+```scala
+println(LevenshteinMetric.compare("sitting", "kitten"))
+println(LevenshteinMetric.compare("cake", "drake"))
+```
+
+Output (note the exception of integers, rather than doubles, being returned):
+```shell
+3
+2
+```
+
 ## Testing
 ```shell
 $ gradle :stringmetric-core:test
