@@ -137,6 +137,21 @@ Output: _(Note that while a double is returned, it can be outside the range of 0
 40
 ```
 
+## Phonetic package
+Useful for indexing by word pronunciation and performing sounds-like comparisions. All metrics return a boolean value indicating if the two strings sound the same, per the algorithm used. All metrics have a algorithm counterpart which provide the means to perform indexing by word pronunciation.
+
+__Metaphone Metric:__
+```scala
+println(MetaphoneMetric.compare("merci", "mercy"))
+println(MetaphoneMetric.compare("dumb", "gum"))
+```
+
+Output:
+```shell
+true
+false
+```
+
 ## Testing
 ```shell
 $ gradle :stringmetric-core:test
