@@ -243,6 +243,30 @@ h093
 l7081096
 ```
 
+__Soundex Metric:__
+```scala
+println(SoundexMetric.compare("robert", "rupert"))
+println(SoundexMetric.compare("robert", "rubin"))
+```
+
+Output:
+```
+true
+false
+```
+
+__Soundex Algorithm:__
+```scala
+println(SoundexAlgorithm.compute("rupert"))
+println(SoundexAlgorithm.compute("lukasiewicz"))
+```
+
+Output:
+```
+r163
+l222
+```
+
 ## Todo
 * SmithWaterman
 * MongeElkan
