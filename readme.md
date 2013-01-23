@@ -16,6 +16,13 @@ String metrics and phonetic algorithms implemented in Scala. The library provide
 * __[Soundex](http://en.wikipedia.org/wiki/Soundex)__ (Phonetic metric and algorithm)
 * __Weighted Levenshtein__ (Similarity metric)
 
+## Depending Upon
+Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22):
+
+* __groupId__: com.rockymadden.stringmetric
+* __artifactId__: stringmetric-core
+* __artifactId__: stringmetric-cli
+
 ## Similarity package
 Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.
 
@@ -188,30 +195,37 @@ mcant
 nnat
 ```
 
-## Testing
-```shell
-$ gradle :stringmetric-core:test
+__Refined NYSIIS Metric:__
+```scala
+println(RefinedNysiisMetric.compare("ham", "hum"))
+println(RefinedNysiisMetric.compare("dumb", "gum")
 ```
 
-```shell
-$ gradle :stringmetric-cli:test
+Output:
+```
+true
+false
 ```
 
-## Building
-```shell
-$ gradle :stringmetric-core:jar
+__Refined NYSIIS Algorithm:__
+```scala
+println(RefinedNysiisAlgorithm.compute("macintosh"))
+println(RefinedNysiisAlgorithm.compute("westerlund"))
 ```
 
-```shell
-$ gradle :stringmetric-cli:tar
+Output:
+```
+mcantas
+wastarlad
 ```
 
-## Depending Upon
-Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22):
-
-* __groupId__: com.rockymadden.stringmetric
-* __artifactId__: stringmetric-core
-* __artifactId__: stringmetric-cli
+## Todo
+* SmithWaterman
+* MongeElkan
+* NeedlemanWunch
+* Jaccard
+* Double Metaphone
+* Memoization decorator
 
 ## Requirements
 * Scala 2.10.x
@@ -223,13 +237,5 @@ Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga
 ## License
 [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
-## Todo
-* SmithWaterman
-* MongeElkan
-* NeedlemanWunch
-* Jaccard
-* Double Metaphone
-* Memoization decorator
-
-## Questions and Comments
-Reach me at <stringmetric@rockymadden.com>.
+## Questions, Comments, and Requests
+Find all my contact information on my [personal website](http://rockymadden.com/).
