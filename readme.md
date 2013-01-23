@@ -31,6 +31,18 @@ Output:
 0.7142857142857143
 ```
 
+__Hamming Metric:__
+```scala
+println(HammingMetric.compare("toned", "roses"))
+println(HammingMetric.compare("1011101", "1001001")
+```
+
+Output:
+```shell
+3
+2
+```
+
 ## Testing
 ```shell
 $ gradle :stringmetric-core:test
