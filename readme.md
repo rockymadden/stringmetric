@@ -198,7 +198,7 @@ nnat
 __Refined NYSIIS Metric:__
 ```scala
 println(RefinedNysiisMetric.compare("ham", "hum"))
-println(RefinedNysiisMetric.compare("dumb", "gum")
+println(RefinedNysiisMetric.compare("dumb", "gum"))
 ```
 
 Output:
@@ -217,6 +217,30 @@ Output:
 ```
 mcantas
 wastarlad
+```
+
+__Refined Soundex Metric:__
+```scala
+println(RefinedSoundexMetric.compare("robert", "rupert"))
+println(RefinedSoundexMetric.compare("robert", "rubin"))
+```
+
+Output:
+```
+true
+false
+```
+
+__Refined Soundex Algorithm:__
+```scala
+println(RefinedSoundexAlgorithm.compute("hairs"))
+println(RefinedSoundexAlgorithm.compute("lambert"))
+```
+
+Output:
+```
+h093
+l7081096
 ```
 
 ## Todo
