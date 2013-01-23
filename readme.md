@@ -164,6 +164,30 @@ tm
 n0
 ```
 
+__NYSIIS Metric:__
+```scala
+println(NysiisMetric.compare("ham", "hum"))
+println(NysiisMetric.compare("dumb", "gum"))
+```
+
+Output:
+```
+true
+false
+```
+
+__NYSIIS Algorithm:__
+```scala
+println(NysiisAlgorithm.compute("macintosh"))
+println(NysiisAlgorithm.compute("knuth"))
+```
+
+Output:
+```
+mcant
+nnat
+```
+
 ## Testing
 ```shell
 $ gradle :stringmetric-core:test
