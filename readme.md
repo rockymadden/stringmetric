@@ -26,7 +26,7 @@ println(DiceSorensenMetric.compare("context", "contact"))
 ```
 
 Output:
-```shell
+```
 0.6
 0.7142857142857143
 ```
@@ -38,7 +38,7 @@ println(HammingMetric.compare("1011101", "1001001"))
 ```
 
 Output: _(Note the exception of integers, rather than doubles, being returned.)_
-```shell
+```
 3
 2
 ```
@@ -51,7 +51,7 @@ println(JaroMetric.compare("fvie", "ten"))
 ```
 
 Output:
-```shell
+```
 0.8222222222222223
 0.7904761904761904
 0
@@ -65,7 +65,7 @@ println(JaroWinklerMetric.compare("fvie", "ten"))
 ```
 
 Output:
-```shell
+```
 0.8400000000000001
 0.8323809523809523
 0
@@ -78,7 +78,7 @@ println(LevenshteinMetric.compare("cake", "drake"))
 ```
 
 Output: _(Note the exception of integers, rather than doubles, being returned.)_
-```shell
+```
 3
 2
 ```
@@ -91,7 +91,7 @@ println(NGramMetric.compare("context", "contact")(2))
 ```
 
 Output:
-```shell
+```
 0.6
 0.25
 0.5
@@ -105,7 +105,7 @@ println(NGramAlgorithm.compute("abcdefghijklmnopqrstuvwxyz")(3))
 ```
 
 Output:
-```shell
+```
 Array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
 Array("ab", "bc", "cd", "de", "ef", "fg", "gh", "hi", "ij", "jk", "kl", "lm", "mn", "no", "op", "pq", "qr", "rs", "st", "tu", "uv", "vw", "wx", "xy", "yz")
 Array("abc", "bcd", "cde", "def", "efg", "fgh", "ghi", "hij", "ijk", "jkl", "klm", "lmn", "mno", "nop", "opq", "pqr", "qrs", "rst", "stu", "tuv", "uvw", "vwx", "wxy", "xyz")
@@ -118,7 +118,7 @@ println(RatcliffObershelpMetric.compare("pennsylvania", "pencilvaneya"))
 ```
 
 Output:
-```shell
+```
 0.7368421052631579
 0.6666666666666666
 ```
@@ -131,7 +131,7 @@ println(WeightedLevenshteinMetric.compare("hospital", "hosp")(10, 0.1, 1))
 ```
 
 Output: _(Note that while a double is returned, it can be outside the range of 0 to 1, based upon the weights used.)_
-```shell
+```
 2
 0.4
 40
@@ -147,9 +147,21 @@ println(MetaphoneMetric.compare("dumb", "gum"))
 ```
 
 Output:
-```shell
+```
 true
 false
+```
+
+__Metaphone Algorithm:__
+```scala
+println(MetaphoneAlgorithm.compute("dumb"))
+println(MetaphoneAlgorithm.compute("knuth"))
+```
+
+Output:
+```
+tm
+n0
 ```
 
 ## Testing
