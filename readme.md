@@ -97,6 +97,20 @@ Output:
 0.5
 ```
 
+__N-Gram Algorithm:__ _(Note you must specify the size of the n-gram you wish to use)_
+```scala
+println(NGramAlgorithm.compute("abcdefghijklmnopqrstuvwxyz")(1))
+println(NGramAlgorithm.compute("abcdefghijklmnopqrstuvwxyz")(2))
+println(NGramAlgorithm.compute("abcdefghijklmnopqrstuvwxyz")(3))
+```
+
+Output:
+```shell
+Array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
+Array("ab", "bc", "cd", "de", "ef", "fg", "gh", "hi", "ij", "jk", "kl", "lm", "mn", "no", "op", "pq", "qr", "rs", "st", "tu", "uv", "vw", "wx", "xy", "yz")
+Array("abc", "bcd", "cde", "def", "efg", "fgh", "ghi", "hij", "ijk", "jkl", "klm", "lmn", "mno", "nop", "opq", "pqr", "qrs", "rst", "stu", "tuv", "uvw", "vwx", "wxy", "xyz")
+```
+
 ## Testing
 ```shell
 $ gradle :stringmetric-core:test
