@@ -1,5 +1,5 @@
 #stringmetric [![Build Status](https://travis-ci.org/rockymadden/stringmetric.png?branch=master)](http://travis-ci.org/rockymadden/stringmetric)
-String metrics and phonetic algorithms implemented in Scala. The library provides facilities to perform approximate string matching, measurement of string similarity/distance, and indexing by word pronunciation. In addition to the core library, each metric and algorithm has a command line interface. Both subprojects are heavily unit tested and performant (verified via microbenchmark suites).
+String metrics and phonetic algorithms implemented in Scala. The library provides facilities to perform approximate string matching, measurement of string similarity/distance, indexing by word pronunciation, and sounds-like comparisions. In addition to the core library, each metric and algorithm has a command line interface. Heavy emphasis is placed on unit testing and performance (verified via microbenchmark suites).
 
 ## Metrics and Algorithms
 * __[Dice / Sorensen](http://en.wikipedia.org/wiki/Dice%27s_coefficient)__ (Similarity metric)
@@ -16,80 +16,19 @@ String metrics and phonetic algorithms implemented in Scala. The library provide
 * __[Soundex](http://en.wikipedia.org/wiki/Soundex)__ (Phonetic metric and algorithm)
 * __Weighted Levenshtein__ (Similarity metric)
 
-## Using the Core
-Basic example with no filtering:
+## Similarity package
+Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.
+
+Dice / Sorensen Metric:
 ```scala
-val distance = JaroWinklerMetric.compare("string1", "string2")
-
-if (distance >= 0.9) println("It's likely you're a match!")
+println(DiceSorensenMetric.compare("night", "nacht"))
+println(DiceSorensenMetric.compare("context", "contact")
 ```
 
-Basic example with single filter:
-```scala
-val distance = JaroWinklerMetric.compare("string1", "string2")
-    (new StringFilterDelegate with AsciiLetterCaseStringFilter)
-
-if (distance >= 0.9) println("It's likely you're a match!")
-```
-
-Basic example with stacked filter. Filters are applied in reverse order:
-```scala
-val distance = JaroWinklerMetric.compare("string1", "string2")
-    (new StringFilterDelegate with AsciiLetterCaseStringFilter with AsciiLetterOnlyStringFilter)
-
-if (distance >= 0.9) println("It's likely you're a match!")
-```
-
-You can also use the StringMetric, StringAlgorithm, and StringFilter convenience objects:
-```scala
-if (StringMetric.compareWithJaroWinkler("string1", "string2") >= 0.9)
-    println("It's likely you're a match!")
-
-if (StringMetric.compareWithJaroWinkler("string1", "string2")(StringFilter.asciiLetterCase) >= 0.9)
-    println("It's likely you're a match!")
-```
-
-## Using the CLI
-The help option prints command syntax and usage:
+Outputs:
 ```shell
-$ metaphoneMetric --help
-Compares two strings to determine if they are phonetically similarly, per the Metaphone algorithm.
-
-Syntax:
-  metaphoneMetric [Options] string1 string2...
-
-Options:
-  -h, --help
-    Outputs description, syntax, and options.
-```
-
-```shell
-$ jaroWinklerMetric --help
-Compares two strings to calculate the Jaro-Winkler distance.
-
-Syntax:
-  jaroWinklerMetric [Options] string1 string2...
-
-Options:
-  -h, --help
-    Outputs description, syntax, and options.
-```
-
-Compare "dog" to "dawg":
-```shell
-$ metaphoneMetric dog dawg
-true
-```
-
-```shell
-$ jaroWinklerMetric dog dawg
-0.75
-```
-
-Get the phonetic representation of "dog" using the Metaphone phonetic algorithm:
-```shell
-$ metaphoneAlgorithm dog
-tk
+0.6
+0.7142857142857143
 ```
 
 ## Testing
