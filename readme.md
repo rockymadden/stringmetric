@@ -37,7 +37,7 @@ println(HammingMetric.compare("toned", "roses"))
 println(HammingMetric.compare("1011101", "1001001"))
 ```
 
-Output (note the exception of integers, rather than doubles, being returned):
+Output: _(Note the exception of integers, rather than doubles, being returned)_
 ```shell
 3
 2
@@ -77,10 +77,24 @@ println(LevenshteinMetric.compare("sitting", "kitten"))
 println(LevenshteinMetric.compare("cake", "drake"))
 ```
 
-Output (note the exception of integers, rather than doubles, being returned):
+Output: _(Note the exception of integers, rather than doubles, being returned)_
 ```shell
 3
 2
+```
+
+__N-Gram Metric:__ _(Note you must specify the size of the n-gram you wish to use)_
+```scala
+println(NGramMetric.compare("night", "nacht")(1))
+println(NGramMetric.compare("night", "nacht")(2))
+println(NGramMetric.compare("context", "contact")(2))
+```
+
+Output:
+```shell
+0.6
+0.25
+0.5
 ```
 
 ## Testing
