@@ -90,7 +90,7 @@ Output: _(Note the exception of integers, rather than doubles, being returned.)_
 2
 ```
 
-__N-Gram Metric:__ _(Note you must specify the size of the n-gram you wish to use.)_
+__N-Gram Metric:__ _(Note you must specify the size of the n-gram you wish to use. This can be done implicitly.)_
 ```scala
 println(NGramMetric.compare("night", "nacht")(1))
 println(NGramMetric.compare("night", "nacht")(2))
@@ -104,7 +104,7 @@ Output:
 0.5
 ```
 
-__N-Gram Algorithm:__ _(Note you must specify the size of the n-gram you wish to use.)_
+__N-Gram Algorithm:__ _(Note you must specify the size of the n-gram you wish to use. This can be done implicitly.)_
 ```scala
 println(NGramAlgorithm.compute("abcdefghijklmnopqrstuvwxyz")(1))
 println(NGramAlgorithm.compute("abcdefghijklmnopqrstuvwxyz")(2))
@@ -130,7 +130,7 @@ Output:
 0.6666666666666666
 ```
 
-__Weighted Levenshtein Metric:__ _(Note you must specify the weight of each operation. Delete, insert, and then substitute.)_
+__Weighted Levenshtein Metric:__ _(Note you must specify the weight of each operation. Delete, insert, and then substitute. This can be done implicitly.)_
 ```scala
 println(WeightedLevenshteinMetric.compare("book", "back")(10, 0.1, 1))
 println(WeightedLevenshteinMetric.compare("hosp", "hospital")(10, 0.1, 1))
