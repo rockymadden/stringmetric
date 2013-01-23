@@ -285,6 +285,14 @@ Basic example with stacked filter. Filters are applied in reverse order:
 JaroWinklerMetric.compare("string1", "string2")(new StringFilterDelegate with AsciiLetterCaseStringFilter with AsciiLetterOnlyStringFilter)
 ```
 
+## Convenience objects
+The StringMetric, StringAlgorithm, and StringFilter convenience objects are available to make interactions with the library easier:
+```scala
+StringMetric.compareWithJaroWinkler("string1", "string2")
+StringMetric.compareWithJaroWinkler("string1", "string2")(StringFilter.asciiLetterCase)
+StringAlgorithm.computeWithMetaphone("string1", "string2")
+```
+
 ## Todo
 * SmithWaterman
 * MongeElkan
