@@ -22,7 +22,7 @@ Useful for approximate string matching and measurement of string distance. Most 
 __Dice / Sorensen Metric:__
 ```scala
 println(DiceSorensenMetric.compare("night", "nacht"))
-println(DiceSorensenMetric.compare("context", "contact")
+println(DiceSorensenMetric.compare("context", "contact"))
 ```
 
 Output:
@@ -34,13 +34,25 @@ Output:
 __Hamming Metric:__
 ```scala
 println(HammingMetric.compare("toned", "roses"))
-println(HammingMetric.compare("1011101", "1001001")
+println(HammingMetric.compare("1011101", "1001001"))
+```
+
+Output (note the exception of integers, rather than doubles, being returned):
+```shell
+3
+2
+```
+
+__Jaro Metric:__
+```scala
+println(HammingMetric.compare("dwayne", "duane"))
+println(HammingMetric.compare("jones", "johnson"))
 ```
 
 Output:
 ```shell
-3
-2
+0.8222222222222223
+0.7904761904761904
 ```
 
 ## Testing
