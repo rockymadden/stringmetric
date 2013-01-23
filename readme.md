@@ -293,6 +293,50 @@ StringMetric.compareWithJaroWinkler("string1", "string2")(StringFilter.asciiLett
 StringAlgorithm.computeWithMetaphone("string1", "string2")
 ```
 
+## Command line interfaces
+Every metric and algorithm has a command line interface.
+
+The help option prints command syntax and usage:
+```shell
+$ metaphoneMetric --help
+Compares two strings to determine if they are phonetically similarly, per the Metaphone algorithm.
+
+Syntax:
+  metaphoneMetric [Options] string1 string2...
+
+Options:
+  -h, --help
+    Outputs description, syntax, and options.
+```
+
+```shell
+$ jaroWinklerMetric --help
+Compares two strings to calculate the Jaro-Winkler distance.
+
+Syntax:
+  jaroWinklerMetric [Options] string1 string2...
+
+Options:
+  -h, --help
+    Outputs description, syntax, and options.
+```
+
+Compare "dog" to "dawg":
+```shell
+$ metaphoneMetric dog dawg
+true
+```
+
+```shell
+$ jaroWinklerMetric dog dawg
+0.75
+```
+
+Get the phonetic representation of "dog" using the Metaphone phonetic algorithm:
+```shell
+$ metaphoneAlgorithm dog
+tk
+
 ## Todo
 * SmithWaterman
 * MongeElkan
