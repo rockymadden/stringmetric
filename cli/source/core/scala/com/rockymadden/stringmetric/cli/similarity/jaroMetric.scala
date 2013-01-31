@@ -8,18 +8,15 @@ object jaroMetric extends Command {
 	override def main(args: Array[String]): Unit = {
 		val options = OptionMap(args)
 
-		try {
-			// Help.
+		try
 			if (options.contains('h) || options.contains('help)) {
 				help()
 				exit(options)
-			// Execute.
 			} else if (options.contains('dashless) && (options('dashless): OptionMapArray).length == 2) {
 				execute(options)
 				exit(options)
-			// Invalid syntax.
 			} else throw new IllegalArgumentException("Expected valid syntax. See --help.")
-		} catch {
+		catch {
 			case e: Throwable => error(e, options)
 		}
 	}
@@ -41,11 +38,6 @@ object jaroMetric extends Command {
 	override def execute(options: OptionMap): Unit = {
 		val strings: OptionMapArray = options('dashless)
 
-		println(
-			JaroMetric.compare(
-				strings(0),
-				strings(1)
-			).getOrElse("not comparable")
-		)
+		println(JaroMetric.compare(strings(0), strings(1)).getOrElse("not comparable"))
 	}
 }

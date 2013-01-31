@@ -11,20 +11,17 @@ object nGramAlgorithm extends Command {
 	override def main(args: Array[String]): Unit = {
 		val options = OptionMap(args)
 
-		try {
-			// Help.
+		try
 			if (options.contains('h) || options.contains('help)) {
 				help()
 				exit(options)
-			// Execute.
 			} else if (options.contains('dashless) && (options('dashless): OptionMapArray).length == 1
-				&& options.contains('n) && (options('n): OptionMapInt).isDefined
-			) {
+				&& options.contains('n) && (options('n): OptionMapInt) >= 1) {
+
 				execute(options)
 				exit(options)
-			// Invalid syntax.
 			} else throw new IllegalArgumentException("Expected valid syntax. See --help.")
-		} catch {
+		catch {
 			case e: Throwable => error(e, options)
 		}
 	}
@@ -48,8 +45,6 @@ object nGramAlgorithm extends Command {
 	override def execute(options: OptionMap): Unit = {
 		val n: OptionMapInt = options('n)
 
-		println(
-			NGramAlgorithm.compute(options('dashless))(n).map(_.mkString("|")).getOrElse("not computable")
-		)
+		println(NGramAlgorithm.compute(options('dashless))(n).map(_.mkString("|")).getOrElse("not computable"))
 	}
 }

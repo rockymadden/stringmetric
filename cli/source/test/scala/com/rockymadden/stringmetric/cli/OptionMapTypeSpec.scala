@@ -7,26 +7,19 @@ import org.scalatest.junit.JUnitRunner
 @RunWith(classOf[JUnitRunner])
 final class OptionMapTypeSpec extends ScalaTest {
 	"OptionMapArray" should provide {
-		"get method" when passed {
+		"parse method" when passed {
 			"invalid argument" should returns {
-				"None" in {
-					OptionMapArray("").get.isDefined should be (false)
+				"empty Array" in {
+					OptionMapArray("").parse should equal (Array.empty[String])
 
-					(OptionMapArray(""): Option[Array[String]]).isDefined should be (false)
-				}
-			}
-			"invalid argument accessed via implicit to type" should throws {
-				"IllegalArgumentException" in {
-					evaluating {
-						OptionMapArray(""): Array[String]
-					} should produce[IllegalArgumentException]
+					(OptionMapArray(""): Array[String]) should equal (Array.empty[String])
 				}
 			}
 			"valid argument" should returns {
 				"Array" in {
-					OptionMapArray("1").get.get should equal (Array("1"))
+					OptionMapArray("1").parse should equal (Array("1"))
 
-					OptionMapArray("1 2 3").get.get should equal (Array("1", "2", "3"))
+					OptionMapArray("1 2 3").parse should equal (Array("1", "2", "3"))
 
 					(OptionMapArray("1 2 3"): Array[String]) should equal (Array("1", "2", "3"))
 				}
@@ -34,26 +27,25 @@ final class OptionMapTypeSpec extends ScalaTest {
 		}
 	}
 	"OptionMapBigDecimal" should provide {
-		"get method" when passed {
-			"invalid argument" should returns {
-				"None" in {
-					OptionMapBigDecimal("").get.isDefined should be (false)
-
-					OptionMapBigDecimal("one").get.isDefined should be (false)
-
-					(OptionMapBigDecimal("one"): Option[BigDecimal]).isDefined should be (false)
-				}
-			}
-			"invalid argument accessed via implicit to type" should throws {
-				"IllegalArgumentException" in {
+		"parse method" when passed {
+			"invalid argument" should throws {
+				"NumberFormatException" in {
 					evaluating {
-						OptionMapBigDecimal("one"): BigDecimal
-					} should produce[IllegalArgumentException]
+						OptionMapBigDecimal("").parse
+					} should produce[NumberFormatException]
+
+					evaluating {
+						OptionMapBigDecimal("one").parse
+					} should produce[NumberFormatException]
+
+					evaluating {
+						(OptionMapBigDecimal("one"): BigDecimal)
+					} should produce[NumberFormatException]
 				}
 			}
 			"valid argument" should returns {
 				"BigDecimal" in {
-					OptionMapBigDecimal("1").get.get should equal (1: BigDecimal)
+					OptionMapBigDecimal("1").parse should equal (1: BigDecimal)
 
 					(OptionMapBigDecimal("1"): BigDecimal) should equal (1: BigDecimal)
 				}
@@ -61,26 +53,25 @@ final class OptionMapTypeSpec extends ScalaTest {
 		}
 	}
 	"OptionMapBigInt" should provide {
-		"get method" when passed {
-			"invalid argument" should returns {
-				"None" in {
-					OptionMapBigInt("").get.isDefined should be (false)
-
-					OptionMapBigInt("one").get.isDefined should be (false)
-
-					(OptionMapBigInt("one"): Option[BigInt]).isDefined should be (false)
-				}
-			}
-			"invalid argument accessed via implicit to type" should throws {
-				"IllegalArgumentException" in {
+		"parse method" when passed {
+			"invalid argument" should throws {
+				"NumberFormatException" in {
 					evaluating {
-						OptionMapBigInt("one"): BigInt
-					} should produce[IllegalArgumentException]
+						OptionMapBigInt("").parse
+					} should produce[NumberFormatException]
+
+					evaluating {
+						OptionMapBigInt("one").parse
+					} should produce[NumberFormatException]
+
+					evaluating {
+						(OptionMapBigInt("one"): BigInt)
+					} should produce[NumberFormatException]
 				}
 			}
 			"valid argument" should returns {
 				"BigInt" in {
-					OptionMapBigInt("1").get.get should equal (1: BigInt)
+					OptionMapBigInt("1").parse should equal (1: BigInt)
 
 					(OptionMapBigInt("1"): BigInt) should equal (1: BigInt)
 				}
@@ -88,26 +79,25 @@ final class OptionMapTypeSpec extends ScalaTest {
 		}
 	}
 	"OptionMapDouble" should provide {
-		"get method" when passed {
-			"invalid argument" should returns {
-				"None" in {
-					OptionMapDouble("").get.isDefined should be (false)
-
-					OptionMapDouble("one").get.isDefined should be (false)
-
-					(OptionMapDouble("one"): Option[Double]).isDefined should be (false)
-				}
-			}
-			"invalid argument accessed via implicit to type" should throws {
-				"IllegalArgumentException" in {
+		"parse method" when passed {
+			"invalid argument" should throws {
+				"NumberFormatException" in {
 					evaluating {
-						OptionMapDouble("one"): Double
-					} should produce[IllegalArgumentException]
+						OptionMapDouble("").parse
+					} should produce[NumberFormatException]
+
+					evaluating {
+						OptionMapDouble("one").parse
+					} should produce[NumberFormatException]
+
+					evaluating {
+						(OptionMapDouble("one"): Double)
+					} should produce[NumberFormatException]
 				}
 			}
 			"valid argument" should returns {
 				"Double" in {
-					OptionMapDouble("1").get.get should equal (1d)
+					OptionMapDouble("1").parse should equal (1d)
 
 					(OptionMapDouble("1"): Double) should equal (1d)
 				}
@@ -115,26 +105,25 @@ final class OptionMapTypeSpec extends ScalaTest {
 		}
 	}
 	"OptionMapFloat" should provide {
-		"get method" when passed {
-			"invalid argument" should returns {
-				"None" in {
-					OptionMapFloat("").get.isDefined should be (false)
-
-					OptionMapFloat("one").get.isDefined should be (false)
-
-					(OptionMapFloat("one"): Option[Float]).isDefined should be (false)
-				}
-			}
-			"invalid argument accessed via implicit to type" should throws {
-				"IllegalArgumentException" in {
+		"parse method" when passed {
+			"invalid argument" should throws {
+				"NumberFormatException" in {
 					evaluating {
-						OptionMapFloat("one"): Float
-					} should produce[IllegalArgumentException]
+						OptionMapFloat("").parse
+					} should produce[NumberFormatException]
+
+					evaluating {
+						OptionMapFloat("one").parse
+					} should produce[NumberFormatException]
+
+					evaluating {
+						(OptionMapFloat("one"): Float)
+					} should produce[NumberFormatException]
 				}
 			}
 			"valid argument" should returns {
 				"Float" in {
-					OptionMapFloat("1").get.get should equal (1f)
+					OptionMapFloat("1").parse should equal (1f)
 
 					(OptionMapFloat("1"): Float) should equal (1f)
 				}
@@ -142,26 +131,25 @@ final class OptionMapTypeSpec extends ScalaTest {
 		}
 	}
 	"OptionMapInt" should provide {
-		"get method" when passed {
+		"parse method" when passed {
 			"invalid argument" should returns {
-				"None" in {
-					OptionMapInt("").get.isDefined should be (false)
-
-					OptionMapInt("one").get.isDefined should be (false)
-
-					(OptionMapInt("one"): Option[Int]).isDefined should be (false)
-				}
-			}
-			"invalid argument accessed via implicit to type" should throws {
-				"IllegalArgumentException" in {
+				"NumberFormatException" in {
 					evaluating {
-						OptionMapInt("one"): Int
-					} should produce[IllegalArgumentException]
+						OptionMapInt("").parse
+					} should produce[NumberFormatException]
+
+					evaluating {
+						OptionMapInt("one").parse
+					} should produce[NumberFormatException]
+
+					evaluating {
+						(OptionMapInt("one"): Int)
+					} should produce[NumberFormatException]
 				}
 			}
 			"valid argument" should returns {
 				"Int" in {
-					OptionMapInt("1").get.get should equal (1)
+					OptionMapInt("1").parse should equal (1)
 
 					(OptionMapInt("1"): Int) should equal (1)
 				}
@@ -169,26 +157,19 @@ final class OptionMapTypeSpec extends ScalaTest {
 		}
 	}
 	"OptionMapList" should provide {
-		"get method" when passed {
+		"parse method" when passed {
 			"invalid argument" should returns {
-				"None" in {
-					OptionMapList("").get.isDefined should be (false)
+				"empty List" in {
+					OptionMapList("").parse should equal (List.empty[String])
 
-					(OptionMapList(""): Option[List[String]]).isDefined should be (false)
-				}
-			}
-			"invalid argument accessed via implicit to type" should throws {
-				"IllegalArgumentException" in {
-					evaluating {
-						OptionMapList(""): List[String]
-					} should produce[IllegalArgumentException]
+					(OptionMapList(""): List[String]) should equal (List.empty[String])
 				}
 			}
 			"valid argument" should returns {
 				"List" in {
-					OptionMapList("1").get.get should equal (List("1"))
+					OptionMapList("1").parse should equal (List("1"))
 
-					OptionMapList("1 2 3").get.get should equal (List("1", "2", "3"))
+					OptionMapList("1 2 3").parse should equal (List("1", "2", "3"))
 
 					(OptionMapList("1 2 3"): List[String]) should equal (List("1", "2", "3"))
 				}
@@ -196,26 +177,25 @@ final class OptionMapTypeSpec extends ScalaTest {
 		}
 	}
 	"OptionMapLong" should provide {
-		"get method" when passed {
-			"invalid argument" should returns {
-				"None" in {
-					OptionMapLong("").get.isDefined should be (false)
-
-					OptionMapLong("one").get.isDefined should be (false)
-
-					(OptionMapLong("one"): Option[Long]).isDefined should be (false)
-				}
-			}
-			"invalid argument accessed via implicit to type" should throws {
-				"IllegalArgumentException" in {
+		"parse method" when passed {
+			"invalid argument" should throws {
+				"NumberFormatException" in {
 					evaluating {
-						OptionMapLong("one"): Long
-					} should produce[IllegalArgumentException]
+						OptionMapLong("").parse
+					} should produce[NumberFormatException]
+
+					evaluating {
+						OptionMapLong("one").parse
+					} should produce[NumberFormatException]
+
+					evaluating {
+						(OptionMapLong("one"): Long)
+					} should produce[NumberFormatException]
 				}
 			}
 			"valid argument" should returns {
 				"Long" in {
-					OptionMapLong("1").get.get should equal (1l)
+					OptionMapLong("1").parse should equal (1l)
 
 					(OptionMapLong("1"): Long) should equal (1l)
 				}
@@ -223,26 +203,25 @@ final class OptionMapTypeSpec extends ScalaTest {
 		}
 	}
 	"OptionMapShort" should provide {
-		"get method" when passed {
-			"invalid argument" should returns {
-				"None" in {
-					OptionMapShort("").get.isDefined should be (false)
-
-					OptionMapShort("one").get.isDefined should be (false)
-
-					(OptionMapShort("one"): Option[Short]).isDefined should be (false)
-				}
-			}
-			"invalid argument accessed via implicit to type" should throws {
-				"IllegalArgumentException" in {
+		"parse method" when passed {
+			"invalid argument" should throws {
+				"NumberFormatException" in {
 					evaluating {
-						OptionMapShort("one"): Short
-					} should produce[IllegalArgumentException]
+						OptionMapShort("").parse
+					} should produce[NumberFormatException]
+
+					evaluating {
+						OptionMapShort("one").parse
+					} should produce[NumberFormatException]
+
+					evaluating {
+						(OptionMapShort("one"): Short)
+					} should produce[NumberFormatException]
 				}
 			}
 			"valid argument" should returns {
 				"Short" in {
-					OptionMapShort("1").get.get should equal (1: Short)
+					OptionMapShort("1").parse should equal (1: Short)
 
 					(OptionMapShort("1"): Short) should equal (1: Short)
 				}

@@ -3,75 +3,65 @@ package com.rockymadden.stringmetric.cli
 import scala.language.implicitConversions
 
 sealed abstract class OptionMapType[T](protected[this] val stringSelf: String) {
-	def get(): Option[T]
+	def parse: T
 }
 
 final case class OptionMapArray(arrayString: String) extends OptionMapType[Array[String]](arrayString) {
-	private[this] lazy val self = try {
-		if (stringSelf.length == 0) None
-		else Some(stringSelf.split(" "))
-	} catch { case _: Throwable => None }
+	private[this] lazy val self = if (stringSelf.length == 0) Array.empty[String] else stringSelf.split(" ")
 
-	override def get() = self
+	override def parse = self
 }
 
 final case class OptionMapBigDecimal(bigDecimalString: String) extends OptionMapType[BigDecimal](bigDecimalString) {
-	private[this] lazy val self = try { Some(BigDecimal(stringSelf)) } catch { case _: Throwable => None }
+	private[this] lazy val self = BigDecimal(stringSelf)
 
-	override def get() = self
+	override def parse = self
 }
 
 final case class OptionMapBigInt(bigIntString: String) extends OptionMapType[BigInt](bigIntString) {
-	private[this] lazy val self = try { Some(BigInt(stringSelf)) } catch { case _: Throwable => None }
+	private[this] lazy val self = BigInt(stringSelf)
 
-	override def get() = self
+	override def parse = self
 }
 
 final case class OptionMapDouble(doubleString: String) extends OptionMapType[Double](doubleString) {
-	private[this] lazy val self = try { Some(stringSelf.toDouble) } catch { case _: Throwable => None }
+	private[this] lazy val self = stringSelf.toDouble
 
-	override def get() = self
+	override def parse = self
 }
 
 final case class OptionMapFloat(floatString: String) extends OptionMapType[Float](floatString) {
-	private[this] lazy val self = try { Some(stringSelf.toFloat) } catch { case _: Throwable => None }
+	private[this] lazy val self = stringSelf.toFloat
 
-	override def get() = self
+	override def parse = self
 }
 
 final case class OptionMapInt(intString: String) extends OptionMapType[Int](intString) {
-	private[this] lazy val self = try { Some(stringSelf.toInt) } catch { case _: Throwable => None }
+	private[this] lazy val self = stringSelf.toInt
 
-	override def get() = self
+	override def parse = self
 }
 
 final case class OptionMapList(listString: String) extends OptionMapType[List[String]](listString) {
-	private[this] lazy val self = try {
-		if (stringSelf.length == 0) None
-		else Some(stringSelf.split(" ").toList)
-	} catch { case _: Throwable => None }
+	private[this] lazy val self = if (stringSelf.length == 0) List.empty[String] else stringSelf.split(" ").toList
 
-	override def get() = self
+	override def parse = self
 }
 
 final case class OptionMapLong(longString: String) extends OptionMapType[Long](longString) {
-	private[this] lazy val self = try { Some(stringSelf.toLong) } catch { case _: Throwable => None }
+	private[this] lazy val self = stringSelf.toLong
 
-	override def get() = self
+	override def parse = self
 }
 
 final case class OptionMapShort(shortString: String) extends OptionMapType[Short](shortString) {
-	private[this] lazy val self = try { Some(stringSelf.toShort) } catch { case _: Throwable => None }
+	private[this] lazy val self = stringSelf.toShort
 
-	override def get() = self
+	override def parse = self
 }
 
 object OptionMapType {
-	implicit def OptionMapTypeToOptionT[T](optionMapType: OptionMapType[T]): Option[T] = optionMapType.get
-
-	implicit def OptionMapTypeToT[T](optionMapType: OptionMapType[T]): T =
-		if(!optionMapType.isDefined) throw new IllegalArgumentException("Expected successful type conversion.")
-		else optionMapType.get.get
+	implicit def OptionMapTypeToT[T](optionMapType: OptionMapType[T]): T = optionMapType.parse
 
 	implicit def StringToOptionMapArray(string: String): OptionMapArray = new OptionMapArray(string)
 
