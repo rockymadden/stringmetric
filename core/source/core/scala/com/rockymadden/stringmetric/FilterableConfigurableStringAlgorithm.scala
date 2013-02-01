@@ -1,8 +1,6 @@
 package com.rockymadden.stringmetric
 
-/**
- * Marks those which leverage traits of a string based [[com.rockymadden.stringmetric.FilterableConfigurableAlgorithm]].
- */
+/** Trait for all string based [[com.rockymadden.stringmetric.FilterableConfigurableAlgorithm]]. */
 trait FilterableConfigurableStringAlgorithm[O]
 	extends FilterableConfigurableAlgorithm[String, O, StringFilter] with StringAlgorithm {
 

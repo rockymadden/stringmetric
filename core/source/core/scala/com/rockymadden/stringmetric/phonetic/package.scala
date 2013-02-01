@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric
 
-/** Provides core phonetic string metric functionality. */
+/** Provides phonetic algorithm and metric functionality. */
 package object phonetic {
 
 }

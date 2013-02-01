@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric
 
-/** Provides core filter functionality. */
+/** Provides filter functionality. */
 package object filter {
 
 }

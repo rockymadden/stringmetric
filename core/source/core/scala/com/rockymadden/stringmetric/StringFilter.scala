@@ -2,12 +2,12 @@ package com.rockymadden.stringmetric
 
 import com.rockymadden.stringmetric.filter._
 
-/** Marks those which leverage traits of a string based [[com.rockymadden.stringmetric.Filter]]. */
+/** Trait for all string based [[com.rockymadden.stringmetric.Filter]]. */
 trait StringFilter extends Filter[String] {
 	def filter(charArray: Array[Char]): Array[Char]
 }
 
-/** Convenience object for those extending [[com.rockymadden.stringmetric.StringFilter]]. */
+/** Standalone convenience object for all extending [[com.rockymadden.stringmetric.StringFilter]]. */
 object StringFilter {
 	implicit val stringFilter = delegate
 

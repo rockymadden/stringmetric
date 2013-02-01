@@ -5,10 +5,10 @@ import scala.math.BigDecimal
 
 /** An implementation of a weighted Levenshtein [[com.rockymadden.stringmetric.StringMetric]]. */
 object WeightedLevenshteinMetric
-	extends StringMetric with FilterableConfigurableStringMetric[Tuple3[BigDecimal, BigDecimal, BigDecimal]] {
+	extends StringMetric with FilterableConfigurableStringMetric[(BigDecimal, BigDecimal, BigDecimal)] {
 
 	type CompareReturn = Double
-	type Options = Tuple3[BigDecimal, BigDecimal, BigDecimal]
+	type Options = (BigDecimal, BigDecimal, BigDecimal)
 
 	/** Options order is delete, insert, then substitute weight. */
 	override def compare(charArray1: Array[Char], charArray2: Array[Char])(options: Options)

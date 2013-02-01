@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric
 
-/** Provides core similarity string metric functionality. */
+/** Provides similarity algorithm and metric functionality. */
 package object similarity {
 
 }

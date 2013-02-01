@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric
 
-/** Marks those which leverage traits of a standalone algorithm. */
+/** Trait for all algorithms. */
 trait Algorithm[T] {
 	type ComputeReturn <: AnyRef
 }

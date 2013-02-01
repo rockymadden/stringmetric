@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric
 
-/** Marks those which leverage traits of a metric. */
+/** Trait for all metrics. */
 trait Metric[T] {
 	type CompareReturn <: AnyVal
 }

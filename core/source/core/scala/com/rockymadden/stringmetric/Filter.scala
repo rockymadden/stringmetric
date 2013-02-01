@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric
 
-/** Marks those which leverage traits of a filter. */
+/** Trait for all filters. */
 trait Filter[T] {
 	def filter(t: T): T
 }

@@ -3,12 +3,10 @@ package com.rockymadden.stringmetric
 import com.rockymadden.stringmetric.phonetic.{ MetaphoneMetric, NysiisMetric, RefinedSoundexMetric, SoundexMetric }
 import com.rockymadden.stringmetric.similarity._
 
-/** Marks those which leverage traits of a string based [[com.rockymadden.stringmetric.Metric]]. */
-trait StringMetric extends Metric[String] {
+/** Trait for all string based [[com.rockymadden.stringmetric.Metric]]. */
+trait StringMetric extends Metric[String]
 
-}
-
-/** Convenience object for those extending [[com.rockymadden.stringmetric.StringMetric]]. */
+/** Stabdalone convenience object for all extending [[com.rockymadden.stringmetric.StringMetric]]. */
 object StringMetric {
 	def compareWithDiceSorensen(charArray1: Array[Char], charArray2: Array[Char])(n: Int)
 		(implicit stringFilter: StringFilter): Option[DiceSorensenMetric.CompareReturn] =
