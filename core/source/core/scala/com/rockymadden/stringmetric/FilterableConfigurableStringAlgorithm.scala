@@ -1,8 +1,8 @@
 package com.rockymadden.stringmetric
 
-/** Trait for all string based [[com.rockymadden.stringmetric.FilterableConfigurableAlgorithm]]. */
-trait FilterableConfigurableStringAlgorithm[O]
-	extends FilterableConfigurableAlgorithm[String, O, StringFilter] with StringAlgorithm {
+/** Trait for all filterable and configurable [[com.rockymadden.stringmetric.StringAlgorithm]]. */
+trait FilterableConfigurableStringAlgorithm[O] extends StringAlgorithm {
+	def compute(string: String)(o: O)(implicit stringFilter: StringFilter): Option[ComputeReturn]
 
 	def compute(charArray: Array[Char])(o: O)(implicit stringFilter: StringFilter): Option[Array[_]]
 }

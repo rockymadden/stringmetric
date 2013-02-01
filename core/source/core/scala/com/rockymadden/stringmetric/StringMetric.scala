@@ -3,8 +3,10 @@ package com.rockymadden.stringmetric
 import com.rockymadden.stringmetric.phonetic.{ MetaphoneMetric, NysiisMetric, RefinedSoundexMetric, SoundexMetric }
 import com.rockymadden.stringmetric.similarity._
 
-/** Trait for all string based [[com.rockymadden.stringmetric.Metric]]. */
-trait StringMetric extends Metric[String]
+/** Trait for all string metrics. */
+trait StringMetric {
+	type CompareReturn <: AnyVal
+}
 
 /** Stabdalone convenience object for all extending [[com.rockymadden.stringmetric.StringMetric]]. */
 object StringMetric {

@@ -3,8 +3,10 @@ package com.rockymadden.stringmetric
 import com.rockymadden.stringmetric.phonetic.{ MetaphoneAlgorithm, NysiisAlgorithm, RefinedSoundexAlgorithm, SoundexAlgorithm }
 import com.rockymadden.stringmetric.similarity.NGramAlgorithm
 
-/** Trait for all string based [[com.rockymadden.stringmetric.Algorithm]]. */
-trait StringAlgorithm extends Algorithm[String]
+/** Trait for all string algorithms. */
+trait StringAlgorithm {
+	type ComputeReturn <: AnyRef
+}
 
 /** Standalone convenience object for all extending [[com.rockymadden.stringmetric.StringAlgorithm]]. */
 object StringAlgorithm {

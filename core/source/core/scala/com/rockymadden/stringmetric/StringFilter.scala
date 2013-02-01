@@ -2,8 +2,10 @@ package com.rockymadden.stringmetric
 
 import com.rockymadden.stringmetric.filter._
 
-/** Trait for all string based [[com.rockymadden.stringmetric.Filter]]. */
-trait StringFilter extends Filter[String] {
+/** Trait for all string filters. */
+trait StringFilter {
+	def filter(string: String): String
+
 	def filter(charArray: Array[Char]): Array[Char]
 }
 
