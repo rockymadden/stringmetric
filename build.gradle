@@ -1,6 +1,6 @@
 description = 'A Scala library of string metrics and phonetic algorithms.'
 group = 'com.rockymadden.stringmetric'
-version = '0.20.2'
+version = '0.20.3'
 
 ext.scm = 'scm:git@github.com:rockymadden/stringmetric.git'
 ext.url = 'http://rockymadden.com/stringmetric/'
@@ -23,9 +23,6 @@ subprojects {
 	dependencies {
 		compile 'org.scala-lang:scala-compiler:2.10.0'
 		compile 'org.scala-lang:scala-library:2.10.0'
-
-		scalaTools 'org.scala-lang:scala-compiler:2.10.0'
-		scalaTools 'org.scala-lang:scala-library:2.10.0'
 
 		testCompile 'junit:junit:4.11'
 		testCompile 'org.scalatest:scalatest_2.10.0:2.0.M5'
