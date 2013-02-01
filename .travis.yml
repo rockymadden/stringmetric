@@ -1,7 +1,8 @@
 language: scala
 scala:
   - 2.10.0
+jdk:
+  - openjdk7
+  - oraclejdk7
 script:
   - "gradle test"
-before_script:
-  'rm -f gradle.properties'
