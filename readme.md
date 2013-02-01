@@ -356,5 +356,11 @@ tk
 ## License
 [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
+## Documentation
+[Scaladoc](http://rockymadden.com/stringmetric/scaladoc/) is available on the project website. Further documentation may also be found via the [GitHub wiki](https://github.com/rockymadden/stringmetric/wiki).
+
+## Bugs and Issues
+Please submit bugs and issues via [GitHub issues](https://github.com/rockymadden/stringmetric/issues).
+
 ## Questions, Comments, and Requests
-Find all my contact information on my [personal website](http://rockymadden.com/).
+Please contact me directly. Find all my contact information on my [personal website](http://rockymadden.com/).
