@@ -32,8 +32,5 @@ object JaroWinklerMetric extends StringMetric with FilterableStringMetric {
 	override def compare(string1: String, string2: String)
 		(implicit stringFilter: StringFilter): Option[CompareReturn] =
 
-		compare(
-			stringFilter.filter(string1.toCharArray),
-			stringFilter.filter(string2.toCharArray)
-		)
+		compare(stringFilter.filter(string1.toCharArray), stringFilter.filter(string2.toCharArray))
 }

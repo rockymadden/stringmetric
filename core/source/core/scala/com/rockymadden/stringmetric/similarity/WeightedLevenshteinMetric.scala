@@ -29,10 +29,7 @@ object WeightedLevenshteinMetric
 	override def compare(string1: String, string2: String)(options: Options)
 		(implicit stringFilter: StringFilter): Option[CompareReturn] =
 
-		compare(
-			stringFilter.filter(string1.toCharArray),
-			stringFilter.filter(string2.toCharArray)
-		)(options)
+		compare(stringFilter.filter(string1.toCharArray),stringFilter.filter(string2.toCharArray))(options)
 
 	private[this] def weightedLevenshtein(ct: CompareTuple[Char], w: Options) = {
 		val m = Array.ofDim[BigDecimal](ct._1.length + 1, ct._2.length + 1)

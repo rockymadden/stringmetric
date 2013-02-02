@@ -19,23 +19,19 @@ object DiceSorensenMetric extends StringMetric with FilterableConfigurableString
 
 		if (fca1.length < n || fca2.length < n) None // Because length is less than n, it is not possible to compare.
 		else if (fca1.sameElements(fca2)) Some(1d)
-		else
-			NGramAlgorithm.compute(fca1)(n).flatMap { ca1bg =>
-				NGramAlgorithm.compute(fca2)(n).map { ca2bg =>
-					val ms = scoreMatches((ca1bg.map(_.mkString), ca2bg.map(_.mkString)))
+		else NGramAlgorithm.compute(fca1)(n).flatMap { ca1bg =>
+			NGramAlgorithm.compute(fca2)(n).map { ca2bg =>
+				val ms = scoreMatches((ca1bg.map(_.mkString), ca2bg.map(_.mkString)))
 
-					(2d * ms) / (ca1bg.length + ca2bg.length)
-				}
+				(2d * ms) / (ca1bg.length + ca2bg.length)
 			}
+		}
 	}
 
 	override def compare(string1: String, string2: String)(n: Int)
 		(implicit stringFilter: StringFilter): Option[CompareReturn] =
 
-		compare(
-			stringFilter.filter(string1.toCharArray),
-			stringFilter.filter(string2.toCharArray)
-		)(n: Int)
+		compare(stringFilter.filter(string1.toCharArray), stringFilter.filter(string2.toCharArray))(n: Int)
 
 	private[this] def scoreMatches(mt: MatchTuple[String]) = mt._1.intersect(mt._2).length
 }

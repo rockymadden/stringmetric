@@ -12,8 +12,7 @@ trait Command {
 
 	def execute(options: OptionMap): Unit
 
-	final def exit(options: OptionMap): Unit =
-		if (!isUnitTest(options)) sys.exit(0)
+	final def exit(options: OptionMap): Unit = if (!isUnitTest(options)) sys.exit(0)
 
 	final protected[this] def isDebug(options: OptionMap): Boolean =
 		(options.contains('d) || (options.contains('debug) && options.get('debug) != "false"))

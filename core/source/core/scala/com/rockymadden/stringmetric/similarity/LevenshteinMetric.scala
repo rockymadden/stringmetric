@@ -20,15 +20,12 @@ object LevenshteinMetric extends StringMetric with FilterableStringMetric {
 	override def compare(string1: String, string2: String)
 		(implicit stringFilter: StringFilter): Option[CompareReturn] =
 
-		compare(
-			stringFilter.filter(string1.toCharArray),
-			stringFilter.filter(string2.toCharArray)
-		)
+		compare(stringFilter.filter(string1.toCharArray), stringFilter.filter(string2.toCharArray))
 
 	private[this] def levenshtein(ct: CompareTuple[Char]) = {
 		val m = Array.fill[Int](ct._1.length + 1, ct._2.length + 1)(-1)
 
-		def distance(t: Tuple2[Int, Int]): Int = {
+		def distance(t: (Int, Int)): Int = {
 			t match {
 				case (r, 0) => r
 				case (0, c) => c

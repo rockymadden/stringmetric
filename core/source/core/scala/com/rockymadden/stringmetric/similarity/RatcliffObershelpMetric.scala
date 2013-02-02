@@ -20,10 +20,7 @@ object RatcliffObershelpMetric extends StringMetric with FilterableStringMetric 
 	override def compare(string1: String, string2: String)
 		(implicit stringFilter: StringFilter): Option[CompareReturn] =
 
-		compare(
-			stringFilter.filter(string1.toCharArray),
-			stringFilter.filter(string2.toCharArray)
-		)
+		compare(stringFilter.filter(string1.toCharArray), stringFilter.filter(string2.toCharArray))
 
 	private[this] def longestCommonSubsequence(ct: CompareTuple[Char]) = {
 		val m = Array.ofDim[Int](ct._1.length + 1, ct._2.length + 1)
@@ -33,7 +30,6 @@ object RatcliffObershelpMetric extends StringMetric with FilterableStringMetric 
 			if (ct._1(r) == ct._2(c)) {
 				val l = m(r)(c) + 1
 				m(r + 1)(c + 1) = l
-
 				if (l > lrc._1) lrc = (l, r + 1, c + 1)
 			}
 		}

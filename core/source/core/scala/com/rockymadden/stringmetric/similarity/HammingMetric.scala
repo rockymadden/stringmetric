@@ -20,10 +20,7 @@ object HammingMetric extends StringMetric with FilterableStringMetric {
 	override def compare(string1: String, string2: String)
 		(implicit stringFilter: StringFilter): Option[CompareReturn] =
 
-		compare(
-			stringFilter.filter(string1.toCharArray),
-			stringFilter.filter(string2.toCharArray)
-		)
+		compare(stringFilter.filter(string1.toCharArray), stringFilter.filter(string2.toCharArray))
 
 	private[this] def hamming(ct: CompareTuple[Char]) = {
 		require(ct._1.length == ct._2.length)
