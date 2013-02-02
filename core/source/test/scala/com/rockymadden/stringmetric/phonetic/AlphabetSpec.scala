@@ -1,6 +1,7 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.ScalaTest
+import com.rockymadden.stringmetric.phonetic.Alphabet._
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
@@ -10,114 +11,119 @@ final class AlphabetSpec extends ScalaTest {
 		"an overloaded is method which accepts a Char" when passed {
 			"non-alphabet argument" should returns {
 				"false" in {
-					Alphabet.is('0') should be (false)
+					'0' is Alpha should be (false)
 				}
 			}
 			"alphabet argument" should returns {
 				"true" in {
-					Alphabet.is('a') should be (true)
-					Alphabet.is('A') should be (true)
+					'a' is Alpha should be (true)
+					'A' is Alpha should be (true)
+				}
+			}
+			"non-vowel argument" should returns {
+				"false" in {
+					'y' is Vowel should be (false)
+				}
+			}
+			"vowel argument" should returns {
+				"true" in {
+					'a' is Vowel should be (true)
+					'A' is Vowel should be (true)
 				}
 			}
 		}
 		"an overloaded is method which accepts an Array[Char]" when passed {
 			"empty argument" should returns {
 				"false" in {
-					Alphabet.is(Array.empty[Char]) should be (false)
+					Array.empty[Char] is Alpha should be (false)
 				}
 			}
 			"non-alphabet argument" should returns {
 				"false" in {
-					Alphabet.is("hi!".toCharArray) should be (false)
-					Alphabet.is("helloworld!".toCharArray) should be (false)
+					"hi!".toCharArray is Alpha should be (false)
+					"helloworld!".toCharArray is Alpha should be (false)
 				}
 			}
 			"alphabet argument" should returns {
 				"true" in {
-					Alphabet.is("hi".toCharArray) should be (true)
-					Alphabet.is("helloworld".toCharArray) should be (true)
-					Alphabet.is("HI".toCharArray) should be (true)
-					Alphabet.is("HELLOWORLD".toCharArray) should be (true)
+					"hi".toCharArray is Alpha should be (true)
+					"helloworld".toCharArray is Alpha should be (true)
+					"HI".toCharArray is Alpha should be (true)
+					"HELLOWORLD".toCharArray is Alpha should be (true)
+				}
+			}
+			"non-vowel argument" should returns {
+				"false" in {
+					"y".toCharArray is Vowel should be (false)
+				}
+			}
+			"vowel argument" should returns {
+				"true" in {
+					"a".toCharArray is Vowel should be (true)
+					"A".toCharArray is Vowel should be (true)
 				}
 			}
 		}
 		"an overloaded is method which accepts a String" when passed {
 			"empty argument" should returns {
 				"false" in {
-					Alphabet.is("") should be (false)
+					"" is Alpha should be (false)
 				}
 			}
 			"non-alphabet argument" should returns {
 				"false" in {
-					Alphabet.is("helloworld!") should be (false)
+					"helloworld!" is Alpha should be (false)
 				}
 			}
 			"alphabet argument" should returns {
 				"true" in {
-					Alphabet.is("helloworld") should be (true)
-					Alphabet.is("HELLOWORLD") should be (true)
+					"helloworld" is Alpha should be (true)
+					"HELLOWORLD" is Alpha should be (true)
 				}
 			}
-		}
-		"isSometimesVowel method" when passed {
 			"non-vowel argument" should returns {
 				"false" in {
-					Alphabet.isSometimesVowel('z') should be (false)
+					"y" is Vowel should be (false)
 				}
 			}
 			"vowel argument" should returns {
 				"true" in {
-					Alphabet.isSometimesVowel('a') should be (true)
-					Alphabet.isSometimesVowel('A') should be (true)
-					Alphabet.isSometimesVowel('y') should be (true)
-					Alphabet.isSometimesVowel('Y') should be (true)
-				}
-			}
-		}
-		"isVowel method" when passed {
-			"non-vowel argument" should returns {
-				"false" in {
-					Alphabet.isVowel('y') should be (false)
-				}
-			}
-			"vowel argument" should returns {
-				"true" in {
-					Alphabet.isVowel('a') should be (true)
-					Alphabet.isVowel('A') should be (true)
+					"a" is Vowel should be (true)
+					"A" is Vowel should be (true)
 				}
 			}
 		}
 		"an overloaded startsWith method which accepts an Array[Char]" when passed {
 			"empty argument" should returns {
 				"false" in {
-					Alphabet.startsWith(Array.empty[Char]) should be (false)
+					Array.empty[Char] is Alpha should be (false)
 				}
 			}
 			"non-alphabet argument" should returns {
 				"false" in {
-					Alphabet.startsWith("1abc".toCharArray) should be (false)
+					"1abc".toCharArray is Alpha should be (false)
 				}
 			}
 			"alphabet argument" should returns {
 				"true" in {
-					Alphabet.startsWith("abc".toCharArray) should be (true)
+					"abc".toCharArray is Alpha should be (true)
 				}
 			}
 		}
 		"an overloaded startsWith method which accepts a String" when passed {
 			"empty argument" should returns {
 				"false" in {
-					Alphabet.startsWith("") should be (false)
+					"" is Alpha should be (false)
 				}
 			}
 			"non-alphabet argument" should returns {
 				"false" in {
-					Alphabet.startsWith("1abc") should be (false)
+					"1abc" is Alpha should be (false)
 				}
 			}
 			"alphabet argument" should returns {
 				"true" in {
-					Alphabet.startsWith("abc") should be (true)
+					"abc" is Alpha should be (true)
 				}
 			}
 		}

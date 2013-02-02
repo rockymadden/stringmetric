@@ -1,6 +1,7 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.{ FilterableStringMetric, StringFilter, StringMetric }
+import com.rockymadden.stringmetric.phonetic.Alphabet._
 
 /** An implementation of the Soundex [[com.rockymadden.stringmetric.StringMetric]]. */
 object SoundexMetric extends StringMetric with FilterableStringMetric {
@@ -12,7 +13,7 @@ object SoundexMetric extends StringMetric with FilterableStringMetric {
 		val fca1 = stringFilter.filter(charArray1)
 		lazy val fca2 = stringFilter.filter(charArray2)
 
-		if (fca1.length == 0 || !Alphabet.is(fca1.head) || fca2.length == 0 || !Alphabet.is(fca2.head)) None
+		if (fca1.length == 0 || !(fca1.head is Alpha) || fca2.length == 0 || !(fca2.head is Alpha)) None
 		else if (fca1.head.toLower != fca2.head.toLower) Some(false)
 		else SoundexAlgorithm.compute(fca1).filter(_.length > 0).flatMap(se1 =>
 			SoundexAlgorithm.compute(fca2).filter(_.length > 0).map(se1.sameElements(_))

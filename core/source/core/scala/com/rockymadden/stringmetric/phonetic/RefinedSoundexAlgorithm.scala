@@ -1,6 +1,7 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.{ FilterableStringAlgorithm, StringAlgorithm, StringFilter }
+import com.rockymadden.stringmetric.phonetic.Alphabet._
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the refined Soundex [[com.rockymadden.stringmetric.StringAlgorithm]]. */
@@ -10,7 +11,7 @@ object RefinedSoundexAlgorithm extends StringAlgorithm with FilterableStringAlgo
 	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
 		val fca = stringFilter.filter(charArray)
 
-		if (fca.length == 0 || !Alphabet.is(fca.head)) None
+		if (fca.length == 0 || !(fca.head is Alpha)) None
 		else Some(transcode(fca, Array(fca.head.toLower)))
 	}
 

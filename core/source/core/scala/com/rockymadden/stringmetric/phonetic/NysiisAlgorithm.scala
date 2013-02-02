@@ -1,6 +1,7 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.{ FilterableStringAlgorithm, StringAlgorithm, StringFilter }
+import com.rockymadden.stringmetric.phonetic.Alphabet._
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the NYSIIS [[com.rockymadden.stringmetric.StringAlgorithm]]. */
@@ -10,7 +11,7 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
 		val fca = stringFilter.filter(charArray)
 
-		if (fca.length == 0 || !Alphabet.is(fca.head)) None
+		if (fca.length == 0 || !(fca.head is Alpha)) None
 		else {
 			val tr = transcodeRight(fca.map(_.toLower))
 			val tl = transcodeLeft(tr._1)
@@ -63,7 +64,7 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 						if (r.length >= 1 && r.head == 'v') shift(2, o ++ Array('a', 'f'))
 						else shift(1, o :+ 'a')
 					case 'h' =>
-						if (l.length >= 1 && (!Alphabet.isVowel(l.last) || (r.length >= 1 && !Alphabet.isVowel(r.head)))) shift(1, o)
+						if (l.length >= 1 && (!(l.last is LowercaseVowel) || (r.length >= 1 && !(r.head is LowercaseVowel)))) shift(1, o)
 						else shift(1, o :+ c)
 					case 'k' => if (r.length >= 1 && r.head == 'n') shift(2, o :+ 'n') else shift(1, o :+ 'c')
 					case 'm' => shift(1, o :+ 'n')
@@ -73,7 +74,7 @@ object NysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 						if (r.length >= 2 && r.head == 'c' && r(1) == 'h') shift(3, o :+ c)
 						else shift(1, o :+ c)
 					case 'w' =>
-						if (l.length >= 1 && Alphabet.isVowel(l.last)) shift(1, o)
+						if (l.length >= 1 && (l.last is LowercaseVowel)) shift(1, o)
 						else shift(1, o :+ c)
 					case 'z' => shift(1, o :+ 's')
 					case _ => shift(1, o)
