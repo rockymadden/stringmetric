@@ -15,6 +15,7 @@
 .DS_Store
 
 # Editor ignores.
+*.ids
 *.iml
 *.ipr
 *.iws
