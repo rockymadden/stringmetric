@@ -11,7 +11,7 @@ allprojects {
 
 subprojects {
 	apply plugin: 'scala'
-	
+
 	compileScala {
 		compileScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6', '–Xdisable-assertions']
 	}
@@ -23,6 +23,9 @@ subprojects {
 	dependencies {
 		compile 'org.scala-lang:scala-compiler:2.10.0'
 		compile 'org.scala-lang:scala-library:2.10.0'
+
+		scalaTools 'org.scala-lang:scala-compiler:2.10.0'
+		scalaTools 'org.scala-lang:scala-library:2.10.0'
 
 		testCompile 'junit:junit:4.11'
 		testCompile 'org.scalatest:scalatest_2.10.0:2.0.M5'

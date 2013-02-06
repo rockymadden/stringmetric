@@ -348,7 +348,7 @@ tk
 
 ## Requirements
 * Scala 2.10.x
-* Gradle 1.4+
+* Gradle 1.x
 
 ## Versioning
 [Semantic Versioning v2.0](http://semver.org/)

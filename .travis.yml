@@ -4,3 +4,4 @@ scala:
 jdk:
   - openjdk7
   - oraclejdk7
+script: "gradle check"
