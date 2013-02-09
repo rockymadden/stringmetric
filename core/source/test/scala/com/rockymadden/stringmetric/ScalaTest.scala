@@ -1,9 +1,9 @@
 package com.rockymadden.stringmetric
 
-import org.scalatest.{ BeforeAndAfter, WordSpec }
+import org.scalatest.{ BeforeAndAfter, ParallelTestExecution, WordSpec }
 import org.scalatest.matchers.ShouldMatchers
 
-trait ScalaTest extends WordSpec with ShouldMatchers with BeforeAndAfter {
+trait ScalaTest extends WordSpec with ShouldMatchers with BeforeAndAfter with ParallelTestExecution {
 	def allows = afterWord("allow")
 
 	def executes = afterWord("execute")
