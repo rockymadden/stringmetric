@@ -45,6 +45,6 @@ object nGramAlgorithm extends Command {
 	override def execute(options: OptionMap): Unit = {
 		val n: OptionMapInt = options('n)
 
-		println(NGramAlgorithm.compute(options('dashless))(n).map(_.mkString("|")).getOrElse("not computable"))
+		println(NGramAlgorithm().compute(options('dashless))(n).map(_.mkString("|")).getOrElse("not computable"))
 	}
 }

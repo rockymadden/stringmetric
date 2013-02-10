@@ -41,6 +41,6 @@ object jaroWinklerMetric extends Command {
 	override def execute(options: OptionMap): Unit = {
 		val strings: OptionMapArray = options('dashless)
 
-		println(JaroWinklerMetric.compare(strings(0), strings(1)).getOrElse("not comparable"))
+		println(JaroWinklerMetric().compare(strings(0), strings(1)).getOrElse("not comparable"))
 	}
 }

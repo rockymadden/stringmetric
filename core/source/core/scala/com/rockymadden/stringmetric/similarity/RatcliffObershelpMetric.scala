@@ -1,26 +1,20 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ CompareTuple, FilterableStringMetric, StringFilter, StringMetric }
+import com.rockymadden.stringmetric.{ CompareTuple, StringFilterLike, StringMetricLike }
 
-/** An implementation of the Ratcliff/Obershelp [[com.rockymadden.stringmetric.StringMetric]]. */
-object RatcliffObershelpMetric extends StringMetric with FilterableStringMetric {
-	type CompareReturn = Double
-
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])
-		(implicit stringFilter: StringFilter): Option[CompareReturn] = {
-
-		val fca1 = stringFilter.filter(charArray1)
-		lazy val fca2 = stringFilter.filter(charArray2)
+/** An implementation of the Ratcliff/Obershelp metric. */
+class RatcliffObershelpMetric extends StringMetricLike[Double] with StringFilterLike {
+	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Double] = {
+		val fca1 = filter(charArray1)
+		lazy val fca2 = filter(charArray2)
 
 		if (fca1.length == 0 || fca2.length == 0) None
 		else if (fca1.sameElements(fca2)) Some(1d)
 		else Some(2d * commonSequences(fca1, fca2).foldLeft(0)(_ + _.length) / (fca1.length + fca2.length))
 	}
 
-	override def compare(string1: String, string2: String)
-		(implicit stringFilter: StringFilter): Option[CompareReturn] =
-
-		compare(stringFilter.filter(string1.toCharArray), stringFilter.filter(string2.toCharArray))
+	final override def compare(string1: String, string2: String): Option[Double] =
+		compare(filter(string1.toCharArray), filter(string2.toCharArray))
 
 	private[this] def longestCommonSubsequence(ct: CompareTuple[Char]) = {
 		val m = Array.ofDim[Int](ct._1.length + 1, ct._2.length + 1)
@@ -48,4 +42,8 @@ object RatcliffObershelpMetric extends StringMetric with FilterableStringMetric 
 			Array(ct._1.slice(lcs._2 - lcs._1, lcs._2)) ++ commonSequences(sct1._1, sct2._1) ++ commonSequences(sct1._2, sct2._2)
 		}
 	}
+}
+
+object RatcliffObershelpMetric {
+	def apply(): RatcliffObershelpMetric = new RatcliffObershelpMetric
 }

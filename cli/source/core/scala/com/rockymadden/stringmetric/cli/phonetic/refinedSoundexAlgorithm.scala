@@ -39,5 +39,5 @@ object refinedSoundexAlgorithm extends Command {
 	}
 
 	override def execute(options: OptionMap): Unit =
-		println(RefinedSoundexAlgorithm.compute(options('dashless)).getOrElse("not computable"))
+		println(RefinedSoundexAlgorithm().compute(options('dashless)).getOrElse("not computable"))
 }

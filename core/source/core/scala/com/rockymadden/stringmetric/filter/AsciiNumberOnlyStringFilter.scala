@@ -1,9 +1,9 @@
 package com.rockymadden.stringmetric.filter
 
-import com.rockymadden.stringmetric.StringFilter
+import com.rockymadden.stringmetric.StringFilterLike
 
-/** A decorator [[com.rockymadden.stringmetric.StringFilter]]. Ensures only ASCII numbers matter. */
-trait AsciiNumberOnlyStringFilter extends StringFilter {
+/** Ensures only ASCII numbers matter. */
+trait AsciiNumberOnlyStringFilter extends StringFilterLike {
 	abstract override def filter(charArray: Array[Char]): Array[Char] =
 		super.filter(charArray.filter(c => (c >= 48 && c <= 57 )))
 

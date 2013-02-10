@@ -6,186 +6,192 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class NysiisAlgorithmSpec extends ScalaTest {
+	import NysiisAlgorithmSpec._
+
 	"NysiisAlgorithm" should provide {
 		"compute method" when passed {
 			"empty argument" should returns {
 				"None" in {
-					NysiisAlgorithm.compute("").isDefined should be (false)
+					Algorithm.compute("").isDefined should be (false)
 				}
 			}
 			"non-phonetic argument" should returns {
 				"None" in {
-					NysiisAlgorithm.compute("123").isDefined should be (false)
+					Algorithm.compute("123").isDefined should be (false)
 				}
 			}
 			"phonetic argument" should returns {
 				"Some" in {
 					// a
-					NysiisAlgorithm.compute("a").get should equal ("a")
-					NysiisAlgorithm.compute("aa").get should equal ("a")
+					Algorithm.compute("a").get should equal ("a")
+					Algorithm.compute("aa").get should equal ("a")
 
 					// b
-					NysiisAlgorithm.compute("b").get should equal ("b")
-					NysiisAlgorithm.compute("bb").get should equal ("bb")
+					Algorithm.compute("b").get should equal ("b")
+					Algorithm.compute("bb").get should equal ("bb")
 
 					// c
-					NysiisAlgorithm.compute("c").get should equal ("c")
-					NysiisAlgorithm.compute("cc").get should equal ("cc")
+					Algorithm.compute("c").get should equal ("c")
+					Algorithm.compute("cc").get should equal ("cc")
 
 					// d
-					NysiisAlgorithm.compute("d").get should equal ("d")
-					NysiisAlgorithm.compute("dd").get should equal ("dd")
+					Algorithm.compute("d").get should equal ("d")
+					Algorithm.compute("dd").get should equal ("dd")
 
 					// e
-					NysiisAlgorithm.compute("e").get should equal ("e")
-					NysiisAlgorithm.compute("ee").get should equal ("y")
+					Algorithm.compute("e").get should equal ("e")
+					Algorithm.compute("ee").get should equal ("y")
 
 					// f
-					NysiisAlgorithm.compute("f").get should equal ("f")
-					NysiisAlgorithm.compute("ff").get should equal ("ff")
+					Algorithm.compute("f").get should equal ("f")
+					Algorithm.compute("ff").get should equal ("ff")
 
 					// g
-					NysiisAlgorithm.compute("g").get should equal ("g")
-					NysiisAlgorithm.compute("gg").get should equal ("gg")
+					Algorithm.compute("g").get should equal ("g")
+					Algorithm.compute("gg").get should equal ("gg")
 
 					// h
-					NysiisAlgorithm.compute("h").get should equal ("h")
-					NysiisAlgorithm.compute("hh").get should equal ("hh")
+					Algorithm.compute("h").get should equal ("h")
+					Algorithm.compute("hh").get should equal ("hh")
 
 					// i
-					NysiisAlgorithm.compute("i").get should equal ("i")
-					NysiisAlgorithm.compute("ii").get should equal ("i")
+					Algorithm.compute("i").get should equal ("i")
+					Algorithm.compute("ii").get should equal ("i")
 
 					// j
-					NysiisAlgorithm.compute("j").get should equal ("j")
-					NysiisAlgorithm.compute("jj").get should equal ("jj")
+					Algorithm.compute("j").get should equal ("j")
+					Algorithm.compute("jj").get should equal ("jj")
 
 					// k
-					NysiisAlgorithm.compute("k").get should equal ("c")
-					NysiisAlgorithm.compute("kk").get should equal ("cc")
+					Algorithm.compute("k").get should equal ("c")
+					Algorithm.compute("kk").get should equal ("cc")
 
 					// l
-					NysiisAlgorithm.compute("l").get should equal ("l")
-					NysiisAlgorithm.compute("ll").get should equal ("ll")
+					Algorithm.compute("l").get should equal ("l")
+					Algorithm.compute("ll").get should equal ("ll")
 
 					// m
-					NysiisAlgorithm.compute("m").get should equal ("m")
-					NysiisAlgorithm.compute("mm").get should equal ("mn")
+					Algorithm.compute("m").get should equal ("m")
+					Algorithm.compute("mm").get should equal ("mn")
 
 					// n
-					NysiisAlgorithm.compute("n").get should equal ("n")
-					NysiisAlgorithm.compute("nn").get should equal ("nn")
+					Algorithm.compute("n").get should equal ("n")
+					Algorithm.compute("nn").get should equal ("nn")
 
 					// o
-					NysiisAlgorithm.compute("o").get should equal ("o")
-					NysiisAlgorithm.compute("oo").get should equal ("o")
+					Algorithm.compute("o").get should equal ("o")
+					Algorithm.compute("oo").get should equal ("o")
 
 					// p
-					NysiisAlgorithm.compute("p").get should equal ("p")
-					NysiisAlgorithm.compute("pp").get should equal ("pp")
+					Algorithm.compute("p").get should equal ("p")
+					Algorithm.compute("pp").get should equal ("pp")
 
 					// q
-					NysiisAlgorithm.compute("q").get should equal ("q")
-					NysiisAlgorithm.compute("qq").get should equal ("qg")
+					Algorithm.compute("q").get should equal ("q")
+					Algorithm.compute("qq").get should equal ("qg")
 
 					// r
-					NysiisAlgorithm.compute("r").get should equal ("r")
-					NysiisAlgorithm.compute("rr").get should equal ("rr")
+					Algorithm.compute("r").get should equal ("r")
+					Algorithm.compute("rr").get should equal ("rr")
 
 					// s
-					NysiisAlgorithm.compute("s").get should equal ("s")
-					NysiisAlgorithm.compute("ss").get should equal ("s")
+					Algorithm.compute("s").get should equal ("s")
+					Algorithm.compute("ss").get should equal ("s")
 
 					// t
-					NysiisAlgorithm.compute("t").get should equal ("t")
-					NysiisAlgorithm.compute("tt").get should equal ("tt")
+					Algorithm.compute("t").get should equal ("t")
+					Algorithm.compute("tt").get should equal ("tt")
 
 					// u
-					NysiisAlgorithm.compute("u").get should equal ("u")
-					NysiisAlgorithm.compute("uu").get should equal ("u")
+					Algorithm.compute("u").get should equal ("u")
+					Algorithm.compute("uu").get should equal ("u")
 
 					// v
-					NysiisAlgorithm.compute("v").get should equal ("v")
-					NysiisAlgorithm.compute("vv").get should equal ("vv")
+					Algorithm.compute("v").get should equal ("v")
+					Algorithm.compute("vv").get should equal ("vv")
 
 					// w
-					NysiisAlgorithm.compute("w").get should equal ("w")
-					NysiisAlgorithm.compute("ww").get should equal ("ww")
+					Algorithm.compute("w").get should equal ("w")
+					Algorithm.compute("ww").get should equal ("ww")
 
 					// x
-					NysiisAlgorithm.compute("x").get should equal ("x")
-					NysiisAlgorithm.compute("xx").get should equal ("xx")
+					Algorithm.compute("x").get should equal ("x")
+					Algorithm.compute("xx").get should equal ("xx")
 
 					// y
-					NysiisAlgorithm.compute("y").get should equal ("y")
-					NysiisAlgorithm.compute("yy").get should equal ("yy")
+					Algorithm.compute("y").get should equal ("y")
+					Algorithm.compute("yy").get should equal ("yy")
 
 					// z
-					NysiisAlgorithm.compute("z").get should equal ("z")
-					NysiisAlgorithm.compute("zz").get should equal ("z")
+					Algorithm.compute("z").get should equal ("z")
+					Algorithm.compute("zz").get should equal ("z")
 
 					// Head cases.
-					NysiisAlgorithm.compute("mac").get should equal ("mc")
-					NysiisAlgorithm.compute("kn").get should equal ("nn")
-					NysiisAlgorithm.compute("k").get should equal ("c")
-					NysiisAlgorithm.compute("ph").get should equal ("ff")
-					NysiisAlgorithm.compute("pf").get should equal ("ff")
-					NysiisAlgorithm.compute("sch").get should equal ("s") // dropby wrongly says ss
+					Algorithm.compute("mac").get should equal ("mc")
+					Algorithm.compute("kn").get should equal ("nn")
+					Algorithm.compute("k").get should equal ("c")
+					Algorithm.compute("ph").get should equal ("ff")
+					Algorithm.compute("pf").get should equal ("ff")
+					Algorithm.compute("sch").get should equal ("s") // dropby wrongly says ss
 
 					// Last cases.
-					NysiisAlgorithm.compute("ee").get should equal ("y")
-					NysiisAlgorithm.compute("ie").get should equal ("y")
-					NysiisAlgorithm.compute("dt").get should equal ("d")
-					NysiisAlgorithm.compute("rt").get should equal ("d")
-					NysiisAlgorithm.compute("rd").get should equal ("d")
-					NysiisAlgorithm.compute("nt").get should equal ("d")
-					NysiisAlgorithm.compute("nd").get should equal ("d")
+					Algorithm.compute("ee").get should equal ("y")
+					Algorithm.compute("ie").get should equal ("y")
+					Algorithm.compute("dt").get should equal ("d")
+					Algorithm.compute("rt").get should equal ("d")
+					Algorithm.compute("rd").get should equal ("d")
+					Algorithm.compute("nt").get should equal ("d")
+					Algorithm.compute("nd").get should equal ("d")
 
 					// Core cases.
-					NysiisAlgorithm.compute("eev").get should equal ("eaf")
-					NysiisAlgorithm.compute("zev").get should equal ("zaf")
-					NysiisAlgorithm.compute("kkn").get should equal ("cn")
-					NysiisAlgorithm.compute("sschn").get should equal ("ssn")
-					NysiisAlgorithm.compute("pph").get should equal ("pf")
+					Algorithm.compute("eev").get should equal ("eaf")
+					Algorithm.compute("zev").get should equal ("zaf")
+					Algorithm.compute("kkn").get should equal ("cn")
+					Algorithm.compute("sschn").get should equal ("ssn")
+					Algorithm.compute("pph").get should equal ("pf")
 
 					// Miscellaneous.
-					NysiisAlgorithm.compute("macdonald").get should equal ("mcdanald")
-					NysiisAlgorithm.compute("phone").get should equal ("ffan")
-					NysiisAlgorithm.compute("aggregate").get should equal ("agragat")
-					NysiisAlgorithm.compute("accuracy").get should equal ("acaracy")
-					NysiisAlgorithm.compute("encyclopedia").get should equal ("encyclapad")
-					NysiisAlgorithm.compute("honorificabilitudinitatibus").get should equal ("hanarafacabalatadanatatab")
-					NysiisAlgorithm.compute("antidisestablishmentarianism").get should equal ("antadasastablasnantaranasn")
+					Algorithm.compute("macdonald").get should equal ("mcdanald")
+					Algorithm.compute("phone").get should equal ("ffan")
+					Algorithm.compute("aggregate").get should equal ("agragat")
+					Algorithm.compute("accuracy").get should equal ("acaracy")
+					Algorithm.compute("encyclopedia").get should equal ("encyclapad")
+					Algorithm.compute("honorificabilitudinitatibus").get should equal ("hanarafacabalatadanatatab")
+					Algorithm.compute("antidisestablishmentarianism").get should equal ("antadasastablasnantaranasn")
 
 					// Dropby.
-					NysiisAlgorithm.compute("macintosh").get should equal ("mcant")
-					NysiisAlgorithm.compute("knuth").get should equal ("nnat")
-					NysiisAlgorithm.compute("koehn").get should equal ("can") // dropby wrongly says c
-					NysiisAlgorithm.compute("phillipson").get should equal ("ffalapsan")
-					NysiisAlgorithm.compute("pfeister").get should equal ("ffastar")
-					NysiisAlgorithm.compute("schoenhoeft").get should equal ("ssanaft")
-					NysiisAlgorithm.compute("mckee").get should equal ("mcy")
-					NysiisAlgorithm.compute("heitschmedt").get should equal ("hatsnad")
-					NysiisAlgorithm.compute("bart").get should equal ("bad")
-					NysiisAlgorithm.compute("hurd").get should equal ("had")
-					NysiisAlgorithm.compute("hunt").get should equal ("had")
-					NysiisAlgorithm.compute("westerlund").get should equal ("wastarlad")
-					NysiisAlgorithm.compute("casstevens").get should equal ("castafan")
-					NysiisAlgorithm.compute("vasquez").get should equal ("vasg")
-					NysiisAlgorithm.compute("frazier").get should equal ("frasar")
-					NysiisAlgorithm.compute("bowman").get should equal ("banan")
-					NysiisAlgorithm.compute("mcknight").get should equal ("mcnagt")
-					NysiisAlgorithm.compute("rickert").get should equal ("racad")
-					NysiisAlgorithm.compute("deutsch").get should equal ("dat") // dropby wrongly says dats
-					NysiisAlgorithm.compute("westphal").get should equal ("wastfal")
-					NysiisAlgorithm.compute("shriver").get should equal ("shravar")
-					NysiisAlgorithm.compute("kuhl").get should equal ("cal") // dropby wrongly says c
-					NysiisAlgorithm.compute("rawson").get should equal ("rasan")
-					NysiisAlgorithm.compute("jiles").get should equal ("jal")
-					NysiisAlgorithm.compute("carraway").get should equal ("caray")
-					NysiisAlgorithm.compute("yamada").get should equal ("yanad")
+					Algorithm.compute("macintosh").get should equal ("mcant")
+					Algorithm.compute("knuth").get should equal ("nnat")
+					Algorithm.compute("koehn").get should equal ("can") // dropby wrongly says c
+					Algorithm.compute("phillipson").get should equal ("ffalapsan")
+					Algorithm.compute("pfeister").get should equal ("ffastar")
+					Algorithm.compute("schoenhoeft").get should equal ("ssanaft")
+					Algorithm.compute("mckee").get should equal ("mcy")
+					Algorithm.compute("heitschmedt").get should equal ("hatsnad")
+					Algorithm.compute("bart").get should equal ("bad")
+					Algorithm.compute("hurd").get should equal ("had")
+					Algorithm.compute("hunt").get should equal ("had")
+					Algorithm.compute("westerlund").get should equal ("wastarlad")
+					Algorithm.compute("casstevens").get should equal ("castafan")
+					Algorithm.compute("vasquez").get should equal ("vasg")
+					Algorithm.compute("frazier").get should equal ("frasar")
+					Algorithm.compute("bowman").get should equal ("banan")
+					Algorithm.compute("mcknight").get should equal ("mcnagt")
+					Algorithm.compute("rickert").get should equal ("racad")
+					Algorithm.compute("deutsch").get should equal ("dat") // dropby wrongly says dats
+					Algorithm.compute("westphal").get should equal ("wastfal")
+					Algorithm.compute("shriver").get should equal ("shravar")
+					Algorithm.compute("kuhl").get should equal ("cal") // dropby wrongly says c
+					Algorithm.compute("rawson").get should equal ("rasan")
+					Algorithm.compute("jiles").get should equal ("jal")
+					Algorithm.compute("carraway").get should equal ("caray")
+					Algorithm.compute("yamada").get should equal ("yanad")
 				}
 			}
 		}
 	}
+}
+
+object NysiisAlgorithmSpec {
+	final private val Algorithm = new NysiisAlgorithm
 }

@@ -1,27 +1,21 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ FilterableConfigurableStringAlgorithm, StringAlgorithm, StringFilter }
+import com.rockymadden.stringmetric.{ ConfigurableStringAlgorithmLike, StringFilterLike }
 import scala.annotation.tailrec
 
-/** An implementation of the N-Gram [[com.rockymadden.stringmetric.StringAlgorithm]]. */
-object NGramAlgorithm extends StringAlgorithm with FilterableConfigurableStringAlgorithm[Int] {
-	type ComputeReturn = Array[String]
-
-	override def compute(charArray: Array[Char])(n: Int)
-		(implicit stringFilter: StringFilter): Option[Array[Array[Char]]] = {
-
+/** An implementation of the N-Gram algorithm. */
+class NGramAlgorithm extends ConfigurableStringAlgorithmLike[Array[String], Int] with StringFilterLike {
+	final override def compute(charArray: Array[Char])(implicit n: Int): Option[Array[Array[Char]]] = {
 		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
 
-		val fca = stringFilter.filter(charArray)
+		val fca = filter(charArray)
 
 		if (fca.length < n) None
 		else Some(sequence(fca, Array.empty[Array[Char]], n))
 	}
 
-	override def compute(string: String)(n: Int)
-		(implicit stringFilter: StringFilter): Option[ComputeReturn] =
-
-		compute(stringFilter.filter(string.toCharArray))(n).map(_.map(_.mkString))
+	final override def compute(string: String)(implicit n: Int): Option[Array[String]] =
+		compute(filter(string.toCharArray))(n).map(_.map(_.mkString))
 
 	@tailrec
 	private[this] def sequence(i: Array[Char], o: Array[Array[Char]], n: Int): Array[Array[Char]] = {
@@ -30,4 +24,8 @@ object NGramAlgorithm extends StringAlgorithm with FilterableConfigurableStringA
 		if (i.length <= n) o :+ i
 		else sequence(i.tail, o :+ i.take(n), n)
 	}
+}
+
+object NGramAlgorithm {
+	def apply(): NGramAlgorithm = new NGramAlgorithm
 }

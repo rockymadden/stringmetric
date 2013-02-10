@@ -46,6 +46,6 @@ object diceSorensenMetric extends Command {
 		val strings: OptionMapArray = options('dashless)
 		val n: OptionMapInt = options('n)
 
-		println(DiceSorensenMetric.compare(strings(0), strings(1))(n).getOrElse("not comparable"))
+		println(DiceSorensenMetric().compare(strings(0), strings(1))(n).getOrElse("not comparable"))
 	}
 }

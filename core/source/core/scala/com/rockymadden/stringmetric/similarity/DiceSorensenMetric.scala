@@ -1,37 +1,39 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ FilterableConfigurableStringMetric, MatchTuple, StringFilter, StringMetric }
+import com.rockymadden.stringmetric.{ ConfigurableStringMetricLike, MatchTuple, StringFilterLike }
 
 /**
- * An implementation of the Dice, and lesser known Sorensen, [[com.rockymadden.stringmetric.StringMetric]]. This
- * implementation differs in that n-gram size is required. Traditionally, the algorithm uses bigrams.
+ * An implementation of the Dice/Sorensen metric. This implementation differs in that n-gram size is required.
+ * Traditionally, the algorithm uses bigrams.
  */
-object DiceSorensenMetric extends StringMetric with FilterableConfigurableStringMetric[Int] {
-	type CompareReturn = Double
-
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(n: Int)
-		(implicit stringFilter: StringFilter): Option[CompareReturn] = {
-
+class DiceSorensenMetric extends ConfigurableStringMetricLike[Double, Int] with StringFilterLike {
+	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit n: Int): Option[Double] = {
 		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
 
-		val fca1 = stringFilter.filter(charArray1)
-		lazy val fca2 = stringFilter.filter(charArray2)
+		val fca1 = filter(charArray1)
+		lazy val fca2 = filter(charArray2)
 
 		if (fca1.length < n || fca2.length < n) None // Because length is less than n, it is not possible to compare.
 		else if (fca1.sameElements(fca2)) Some(1d)
-		else NGramAlgorithm.compute(fca1)(n).flatMap { ca1bg =>
-			NGramAlgorithm.compute(fca2)(n).map { ca2bg =>
-				val ms = scoreMatches((ca1bg.map(_.mkString), ca2bg.map(_.mkString)))
+		else {
+			val nGramAlgorithm = NGramAlgorithm()
 
-				(2d * ms) / (ca1bg.length + ca2bg.length)
+			nGramAlgorithm.compute(fca1)(n).flatMap { ca1bg =>
+				nGramAlgorithm.compute(fca2)(n).map { ca2bg =>
+					val ms = scoreMatches((ca1bg.map(_.mkString), ca2bg.map(_.mkString)))
+
+					(2d * ms) / (ca1bg.length + ca2bg.length)
+				}
 			}
 		}
 	}
 
-	override def compare(string1: String, string2: String)(n: Int)
-		(implicit stringFilter: StringFilter): Option[CompareReturn] =
-
-		compare(stringFilter.filter(string1.toCharArray), stringFilter.filter(string2.toCharArray))(n: Int)
+	override def compare(string1: String, string2: String)(implicit n: Int): Option[Double] =
+		compare(filter(string1.toCharArray), filter(string2.toCharArray))(n: Int)
 
 	private[this] def scoreMatches(mt: MatchTuple[String]) = mt._1.intersect(mt._2).length
+}
+
+object DiceSorensenMetric {
+	def apply(): DiceSorensenMetric = new DiceSorensenMetric
 }

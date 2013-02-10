@@ -2,17 +2,11 @@ package com.rockymadden.stringmetric
 
 import com.rockymadden.stringmetric.filter._
 
-/** Trait for all string filters. */
-trait StringFilter {
-	def filter(string: String): String
-
+trait StringFilterLike extends FilterLike[String] {
 	def filter(charArray: Array[Char]): Array[Char]
 }
 
-/** Standalone convenience object for all extending [[com.rockymadden.stringmetric.StringFilter]]. */
-object StringFilter {
-	implicit val stringFilter = delegate
-
+object StringFilterLike {
 	def asciiControl = new StringFilterDelegate with AsciiControlStringFilter
 
 	def asciiControlOnly = new StringFilterDelegate with AsciiControlOnlyStringFilter

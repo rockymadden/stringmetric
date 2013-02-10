@@ -59,6 +59,6 @@ object weightedLevenshteinMetric extends Command {
 			(options('substituteWeight): OptionMapBigDecimal)
 		)
 
-		println(WeightedLevenshteinMetric.compare(strings(0), strings(1))(weights).getOrElse("not comparable"))
+		println(WeightedLevenshteinMetric().compare(strings(0), strings(1))(weights).getOrElse("not comparable"))
 	}
 }

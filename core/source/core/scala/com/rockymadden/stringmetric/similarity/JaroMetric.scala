@@ -1,21 +1,16 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ CompareTuple, FilterableStringMetric, MatchTuple, StringFilter, StringMetric }
+import com.rockymadden.stringmetric.{ CompareTuple, MatchTuple, StringFilterLike, StringMetricLike }
 import scala.collection.mutable.{ ArrayBuffer, HashSet }
 
 /**
- * An implementation of the Jaro [[com.rockymadden.stringmetric.StringMetric]]. One differing detail in this
- * implementation is that if a character is matched in string2, it cannot be matched upon again. This results in a more
- * penalized distance in these scenarios.
+ * An implementation of the Jaro metric. One differing detail in this implementation is that if a character is matched
+ * in string2, it cannot be matched upon again. This results in a more penalized distance in these scenarios.
  */
-object JaroMetric extends StringMetric with FilterableStringMetric {
-	type CompareReturn = Double
-
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])
-		(implicit stringFilter: StringFilter): Option[CompareReturn] = {
-
-		val fca1 = stringFilter.filter(charArray1)
-		lazy val fca2 = stringFilter.filter(charArray2)
+class JaroMetric extends StringMetricLike[Double] with StringFilterLike {
+	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Double] = {
+		val fca1 = filter(charArray1)
+		lazy val fca2 = filter(charArray2)
 
 		if (fca1.length == 0 || fca2.length == 0) None
 		else if (fca1.sameElements(fca2)) Some(1d)
@@ -32,10 +27,8 @@ object JaroMetric extends StringMetric with FilterableStringMetric {
 		}
 	}
 
-	override def compare(string1: String, string2: String)
-		(implicit stringFilter: StringFilter): Option[CompareReturn] =
-
-		compare(stringFilter.filter(string1.toCharArray), stringFilter.filter(string2.toCharArray))
+	final override def compare(string1: String, string2: String): Option[Double] =
+		compare(filter(string1.toCharArray), filter(string2.toCharArray))
 
 	private[this] def `match`(ct: CompareTuple[Char]): MatchTuple[Char] = {
 		lazy val window = math.abs((math.max(ct._1.length, ct._2.length) / 2d).floor.toInt - 1)
@@ -79,4 +72,8 @@ object JaroMetric extends StringMetric with FilterableStringMetric {
 
 		(mt._1.zip(mt._2).count(t => t._1 != t._2) / 2d).floor.toInt
 	}
+}
+
+object JaroMetric {
+	def apply(): JaroMetric = new JaroMetric
 }

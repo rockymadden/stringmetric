@@ -39,5 +39,5 @@ object refinedNysiisAlgorithm extends Command {
 	}
 
 	override def execute(options: OptionMap): Unit =
-		println(RefinedNysiisAlgorithm.compute(options('dashless)).getOrElse("not computable"))
+		println(RefinedNysiisAlgorithm().compute(options('dashless)).getOrElse("not computable"))
 }

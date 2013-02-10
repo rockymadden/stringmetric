@@ -41,6 +41,6 @@ object refinedNysiisMetric extends Command {
 	override def execute(options: OptionMap): Unit = {
 		val strings: OptionMapArray = options('dashless)
 
-		println(RefinedNysiisMetric.compare(strings(0), strings(1)).getOrElse("not comparable"))
+		println(RefinedNysiisMetric().compare(strings(0), strings(1)).getOrElse("not comparable"))
 	}
 }

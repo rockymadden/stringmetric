@@ -39,5 +39,5 @@ object metaphoneAlgorithm extends Command {
 	}
 
 	override def execute(options: OptionMap): Unit =
-		println(MetaphoneAlgorithm.compute(options('dashless)).getOrElse("not computable"))
+		println(MetaphoneAlgorithm().compute(options('dashless)).getOrElse("not computable"))
 }

@@ -8,7 +8,7 @@ import org.scalatest.junit.JUnitRunner
 final class StringFilterDelegateSpec extends ScalaTest {
 	import StringFilterDelegateSpec.Filter
 
-	"StringFilterDelegate" should provide {
+	"StringFilter" should provide {
 		"overloaded filter method" when passed {
 			"String" should returns {
 				"the same String" in {

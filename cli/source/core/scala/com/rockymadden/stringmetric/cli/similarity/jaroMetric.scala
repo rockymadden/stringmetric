@@ -38,6 +38,6 @@ object jaroMetric extends Command {
 	override def execute(options: OptionMap): Unit = {
 		val strings: OptionMapArray = options('dashless)
 
-		println(JaroMetric.compare(strings(0), strings(1)).getOrElse("not comparable"))
+		println(JaroMetric().compare(strings(0), strings(1)).getOrElse("not comparable"))
 	}
 }

@@ -1,9 +1,9 @@
 package com.rockymadden.stringmetric.filter
 
-import com.rockymadden.stringmetric.StringFilter
+import com.rockymadden.stringmetric.StringFilterLike
 
-/** A decorator [[com.rockymadden.stringmetric.StringFilter]]. Ensures only ASCII symbols matter. */
-trait AsciiSymbolOnlyStringFilter extends StringFilter {
+/** Ensures only ASCII symbols matter. */
+trait AsciiSymbolOnlyStringFilter extends StringFilterLike {
 	abstract override def filter(charArray: Array[Char]): Array[Char] =
 		super.filter(
 			charArray.filter(c =>

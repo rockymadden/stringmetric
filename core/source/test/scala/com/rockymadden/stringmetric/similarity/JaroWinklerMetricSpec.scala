@@ -6,48 +6,54 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class JaroWinklerMetricSpec extends ScalaTest {
+	import JaroWinklerMetricSpec._
+
 	"JaroWinklerMetric" should provide {
 		"compare method" when passed {
 			"empty arguments" should returns {
 				"None" in {
-					JaroWinklerMetric.compare("", "").isDefined should be (false)
-					JaroWinklerMetric.compare("abc", "").isDefined should be (false)
-					JaroWinklerMetric.compare("", "xyz").isDefined should be (false)
+					Metric.compare("", "").isDefined should be (false)
+					Metric.compare("abc", "").isDefined should be (false)
+					Metric.compare("", "xyz").isDefined should be (false)
 				}
 			}
 			"equal arguments" should returns {
 				"1" in {
-					JaroWinklerMetric.compare("a", "a").get should be (1)
-					JaroWinklerMetric.compare("abc", "abc").get should be (1)
-					JaroWinklerMetric.compare("123", "123").get should be (1)
+					Metric.compare("a", "a").get should be (1)
+					Metric.compare("abc", "abc").get should be (1)
+					Metric.compare("123", "123").get should be (1)
 				}
 			}
 			"unequal arguments" should returns {
 				"0" in {
-					JaroWinklerMetric.compare("abc", "xyz").get should be (0)
-					JaroWinklerMetric.compare("123", "456").get should be (0)
+					Metric.compare("abc", "xyz").get should be (0)
+					Metric.compare("123", "456").get should be (0)
 				}
 			}
 			"valid arguments" should returns {
 				"Double indicating distance" in {
-					JaroWinklerMetric.compare("aa", "a").get should be (0.8500000000000001)
-					JaroWinklerMetric.compare("a", "aa").get should be (0.8500000000000001)
-					JaroWinklerMetric.compare("veryveryverylong", "v").get should be (0.71875)
-					JaroWinklerMetric.compare("v", "veryveryverylong").get should be (0.71875)
-					JaroWinklerMetric.compare("martha", "marhta").get should be (0.9611111111111111)
-					JaroWinklerMetric.compare("dwayne", "duane").get should be (0.8400000000000001)
-					JaroWinklerMetric.compare("dixon", "dicksonx").get should be (0.8133333333333332)
-					JaroWinklerMetric.compare("abcvwxyz", "cabvwxyz").get should be (0.9583333333333334)
-					JaroWinklerMetric.compare("jones", "johnson").get should be (0.8323809523809523)
-					JaroWinklerMetric.compare("henka", "henkan").get should be (0.9666666666666667)
-					JaroWinklerMetric.compare("fvie", "ten").get should be (0)
+					Metric.compare("aa", "a").get should be (0.8500000000000001)
+					Metric.compare("a", "aa").get should be (0.8500000000000001)
+					Metric.compare("veryveryverylong", "v").get should be (0.71875)
+					Metric.compare("v", "veryveryverylong").get should be (0.71875)
+					Metric.compare("martha", "marhta").get should be (0.9611111111111111)
+					Metric.compare("dwayne", "duane").get should be (0.8400000000000001)
+					Metric.compare("dixon", "dicksonx").get should be (0.8133333333333332)
+					Metric.compare("abcvwxyz", "cabvwxyz").get should be (0.9583333333333334)
+					Metric.compare("jones", "johnson").get should be (0.8323809523809523)
+					Metric.compare("henka", "henkan").get should be (0.9666666666666667)
+					Metric.compare("fvie", "ten").get should be (0)
 
-					JaroWinklerMetric.compare("zac ephron", "zac efron").get should be >
-						JaroWinklerMetric.compare("zac ephron", "kai ephron").get
-					JaroWinklerMetric.compare("brittney spears", "britney spears").get should be >
-						JaroWinklerMetric.compare("brittney spears", "brittney startzman").get
+					Metric.compare("zac ephron", "zac efron").get should be >
+						Metric.compare("zac ephron", "kai ephron").get
+					Metric.compare("brittney spears", "britney spears").get should be >
+						Metric.compare("brittney spears", "brittney startzman").get
 				}
 			}
 		}
 	}
+}
+
+object JaroWinklerMetricSpec {
+	private final val Metric = new JaroWinklerMetric
 }

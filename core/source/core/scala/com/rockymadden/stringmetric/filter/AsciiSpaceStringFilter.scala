@@ -1,9 +1,9 @@
 package com.rockymadden.stringmetric.filter
 
-import com.rockymadden.stringmetric.StringFilter
+import com.rockymadden.stringmetric.StringFilterLike
 
-/** A decorator [[com.rockymadden.stringmetric.StringFilter]]. Ensures ASCII spaces do not matter. */
-trait AsciiSpaceStringFilter extends StringFilter {
+/** Ensures ASCII spaces do not matter. */
+trait AsciiSpaceStringFilter extends StringFilterLike {
 	abstract override def filter(charArray: Array[Char]): Array[Char] = super.filter(charArray.filter(_ != ' '))
 
 	abstract override def filter(string: String): String = filter(string.toCharArray).mkString

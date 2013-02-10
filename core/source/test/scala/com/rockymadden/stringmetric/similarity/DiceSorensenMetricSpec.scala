@@ -6,57 +6,63 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class DiceSorensenMetricSpec extends ScalaTest {
+	import DiceSorensenMetricSpec._
+
 	"DiceSorensenMetric" should provide {
 		"compare method" when passed {
 			"empty arguments" should returns {
 				"None" in {
-					DiceSorensenMetric.compare("", "")(1).isDefined should be (false)
-					DiceSorensenMetric.compare("abc", "")(1).isDefined should be (false)
-					DiceSorensenMetric.compare("", "xyz")(1).isDefined should be (false)
+					Metric.compare("", "")(1).isDefined should be (false)
+					Metric.compare("abc", "")(1).isDefined should be (false)
+					Metric.compare("", "xyz")(1).isDefined should be (false)
 				}
 			}
 			"equal arguments" should returns {
 				"1" in {
-					DiceSorensenMetric.compare("abc", "abc")(1).get should be (1)
-					DiceSorensenMetric.compare("abc", "abc")(2).get should be (1)
-					DiceSorensenMetric.compare("abc", "abc")(3).get should be (1)
+					Metric.compare("abc", "abc")(1).get should be (1)
+					Metric.compare("abc", "abc")(2).get should be (1)
+					Metric.compare("abc", "abc")(3).get should be (1)
 				}
 			}
 			"unequal arguments" should returns {
 				"0" in {
-					DiceSorensenMetric.compare("abc", "xyz")(1).get should be (0)
-					DiceSorensenMetric.compare("abc", "xyz")(2).get should be (0)
-					DiceSorensenMetric.compare("abc", "xyz")(3).get should be (0)
+					Metric.compare("abc", "xyz")(1).get should be (0)
+					Metric.compare("abc", "xyz")(2).get should be (0)
+					Metric.compare("abc", "xyz")(3).get should be (0)
 				}
 			}
 			"invalid arguments" should returns {
 				"None" in {
-					DiceSorensenMetric.compare("n", "naght")(2).isDefined should be (false)
-					DiceSorensenMetric.compare("night", "n")(2).isDefined should be (false)
-					DiceSorensenMetric.compare("ni", "naght")(3).isDefined should be (false)
-					DiceSorensenMetric.compare("night", "na")(3).isDefined should be (false)
+					Metric.compare("n", "naght")(2).isDefined should be (false)
+					Metric.compare("night", "n")(2).isDefined should be (false)
+					Metric.compare("ni", "naght")(3).isDefined should be (false)
+					Metric.compare("night", "na")(3).isDefined should be (false)
 				}
 			}
 			"valid arguments" should returns {
 				"Double indicating distance" in {
-					DiceSorensenMetric.compare("night", "nacht")(1).get should be (0.6)
-					DiceSorensenMetric.compare("night", "naght")(1).get should be (0.8)
-					DiceSorensenMetric.compare("context", "contact")(1).get should be (0.7142857142857143)
+					Metric.compare("night", "nacht")(1).get should be (0.6)
+					Metric.compare("night", "naght")(1).get should be (0.8)
+					Metric.compare("context", "contact")(1).get should be (0.7142857142857143)
 
-					DiceSorensenMetric.compare("night", "nacht")(2).get should be (0.25)
-					DiceSorensenMetric.compare("night", "naght")(2).get should be (0.5)
-					DiceSorensenMetric.compare("context", "contact")(2).get should be (0.5)
-					DiceSorensenMetric.compare("contextcontext", "contact")(2).get should be (0.3157894736842105)
-					DiceSorensenMetric.compare("context", "contactcontact")(2).get should be (0.3157894736842105)
-					DiceSorensenMetric.compare("ht", "nacht")(2).get should be (0.4)
-					DiceSorensenMetric.compare("xp", "nacht")(2).get should be (0)
-					DiceSorensenMetric.compare("ht", "hththt")(2).get should be (0.3333333333333333)
+					Metric.compare("night", "nacht")(2).get should be (0.25)
+					Metric.compare("night", "naght")(2).get should be (0.5)
+					Metric.compare("context", "contact")(2).get should be (0.5)
+					Metric.compare("contextcontext", "contact")(2).get should be (0.3157894736842105)
+					Metric.compare("context", "contactcontact")(2).get should be (0.3157894736842105)
+					Metric.compare("ht", "nacht")(2).get should be (0.4)
+					Metric.compare("xp", "nacht")(2).get should be (0)
+					Metric.compare("ht", "hththt")(2).get should be (0.3333333333333333)
 
-					DiceSorensenMetric.compare("night", "nacht")(3).get should be (0)
-					DiceSorensenMetric.compare("night", "naght")(3).get should be (0.3333333333333333)
-					DiceSorensenMetric.compare("context", "contact")(3).get should be (0.4)
+					Metric.compare("night", "nacht")(3).get should be (0)
+					Metric.compare("night", "naght")(3).get should be (0.3333333333333333)
+					Metric.compare("context", "contact")(3).get should be (0.4)
 				}
 			}
 		}
 	}
+}
+
+object DiceSorensenMetricSpec {
+	private final val Metric = new DiceSorensenMetric
 }

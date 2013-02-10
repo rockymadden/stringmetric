@@ -1,15 +1,13 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.{ FilterableStringAlgorithm, StringAlgorithm, StringFilter }
+import com.rockymadden.stringmetric.{ StringAlgorithmLike, StringFilterLike }
 import com.rockymadden.stringmetric.phonetic.Alphabet._
 import scala.annotation.{ switch, tailrec }
 
-/** An implementation of the refined NYSIIS [[com.rockymadden.stringmetric.StringAlgorithm]]. */
-object RefinedNysiisAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
-	type ComputeReturn = String
-
-	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
-		val fca = stringFilter.filter(charArray)
+/** An implementation of the refined NYSIIS algorithm. */
+class RefinedNysiisAlgorithm extends StringAlgorithmLike[String] with StringFilterLike {
+	final override def compute(charArray: Array[Char]): Option[Array[Char]] = {
+		val fca = filter(charArray)
 
 		if (fca.length == 0 || !(fca.head is Alpha)) None
 		else {
@@ -22,8 +20,7 @@ object RefinedNysiisAlgorithm extends StringAlgorithm with FilterableStringAlgor
 		}
 	}
 
-	override def compute(string: String)(implicit stringFilter: StringFilter): Option[ComputeReturn] =
-		compute(stringFilter.filter(string.toCharArray)).map(_.mkString)
+	final override def compute(string: String): Option[String] = compute(filter(string.toCharArray)).map(_.mkString)
 
 	private[this] def cleanLast(ca: Array[Char], s: Set[Char]) =
 		if (ca.length == 0) ca
@@ -124,4 +121,8 @@ object RefinedNysiisAlgorithm extends StringAlgorithm with FilterableStringAlgor
 			}
 		} else ca
 	}
+}
+
+object RefinedNysiisAlgorithm {
+	def apply(): RefinedNysiisAlgorithm = new RefinedNysiisAlgorithm
 }

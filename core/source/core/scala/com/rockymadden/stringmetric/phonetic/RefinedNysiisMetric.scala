@@ -1,15 +1,11 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.{ FilterableStringMetric, StringFilter, StringMetric }
+import com.rockymadden.stringmetric.{ StringFilterLike, StringMetricLike }
 import com.rockymadden.stringmetric.phonetic.Alphabet._
 
-/** An implementation of the refined NYSIIS [[com.rockymadden.stringmetric.StringMetric]]. */
-object RefinedNysiisMetric extends StringMetric with FilterableStringMetric {
-	type CompareReturn = Boolean
-
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])
-		(implicit stringFilter: StringFilter): Option[CompareReturn] = {
-
+/** An implementation of the refined NYSIIS metric. */
+class RefinedNysiisMetric extends StringMetricLike[Boolean] with StringFilterLike {
+	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] = {
 		val unequal = (c1: Char, c2: Char) => {
 			val lc1 = c1.toLower
 			val lc2 = c2.toLower
@@ -17,17 +13,23 @@ object RefinedNysiisMetric extends StringMetric with FilterableStringMetric {
 			(if (lc1 == 'k') 'c' else lc1) != (if (lc2 == 'k') 'c' else lc2)
 		}
 
-		val fca1 = stringFilter.filter(charArray1)
-		lazy val fca2 = stringFilter.filter(charArray2)
+		val fca1 = filter(charArray1)
+		lazy val fca2 = filter(charArray2)
 
 		if (fca1.length == 0 || !(fca1.head is Alpha) || fca2.length == 0 || !(fca2.head is Alpha)) None
 		else if (unequal(fca1.head, fca2.head)) Some(false)
-		else RefinedNysiisAlgorithm.compute(fca1).filter(_.length > 0).flatMap(rny1 =>
-			RefinedNysiisAlgorithm.compute(fca2).filter(_.length > 0).map(rny1.sameElements(_)))
+		else {
+			val refinedNysiisAlgorithm = RefinedNysiisAlgorithm()
+
+			refinedNysiisAlgorithm.compute(fca1).filter(_.length > 0).flatMap(rny1 =>
+				refinedNysiisAlgorithm.compute(fca2).filter(_.length > 0).map(rny1.sameElements(_)))
+		}
 	}
 
-	override def compare(string1: String, string2: String)
-		(implicit stringFilter: StringFilter): Option[CompareReturn] =
+	final override def compare(string1: String, string2: String): Option[Boolean] =
+		compare(filter(string1.toCharArray), filter(string2.toCharArray))
+}
 
-		compare(stringFilter.filter(string1.toCharArray), stringFilter.filter(string2.toCharArray))
+object RefinedNysiisMetric {
+	def apply(): RefinedNysiisMetric = new RefinedNysiisMetric
 }

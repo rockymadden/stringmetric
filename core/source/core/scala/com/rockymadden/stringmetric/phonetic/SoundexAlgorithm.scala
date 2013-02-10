@@ -1,15 +1,13 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.{ FilterableStringAlgorithm, StringAlgorithm, StringFilter }
+import com.rockymadden.stringmetric.{ StringAlgorithmLike, StringFilterLike }
 import com.rockymadden.stringmetric.phonetic.Alphabet._
 import scala.annotation.{ switch, tailrec }
 
-/** An implementation of the Soundex [[com.rockymadden.stringmetric.StringAlgorithm]]. */
-object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
-	type ComputeReturn = String
-
-	override def compute(charArray: Array[Char])(implicit stringFilter: StringFilter): Option[Array[Char]] = {
-		val fca = stringFilter.filter(charArray)
+/** An implementation of the Soundex algorithm. */
+class SoundexAlgorithm extends StringAlgorithmLike[String] with StringFilterLike {
+	final override def compute(charArray: Array[Char]): Option[Array[Char]] = {
+		val fca = filter(charArray)
 
 		if (fca.length == 0 || !(fca.head is Alpha)) None
 		else {
@@ -19,8 +17,7 @@ object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 		}
 	}
 
-	override def compute(string: String)(implicit stringFilter: StringFilter): Option[ComputeReturn] =
-		compute(stringFilter.filter(string.toCharArray)).map(_.mkString)
+	final override def compute(string: String): Option[String] = compute(filter(string.toCharArray)).map(_.mkString)
 
 	@tailrec
 	private[this] def transcode(i: Array[Char], pc: Char, o: Array[Char]): Array[Char] = {
@@ -62,4 +59,8 @@ object SoundexAlgorithm extends StringAlgorithm with FilterableStringAlgorithm {
 			else transcode(i.tail, c, if (a != '\0') o :+ a else o)
 		}
 	}
+}
+
+object SoundexAlgorithm {
+	def apply(): SoundexAlgorithm = new SoundexAlgorithm
 }
