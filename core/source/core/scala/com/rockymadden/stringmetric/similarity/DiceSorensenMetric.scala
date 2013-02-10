@@ -7,7 +7,7 @@ import com.rockymadden.stringmetric.{ ConfigurableStringMetricLike, MatchTuple, 
  * Traditionally, the algorithm uses bigrams.
  */
 class DiceSorensenMetric extends ConfigurableStringMetricLike[Double, Int] with StringFilterLike {
-	override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit n: Int): Option[Double] = {
+	final override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit n: Int): Option[Double] = {
 		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
 
 		val fca1 = filter(charArray1)
@@ -28,7 +28,7 @@ class DiceSorensenMetric extends ConfigurableStringMetricLike[Double, Int] with 
 		}
 	}
 
-	override def compare(string1: String, string2: String)(implicit n: Int): Option[Double] =
+	final override def compare(string1: String, string2: String)(implicit n: Int): Option[Double] =
 		compare(filter(string1.toCharArray), filter(string2.toCharArray))(n: Int)
 
 	private[this] def scoreMatches(mt: MatchTuple[String]) = mt._1.intersect(mt._2).length
