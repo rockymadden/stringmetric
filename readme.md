@@ -23,7 +23,7 @@ Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga
 * __artifactId__: stringmetric-core
 * __artifactId__: stringmetric-cli
 
-## Scaladoc
+## Generated Documentation
 [Scaladoc](http://rockymadden.com/stringmetric/scaladoc/) is available on the project website. 
 
 ## Similarity package
