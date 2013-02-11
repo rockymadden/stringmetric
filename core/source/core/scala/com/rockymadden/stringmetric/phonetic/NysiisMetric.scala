@@ -1,10 +1,10 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.{ StringFilterLike, StringMetricLike }
+import com.rockymadden.stringmetric.StringMetric
 import com.rockymadden.stringmetric.phonetic.Alphabet._
 
 /** An implementation of the NYSIIS metric. */
-class NysiisMetric extends StringMetricLike[Boolean] with StringFilterLike {
+class NysiisMetric extends StringMetric[Boolean] {
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] = {
 		val unequal = (c1: Char, c2: Char) => {
 			val lc1 = c1.toLower

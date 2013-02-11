@@ -1,11 +1,11 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ CompareTuple, ConfigurableStringMetricLike, StringFilterLike }
+import com.rockymadden.stringmetric.{ CompareTuple, ConfigurableStringMetric }
 import scala.math.BigDecimal
 
 /** An implementation of a weighted Levenshtein metric. */
 class WeightedLevenshteinMetric
-	extends ConfigurableStringMetricLike[Double, (BigDecimal, BigDecimal, BigDecimal)] with StringFilterLike {
+	extends ConfigurableStringMetric[Double, (BigDecimal, BigDecimal, BigDecimal)] {
 
 	/** Options order is delete, insert, then substitute weight. */
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char])

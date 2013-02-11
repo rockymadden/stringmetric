@@ -1,9 +1,9 @@
 package com.rockymadden.stringmetric.filter
 
-import com.rockymadden.stringmetric.StringFilterLike
+import com.rockymadden.stringmetric.StringFilter
 
 /** Ensures ASCII controls do not matter. */
-trait AsciiControlStringFilter extends StringFilterLike {
+trait AsciiControlStringFilter extends StringFilter {
 	abstract override def filter(charArray: Array[Char]): Array[Char] =
 		super.filter(charArray.filter(c => !(c <= 31 || c == 127)))
 

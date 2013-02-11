@@ -1,11 +1,11 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.{ StringAlgorithmLike, StringFilterLike }
+import com.rockymadden.stringmetric.StringAlgorithm
 import com.rockymadden.stringmetric.phonetic.Alphabet._
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the Metaphone algorithm. */
-class MetaphoneAlgorithm extends StringAlgorithmLike[String] with StringFilterLike {
+class MetaphoneAlgorithm extends StringAlgorithm[String] {
 	final override def compute(charArray: Array[Char]): Option[Array[Char]] = {
 		val fca = filter(charArray)
 

@@ -1,11 +1,11 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.{ StringAlgorithmLike, StringFilterLike }
+import com.rockymadden.stringmetric.StringAlgorithm
 import com.rockymadden.stringmetric.phonetic.Alphabet._
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the NYSIIS algorithm. */
-class NysiisAlgorithm extends StringAlgorithmLike[String] with StringFilterLike {
+class NysiisAlgorithm extends StringAlgorithm[String] {
 	final override def compute(charArray: Array[Char]): Option[Array[Char]] = {
 		val fca = filter(charArray)
 

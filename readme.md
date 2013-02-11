@@ -23,8 +23,8 @@ Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga
 * __artifactId__: stringmetric-core
 * __artifactId__: stringmetric-cli
 
-## Generated Documentation
-[Scaladoc](http://rockymadden.com/stringmetric/scaladoc/) is available on the project website. 
+## Docs
+[Scaladoc](http://rockymadden.com/stringmetric/scaladoc/) is available on the project website.
 
 ## Similarity package
 Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.
@@ -289,10 +289,10 @@ Basic example with stacked filter. Filters are applied in reverse order:
 ```
 
 ## Convenience objects
-The StringMetricLike, StringAlgorithmLike, and StringFilterLike standalone convenience objects are available to make interactions with the library easier:
+The StringMetric, StringAlgorithm, StringFilter, ConfigurableStringAlgorithm, and ConfigurableStringMetric standalone convenience objects are available to make interactions with the library easier:
 ```scala
-StringMetricLike.compareWithJaroWinkler("string1", "string2")
-StringAlgorithmLike.computeWithMetaphone("string1", "string2")
+StringMetric.compareWithJaroWinkler("string1", "string2")
+StringAlgorithm.computeWithMetaphone("string1", "string2")
 ```
 
 ## Command line interfaces

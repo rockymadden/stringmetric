@@ -1,13 +1,13 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ StringFilterLike, StringMetricLike }
+import com.rockymadden.stringmetric.StringMetric
 
 /**
  * An implementation of the Jaro-Winkler metric. One differing detail in this implementation is that if a character is
  * matched in string2, it cannot be matched upon again. This results in a more penalized distance in these scenarios
  * (e.g. comparing henka and henkan distance is 0.9666 versus the typical 0.9722).
  */
-class JaroWinklerMetric extends StringMetricLike[Double] with StringFilterLike {
+class JaroWinklerMetric extends StringMetric[Double] {
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Double] = {
 		val fca1 = filter(charArray1)
 		val fca2 = filter(charArray2)

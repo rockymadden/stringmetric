@@ -1,10 +1,10 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.{ StringFilterLike, StringMetricLike }
+import com.rockymadden.stringmetric.StringMetric
 import com.rockymadden.stringmetric.phonetic.Alphabet._
 
 /** A implementation of Metaphone metric. */
-class MetaphoneMetric extends StringMetricLike[Boolean] with StringFilterLike {
+class MetaphoneMetric extends StringMetric[Boolean] {
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] = {
 		val fca1 = filter(charArray1)
 		lazy val fca2 = filter(charArray2)

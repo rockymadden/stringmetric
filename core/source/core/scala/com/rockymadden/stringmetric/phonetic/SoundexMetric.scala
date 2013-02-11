@@ -1,10 +1,10 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.{ StringFilterLike, StringMetricLike }
+import com.rockymadden.stringmetric.StringMetric
 import com.rockymadden.stringmetric.phonetic.Alphabet._
 
 /** An implementation of the Soundex metric. */
-class SoundexMetric extends StringMetricLike[Boolean] with StringFilterLike {
+class SoundexMetric extends StringMetric[Boolean] {
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] = {
 		val fca1 = filter(charArray1)
 		lazy val fca2 = filter(charArray2)

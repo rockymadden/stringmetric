@@ -1,9 +1,9 @@
 package com.rockymadden.stringmetric.filter
 
-import com.rockymadden.stringmetric.StringFilterLike
+import com.rockymadden.stringmetric.StringFilter
 
 /** Ensures ASCII letter case-sensitivity does not matter. */
-trait AsciiLetterCaseStringFilter extends StringFilterLike {
+trait AsciiLetterCaseStringFilter extends StringFilter {
 	abstract override def filter(charArray: Array[Char]): Array[Char] =
 		super.filter(charArray.map(c => if (c >= 65 && c <= 90) (c + 32).toChar else c))
 
