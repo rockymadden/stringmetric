@@ -6,6 +6,8 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 final class DiceSorensenMetricBenchmark extends CaliperBenchmark {
+	import DiceSorensenMetricBenchmark._
+
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
 
@@ -32,20 +34,22 @@ final class DiceSorensenMetricBenchmark extends CaliperBenchmark {
 	}
 
 	def timeCompareWithDifferentCharArrays(reps: Int) = run(reps) {
-		DiceSorensenMetric.compare(charArray1, charArray2)(2)
+		Metric.compare(charArray1, charArray2)(2)
 	}
 
 	def timeCompareWithDifferentStrings(reps: Int) = run(reps) {
-		DiceSorensenMetric.compare(string1, string2)(2)
+		Metric.compare(string1, string2)(2)
 	}
 
 	def timeCompareWithIdenticalCharArrays(reps: Int) = run(reps) {
-		DiceSorensenMetric.compare(charArray1, charArray1)(2)
+		Metric.compare(charArray1, charArray1)(2)
 	}
 
 	def timeCompareWithIdenticalStrings(reps: Int) = run(reps) {
-		DiceSorensenMetric.compare(string1, string1)(2)
+		Metric.compare(string1, string1)(2)
 	}
 }
 
-object DiceSorensenMetricBenchmark extends CaliperRunner(classOf[DiceSorensenMetricBenchmark])
+object DiceSorensenMetricBenchmark extends CaliperRunner(classOf[DiceSorensenMetricBenchmark]) {
+	private final val Metric = new DiceSorensenMetric
+}

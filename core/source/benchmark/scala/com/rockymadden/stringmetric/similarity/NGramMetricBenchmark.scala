@@ -6,6 +6,8 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 final class NGramMetricBenchmark extends CaliperBenchmark {
+	import NGramMetricBenchmark._
+
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
 
@@ -35,20 +37,22 @@ final class NGramMetricBenchmark extends CaliperBenchmark {
 	}
 
 	def timeCompareWithDifferentCharArrays(reps: Int) = run(reps) {
-		NGramMetric.compare(charArray1, charArray2)(n)
+		Metric.compare(charArray1, charArray2)(n)
 	}
 
 	def timeCompareWithDifferentStrings(reps: Int) = run(reps) {
-		NGramMetric.compare(string1, string2)(n)
+		Metric.compare(string1, string2)(n)
 	}
 
 	def timeCompareWithIdenticalCharArrays(reps: Int) = run(reps) {
-		NGramMetric.compare(charArray1, charArray1)(n)
+		Metric.compare(charArray1, charArray1)(n)
 	}
 
 	def timeCompareWithIdenticalStrings(reps: Int) = run(reps) {
-		NGramMetric.compare(string1, string1)(n)
+		Metric.compare(string1, string1)(n)
 	}
 }
 
-object NGramMetricBenchmark extends CaliperRunner(classOf[NGramMetricBenchmark])
+object NGramMetricBenchmark extends CaliperRunner(classOf[NGramMetricBenchmark]) {
+	private final val Metric = new NGramMetric
+}

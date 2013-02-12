@@ -5,6 +5,8 @@ import com.rockymadden.stringmetric.{ CaliperBenchmark, CaliperRunner }
 import scala.util.Random
 
 final class RefinedSoundexAlgorithmBenchmark extends CaliperBenchmark {
+	import RefinedSoundexAlgorithmBenchmark._
+
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
 
@@ -17,12 +19,14 @@ final class RefinedSoundexAlgorithmBenchmark extends CaliperBenchmark {
 	}
 
 	def timeComputeWithCharArray(reps: Int) = run(reps) {
-		RefinedSoundexAlgorithm.compute(charArray)
+		Algorithm.compute(charArray)
 	}
 
 	def timeComputeWithString(reps: Int) = run(reps) {
-		RefinedSoundexAlgorithm.compute(string)
+		Algorithm.compute(string)
 	}
 }
 
-object RefinedSoundexAlgorithmBenchmark extends CaliperRunner(classOf[RefinedSoundexAlgorithmBenchmark])
+object RefinedSoundexAlgorithmBenchmark extends CaliperRunner(classOf[RefinedSoundexAlgorithmBenchmark]) {
+	private final val Algorithm = new RefinedSoundexAlgorithm
+}

@@ -6,6 +6,8 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 final class LevenshteinMetricBenchmark extends CaliperBenchmark {
+	import LevenshteinMetricBenchmark._
+
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
 
@@ -32,20 +34,22 @@ final class LevenshteinMetricBenchmark extends CaliperBenchmark {
 	}
 
 	def timeCompareWithDifferentCharArrays(reps: Int) = run(reps) {
-		LevenshteinMetric.compare(charArray1, charArray2)
+		Metric.compare(charArray1, charArray2)
 	}
 
 	def timeCompareWithDifferentStrings(reps: Int) = run(reps) {
-		LevenshteinMetric.compare(string1, string2)
+		Metric.compare(string1, string2)
 	}
 
 	def timeCompareWithIdenticalCharArrays(reps: Int) = run(reps) {
-		LevenshteinMetric.compare(charArray1, charArray1)
+		Metric.compare(charArray1, charArray1)
 	}
 
 	def timeCompareWithIdenticalStrings(reps: Int) = run(reps) {
-		LevenshteinMetric.compare(string1, string1)
+		Metric.compare(string1, string1)
 	}
 }
 
-object LevenshteinMetricBenchmark extends CaliperRunner(classOf[LevenshteinMetricBenchmark])
+object LevenshteinMetricBenchmark extends CaliperRunner(classOf[LevenshteinMetricBenchmark]) {
+	private final val Metric = new LevenshteinMetric
+}

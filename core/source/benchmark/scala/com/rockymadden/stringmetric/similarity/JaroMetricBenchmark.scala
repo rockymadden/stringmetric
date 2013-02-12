@@ -6,6 +6,8 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 final class JaroMetricBenchmark extends CaliperBenchmark {
+	import JaroMetricBenchmark._
+
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
 
@@ -32,20 +34,22 @@ final class JaroMetricBenchmark extends CaliperBenchmark {
 	}
 
 	def timeCompareWithDifferentCharArrays(reps: Int) = run(reps) {
-		JaroMetric.compare(charArray1, charArray2)
+		Metric.compare(charArray1, charArray2)
 	}
 
 	def timeCompareWithDifferentStrings(reps: Int) = run(reps) {
-		JaroMetric.compare(string1, string2)
+		Metric.compare(string1, string2)
 	}
 
 	def timeCompareWithIdenticalCharArrays(reps: Int) = run(reps) {
-		JaroMetric.compare(charArray1, charArray1)
+		Metric.compare(charArray1, charArray1)
 	}
 
 	def timeCompareWithIdenticalStrings(reps: Int) = run(reps) {
-		JaroMetric.compare(string1, string1)
+		Metric.compare(string1, string1)
 	}
 }
 
-object JaroMetricBenchmark extends CaliperRunner(classOf[JaroMetricBenchmark])
+object JaroMetricBenchmark extends CaliperRunner(classOf[JaroMetricBenchmark]) {
+	private final val Metric = new JaroMetric
+}

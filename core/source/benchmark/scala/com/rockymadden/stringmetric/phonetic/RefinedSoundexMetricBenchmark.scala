@@ -6,6 +6,8 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 final class RefinedSoundexMetricBenchmark extends CaliperBenchmark {
+	import RefinedSoundexMetricBenchmark._
+
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
 
@@ -32,20 +34,22 @@ final class RefinedSoundexMetricBenchmark extends CaliperBenchmark {
 	}
 
 	def timeCompareWithDifferentCharArrays(reps: Int) = run(reps) {
-		RefinedSoundexMetric.compare(charArray1, charArray2)
+		Metric.compare(charArray1, charArray2)
 	}
 
 	def timeCompareWithDifferentStrings(reps: Int) = run(reps) {
-		RefinedSoundexMetric.compare(string1, string2)
+		Metric.compare(string1, string2)
 	}
 
 	def timeCompareWithIdenticalCharArrays(reps: Int) = run(reps) {
-		RefinedSoundexMetric.compare(charArray1, charArray1)
+		Metric.compare(charArray1, charArray1)
 	}
 
 	def timeCompareWithIdenticalStrings(reps: Int) = run(reps) {
-		RefinedSoundexMetric.compare(string1, string1)
+		Metric.compare(string1, string1)
 	}
 }
 
-object RefinedSoundexMetricBenchmark extends CaliperRunner(classOf[RefinedSoundexMetricBenchmark])
+object RefinedSoundexMetricBenchmark extends CaliperRunner(classOf[RefinedSoundexMetricBenchmark]) {
+	private final val Metric = new RefinedSoundexMetric
+}
