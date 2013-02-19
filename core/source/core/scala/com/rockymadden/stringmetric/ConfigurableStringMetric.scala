@@ -2,8 +2,8 @@ package com.rockymadden.stringmetric
 
 import com.rockymadden.stringmetric.similarity.{ DiceSorensenMetric, NGramMetric, WeightedLevenshteinMetric }
 
-trait ConfigurableStringMetric[R, O]
-	extends ConfigurableMetric[String, R, O] with ConfigurableStringMetricLike[R, O] with StringFilterLike {
+trait ConfigurableStringMetric[R, O] extends ConfigurableMetric[String, R, O] with StringFilterable {
+	def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit o: O): Option[R]
 
 	override def filter(charArray: Array[Char]): Array[Char] = charArray
 

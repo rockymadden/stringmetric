@@ -1,5 +1,5 @@
 package com.rockymadden.stringmetric
 
-trait StringFilterLike extends FilterLike[String] {
+trait StringFilterable extends Filterable[String] {
 	def filter(charArray: Array[Char]): Array[Char]
 }

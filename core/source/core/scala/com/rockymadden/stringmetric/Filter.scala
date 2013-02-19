@@ -1,3 +1,3 @@
 package com.rockymadden.stringmetric
 
-trait Filter[T] extends FilterLike[T]
+trait Filter[T] extends Filterable[T]

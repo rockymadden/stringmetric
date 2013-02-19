@@ -2,7 +2,9 @@ package com.rockymadden.stringmetric
 
 import com.rockymadden.stringmetric.phonetic.{ MetaphoneAlgorithm, NysiisAlgorithm, RefinedSoundexAlgorithm, SoundexAlgorithm }
 
-trait StringAlgorithm[R] extends Algorithm[String, R] with StringAlgorithmLike[R] with StringFilterLike {
+trait StringAlgorithm[R] extends Algorithm[String, R] with StringFilterable {
+	def compute(charArray: Array[Char]): Option[Array[_]]
+
 	override def filter(charArray: Array[Char]): Array[Char] = charArray
 
 	override def filter(string: String): String = string

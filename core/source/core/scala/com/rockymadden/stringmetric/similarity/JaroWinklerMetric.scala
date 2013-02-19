@@ -12,17 +12,15 @@ class JaroWinklerMetric extends StringMetric[Double] {
 		val fca1 = filter(charArray1)
 		val fca2 = filter(charArray2)
 
-		JaroMetric().compare(fca1, fca2).map(
-			_ match {
-				case 0d => 0d
-				case 1d => 1d
-				case jaro => {
-					val prefix = fca1.zip(fca2).takeWhile(t => t._1 == t._2)
+		JaroMetric().compare(fca1, fca2).map {
+			case 0d => 0d
+			case 1d => 1d
+			case jaro => {
+				val prefix = fca1.zip(fca2).takeWhile(t => t._1 == t._2)
 
-					jaro + ((if (prefix.length <= 4) prefix.length else 4) * 0.1d * (1 - jaro))
-				}
+				jaro + ((if (prefix.length <= 4) prefix.length else 4) * 0.1d * (1 - jaro))
 			}
-		)
+		}
 	}
 
 	final override def compare(string1: String, string2: String): Option[Double] =

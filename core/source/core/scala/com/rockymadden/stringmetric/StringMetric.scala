@@ -3,7 +3,9 @@ package com.rockymadden.stringmetric
 import com.rockymadden.stringmetric.phonetic.{ MetaphoneMetric, NysiisMetric, RefinedSoundexMetric, SoundexMetric }
 import com.rockymadden.stringmetric.similarity._
 
-trait StringMetric[R] extends Metric[String, R] with StringMetricLike[R] with StringFilterLike {
+trait StringMetric[R] extends Metric[String, R] with StringFilterable {
+	def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[R]
+
 	override def filter(charArray: Array[Char]): Array[Char] = charArray
 
 	override def filter(string: String): String = string

@@ -1,5 +1,5 @@
 package com.rockymadden.stringmetric
 
-trait FilterLike[T] {
+trait Filterable[T] {
 	def filter(t: T): T
 }
