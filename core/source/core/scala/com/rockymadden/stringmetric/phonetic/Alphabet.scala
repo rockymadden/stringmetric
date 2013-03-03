@@ -1,36 +1,60 @@
 package com.rockymadden.stringmetric.phonetic
 
+import scala.collection.immutable.Set
 import scala.language.implicitConversions
 
-private[phonetic] final class Alphabet private(private[this] val self: Array[Char]) {
-	def is(set: Set[Char]): Boolean = self.length > 0 && self.takeWhile(set.contains(_)).length == self.length
+sealed abstract class Alphabet {
+	val Chars: Set[Char]
 
-	def startsWith(set: Set[Char]): Boolean = self.length > 0 && set.contains(self.head)
+	def isSuperset(char: Char): Boolean = Chars.contains(char)
+
+	def isSuperset(charArray: Array[Char]): Boolean =
+		charArray.length > 0 && charArray.takeWhile(Chars.contains(_)).length == charArray.length
+
+	def isSuperset(string: String): Boolean = isSuperset(string.toCharArray)
+
+	def startsWith(char: Char): Boolean = Chars.contains(char)
+
+	def startsWith(charArray: Array[Char]): Boolean = charArray.length > 0 && Chars.contains(charArray.head)
+
+	def startsWith(string: String): Boolean = startsWith(string.toCharArray)
 }
 
-private[phonetic] object Alphabet {
-	final val LowercaseConsonant = Set('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x' ,'z')
-	final val UppercaseConsonant = Set('B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X' ,'Z')
-	final val Consonant = LowercaseConsonant ++ UppercaseConsonant
-	final val LowercaseVowel = Set('a', 'e', 'i', 'o', 'u')
-	final val UppercaseVowel = Set('A', 'E', 'I', 'O', 'U')
-	final val Vowel = LowercaseVowel ++ UppercaseVowel
-	final val LowercaseY = Set('y')
-	final val UppercaseY = Set('Y')
-	final val Y = LowercaseY ++ UppercaseY
-	final val LowercaseAlpha = LowercaseConsonant ++ LowercaseVowel ++ LowercaseY
-	final val UppercaseAlpha = UppercaseConsonant ++ UppercaseVowel ++ UppercaseY
-	final val Alpha = LowercaseAlpha ++ UppercaseAlpha
-
-	implicit def CharToAlphabet(char: Char): Alphabet = apply(char)
-
-	implicit def CharArrayToAlphabet(charArray: Array[Char]): Alphabet = apply(charArray)
-
-	implicit def CharToAlphabet(string: String): Alphabet = apply(string)
-
-	def apply(char: Char): Alphabet = new Alphabet(Array(char))
-
-	def apply(charArray: Array[Char]): Alphabet = new Alphabet(charArray)
-
-	def apply(string: String): Alphabet = new Alphabet(string.toCharArray)
+case object LowercaseConsonant extends Alphabet {
+	override final val Chars =
+		Set('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x' ,'z')
+}
+case object UppercaseConsonant extends Alphabet {
+	override final val Chars =
+		Set('B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X' ,'Z')
+}
+case object Consonant extends Alphabet {
+	override final val Chars = LowercaseConsonant.Chars ++ UppercaseConsonant.Chars
+}
+case object LowercaseVowel extends Alphabet {
+	override final val Chars = Set('a', 'e', 'i', 'o', 'u')
+}
+case object UppercaseVowel extends Alphabet {
+	override final val Chars = Set('A', 'E', 'I', 'O', 'U')
+}
+case object Vowel extends Alphabet {
+	override final val Chars = LowercaseVowel.Chars ++ UppercaseVowel.Chars
+}
+case object LowercaseY extends Alphabet {
+	override final val Chars = Set('y')
+}
+case object UppercaseY extends Alphabet {
+	override final val Chars = Set('Y')
+}
+case object Y extends Alphabet {
+	override final val Chars = LowercaseY.Chars ++ UppercaseY.Chars
+}
+case object LowercaseAlpha extends Alphabet {
+	override final val Chars = LowercaseConsonant.Chars ++ LowercaseVowel.Chars ++ LowercaseY.Chars
+}
+case object UppercaseAlpha extends Alphabet {
+	override final val Chars = UppercaseConsonant.Chars ++ UppercaseVowel.Chars ++ UppercaseY.Chars
+}
+case object Alpha extends Alphabet {
+	override final val Chars = LowercaseAlpha.Chars ++ UppercaseAlpha.Chars
 }

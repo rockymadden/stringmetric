@@ -1,7 +1,6 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.StringAlgorithm
-import com.rockymadden.stringmetric.phonetic.Alphabet._
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the refined NYSIIS algorithm. */
@@ -9,7 +8,7 @@ class RefinedNysiisAlgorithm extends StringAlgorithm[String] {
 	final override def compute(charArray: Array[Char]): Option[Array[Char]] = {
 		val fca = filter(charArray)
 
-		if (fca.length == 0 || !(fca.head is Alpha)) None
+		if (fca.length == 0 || !(Alpha isSuperset fca.head)) None
 		else {
 			val lfca = fca.map(_.toLower)
 			val tlh = transcodeLast(transcodeHead(lfca.head +: cleanLast(lfca.tail, Set('s', 'z'))))
@@ -67,7 +66,7 @@ class RefinedNysiisAlgorithm extends StringAlgorithm[String] {
 						else shift(1, o :+ c)
 					case 'h' =>
 						if (l.length == 0) shift(1, o :+ c)
-						else if (!(l.last is LowercaseVowel) || (r.length >= 1 && !(r.head is LowercaseVowel))) shift(1, o)
+						else if (!(LowercaseVowel isSuperset l.last) || (r.length >= 1 && !(LowercaseVowel isSuperset r.head))) shift(1, o)
 						else shift(1, o :+ c)
 					case 'k' => if (r.length >= 1 && r.head == 'n') shift(2, o :+ 'n') else shift(1, o :+ 'c')
 					case 'm' => if (l.length == 0) shift(1, o :+ c) else shift(1, o :+ 'n')
@@ -78,7 +77,7 @@ class RefinedNysiisAlgorithm extends StringAlgorithm[String] {
 						else if (r.length >= 1 && r.head == 'h') shift(2, o :+ c)
 						else shift(1, o :+ c)
 					case 'w' =>
-						if (l.length >= 1 && (l.last is LowercaseVowel)) shift(1, o)
+						if (l.length >= 1 && (LowercaseVowel isSuperset l.last)) shift(1, o)
 						else if (r.length >= 1 && r.head == 'r') shift(2, o :+ 'r')
 						else shift(1, o :+ c)
 					case 'y' =>

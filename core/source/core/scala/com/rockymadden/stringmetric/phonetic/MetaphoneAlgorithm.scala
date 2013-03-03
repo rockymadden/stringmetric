@@ -1,7 +1,6 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.StringAlgorithm
-import com.rockymadden.stringmetric.phonetic.Alphabet._
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the Metaphone algorithm. */
@@ -9,7 +8,7 @@ class MetaphoneAlgorithm extends StringAlgorithm[String] {
 	final override def compute(charArray: Array[Char]): Option[Array[Char]] = {
 		val fca = filter(charArray)
 
-		if (fca.length == 0 || !(fca.head is Alpha)) None
+		if (fca.length == 0 || !(Alpha isSuperset fca.head)) None
 		else {
 			val th = deduplicate(transcodeHead(fca.map(_.toLower)))
 			val t = transcode(Array.empty[Char], th.head, th.tail, Array.empty[Char])
@@ -64,7 +63,7 @@ class MetaphoneAlgorithm extends StringAlgorithm[String] {
 						else if (r.length >= 1 && (r.head == 'i' || r.head == 'e' || r.head == 'y')) shift(2, o :+ 'j')
 						else shift(1, o :+ 'k')
 					case 'h' =>
-						if ((l.length >= 1 && (l.last is LowercaseVowel) && (r.length == 0 || !(r.head is LowercaseVowel)))
+						if ((l.length >= 1 && (LowercaseVowel isSuperset l.last) && (r.length == 0 || !(LowercaseVowel isSuperset r.head)))
 							|| (l.length >= 2 && l.last == 'h'
 								&& (l(l.length - 2) == 'c' || l(l.length - 2) == 's' || l(l.length - 2) == 'p'
 									|| l(l.length - 2) == 't' || l(l.length - 2) == 'g'))) shift(1, o)
@@ -82,7 +81,7 @@ class MetaphoneAlgorithm extends StringAlgorithm[String] {
 						else if (r.length >= 2 && r.head == 'c' && r(1) == 'h') shift(1, o)
 						else shift(1, o :+ 't')
 					case 'v' => shift(1, o :+ 'f')
-					case 'w' | 'y' => if (r.length == 0 || !(r.head is LowercaseVowel)) shift(1, o) else shift(1, o :+ c)
+					case 'w' | 'y' => if (r.length == 0 || !(LowercaseVowel isSuperset r.head)) shift(1, o) else shift(1, o :+ c)
 					case 'x' => shift(1, (o :+ 'k') :+ 's')
 					case 'z' => shift(1, o :+ 's')
 					case _ => shift(1, o)

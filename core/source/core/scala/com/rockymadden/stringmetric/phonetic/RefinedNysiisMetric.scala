@@ -1,7 +1,6 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.StringMetric
-import com.rockymadden.stringmetric.phonetic.Alphabet._
 
 /** An implementation of the refined NYSIIS metric. */
 class RefinedNysiisMetric extends StringMetric[Boolean] {
@@ -16,7 +15,7 @@ class RefinedNysiisMetric extends StringMetric[Boolean] {
 		val fca1 = filter(charArray1)
 		lazy val fca2 = filter(charArray2)
 
-		if (fca1.length == 0 || !(fca1.head is Alpha) || fca2.length == 0 || !(fca2.head is Alpha)) None
+		if (fca1.length == 0 || !(Alpha isSuperset fca1.head) || fca2.length == 0 || !(Alpha isSuperset fca2.head)) None
 		else if (unequal(fca1.head, fca2.head)) Some(false)
 		else {
 			val refinedNysiisAlgorithm = RefinedNysiisAlgorithm()

@@ -1,7 +1,6 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.StringAlgorithm
-import com.rockymadden.stringmetric.phonetic.Alphabet._
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the refined Soundex algorithm. */
@@ -9,7 +8,7 @@ class RefinedSoundexAlgorithm extends StringAlgorithm[String] {
 	final override def compute(charArray: Array[Char]): Option[Array[Char]] = {
 		val fca = filter(charArray)
 
-		if (fca.length == 0 || !(fca.head is Alpha)) None
+		if (fca.length == 0 || !(Alpha isSuperset fca.head)) None
 		else Some(transcode(fca, Array(fca.head.toLower)))
 	}
 
