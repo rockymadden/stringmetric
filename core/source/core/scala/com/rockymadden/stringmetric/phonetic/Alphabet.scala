@@ -1,7 +1,6 @@
 package com.rockymadden.stringmetric.phonetic
 
 import scala.collection.immutable.Set
-import scala.language.implicitConversions
 
 sealed abstract class Alphabet {
 	val Chars: Set[Char]
