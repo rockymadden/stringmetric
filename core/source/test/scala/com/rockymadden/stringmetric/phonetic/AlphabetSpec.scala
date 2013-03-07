@@ -1,6 +1,7 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.ScalaTest
+import com.rockymadden.stringmetric.phonetic.Alphabet.{ Alpha, Vowel }
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 

@@ -1,6 +1,7 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.{ StringAlgorithm, StringFilter }
+import com.rockymadden.stringmetric.phonetic.Alphabet.{ Alpha, LowercaseVowel }
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the NYSIIS algorithm. */

@@ -1,6 +1,7 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.{ StringFilter, StringMetric }
+import com.rockymadden.stringmetric.phonetic.Alphabet.Alpha
 
 /** A implementation of the Metaphone metric. */
 class MetaphoneMetric extends StringMetric[Boolean] {
