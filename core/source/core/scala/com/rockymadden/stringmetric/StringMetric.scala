@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric
 
-import com.rockymadden.stringmetric.phonetic.{ MetaphoneMetric, NysiisMetric, RefinedSoundexMetric, SoundexMetric }
+import com.rockymadden.stringmetric.phonetic._
 import com.rockymadden.stringmetric.similarity._
 
 trait StringMetric[R] extends Metric[String, R] {
@@ -8,64 +8,60 @@ trait StringMetric[R] extends Metric[String, R] {
 }
 
 object StringMetric {
-	def compareWithHamming(charArray1: Array[Char], charArray2: Array[Char]): Option[Int] =
-		HammingMetric().compare(charArray1, charArray2)
+	lazy val hamming = HammingMetric()
+	lazy val jaro = JaroMetric()
+	lazy val jaroWinkler = JaroWinklerMetric()
+	lazy val levenshtein = LevenshteinMetric()
+	lazy val metaphone = MetaphoneMetric()
+	lazy val nysiis = NysiisMetric()
+	lazy val refinedNysiis = RefinedNysiisMetric()
+	lazy val refinedSoundex = RefinedSoundexMetric()
+	lazy val soundex = SoundexMetric()
 
-	def compareWithHamming(string1: String, string2: String): Option[Int] = HammingMetric().compare(string1, string2)
+	def compareWithHamming(charArray1: Array[Char], charArray2: Array[Char]): Option[Int] =
+		hamming.compare(charArray1, charArray2)
+
+	def compareWithHamming(string1: String, string2: String): Option[Int] = hamming.compare(string1, string2)
 
 	def compareWithJaro(charArray1: Array[Char], charArray2: Array[Char]): Option[Double] =
-		JaroMetric().compare(charArray1, charArray2)
+		jaro.compare(charArray1, charArray2)
 
-	def compareWithJaro(string1: String, string2: String): Option[Double] = JaroMetric().compare(string1, string2)
+	def compareWithJaro(string1: String, string2: String): Option[Double] = jaro.compare(string1, string2)
 
 	def compareWithJaroWinkler(charArray1: Array[Char], charArray2: Array[Char]): Option[Double] =
-		JaroWinklerMetric().compare(charArray1, charArray2)
+		jaroWinkler.compare(charArray1, charArray2)
 
-	def compareWithJaroWinkler(string1: String, string2: String): Option[Double] =
-		JaroWinklerMetric().compare(string1, string2)
+	def compareWithJaroWinkler(string1: String, string2: String): Option[Double] = jaroWinkler.compare(string1, string2)
 
 	def compareWithLevenshtein(charArray1: Array[Char], charArray2: Array[Char]): Option[Int] =
-		LevenshteinMetric().compare(charArray1, charArray2)
+		levenshtein.compare(charArray1, charArray2)
 
-	def compareWithLevenshtein(string1: String, string2: String): Option[Int] =
-		LevenshteinMetric().compare(string1, string2)
+	def compareWithLevenshtein(string1: String, string2: String): Option[Int] = levenshtein.compare(string1, string2)
 
 	def compareWithMetaphone(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] =
-		MetaphoneMetric().compare(charArray1, charArray2)
+		metaphone.compare(charArray1, charArray2)
 
-	def compareWithMetaphone(string1: String, string2: String): Option[Boolean] =
-		MetaphoneMetric().compare(string1, string2)
+	def compareWithMetaphone(string1: String, string2: String): Option[Boolean] = metaphone.compare(string1, string2)
 
 	def compareWithNysiis(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] =
-		NysiisMetric().compare(charArray1, charArray2)
+		nysiis.compare(charArray1, charArray2)
 
-	def compareWithNysiis(string1: String, string2: String): Option[Boolean] = NysiisMetric().compare(string1, string2)
+	def compareWithNysiis(string1: String, string2: String): Option[Boolean] = nysiis.compare(string1, string2)
+
+	def compareWithRefinedNysiis(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] =
+		refinedNysiis.compare(charArray1, charArray2)
+
+	def compareWithRefinedNysiis(string1: String, string2: String): Option[Boolean] =
+		refinedNysiis.compare(string1, string2)
 
 	def compareWithRefinedSoundex(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] =
-		RefinedSoundexMetric().compare(charArray1, charArray2)
+		refinedSoundex.compare(charArray1, charArray2)
 
 	def compareWithRefinedSoundex(string1: String, string2: String): Option[Boolean] =
-		RefinedSoundexMetric().compare(string1, string2)
+		refinedSoundex.compare(string1, string2)
 
 	def compareWithSoundex(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] =
-		SoundexMetric().compare(charArray1, charArray2)
+		soundex.compare(charArray1, charArray2)
 
-	def compareWithSoundex(string1: String, string2: String): Option[Boolean] =
-		SoundexMetric().compare(string1, string2)
-
-	def hamming: HammingMetric.type = HammingMetric
-
-	def jaro: JaroMetric.type = JaroMetric
-
-	def jaroWinkler: JaroWinklerMetric.type = JaroWinklerMetric
-
-	def levenshtein: LevenshteinMetric.type = LevenshteinMetric
-
-	def metaphone: MetaphoneMetric.type = MetaphoneMetric
-
-	def nysiis: NysiisMetric.type = NysiisMetric
-
-	def refinedSoundex: RefinedSoundexMetric.type = RefinedSoundexMetric
-
-	def soundex: SoundexMetric.type = SoundexMetric
+	def compareWithSoundex(string1: String, string2: String): Option[Boolean] = soundex.compare(string1, string2)
 }

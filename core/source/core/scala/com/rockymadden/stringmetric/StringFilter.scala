@@ -7,29 +7,17 @@ trait StringFilter extends Filter[String] with StringFilterable {
 }
 
 object StringFilter {
-	def asciiControl = new StringFilterDelegate with AsciiControlStringFilter
-
-	def asciiControlOnly = new StringFilterDelegate with AsciiControlOnlyStringFilter
-
-	def asciiLetterCase = new StringFilterDelegate with AsciiLetterCaseStringFilter
-
-	def asciiLetterNumber = new StringFilterDelegate with AsciiLetterNumberStringFilter
-
-	def asciiLetterNumberOnly = new StringFilterDelegate with AsciiLetterNumberOnlyStringFilter
-
-	def asciiLetter = new StringFilterDelegate with AsciiLetterStringFilter
-
-	def asciiLetterOnly = new StringFilterDelegate with AsciiLetterOnlyStringFilter
-
-	def asciiNumber = new StringFilterDelegate with AsciiNumberStringFilter
-
-	def asciiNumberOnly = new StringFilterDelegate with AsciiNumberOnlyStringFilter
-
-	def asciiSpace = new StringFilterDelegate with AsciiSpaceStringFilter
-
-	def asciiSymbol = new StringFilterDelegate with AsciiSymbolStringFilter
-
-	def asciiSymbolOnly = new StringFilterDelegate with AsciiSymbolOnlyStringFilter
-
-	def delegate = new StringFilterDelegate
+	lazy val asciiControl = new StringFilterDelegate with AsciiControlStringFilter
+	lazy val asciiControlOnly = new StringFilterDelegate with AsciiControlOnlyStringFilter
+	lazy val asciiLetterCase = new StringFilterDelegate with AsciiLetterCaseStringFilter
+	lazy val asciiLetterNumber = new StringFilterDelegate with AsciiLetterNumberStringFilter
+	lazy val asciiLetterNumberOnly = new StringFilterDelegate with AsciiLetterNumberOnlyStringFilter
+	lazy val asciiLetter = new StringFilterDelegate with AsciiLetterStringFilter
+	lazy val asciiLetterOnly = new StringFilterDelegate with AsciiLetterOnlyStringFilter
+	lazy val asciiNumber = new StringFilterDelegate with AsciiNumberStringFilter
+	lazy val asciiNumberOnly = new StringFilterDelegate with AsciiNumberOnlyStringFilter
+	lazy val asciiSpace = new StringFilterDelegate with AsciiSpaceStringFilter
+	lazy val asciiSymbol = new StringFilterDelegate with AsciiSymbolStringFilter
+	lazy val asciiSymbolOnly = new StringFilterDelegate with AsciiSymbolOnlyStringFilter
+	lazy val delegate = new StringFilterDelegate
 }

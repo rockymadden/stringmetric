@@ -7,10 +7,9 @@ trait ConfigurableStringAlgorithm[R, O] extends ConfigurableAlgorithm[String, R,
 }
 
 object ConfigurableStringAlgorithm {
-	def computeWithNGram(charArray: Array[Char])(n: Int): Option[Array[Array[Char]]] =
-		NGramAlgorithm().compute(charArray)(n)
+	lazy val nGram = NGramAlgorithm()
 
-	def computeWithNGram(string: String)(n: Int): Option[Array[String]] = NGramAlgorithm().compute(string)(n)
+	def computeWithNGram(charArray: Array[Char])(n: Int): Option[Array[Array[Char]]] = nGram.compute(charArray)(n)
 
-	def nGram: NGramAlgorithm.type = NGramAlgorithm
+	def computeWithNGram(string: String)(n: Int): Option[Array[String]] = nGram.compute(string)(n)
 }
