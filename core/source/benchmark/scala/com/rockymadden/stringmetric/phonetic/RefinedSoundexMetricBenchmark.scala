@@ -6,7 +6,7 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 final class RefinedSoundexMetricBenchmark extends CaliperBenchmark {
-	import RefinedSoundexMetricBenchmark._
+	import RefinedSoundexMetricBenchmark.Metric
 
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
@@ -51,5 +51,5 @@ final class RefinedSoundexMetricBenchmark extends CaliperBenchmark {
 }
 
 object RefinedSoundexMetricBenchmark extends CaliperRunner(classOf[RefinedSoundexMetricBenchmark]) {
-	private final val Metric = new RefinedSoundexMetric
+	private final val Metric = RefinedSoundexMetric()
 }

@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class RefinedSoundexAlgorithmSpec extends ScalaTest {
-	import RefinedSoundexAlgorithmSpec._
+	import RefinedSoundexAlgorithmSpec.Algorithm
 
 	"RefinedSoundexAlgorithm" should provide {
 		"compute method" when passed {
@@ -164,5 +164,5 @@ final class RefinedSoundexAlgorithmSpec extends ScalaTest {
 }
 
 object RefinedSoundexAlgorithmSpec {
-	final private val Algorithm = new RefinedSoundexAlgorithm
+	final private val Algorithm = RefinedSoundexAlgorithm()
 }

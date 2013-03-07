@@ -6,7 +6,7 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 final class MetaphoneMetricBenchmark extends CaliperBenchmark {
-	import MetaphoneMetricBenchmark._
+	import MetaphoneMetricBenchmark.Metric
 
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
@@ -51,5 +51,5 @@ final class MetaphoneMetricBenchmark extends CaliperBenchmark {
 }
 
 object MetaphoneMetricBenchmark extends CaliperRunner(classOf[MetaphoneMetricBenchmark]) {
-	private final val Metric = new MetaphoneMetric
+	private final val Metric = MetaphoneMetric()
 }

@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class MetaphoneMetricSpec extends ScalaTest {
-	import MetaphoneMetricSpec._
+	import MetaphoneMetricSpec.Metric
 
 	"MetaphoneMetric" should provide {
 		"compare method" when passed {
@@ -43,5 +43,5 @@ final class MetaphoneMetricSpec extends ScalaTest {
 }
 
 object MetaphoneMetricSpec {
-	final private val Metric = new MetaphoneMetric
+	final private val Metric = MetaphoneMetric()
 }

@@ -1,11 +1,11 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.google.caliper.Param
-import com.rockymadden.stringmetric.{ CaliperBenchmark, CaliperRunner }
+import com.rockymadden.stringmetric.{ CaliperBenchmark, CaliperRunner, StringFilter }
 import scala.util.Random
 
 final class NysiisAlgorithmBenchmark extends CaliperBenchmark {
-	import NysiisAlgorithmBenchmark._
+	import NysiisAlgorithmBenchmark.Algorithm
 
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
@@ -28,5 +28,5 @@ final class NysiisAlgorithmBenchmark extends CaliperBenchmark {
 }
 
 object NysiisAlgorithmBenchmark extends CaliperRunner(classOf[NysiisAlgorithmBenchmark]) {
-	private final val Algorithm = new NysiisAlgorithm
+	private final val Algorithm = NysiisAlgorithm()
 }

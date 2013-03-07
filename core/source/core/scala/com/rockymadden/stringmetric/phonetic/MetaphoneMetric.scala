@@ -1,9 +1,11 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.StringMetric
+import com.rockymadden.stringmetric.{ StringFilter, StringMetric }
 
 /** A implementation of the Metaphone metric. */
 class MetaphoneMetric extends StringMetric[Boolean] {
+	this: StringFilter =>
+
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] = {
 		val fca1 = filter(charArray1)
 		lazy val fca2 = filter(charArray2)
@@ -22,5 +24,5 @@ class MetaphoneMetric extends StringMetric[Boolean] {
 }
 
 object MetaphoneMetric {
-	def apply(): MetaphoneMetric = new MetaphoneMetric
+	def apply(): MetaphoneMetric = new MetaphoneMetric with StringFilter
 }

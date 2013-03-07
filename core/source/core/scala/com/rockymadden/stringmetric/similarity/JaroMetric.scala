@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ CompareTuple, MatchTuple, StringMetric }
+import com.rockymadden.stringmetric.{ CompareTuple, MatchTuple, StringFilter, StringMetric }
 import scala.collection.mutable.{ ArrayBuffer, HashSet }
 
 /**
@@ -8,6 +8,8 @@ import scala.collection.mutable.{ ArrayBuffer, HashSet }
  * in string2, it cannot be matched upon again. This results in a more penalized distance in these scenarios.
  */
 class JaroMetric extends StringMetric[Double] {
+	this: StringFilter =>
+
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Double] = {
 		val fca1 = filter(charArray1)
 		lazy val fca2 = filter(charArray2)
@@ -75,5 +77,5 @@ class JaroMetric extends StringMetric[Double] {
 }
 
 object JaroMetric {
-	def apply(): JaroMetric = new JaroMetric
+	def apply(): JaroMetric = new JaroMetric with StringFilter
 }

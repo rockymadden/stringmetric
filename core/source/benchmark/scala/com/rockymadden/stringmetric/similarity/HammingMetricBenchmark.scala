@@ -6,7 +6,7 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 final class HammingMetricBenchmark extends CaliperBenchmark {
-	import HammingMetricBenchmark._
+	import HammingMetricBenchmark.Metric
 
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
@@ -51,5 +51,5 @@ final class HammingMetricBenchmark extends CaliperBenchmark {
 }
 
 object HammingMetricBenchmark extends CaliperRunner(classOf[HammingMetricBenchmark]) {
-	private final val Metric = new HammingMetric
+	private final val Metric = HammingMetric()
 }

@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class NGramAlgorithmSpec extends ScalaTest {
-	import NGramAlgorithmSpec._
+	import NGramAlgorithmSpec.Algorithm
 
 	"NGramAlgorithm" should provide {
 		"compute method" when passed {
@@ -53,5 +53,5 @@ final class NGramAlgorithmSpec extends ScalaTest {
 }
 
 object NGramAlgorithmSpec {
-	private final val Algorithm = new NGramAlgorithm
+	private final val Algorithm = NGramAlgorithm()
 }

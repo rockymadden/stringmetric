@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class HammingMetricSpec extends ScalaTest {
-	import HammingMetricSpec._
+	import HammingMetricSpec.Metric
 
 	"HammingMetric" should provide {
 		"compare method" when passed {
@@ -41,5 +41,5 @@ final class HammingMetricSpec extends ScalaTest {
 }
 
 object HammingMetricSpec {
-	private final val Metric = new HammingMetric
+	private final val Metric = HammingMetric()
 }

@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class MetaphoneAlgorithmSpec extends ScalaTest {
-	import MetaphoneAlgorithmSpec._
+	import MetaphoneAlgorithmSpec.Algorithm
 
 	"MetaphoneAlgorithm" should provide {
 		"compute method" when passed {
@@ -215,5 +215,5 @@ final class MetaphoneAlgorithmSpec extends ScalaTest {
 }
 
 object MetaphoneAlgorithmSpec {
-	final private val Algorithm = new MetaphoneAlgorithm
+	final private val Algorithm = MetaphoneAlgorithm()
 }

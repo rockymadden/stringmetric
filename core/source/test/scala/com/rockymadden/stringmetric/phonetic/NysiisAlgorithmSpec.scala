@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class NysiisAlgorithmSpec extends ScalaTest {
-	import NysiisAlgorithmSpec._
+	import NysiisAlgorithmSpec.Algorithm
 
 	"NysiisAlgorithm" should provide {
 		"compute method" when passed {
@@ -193,5 +193,5 @@ final class NysiisAlgorithmSpec extends ScalaTest {
 }
 
 object NysiisAlgorithmSpec {
-	final private val Algorithm = new NysiisAlgorithm
+	final private val Algorithm = NysiisAlgorithm()
 }

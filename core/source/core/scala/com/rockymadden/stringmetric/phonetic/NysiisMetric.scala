@@ -1,9 +1,11 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.StringMetric
+import com.rockymadden.stringmetric.{ StringFilter, StringMetric }
 
 /** An implementation of the NYSIIS metric. */
 class NysiisMetric extends StringMetric[Boolean] {
+	this: StringFilter =>
+
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] = {
 		val unequal = (c1: Char, c2: Char) => {
 			val lc1 = c1.toLower
@@ -30,5 +32,5 @@ class NysiisMetric extends StringMetric[Boolean] {
 }
 
 object NysiisMetric {
-	def apply(): NysiisMetric = new NysiisMetric
+	def apply(): NysiisMetric = new NysiisMetric with StringFilter
 }

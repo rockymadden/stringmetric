@@ -6,7 +6,7 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 final class DiceSorensenMetricBenchmark extends CaliperBenchmark {
-	import DiceSorensenMetricBenchmark._
+	import DiceSorensenMetricBenchmark.Metric
 
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
@@ -51,5 +51,5 @@ final class DiceSorensenMetricBenchmark extends CaliperBenchmark {
 }
 
 object DiceSorensenMetricBenchmark extends CaliperRunner(classOf[DiceSorensenMetricBenchmark]) {
-	private final val Metric = new DiceSorensenMetric
+	private final val Metric = DiceSorensenMetric()
 }

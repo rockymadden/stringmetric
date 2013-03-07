@@ -1,9 +1,11 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ CompareTuple, StringMetric }
+import com.rockymadden.stringmetric.{ CompareTuple, StringFilter, StringMetric }
 
 /** An implementation of the Hamming metric. */
 class HammingMetric extends StringMetric[Int] {
+	this: StringFilter =>
+
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Int] = {
 		val fca1 = filter(charArray1)
 		lazy val fca2 = filter(charArray2)
@@ -25,5 +27,5 @@ class HammingMetric extends StringMetric[Int] {
 }
 
 object HammingMetric {
-	def apply(): HammingMetric = new HammingMetric
+	def apply(): HammingMetric = new HammingMetric with StringFilter
 }

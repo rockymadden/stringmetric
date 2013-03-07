@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class RefinedSoundexMetricSpec extends ScalaTest {
-	import RefinedSoundexMetricSpec._
+	import RefinedSoundexMetricSpec.Metric
 
 	"RefinedSoundexMetric" should provide {
 		"compare method" when passed {
@@ -39,5 +39,5 @@ final class RefinedSoundexMetricSpec extends ScalaTest {
 }
 
 object RefinedSoundexMetricSpec {
-	final private val Metric = new RefinedSoundexMetric
+	final private val Metric = RefinedSoundexMetric()
 }

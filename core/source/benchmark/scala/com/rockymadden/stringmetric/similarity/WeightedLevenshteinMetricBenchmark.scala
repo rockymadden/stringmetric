@@ -6,7 +6,7 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 final class WeightedLevenshteinMetricBenchmark extends CaliperBenchmark {
-	import WeightedLevenshteinMetricBenchmark._
+	import WeightedLevenshteinMetricBenchmark.Metric
 
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
@@ -51,5 +51,5 @@ final class WeightedLevenshteinMetricBenchmark extends CaliperBenchmark {
 }
 
 object WeightedLevenshteinMetricBenchmark extends CaliperRunner(classOf[WeightedLevenshteinMetricBenchmark]) {
-	private final val Metric = new WeightedLevenshteinMetric
+	private final val Metric = WeightedLevenshteinMetric()
 }

@@ -5,7 +5,7 @@ import com.rockymadden.stringmetric.{ CaliperBenchmark, CaliperRunner }
 import scala.util.Random
 
 final class MetaphoneAlgorithmBenchmark extends CaliperBenchmark {
-	import MetaphoneAlgorithmBenchmark._
+	import MetaphoneAlgorithmBenchmark.Algorithm
 
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
@@ -28,5 +28,5 @@ final class MetaphoneAlgorithmBenchmark extends CaliperBenchmark {
 }
 
 object MetaphoneAlgorithmBenchmark extends CaliperRunner(classOf[MetaphoneAlgorithmBenchmark]) {
-	private final val Algorithm = new MetaphoneAlgorithm
+	private final val Algorithm = MetaphoneAlgorithm()
 }

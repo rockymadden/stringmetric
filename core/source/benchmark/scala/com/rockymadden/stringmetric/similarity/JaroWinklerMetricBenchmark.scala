@@ -6,7 +6,7 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 final class JaroWinklerMetricBenchmark extends CaliperBenchmark {
-	import JaroWinklerMetricBenchmark._
+	import JaroWinklerMetricBenchmark.Metric
 
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
@@ -51,5 +51,5 @@ final class JaroWinklerMetricBenchmark extends CaliperBenchmark {
 }
 
 object JaroWinklerMetricBenchmark extends CaliperRunner(classOf[JaroWinklerMetricBenchmark]) {
-	private final val Metric = new JaroWinklerMetric
+	private final val Metric = JaroWinklerMetric()
 }

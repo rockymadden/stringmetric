@@ -6,7 +6,7 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 final class RatcliffObershelpMetricBenchmark extends CaliperBenchmark {
-	import RatcliffObershelpMetricBenchmark._
+	import RatcliffObershelpMetricBenchmark.Metric
 
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
@@ -51,5 +51,5 @@ final class RatcliffObershelpMetricBenchmark extends CaliperBenchmark {
 }
 
 object RatcliffObershelpMetricBenchmark extends CaliperRunner(classOf[RatcliffObershelpMetricBenchmark]) {
-	private final val Metric = new RatcliffObershelpMetric
+	private final val Metric = RatcliffObershelpMetric()
 }

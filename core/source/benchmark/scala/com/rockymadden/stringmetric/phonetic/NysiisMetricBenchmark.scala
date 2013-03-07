@@ -6,7 +6,7 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 final class NysiisMetricBenchmark extends CaliperBenchmark {
-	import NysiisMetricBenchmark._
+	import NysiisMetricBenchmark.Metric
 
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
@@ -51,5 +51,5 @@ final class NysiisMetricBenchmark extends CaliperBenchmark {
 }
 
 object NysiisMetricBenchmark extends CaliperRunner(classOf[NysiisMetricBenchmark]) {
-	private final val Metric = new NysiisMetric
+	private final val Metric = NysiisMetric()
 }

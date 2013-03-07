@@ -1,10 +1,12 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.StringAlgorithm
+import com.rockymadden.stringmetric.{ StringAlgorithm, StringFilter }
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the NYSIIS algorithm. */
 class NysiisAlgorithm extends StringAlgorithm[String] {
+	this: StringFilter =>
+
 	final override def compute(charArray: Array[Char]): Option[Array[Char]] = {
 		val fca = filter(charArray)
 
@@ -119,5 +121,5 @@ class NysiisAlgorithm extends StringAlgorithm[String] {
 }
 
 object NysiisAlgorithm {
-	def apply(): NysiisAlgorithm = new NysiisAlgorithm
+	def apply(): NysiisAlgorithm = new NysiisAlgorithm with StringFilter
 }

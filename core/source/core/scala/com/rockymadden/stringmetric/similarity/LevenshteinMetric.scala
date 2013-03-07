@@ -1,9 +1,11 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ CompareTuple, StringMetric }
+import com.rockymadden.stringmetric.{ CompareTuple, StringFilter, StringMetric }
 
 /** An implementation of the Levenshtein metric. */
 class LevenshteinMetric extends StringMetric[Int] {
+	this: StringFilter =>
+
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Int] = {
 		val fca1 = filter(charArray1)
 		lazy val fca2 = filter(charArray2)
@@ -47,5 +49,5 @@ class LevenshteinMetric extends StringMetric[Int] {
 }
 
 object LevenshteinMetric {
-	def apply(): LevenshteinMetric = new LevenshteinMetric
+	def apply(): LevenshteinMetric = new LevenshteinMetric with StringFilter
 }

@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class NGramMetricSpec extends ScalaTest {
-	import NGramMetricSpec._
+	import NGramMetricSpec.Metric
 
 	"NGramMetric" should provide {
 		"compare method" when passed {
@@ -64,5 +64,5 @@ final class NGramMetricSpec extends ScalaTest {
 }
 
 object NGramMetricSpec {
-	private final val Metric = new NGramMetric
+	private final val Metric = NGramMetric()
 }

@@ -1,10 +1,12 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.StringAlgorithm
+import com.rockymadden.stringmetric.{ StringAlgorithm, StringFilter }
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the refined Soundex algorithm. */
 class RefinedSoundexAlgorithm extends StringAlgorithm[String] {
+	this: StringFilter =>
+
 	final override def compute(charArray: Array[Char]): Option[Array[Char]] = {
 		val fca = filter(charArray)
 
@@ -63,5 +65,5 @@ class RefinedSoundexAlgorithm extends StringAlgorithm[String] {
 }
 
 object RefinedSoundexAlgorithm {
-	def apply(): RefinedSoundexAlgorithm = new RefinedSoundexAlgorithm
+	def apply(): RefinedSoundexAlgorithm = new RefinedSoundexAlgorithm with StringFilter
 }

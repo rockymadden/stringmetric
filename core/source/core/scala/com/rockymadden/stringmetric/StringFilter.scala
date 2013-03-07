@@ -2,7 +2,9 @@ package com.rockymadden.stringmetric
 
 import com.rockymadden.stringmetric.filter._
 
-trait StringFilter extends Filter[String] with StringFilterable
+trait StringFilter extends Filter[String] with StringFilterable {
+	override def filter(charArray: Array[Char]): Array[Char] = charArray
+}
 
 object StringFilter {
 	def asciiControl = new StringFilterDelegate with AsciiControlStringFilter

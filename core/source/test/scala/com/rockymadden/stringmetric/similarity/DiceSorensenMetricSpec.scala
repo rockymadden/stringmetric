@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class DiceSorensenMetricSpec extends ScalaTest {
-	import DiceSorensenMetricSpec._
+	import DiceSorensenMetricSpec.Metric
 
 	"DiceSorensenMetric" should provide {
 		"compare method" when passed {
@@ -64,5 +64,5 @@ final class DiceSorensenMetricSpec extends ScalaTest {
 }
 
 object DiceSorensenMetricSpec {
-	private final val Metric = new DiceSorensenMetric
+	private final val Metric = DiceSorensenMetric()
 }

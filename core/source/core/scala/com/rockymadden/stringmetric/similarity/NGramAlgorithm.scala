@@ -1,10 +1,12 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.ConfigurableStringAlgorithm
+import com.rockymadden.stringmetric.{ ConfigurableStringAlgorithm, StringFilter }
 import scala.annotation.tailrec
 
 /** An implementation of the N-Gram algorithm. */
 class NGramAlgorithm extends ConfigurableStringAlgorithm[Array[String], Int] {
+	this: StringFilter =>
+
 	final override def compute(charArray: Array[Char])(implicit n: Int): Option[Array[Array[Char]]] = {
 		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
 
@@ -27,5 +29,5 @@ class NGramAlgorithm extends ConfigurableStringAlgorithm[Array[String], Int] {
 }
 
 object NGramAlgorithm {
-	def apply(): NGramAlgorithm = new NGramAlgorithm
+	def apply(): NGramAlgorithm = new NGramAlgorithm with StringFilter
 }

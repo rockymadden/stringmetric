@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.StringMetric
+import com.rockymadden.stringmetric.{ StringFilter, StringMetric }
 
 /**
  * An implementation of the Jaro-Winkler metric. One differing detail in this implementation is that if a character is
@@ -8,6 +8,8 @@ import com.rockymadden.stringmetric.StringMetric
  * (e.g. comparing henka and henkan distance is 0.9666 versus the typical 0.9722).
  */
 class JaroWinklerMetric extends StringMetric[Double] {
+	this: StringFilter =>
+
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Double] = {
 		val fca1 = filter(charArray1)
 		val fca2 = filter(charArray2)
@@ -28,5 +30,5 @@ class JaroWinklerMetric extends StringMetric[Double] {
 }
 
 object JaroWinklerMetric {
-	def apply(): JaroWinklerMetric = new JaroWinklerMetric
+	def apply(): JaroWinklerMetric = new JaroWinklerMetric with StringFilter
 }

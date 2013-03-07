@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class LevenshteinMetricSpec extends ScalaTest {
-	import LevenshteinMetricSpec._
+	import LevenshteinMetricSpec.Metric
 
 	"LevenshteinMetric" should provide {
 		"compare method" when passed {
@@ -54,5 +54,5 @@ final class LevenshteinMetricSpec extends ScalaTest {
 }
 
 object LevenshteinMetricSpec {
-	private final val Metric = new LevenshteinMetric
+	private final val Metric = LevenshteinMetric()
 }

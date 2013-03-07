@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class RefinedNysiisMetricSpec extends ScalaTest {
-	import RefinedNysiisMetricSpec._
+	import RefinedNysiisMetricSpec.Metric
 
 	"RefinedNysiisMetric" should provide {
 		"compare method" when passed {
@@ -39,5 +39,5 @@ final class RefinedNysiisMetricSpec extends ScalaTest {
 }
 
 object RefinedNysiisMetricSpec {
-	final private val Metric = new RefinedNysiisMetric
+	final private val Metric = RefinedNysiisMetric()
 }

@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class RatcliffObershelpMetricSpec extends ScalaTest {
-	import RatcliffObershelpMetricSpec._
+	import RatcliffObershelpMetricSpec.Metric
 
 	"RatcliffObershelpMetric" should provide {
 		"compare method" when passed {
@@ -44,6 +44,6 @@ final class RatcliffObershelpMetricSpec extends ScalaTest {
 }
 
 object RatcliffObershelpMetricSpec {
-	private final val Metric = new RatcliffObershelpMetric
+	private final val Metric = RatcliffObershelpMetric()
 }
 

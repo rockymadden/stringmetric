@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class JaroWinklerMetricSpec extends ScalaTest {
-	import JaroWinklerMetricSpec._
+	import JaroWinklerMetricSpec.Metric
 
 	"JaroWinklerMetric" should provide {
 		"compare method" when passed {
@@ -55,5 +55,5 @@ final class JaroWinklerMetricSpec extends ScalaTest {
 }
 
 object JaroWinklerMetricSpec {
-	private final val Metric = new JaroWinklerMetric
+	private final val Metric = JaroWinklerMetric()
 }

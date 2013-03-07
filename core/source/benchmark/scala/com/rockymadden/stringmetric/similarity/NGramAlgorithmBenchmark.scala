@@ -5,7 +5,7 @@ import com.rockymadden.stringmetric.{ CaliperBenchmark, CaliperRunner }
 import scala.util.Random
 
 final class NGramAlgorithmBenchmark extends CaliperBenchmark {
-	import NGramAlgorithmBenchmark._
+	import NGramAlgorithmBenchmark.Algorithm
 
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
@@ -31,5 +31,5 @@ final class NGramAlgorithmBenchmark extends CaliperBenchmark {
 }
 
 object NGramAlgorithmBenchmark extends CaliperRunner(classOf[NGramAlgorithmBenchmark]) {
-	private final val Algorithm = new NGramAlgorithm
+	private final val Algorithm = NGramAlgorithm()
 }
