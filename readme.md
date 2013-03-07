@@ -17,14 +17,29 @@ String metrics and phonetic algorithms for Scala. The library provides facilitie
 * __Weighted Levenshtein__ (Similarity metric)
 
 ## Installation
-Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22):
+Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22). Depending on the core sub-project shown below (add others, like the CLI, as needed):
 
-* __groupId__: com.rockymadden.stringmetric
-* __artifactId__: stringmetric-core
-* __artifactId__: stringmetric-cli
+### SBT
+```scala
+libraryDependencies += "com.rockymadden.stringmetric" % "stringmetric-core" % "0.22.2"
+```
 
-## Docs
-[Scaladoc](http://rockymadden.com/stringmetric/scaladoc/) is available on the project website.
+### Gradle
+```groovy
+compile 'com.rockymadden.stringmetric:stringmetric-core:0.22.2'
+```
+
+### Maven
+```xml
+<dependency>
+	<artifactId>com.rockymadden.stringmetric</artifactId>
+	<groupId>stringmetric-core</groupId>
+	<version>0.22.2</version>
+</dependency>
+```
+
+## Scaladocs
+[Scaladocs](http://rockymadden.com/stringmetric/scaladoc/) are available on the project website.
 
 ## Similarity package
 Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.
