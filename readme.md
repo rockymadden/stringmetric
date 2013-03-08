@@ -25,23 +25,22 @@ String metrics and phonetic algorithms for Scala. The library provides facilitie
 ## Installation
 Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22). Depending on the core sub-project shown below (add others, like the CLI, as needed):
 
----
 
-### SBT
+__SBT:__
 ```scala
 libraryDependencies += "com.rockymadden.stringmetric" % "stringmetric-core" % "0.22.4"
 ```
 
 ---
 
-### Gradle
+__Gradle:__
 ```groovy
 compile 'com.rockymadden.stringmetric:stringmetric-core:0.22.4'
 ```
 
 ---
 
-### Maven
+__Maven:__
 ```xml
 <dependency>
 	<artifactId>com.rockymadden.stringmetric</artifactId>
@@ -56,7 +55,6 @@ compile 'com.rockymadden.stringmetric:stringmetric-core:0.22.4'
 ## Similarity package
 Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.
 
----
 
 __Dice / Sorensen Metric:__
 ```scala
@@ -210,8 +208,6 @@ println(StringMetric.compareWithDiceSorensen("night", "nacht"))
 
 ## Phonetic package
 Useful for indexing by word pronunciation and performing sounds-like comparisons. All metrics return a boolean value indicating if the two strings sound the same, per the algorithm used. All metrics have an algorithm counterpart which provide the means to perform indexing by word pronunciation.
-
----
 
 __Metaphone Metric:__
 ```scala
@@ -369,8 +365,6 @@ println(StringMetric.compareWithSoundex("night", "nacht"))
 ## Decorating
 It is possible to decorate algorithms and metrics with additional functionality. The most common decorations are filters, which are useful for filtering strings prior to evaluation (e.g. ignore case, ignore non-alpha, ignore spaces). __NOTE:__ Memoization decorator on roadmap.
 
----
-
 Basic example with no filtering:
 ```scala
 JaroWinklerMetric().compare("string1", "string2")
@@ -448,8 +442,6 @@ val diceSorensen: ConfigurableStringMetric.DiceSorensenMetric = ConfigurableStri
 
 ## Command line interfaces
 Every metric and algorithm has a command line interface. Said code is housed in a separate sub-project from the core library called "stringmetric-cli".
-
----
 
 The help option prints command syntax and usage:
 ```shell
