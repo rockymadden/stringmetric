@@ -19,6 +19,8 @@ String metrics and phonetic algorithms for Scala. The library provides facilitie
 ## Installation
 Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22). Depending on the core sub-project shown below (add others, like the CLI, as needed):
 
+---
+
 ### SBT
 ```scala
 libraryDependencies += "com.rockymadden.stringmetric" % "stringmetric-core" % "0.22.4"
