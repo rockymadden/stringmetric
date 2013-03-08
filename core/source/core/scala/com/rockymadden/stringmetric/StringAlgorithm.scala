@@ -1,16 +1,28 @@
 package com.rockymadden.stringmetric
 
-import com.rockymadden.stringmetric.phonetic._
-
 trait StringAlgorithm[R] extends Algorithm[String, R] {
 	def compute(charArray: Array[Char]): Option[Array[_]]
 }
 
 object StringAlgorithm {
+	type MetaphoneAlgorithm = com.rockymadden.stringmetric.phonetic.MetaphoneAlgorithm
+	val MetaphoneAlgorithm = com.rockymadden.stringmetric.phonetic.MetaphoneAlgorithm
 	lazy val metaphone = MetaphoneAlgorithm()
+
+	type NysiisAlgorithm = com.rockymadden.stringmetric.phonetic.NysiisAlgorithm
+	val NysiisAlgorithm = com.rockymadden.stringmetric.phonetic.NysiisAlgorithm
 	lazy val nysiis = NysiisAlgorithm()
+
+	type RefinedNysiisAlgorithm = com.rockymadden.stringmetric.phonetic.RefinedNysiisAlgorithm
+	val RefinedNysiisAlgorithm = com.rockymadden.stringmetric.phonetic.RefinedNysiisAlgorithm
 	lazy val refinedNysiis = RefinedNysiisAlgorithm()
+
+	type RefinedSoundexAlgorithm = com.rockymadden.stringmetric.phonetic.RefinedSoundexAlgorithm
+	val RefinedSoundexAlgorithm = com.rockymadden.stringmetric.phonetic.RefinedSoundexAlgorithm
 	lazy val refinedSoundex = RefinedSoundexAlgorithm()
+
+	type SoundexAlgorithm = com.rockymadden.stringmetric.phonetic.SoundexAlgorithm
+	val SoundexAlgorithm = com.rockymadden.stringmetric.phonetic.SoundexAlgorithm
 	lazy val soundex = SoundexAlgorithm()
 
 	def computeWithMetaphone(charArray: Array[Char]): Option[Array[Char]] = metaphone.compute(charArray)

@@ -1,21 +1,44 @@
 package com.rockymadden.stringmetric
 
-import com.rockymadden.stringmetric.phonetic._
-import com.rockymadden.stringmetric.similarity._
-
 trait StringMetric[R] extends Metric[String, R] {
 	def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[R]
 }
 
 object StringMetric {
+	type HammingMetric = com.rockymadden.stringmetric.similarity.HammingMetric
+	val HammingMetric = com.rockymadden.stringmetric.similarity.HammingMetric
 	lazy val hamming = HammingMetric()
+
+	type JaroMetric = com.rockymadden.stringmetric.similarity.JaroMetric
+	val JaroMetric = com.rockymadden.stringmetric.similarity.JaroMetric
 	lazy val jaro = JaroMetric()
+
+	type JaroWinklerMetric = com.rockymadden.stringmetric.similarity.JaroWinklerMetric
+	val JaroWinklerMetric = com.rockymadden.stringmetric.similarity.JaroWinklerMetric
 	lazy val jaroWinkler = JaroWinklerMetric()
+
+	type LevenshteinMetric = com.rockymadden.stringmetric.similarity.LevenshteinMetric
+	val LevenshteinMetric = com.rockymadden.stringmetric.similarity.LevenshteinMetric
 	lazy val levenshtein = LevenshteinMetric()
+
+	type MetaphoneMetric = com.rockymadden.stringmetric.phonetic.MetaphoneMetric
+	val MetaphoneMetric = com.rockymadden.stringmetric.phonetic.MetaphoneMetric
 	lazy val metaphone = MetaphoneMetric()
+
+	type NysiisMetric = com.rockymadden.stringmetric.phonetic.NysiisMetric
+	val NysiisMetric = com.rockymadden.stringmetric.phonetic.NysiisMetric
 	lazy val nysiis = NysiisMetric()
+
+	type RefinedNysiisMetric = com.rockymadden.stringmetric.phonetic.RefinedNysiisMetric
+	val RefinedNysiisMetric = com.rockymadden.stringmetric.phonetic.RefinedNysiisMetric
 	lazy val refinedNysiis = RefinedNysiisMetric()
+
+	type RefinedSoundexMetric = com.rockymadden.stringmetric.phonetic.RefinedSoundexMetric
+	val RefinedSoundexMetric = com.rockymadden.stringmetric.phonetic.RefinedSoundexMetric
 	lazy val refinedSoundex = RefinedSoundexMetric()
+
+	type SoundexMetric = com.rockymadden.stringmetric.phonetic.SoundexMetric
+	val SoundexMetric = com.rockymadden.stringmetric.phonetic.SoundexMetric
 	lazy val soundex = SoundexMetric()
 
 	def compareWithHamming(charArray1: Array[Char], charArray2: Array[Char]): Option[Int] =
