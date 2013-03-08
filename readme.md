@@ -24,10 +24,14 @@ Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga
 libraryDependencies += "com.rockymadden.stringmetric" % "stringmetric-core" % "0.22.4"
 ```
 
+---
+
 ### Gradle
 ```groovy
 compile 'com.rockymadden.stringmetric:stringmetric-core:0.22.4'
 ```
+
+---
 
 ### Maven
 ```xml
@@ -38,11 +42,13 @@ compile 'com.rockymadden.stringmetric:stringmetric-core:0.22.4'
 </dependency>
 ```
 
-## Scaladocs
-[Scaladocs](http://rockymadden.com/stringmetric/scaladoc/) are available on the project website.
+## Scaladoc
+[Scaladoc](http://rockymadden.com/stringmetric/scaladoc/) is available on the project website.
 
 ## Similarity package
 Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.
+
+---
 
 __Dice / Sorensen Metric:__
 ```scala
@@ -56,6 +62,8 @@ Output:
 0.7142857142857143
 ```
 
+---
+
 __Hamming Metric:__
 ```scala
 println(HammingMetric().compare("toned", "roses"))
@@ -67,6 +75,8 @@ Output: _(Note the exception of integers, rather than doubles, being returned.)_
 3
 2
 ```
+
+---
 
 __Jaro Metric:__
 ```scala
@@ -82,6 +92,8 @@ Output:
 0
 ```
 
+---
+
 __Jaro-Winkler Metric:__
 ```scala
 println(JaroWinklerMetric().compare("dwayne", "duane"))
@@ -96,6 +108,8 @@ Output:
 0
 ```
 
+---
+
 __Levenshtein Metric:__
 ```scala
 println(LevenshteinMetric().compare("sitting", "kitten"))
@@ -107,6 +121,9 @@ Output: _(Note the exception of integers, rather than doubles, being returned.)_
 3
 2
 ```
+
+---
+
 
 __N-Gram Metric:__ _(Note you must specify the size of the n-gram you wish to use. This can be done implicitly.)_
 ```scala
@@ -122,6 +139,8 @@ Output:
 0.5
 ```
 
+---
+
 __N-Gram Algorithm:__ _(Note you must specify the size of the n-gram you wish to use. This can be done implicitly.)_
 ```scala
 println(NGramAlgorithm().compute("abcdefghijklmnopqrstuvwxyz")(1))
@@ -136,6 +155,8 @@ Array("ab", "bc", "cd", "de", "ef", "fg", "gh", "hi", "ij", "jk", "kl", "lm", "m
 Array("abc", "bcd", "cde", "def", "efg", "fgh", "ghi", "hij", "ijk", "jkl", "klm", "lmn", "mno", "nop", "opq", "pqr", "qrs", "rst", "stu", "tuv", "uvw", "vwx", "wxy", "xyz")
 ```
 
+---
+
 __Ratcliff/Obershelp Metric:__
 ```scala
 println(RatcliffObershelpMetric().compare("aleksander", "alexandre"))
@@ -147,6 +168,8 @@ Output:
 0.7368421052631579
 0.6666666666666666
 ```
+
+---
 
 __Weighted Levenshtein Metric:__ _(Note you must specify the weight of each operation. Delete, insert, and then substitute. This can be done implicitly.)_
 ```scala
@@ -162,8 +185,25 @@ Output: _(Note that while a double is returned, it can be outside the range of 0
 40
 ```
 
+---
+
+__NOTE:__ If you are calling to any metric or algorithm more than once, you should put it in a val OR leverage a convenience object:
+```scala
+val diceSorensen = DiceSorensenMetric()
+
+println(diceSorensen.compare("night", "nacht"))
+...
+
+// OR
+
+println(StringMetric.compareWithDiceSorensen("night", "nacht"))
+...
+```
+
 ## Phonetic package
 Useful for indexing by word pronunciation and performing sounds-like comparisons. All metrics return a boolean value indicating if the two strings sound the same, per the algorithm used. All metrics have an algorithm counterpart which provide the means to perform indexing by word pronunciation.
+
+---
 
 __Metaphone Metric:__
 ```scala
@@ -177,6 +217,8 @@ true
 false
 ```
 
+---
+
 __Metaphone Algorithm:__
 ```scala
 println(MetaphoneAlgorithm().compute("dumb"))
@@ -188,6 +230,8 @@ Output:
 tm
 n0
 ```
+
+---
 
 __NYSIIS Metric:__
 ```scala
@@ -201,6 +245,8 @@ true
 false
 ```
 
+---
+
 __NYSIIS Algorithm:__
 ```scala
 println(NysiisAlgorithm().compute("macintosh"))
@@ -212,6 +258,8 @@ Output:
 mcant
 nnat
 ```
+
+---
 
 __Refined NYSIIS Metric:__
 ```scala
@@ -225,6 +273,8 @@ true
 false
 ```
 
+---
+
 __Refined NYSIIS Algorithm:__
 ```scala
 println(RefinedNysiisAlgorithm().compute("macintosh"))
@@ -236,6 +286,8 @@ Output:
 mcantas
 wastarlad
 ```
+
+---
 
 __Refined Soundex Metric:__
 ```scala
@@ -249,6 +301,8 @@ true
 false
 ```
 
+---
+
 __Refined Soundex Algorithm:__
 ```scala
 println(RefinedSoundexAlgorithm().compute("hairs"))
@@ -260,6 +314,8 @@ Output:
 h093
 l7081096
 ```
+
+---
 
 __Soundex Metric:__
 ```scala
@@ -273,6 +329,8 @@ true
 false
 ```
 
+---
+
 __Soundex Algorithm:__
 ```scala
 println(SoundexAlgorithm().compute("rupert"))
@@ -285,18 +343,39 @@ r163
 l222
 ```
 
+---
+
+__NOTE:__ If you are calling to any metric or algorithm more than once, you should put it in a val OR leverage a convenience object:
+```scala
+val soundex = SoundexMetric()
+
+println(soundex.compare("night", "nacht"))
+...
+
+// OR
+
+println(StringMetric.compareWithSoundex("night", "nacht"))
+...
+```
+
 ## Decorating
 It is possible to decorate algorithms and metrics with additional functionality. The most common decorations are filters, which are useful for filtering strings prior to evaluation (e.g. ignore case, ignore non-alpha, ignore spaces).
+
+---
 
 Basic example with no filtering:
 ```scala
 JaroWinklerMetric().compare("string1", "string2")
 ```
 
+---
+
 Basic example with single filter:
 ```scala
 (new JaroWinklerMetric with AsciiLetterCaseStringFilter).compare("string1", "string2")
 ```
+
+---
 
 Basic example with stacked filter. Filters are applied in reverse order:
 ```scala
@@ -304,14 +383,65 @@ Basic example with stacked filter. Filters are applied in reverse order:
 ```
 
 ## Convenience objects
-The StringMetric, StringAlgorithm, StringFilter, ConfigurableStringAlgorithm, and ConfigurableStringMetric standalone convenience objects are available to make interactions with the library easier:
+Convenience objects are available to make interactions with the library easier.
+
+---
+
+__StringAlgorithm:__
 ```scala
+// Invoke compute methods. Each algorithm backed by an undecorated lazy val.
+StringAlgorithm.computeWithMetaphone("string")
+
+// Easy access to types and companion objects.
+val metaphone: StringAlgorithm.MetaphoneAlgorithm = StringAlgorithm.MetaphoneAlgorithm()
+```
+
+---
+
+__StringMetric:__
+```scala
+// Invoke compare methods. Each metric backed by an undecorated lazy val.
 StringMetric.compareWithJaroWinkler("string1", "string2")
-StringAlgorithm.computeWithMetaphone("string1", "string2")
+
+// Easy access to types and companion objects.
+val jaro: StringMetric.JaroMetric = StringMetric.JaroMetric()
+```
+
+---
+
+__StringFilter:__
+```scala
+// Easy access to types and instances.
+val metaphone: StringAlgorithm.MetaphoneAlgorithm = StringAlgorithm.MetaphoneAlgorithm() with StringFilter.asciiControl
+val asciiSpace: StringFilter.AsciiSpaceStringFilter = StringFilter.asciiControl
+```
+
+---
+
+__ConfigurableStringAlgorithm:__
+```scala
+// Invoke compute methods. Each algorithm backed by an undecorated lazy val.
+ConfigurableStringAlgorithm.computeWithNGram("string")(2)
+
+// Easy access to types and companion objects.
+val nGram: ConfigurableStringAlgorithm.NGramAlgorithm: = ConfigurableStringAlgorithm.NGramAlgorithm()
+```
+
+---
+
+__ConfigurableStringMetric:__
+```scala
+// Invoke compute methods. Each algorithm backed by an undecorated lazy val.
+ConfigurableStringMetric.compareWithDiceSorensen("string1", "string2")(2)
+
+// Easy access to types and companion objects.
+val diceSorensen: ConfigurableStringMetric.DiceSorensenMetric = ConfigurableStringMetric.DiceSorensenMetric()
 ```
 
 ## Command line interfaces
-Every metric and algorithm has a command line interface.
+Every metric and algorithm has a command line interface. Said code is housed in a separate sub-project from the core library called "stringmetric-cli".
+
+---
 
 The help option prints command syntax and usage:
 ```shell
@@ -338,6 +468,8 @@ Options:
     Outputs description, syntax, and options.
 ```
 
+---
+
 Compare "dog" to "dawg":
 ```shell
 $ metaphoneMetric dog dawg
@@ -348,6 +480,8 @@ true
 $ jaroWinklerMetric dog dawg
 0.75
 ```
+
+---
 
 Get the phonetic representation of "dog" using the Metaphone phonetic algorithm:
 ```shell
