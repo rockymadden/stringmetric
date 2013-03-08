@@ -93,56 +93,5 @@ final class AlphabetSpec extends ScalaTest {
 				}
 			}
 		}
-		"an overloaded startsWith method which accepts Array[Char]" when passed {
-			"empty argument" should returns {
-				"false" in {
-					Alpha startsWith Array.empty[Char] should be (false)
-				}
-			}
-			"non-alphabet argument" should returns {
-				"false" in {
-					Alpha startsWith "1abc".toCharArray should be (false)
-				}
-			}
-			"alphabet argument" should returns {
-				"true" in {
-					Alpha startsWith "abc".toCharArray should be (true)
-				}
-			}
-		}
-		"an overloaded startsWith method which accepts Char" when passed {
-			"empty argument" should returns {
-				"false" in {
-					Alpha startsWith '0' should be (false)
-				}
-			}
-			"non-alphabet argument" should returns {
-				"false" in {
-					Alpha startsWith '1' should be (false)
-				}
-			}
-			"alphabet argument" should returns {
-				"true" in {
-					Alpha startsWith 'a' should be (true)
-				}
-			}
-		}
-		"an overloaded startsWith method which accepts String" when passed {
-			"empty argument" should returns {
-				"false" in {
-					Alpha startsWith "" should be (false)
-				}
-			}
-			"non-alphabet argument" should returns {
-				"false" in {
-					Alpha startsWith "1abc" should be (false)
-				}
-			}
-			"alphabet argument" should returns {
-				"true" in {
-					Alpha startsWith "abc" should be (true)
-				}
-			}
-		}
 	}
 }

@@ -12,12 +12,6 @@ object Alphabet {
 			charArray.length > 0 && charArray.takeWhile(Chars.contains(_)).length == charArray.length
 
 		def isSuperset(string: String): Boolean = isSuperset(string.toCharArray)
-
-		def startsWith(char: Char): Boolean = Chars.contains(char)
-
-		def startsWith(charArray: Array[Char]): Boolean = charArray.length > 0 && Chars.contains(charArray.head)
-
-		def startsWith(string: String): Boolean = startsWith(string.toCharArray)
 	}
 
 	case object LowercaseConsonant extends AlphabetSet {
