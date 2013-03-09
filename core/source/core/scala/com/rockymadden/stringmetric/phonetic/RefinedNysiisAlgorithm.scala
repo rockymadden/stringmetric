@@ -126,5 +126,11 @@ class RefinedNysiisAlgorithm extends StringAlgorithm[String] {
 }
 
 object RefinedNysiisAlgorithm {
+	private lazy val self = apply()
+
 	def apply(): RefinedNysiisAlgorithm = new RefinedNysiisAlgorithm with StringFilter
+
+	def compute(charArray: Array[Char]) = self.compute(charArray)
+
+	def compute(string: String) = self.compute(string)
 }

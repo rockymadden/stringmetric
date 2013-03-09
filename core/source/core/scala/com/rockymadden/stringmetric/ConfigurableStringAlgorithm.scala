@@ -7,9 +7,8 @@ trait ConfigurableStringAlgorithm[R, O] extends ConfigurableAlgorithm[String, R,
 object ConfigurableStringAlgorithm {
 	type NGramAlgorithm = com.rockymadden.stringmetric.similarity.NGramAlgorithm
 	val NGramAlgorithm = com.rockymadden.stringmetric.similarity.NGramAlgorithm
-	lazy val nGram = NGramAlgorithm()
 
-	def computeWithNGram(charArray: Array[Char])(n: Int): Option[Array[Array[Char]]] = nGram.compute(charArray)(n)
+	def computeWithNGram(charArray: Array[Char])(n: Int) = NGramAlgorithm.compute(charArray)(n)
 
-	def computeWithNGram(string: String)(n: Int): Option[Array[String]] = nGram.compute(string)(n)
+	def computeWithNGram(string: String)(n: Int) = NGramAlgorithm.compute(string)(n)
 }

@@ -41,6 +41,6 @@ object hammingMetric extends Command {
 	override def execute(options: OptionMap): Unit = {
 		val strings: OptionMapArray = options('dashless)
 
-		println(HammingMetric().compare(strings(0), strings(1)).getOrElse("not comparable"))
+		println(HammingMetric.compare(strings(0), strings(1)).getOrElse("not comparable"))
 	}
 }

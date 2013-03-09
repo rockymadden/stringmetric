@@ -64,5 +64,11 @@ class SoundexAlgorithm extends StringAlgorithm[String] {
 }
 
 object SoundexAlgorithm {
+	private lazy val self = apply()
+
 	def apply(): SoundexAlgorithm = new SoundexAlgorithm with StringFilter
+
+	def compute(charArray: Array[Char]) = self.compute(charArray)
+
+	def compute(string: String) = self.compute(string)
 }

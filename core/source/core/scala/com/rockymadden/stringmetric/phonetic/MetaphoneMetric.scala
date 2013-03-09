@@ -25,5 +25,11 @@ class MetaphoneMetric extends StringMetric[Boolean] {
 }
 
 object MetaphoneMetric {
+	private lazy val self = apply()
+
 	def apply(): MetaphoneMetric = new MetaphoneMetric with StringFilter
+
+	def compare(charArray1: Array[Char], charArray2: Array[Char]) = self.compare(charArray1, charArray2)
+
+	def compare(string1: String, string2: String) = self.compare(string1, string2)
 }

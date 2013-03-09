@@ -41,6 +41,6 @@ object metaphoneMetric extends Command {
 	override def execute(options: OptionMap): Unit = {
 		val strings: OptionMapArray = options('dashless)
 
-		println(MetaphoneMetric().compare(strings(0), strings(1)).getOrElse("not comparable"))
+		println(MetaphoneMetric.compare(strings(0), strings(1)).getOrElse("not comparable"))
 	}
 }

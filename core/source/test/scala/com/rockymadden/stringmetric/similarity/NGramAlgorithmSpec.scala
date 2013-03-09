@@ -50,6 +50,18 @@ final class NGramAlgorithmSpec extends ScalaTest {
 			}
 		}
 	}
+	"NGramAlgorithm companion object" should provide {
+		"pass-through compute method" should returns {
+			"same value as class" in {
+				NGramAlgorithm.compute("abcdefghijklmnopqrstuvwxyz")(1).get should equal (
+					Array(
+						"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
+						"s", "t", "u", "v", "w", "x", "y", "z"
+					)
+				)
+			}
+		}
+	}
 }
 
 object NGramAlgorithmSpec {

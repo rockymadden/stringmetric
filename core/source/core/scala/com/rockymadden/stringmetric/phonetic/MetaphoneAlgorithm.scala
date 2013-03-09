@@ -115,5 +115,11 @@ class MetaphoneAlgorithm extends StringAlgorithm[String] {
 }
 
 object MetaphoneAlgorithm {
+	private lazy val self = apply()
+
 	def apply(): MetaphoneAlgorithm = new MetaphoneAlgorithm with StringFilter
+
+	def compute(charArray: Array[Char]) = self.compute(charArray)
+
+	def compute(string: String) = self.compute(string)
 }

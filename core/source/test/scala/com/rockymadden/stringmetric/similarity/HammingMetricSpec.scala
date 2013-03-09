@@ -38,6 +38,13 @@ final class HammingMetricSpec extends ScalaTest {
 			}
 		}
 	}
+	"HammingMetric companion object" should provide {
+		"pass-through compare method" should returns {
+			"same value as class" in {
+				HammingMetric.compare("2173896", "2233796").get should be (3)
+			}
+		}
+	}
 }
 
 object HammingMetricSpec {

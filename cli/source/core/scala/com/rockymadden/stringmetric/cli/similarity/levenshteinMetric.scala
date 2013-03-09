@@ -42,6 +42,6 @@ object levenshteinMetric extends Command {
 	override def execute(options: OptionMap): Unit = {
 		val strings: OptionMapArray = options('dashless)
 
-		println(LevenshteinMetric().compare(strings(0), strings(1)).getOrElse("not comparable"))
+		println(LevenshteinMetric.compare(strings(0), strings(1)).getOrElse("not comparable"))
 	}
 }

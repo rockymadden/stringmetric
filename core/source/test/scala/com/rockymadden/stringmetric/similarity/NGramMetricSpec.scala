@@ -61,6 +61,13 @@ final class NGramMetricSpec extends ScalaTest {
 			}
 		}
 	}
+	"NGramMetric companion object" should provide {
+		"pass-through compare method" should returns {
+			"same value as class" in {
+				NGramMetric.compare("context", "contact")(3).get should be (0.4)
+			}
+		}
+	}
 }
 
 object NGramMetricSpec {

@@ -52,6 +52,13 @@ final class JaroWinklerMetricSpec extends ScalaTest {
 			}
 		}
 	}
+	"JaroWinklerMetric companion object" should provide {
+		"pass-through compare method" should returns {
+			"same value as class" in {
+				JaroWinklerMetric.compare("fvie", "ten").get should be (0)
+			}
+		}
+	}
 }
 
 object JaroWinklerMetricSpec {

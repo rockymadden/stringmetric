@@ -29,5 +29,11 @@ class NGramAlgorithm extends ConfigurableStringAlgorithm[Array[String], Int] {
 }
 
 object NGramAlgorithm {
+	private lazy val self = apply()
+
 	def apply(): NGramAlgorithm = new NGramAlgorithm with StringFilter
+
+	def compute(charArray: Array[Char])(n: Int) = self.compute(charArray)(n)
+
+	def compute(string: String)(n: Int) = self.compute(string)(n)
 }

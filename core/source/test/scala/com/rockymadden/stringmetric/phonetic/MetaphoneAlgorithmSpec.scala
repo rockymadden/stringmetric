@@ -212,6 +212,13 @@ final class MetaphoneAlgorithmSpec extends ScalaTest {
 			}
 		}
 	}
+	"MetaphoneAlgorithm companion object" should provide {
+		"pass-through compute method" should returns {
+			"same value as class" in {
+				MetaphoneAlgorithm.compute("dumb").get should equal ("tm")
+			}
+		}
+	}
 }
 
 object MetaphoneAlgorithmSpec {

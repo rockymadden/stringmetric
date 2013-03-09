@@ -36,6 +36,13 @@ final class RefinedNysiisMetricSpec extends ScalaTest {
 			}
 		}
 	}
+	"RefinedNysiisMetric companion object" should provide {
+		"pass-through compare method" should returns {
+			"same value as class" in {
+				RefinedNysiisMetric.compare("dumb", "gum").get should be (false)
+			}
+		}
+	}
 }
 
 object RefinedNysiisMetricSpec {

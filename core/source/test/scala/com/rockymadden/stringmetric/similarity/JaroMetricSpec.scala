@@ -52,6 +52,13 @@ final class JaroMetricSpec extends ScalaTest {
 			}
 		}
 	}
+	"JaroMetric companion object" should provide {
+		"pass-through compare method" should returns {
+			"same value as class" in {
+				JaroMetric.compare("fvie", "ten").get should be (0)
+			}
+		}
+	}
 }
 
 object JaroMetricSpec {

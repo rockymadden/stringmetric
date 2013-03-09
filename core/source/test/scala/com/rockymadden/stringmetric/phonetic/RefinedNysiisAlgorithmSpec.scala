@@ -207,6 +207,13 @@ final class RefinedNysiisAlgorithmSpec extends ScalaTest {
 			}
 		}
 	}
+	"RefinedNysiisAlgorithm companion object" should provide {
+		"pass-through compute method" should returns {
+			"same value as class" in {
+				RefinedNysiisAlgorithm.compute("macdonald").get should equal ("mcdanald")
+			}
+		}
+	}
 }
 
 object RefinedNysiisAlgorithmSpec {

@@ -66,5 +66,11 @@ class RefinedSoundexAlgorithm extends StringAlgorithm[String] {
 }
 
 object RefinedSoundexAlgorithm {
+	private lazy val self = apply()
+
 	def apply(): RefinedSoundexAlgorithm = new RefinedSoundexAlgorithm with StringFilter
+
+	def compute(charArray: Array[Char]) = self.compute(charArray)
+
+	def compute(string: String) = self.compute(string)
 }

@@ -49,5 +49,11 @@ class LevenshteinMetric extends StringMetric[Int] {
 }
 
 object LevenshteinMetric {
+	private lazy val self = apply()
+
 	def apply(): LevenshteinMetric = new LevenshteinMetric with StringFilter
+
+	def compare(charArray1: Array[Char], charArray2: Array[Char]) = self.compare(charArray1, charArray2)
+
+	def compare(string1: String, string2: String) = self.compare(string1, string2)
 }

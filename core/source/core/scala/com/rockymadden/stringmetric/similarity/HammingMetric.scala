@@ -27,5 +27,11 @@ class HammingMetric extends StringMetric[Int] {
 }
 
 object HammingMetric {
+	private lazy val self = apply()
+
 	def apply(): HammingMetric = new HammingMetric with StringFilter
+
+	def compare(charArray1: Array[Char], charArray2: Array[Char]) = self.compare(charArray1, charArray2)
+
+	def compare(string1: String, string2: String) = self.compare(string1, string2)
 }

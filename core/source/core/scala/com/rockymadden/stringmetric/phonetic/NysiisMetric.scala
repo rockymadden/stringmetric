@@ -33,5 +33,11 @@ class NysiisMetric extends StringMetric[Boolean] {
 }
 
 object NysiisMetric {
+	private lazy val self = apply()
+
 	def apply(): NysiisMetric = new NysiisMetric with StringFilter
+
+	def compare(charArray1: Array[Char], charArray2: Array[Char]) = self.compare(charArray1, charArray2)
+
+	def compare(string1: String, string2: String) = self.compare(string1, string2)
 }

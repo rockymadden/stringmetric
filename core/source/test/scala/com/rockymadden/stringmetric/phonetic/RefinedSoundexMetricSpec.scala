@@ -36,6 +36,13 @@ final class RefinedSoundexMetricSpec extends ScalaTest {
 			}
 		}
 	}
+	"RefinedSoundexMetric companion object" should provide {
+		"pass-through compare method" should returns {
+			"same value as class" in {
+				RefinedSoundexMetric.compare("robert", "rubin").get should be (false)
+			}
+		}
+	}
 }
 
 object RefinedSoundexMetricSpec {

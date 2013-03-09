@@ -61,6 +61,13 @@ final class DiceSorensenMetricSpec extends ScalaTest {
 			}
 		}
 	}
+	"DiceSorensenMetric companion object" should provide {
+		"pass-through compare method" should returns {
+			"same value as class" in {
+				DiceSorensenMetric.compare("context", "contact")(3).get should be (0.4)
+			}
+		}
+	}
 }
 
 object DiceSorensenMetricSpec {

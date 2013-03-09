@@ -58,8 +58,8 @@ Useful for approximate string matching and measurement of string distance. Most 
 
 __Dice / Sorensen Metric:__
 ```scala
-println(DiceSorensenMetric().compare("night", "nacht"))
-println(DiceSorensenMetric().compare("context", "contact"))
+println(DiceSorensenMetric.compare("night", "nacht"))
+println(DiceSorensenMetric.compare("context", "contact"))
 ```
 
 Output:
@@ -72,8 +72,8 @@ Output:
 
 __Hamming Metric:__
 ```scala
-println(HammingMetric().compare("toned", "roses"))
-println(HammingMetric().compare("1011101", "1001001"))
+println(HammingMetric.compare("toned", "roses"))
+println(HammingMetric.compare("1011101", "1001001"))
 ```
 
 Output: _(Note the exception of integers, rather than doubles, being returned.)_
@@ -86,9 +86,9 @@ Output: _(Note the exception of integers, rather than doubles, being returned.)_
 
 __Jaro Metric:__
 ```scala
-println(JaroMetric().compare("dwayne", "duane"))
-println(JaroMetric().compare("jones", "johnson"))
-println(JaroMetric().compare("fvie", "ten"))
+println(JaroMetric.compare("dwayne", "duane"))
+println(JaroMetric.compare("jones", "johnson"))
+println(JaroMetric.compare("fvie", "ten"))
 ```
 
 Output:
@@ -102,9 +102,9 @@ Output:
 
 __Jaro-Winkler Metric:__
 ```scala
-println(JaroWinklerMetric().compare("dwayne", "duane"))
-println(JaroWinklerMetric().compare("jones", "johnson"))
-println(JaroWinklerMetric().compare("fvie", "ten"))
+println(JaroWinklerMetric.compare("dwayne", "duane"))
+println(JaroWinklerMetric.compare("jones", "johnson"))
+println(JaroWinklerMetric.compare("fvie", "ten"))
 ```
 
 Output:
@@ -118,8 +118,8 @@ Output:
 
 __Levenshtein Metric:__
 ```scala
-println(LevenshteinMetric().compare("sitting", "kitten"))
-println(LevenshteinMetric().compare("cake", "drake"))
+println(LevenshteinMetric.compare("sitting", "kitten"))
+println(LevenshteinMetric.compare("cake", "drake"))
 ```
 
 Output: _(Note the exception of integers, rather than doubles, being returned.)_
@@ -133,9 +133,9 @@ Output: _(Note the exception of integers, rather than doubles, being returned.)_
 
 __N-Gram Metric:__ _(Note you must specify the size of the n-gram you wish to use. This can be done implicitly.)_
 ```scala
-println(NGramMetric().compare("night", "nacht")(1))
-println(NGramMetric().compare("night", "nacht")(2))
-println(NGramMetric().compare("context", "contact")(2))
+println(NGramMetric.compare("night", "nacht")(1))
+println(NGramMetric.compare("night", "nacht")(2))
+println(NGramMetric.compare("context", "contact")(2))
 ```
 
 Output:
@@ -149,9 +149,9 @@ Output:
 
 __N-Gram Algorithm:__ _(Note you must specify the size of the n-gram you wish to use. This can be done implicitly.)_
 ```scala
-println(NGramAlgorithm().compute("abcdefghijklmnopqrstuvwxyz")(1))
-println(NGramAlgorithm().compute("abcdefghijklmnopqrstuvwxyz")(2))
-println(NGramAlgorithm().compute("abcdefghijklmnopqrstuvwxyz")(3))
+println(NGramAlgorithm.compute("abcdefghijklmnopqrstuvwxyz")(1))
+println(NGramAlgorithm.compute("abcdefghijklmnopqrstuvwxyz")(2))
+println(NGramAlgorithm.compute("abcdefghijklmnopqrstuvwxyz")(3))
 ```
 
 Output:
@@ -165,8 +165,8 @@ Array("abc", "bcd", "cde", "def", "efg", "fgh", "ghi", "hij", "ijk", "jkl", "klm
 
 __Ratcliff/Obershelp Metric:__
 ```scala
-println(RatcliffObershelpMetric().compare("aleksander", "alexandre"))
-println(RatcliffObershelpMetric().compare("pennsylvania", "pencilvaneya"))
+println(RatcliffObershelpMetric.compare("aleksander", "alexandre"))
+println(RatcliffObershelpMetric.compare("pennsylvania", "pencilvaneya"))
 ```
 
 Output:
@@ -179,9 +179,9 @@ Output:
 
 __Weighted Levenshtein Metric:__ _(Note you must specify the weight of each operation. Delete, insert, and then substitute. This can be done implicitly.)_
 ```scala
-println(WeightedLevenshteinMetric().compare("book", "back")(10, 0.1, 1))
-println(WeightedLevenshteinMetric().compare("hosp", "hospital")(10, 0.1, 1))
-println(WeightedLevenshteinMetric().compare("hospital", "hosp")(10, 0.1, 1))
+println(WeightedLevenshteinMetric.compare("book", "back")(10, 0.1, 1))
+println(WeightedLevenshteinMetric.compare("hosp", "hospital")(10, 0.1, 1))
+println(WeightedLevenshteinMetric.compare("hospital", "hosp")(10, 0.1, 1))
 ```
 
 Output: _(Note that while a double is returned, it can be outside the range of 0 to 1, based upon the weights used.)_
@@ -191,28 +191,13 @@ Output: _(Note that while a double is returned, it can be outside the range of 0
 40
 ```
 
----
-
-__NOTE:__ If you are calling to any metric or algorithm more than once, you should put it in a val OR leverage a convenience object:
-```scala
-val diceSorensen = DiceSorensenMetric()
-
-println(diceSorensen.compare("night", "nacht"))
-...
-
-// OR
-
-println(StringMetric.compareWithDiceSorensen("night", "nacht"))
-...
-```
-
 ## Phonetic package
 Useful for indexing by word pronunciation and performing sounds-like comparisons. All metrics return a boolean value indicating if the two strings sound the same, per the algorithm used. All metrics have an algorithm counterpart which provide the means to perform indexing by word pronunciation.
 
 __Metaphone Metric:__
 ```scala
-println(MetaphoneMetric().compare("merci", "mercy"))
-println(MetaphoneMetric().compare("dumb", "gum"))
+println(MetaphoneMetric.compare("merci", "mercy"))
+println(MetaphoneMetric.compare("dumb", "gum"))
 ```
 
 Output:
@@ -225,8 +210,8 @@ false
 
 __Metaphone Algorithm:__
 ```scala
-println(MetaphoneAlgorithm().compute("dumb"))
-println(MetaphoneAlgorithm().compute("knuth"))
+println(MetaphoneAlgorithm.compute("dumb"))
+println(MetaphoneAlgorithm.compute("knuth"))
 ```
 
 Output:
@@ -239,8 +224,8 @@ n0
 
 __NYSIIS Metric:__
 ```scala
-println(NysiisMetric().compare("ham", "hum"))
-println(NysiisMetric().compare("dumb", "gum"))
+println(NysiisMetric.compare("ham", "hum"))
+println(NysiisMetric.compare("dumb", "gum"))
 ```
 
 Output:
@@ -253,8 +238,8 @@ false
 
 __NYSIIS Algorithm:__
 ```scala
-println(NysiisAlgorithm().compute("macintosh"))
-println(NysiisAlgorithm().compute("knuth"))
+println(NysiisAlgorithm.compute("macintosh"))
+println(NysiisAlgorithm.compute("knuth"))
 ```
 
 Output:
@@ -267,8 +252,8 @@ nnat
 
 __Refined NYSIIS Metric:__
 ```scala
-println(RefinedNysiisMetric().compare("ham", "hum"))
-println(RefinedNysiisMetric().compare("dumb", "gum"))
+println(RefinedNysiisMetric.compare("ham", "hum"))
+println(RefinedNysiisMetric.compare("dumb", "gum"))
 ```
 
 Output:
@@ -281,8 +266,8 @@ false
 
 __Refined NYSIIS Algorithm:__
 ```scala
-println(RefinedNysiisAlgorithm().compute("macintosh"))
-println(RefinedNysiisAlgorithm().compute("westerlund"))
+println(RefinedNysiisAlgorithm.compute("macintosh"))
+println(RefinedNysiisAlgorithm.compute("westerlund"))
 ```
 
 Output:
@@ -295,8 +280,8 @@ wastarlad
 
 __Refined Soundex Metric:__
 ```scala
-println(RefinedSoundexMetric().compare("robert", "rupert"))
-println(RefinedSoundexMetric().compare("robert", "rubin"))
+println(RefinedSoundexMetric.compare("robert", "rupert"))
+println(RefinedSoundexMetric.compare("robert", "rubin"))
 ```
 
 Output:
@@ -309,8 +294,8 @@ false
 
 __Refined Soundex Algorithm:__
 ```scala
-println(RefinedSoundexAlgorithm().compute("hairs"))
-println(RefinedSoundexAlgorithm().compute("lambert"))
+println(RefinedSoundexAlgorithm.compute("hairs"))
+println(RefinedSoundexAlgorithm.compute("lambert"))
 ```
 
 Output:
@@ -323,8 +308,8 @@ l7081096
 
 __Soundex Metric:__
 ```scala
-println(SoundexMetric().compare("robert", "rupert"))
-println(SoundexMetric().compare("robert", "rubin"))
+println(SoundexMetric.compare("robert", "rupert"))
+println(SoundexMetric.compare("robert", "rubin"))
 ```
 
 Output:
@@ -337,8 +322,8 @@ false
 
 __Soundex Algorithm:__
 ```scala
-println(SoundexAlgorithm().compute("rupert"))
-println(SoundexAlgorithm().compute("lukasiewicz"))
+println(SoundexAlgorithm.compute("rupert"))
+println(SoundexAlgorithm.compute("lukasiewicz"))
 ```
 
 Output:
@@ -347,27 +332,14 @@ r163
 l222
 ```
 
----
-
-__NOTE:__ If you are calling to any metric or algorithm more than once, you should put it in a val OR leverage a convenience object:
-```scala
-val soundex = SoundexMetric()
-
-println(soundex.compare("night", "nacht"))
-...
-
-// OR
-
-println(StringMetric.compareWithSoundex("night", "nacht"))
-...
-```
-
 ## Decorating
 It is possible to decorate algorithms and metrics with additional functionality. The most common decorations are filters, which are useful for filtering strings prior to evaluation (e.g. ignore case, ignore non-alpha, ignore spaces). __NOTE:__ Memoization decorator on roadmap.
 
-Basic example with no filtering:
+Basic examples with no filtering:
 ```scala
+JaroWinklerMetric.compare("string1", "string2")
 JaroWinklerMetric().compare("string1", "string2")
+(new JaroWinklerMetric).compare("string1", "string2")
 ```
 
 ---

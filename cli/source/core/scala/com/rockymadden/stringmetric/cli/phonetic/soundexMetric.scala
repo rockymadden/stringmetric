@@ -41,6 +41,6 @@ object soundexMetric extends Command {
 	override def execute(options: OptionMap): Unit = {
 		val strings: OptionMapArray = options('dashless)
 
-		println(SoundexMetric().compare(strings(0), strings(1)).getOrElse("not comparable"))
+		println(SoundexMetric.compare(strings(0), strings(1)).getOrElse("not comparable"))
 	}
 }

@@ -52,5 +52,13 @@ class WeightedLevenshteinMetric
 }
 
 object WeightedLevenshteinMetric {
+	private lazy val self = apply()
+
 	def apply(): WeightedLevenshteinMetric = new WeightedLevenshteinMetric with StringFilter
+
+	def compare(charArray1: Array[Char], charArray2: Array[Char])(options: (BigDecimal, BigDecimal, BigDecimal)) =
+		self.compare(charArray1, charArray2)(options)
+
+	def compare(string1: String, string2: String)(options: (BigDecimal, BigDecimal, BigDecimal)) =
+		self.compare(string1, string2)(options)
 }

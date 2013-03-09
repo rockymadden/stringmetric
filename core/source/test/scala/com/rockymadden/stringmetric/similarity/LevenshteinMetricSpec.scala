@@ -51,6 +51,13 @@ final class LevenshteinMetricSpec extends ScalaTest {
 			}
 		}
 	}
+	"LevenshteinMetric companion object" should provide {
+		"pass-through compare method" should returns {
+			"same value as class" in {
+				LevenshteinMetric.compare("fvg", "fog").get should be (1)
+			}
+		}
+	}
 }
 
 object LevenshteinMetricSpec {

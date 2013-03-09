@@ -49,6 +49,13 @@ final class WeightedLevenshteinMetricSpec extends ScalaTest {
 			}
 		}
 	}
+	"WeightedLevenshteinMetric companion object" should provide {
+		"pass-through compare method" should returns {
+			"same value as class" in {
+				WeightedLevenshteinMetric.compare("hospital", "hosp")(Options).get should be (40)
+			}
+		}
+	}
 }
 
 object WeightedLevenshteinMetricSpec {

@@ -160,6 +160,13 @@ final class SoundexAlgorithmSpec extends ScalaTest {
 			}
 		}
 	}
+	"SoundexAlgorithm companion object" should provide {
+		"pass-through compute method" should returns {
+			"same value as class" in {
+				SoundexAlgorithm.compute("abc").get should equal ("a120")
+			}
+		}
+	}
 }
 
 object SoundexAlgorithmSpec {

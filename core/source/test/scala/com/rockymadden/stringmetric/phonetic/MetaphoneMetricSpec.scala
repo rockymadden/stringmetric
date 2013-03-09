@@ -40,6 +40,13 @@ final class MetaphoneMetricSpec extends ScalaTest {
 			}
 		}
 	}
+	"MetaphoneMetric companion object" should provide {
+		"pass-through compare method" should returns {
+			"same value as class" in {
+				MetaphoneMetric.compare("dumb", "gum").get should be (false)
+			}
+		}
+	}
 }
 
 object MetaphoneMetricSpec {

@@ -41,6 +41,13 @@ final class RatcliffObershelpMetricSpec extends ScalaTest {
 			}
 		}
 	}
+	"RatcliffObershelpMetric companion object" should provide {
+		"pass-through compare method" should returns {
+			"same value as class" in {
+				RatcliffObershelpMetric.compare("abefglmo", "abcefglmn").get should be (0.8235294117647058)
+			}
+		}
+	}
 }
 
 object RatcliffObershelpMetricSpec {

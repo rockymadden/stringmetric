@@ -161,6 +161,13 @@ final class RefinedSoundexAlgorithmSpec extends ScalaTest {
 			}
 		}
 	}
+	"RefinedSoundexAlgorithm companion object" should provide {
+		"pass-through compute method" should returns {
+			"same value as class" in {
+				RefinedSoundexAlgorithm.compute("braz").get should equal ("b1905")
+			}
+		}
+	}
 }
 
 object RefinedSoundexAlgorithmSpec {

@@ -35,5 +35,11 @@ class NGramMetric extends ConfigurableStringMetric[Double, Int] {
 }
 
 object NGramMetric {
+	private lazy val self = apply()
+
 	def apply(): NGramMetric = new NGramMetric with StringFilter
+
+	def compare(charArray1: Array[Char], charArray2: Array[Char])(n: Int) = self.compare(charArray1, charArray2)(n)
+
+	def compare(string1: String, string2: String)(n: Int) = self.compare(string1, string2)(n)
 }

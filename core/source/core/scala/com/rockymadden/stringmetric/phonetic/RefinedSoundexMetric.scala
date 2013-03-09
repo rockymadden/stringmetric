@@ -26,5 +26,11 @@ class RefinedSoundexMetric extends StringMetric[Boolean] {
 }
 
 object RefinedSoundexMetric {
+	private lazy val self = apply()
+
 	def apply(): RefinedSoundexMetric = new RefinedSoundexMetric with StringFilter
+
+	def compare(charArray1: Array[Char], charArray2: Array[Char]) = self.compare(charArray1, charArray2)
+
+	def compare(string1: String, string2: String) = self.compare(string1, string2)
 }
