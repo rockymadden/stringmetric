@@ -5,7 +5,7 @@ String metrics and phonetic algorithms for Scala. The library provides facilitie
 * __[Dice / Sorensen](http://en.wikipedia.org/wiki/Dice%27s_coefficient)__ (Similarity metric)
 * __[Double Metaphone](http://en.wikipedia.org/wiki/Metaphone)__ (On roadmap)
 * __[Hamming](http://en.wikipedia.org/wiki/Hamming_distance)__ (Similarity metric)
-* __[Jaccard / Tanimoto](http://en.wikipedia.org/wiki/Jaccard_index)__ (On roadmap)
+* __[Jaccard](http://en.wikipedia.org/wiki/Jaccard_index)__ (Similarity metric)
 * __[Jaro](http://en.wikipedia.org/wiki/Jaro-Winkler_distance)__ (Similarity metric)
 * __[Jaro-Winkler](http://en.wikipedia.org/wiki/Jaro-Winkler_distance)__ (Similarity metric)
 * __[Levenshtein](http://en.wikipedia.org/wiki/Levenshtein_distance)__ (Similarity metric)
@@ -80,6 +80,20 @@ Output: _(Note the exception of integers, rather than doubles, being returned.)_
 ```
 3
 2
+```
+
+---
+
+__Jaccard Metric:__
+```scala
+println(JaccardMetric.compare("night", "nacht"))
+println(JaccardMetric.compare("context", "contact"))
+```
+
+Output:
+```
+0.3
+0.35714285714285715
 ```
 
 ---

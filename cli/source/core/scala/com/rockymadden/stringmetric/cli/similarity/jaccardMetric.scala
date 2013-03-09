@@ -1,13 +1,13 @@
 package com.rockymadden.stringmetric.cli.similarity
 
 import com.rockymadden.stringmetric.cli._
-import com.rockymadden.stringmetric.similarity.DiceSorensenMetric
+import com.rockymadden.stringmetric.similarity.JaccardMetric
 
 /**
- * The diceSorensenMetric [[com.rockymadden.stringmetric.cli.Command]]. Compares the similarity of two strings using the
- * Dice / Sorensen coefficient.
+ * The jaccardMetric [[com.rockymadden.stringmetric.cli.Command]]. Compares the similarity of two strings using the
+ * Jaccard coefficient.
  */
-object diceSorensenMetric extends Command {
+object jaccardMetric extends Command {
 	override def main(args: Array[String]): Unit = {
 		val options = OptionMap(args)
 
@@ -31,9 +31,9 @@ object diceSorensenMetric extends Command {
 		val tab = "  "
 
 		println(
-			"Compares the similarity of two strings using the Dice / Sorensen coefficient." + ls + ls +
+			"Compares the similarity of two strings using the Jaccard coefficient." + ls + ls +
 			"Syntax:" + ls +
-			tab + "diceSorensenMetric [Options] string1 string2..." + ls + ls +
+			tab + "jaccardMetric [Options] string1 string2..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
 			tab + tab + "Outputs description, syntax, and options." +
@@ -46,6 +46,6 @@ object diceSorensenMetric extends Command {
 		val strings: OptionMapArray = options('dashless)
 		val n: OptionMapInt = options('n)
 
-		println(DiceSorensenMetric.compare(strings(0), strings(1))(n).getOrElse("not comparable"))
+		println(JaccardMetric.compare(strings(0), strings(1))(n).getOrElse("not comparable"))
 	}
 }

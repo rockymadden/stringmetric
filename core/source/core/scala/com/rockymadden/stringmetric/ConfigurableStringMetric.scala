@@ -8,6 +8,9 @@ object ConfigurableStringMetric {
 	type DiceSorensenMetric = com.rockymadden.stringmetric.similarity.DiceSorensenMetric
 	val DiceSorensenMetric = com.rockymadden.stringmetric.similarity.DiceSorensenMetric
 
+	type JaccardMetric = com.rockymadden.stringmetric.similarity.JaccardMetric
+	val JaccardMetric = com.rockymadden.stringmetric.similarity.JaccardMetric
+
 	type NGramMetric = com.rockymadden.stringmetric.similarity.NGramMetric
 	val NGramMetric = com.rockymadden.stringmetric.similarity.NGramMetric
 
@@ -19,6 +22,11 @@ object ConfigurableStringMetric {
 
 	def compareWithDiceSorensen(string1: String, string2: String)(n: Int) =
 		DiceSorensenMetric.compare(string1, string2)(n)
+
+	def compareWithJaccard(charArray1: Array[Char], charArray2: Array[Char])(n: Int) =
+		JaccardMetric.compare(charArray1, charArray2)(n)
+
+	def compareWithJaccard(string1: String, string2: String)(n: Int) = JaccardMetric.compare(string1, string2)(n)
 
 	def compareWithNGram(charArray1: Array[Char], charArray2: Array[Char])(n: Int) =
 		NGramMetric.compare(charArray1, charArray2)(n)
