@@ -56,10 +56,10 @@ __Maven:__
 Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.
 
 
-__Dice / Sorensen Metric:__
+__Dice / Sorensen Metric:__ _(Note you must specify the size of the n-gram you wish to use. This can be done implicitly.)_
 ```scala
-println(DiceSorensenMetric.compare("night", "nacht"))
-println(DiceSorensenMetric.compare("context", "contact"))
+println(DiceSorensenMetric.compare("night", "nacht")(1))
+println(DiceSorensenMetric.compare("context", "contact")(1))
 ```
 
 Output:
@@ -84,10 +84,10 @@ Output: _(Note the exception of integers, rather than doubles, being returned.)_
 
 ---
 
-__Jaccard Metric:__
+__Jaccard Metric:__ _(Note you must specify the size of the n-gram you wish to use. This can be done implicitly.)_
 ```scala
-println(JaccardMetric.compare("night", "nacht"))
-println(JaccardMetric.compare("context", "contact"))
+println(JaccardMetric.compare("night", "nacht")(1))
+println(JaccardMetric.compare("context", "contact")(1))
 ```
 
 Output:
