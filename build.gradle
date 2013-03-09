@@ -1,6 +1,6 @@
 description = 'String metrics and phonetic algorithms for Scala.'
 group = 'com.rockymadden.stringmetric'
-version = '0.22.4'
+version = '0.23.0'
 
 ext.scm = 'scm:git@github.com:rockymadden/stringmetric.git'
 ext.url = 'http://rockymadden.com/stringmetric/'
