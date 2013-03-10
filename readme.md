@@ -373,11 +373,9 @@ Basic example with stacked filter. Filters are applied in reverse order:
 ## Convenience objects
 Convenience objects are available to make interactions with the library easier.
 
----
-
 __StringAlgorithm:__
 ```scala
-// Invoke compute methods. Each algorithm backed by an undecorated lazy val.
+// Easy access to compute methods.
 StringAlgorithm.computeWithMetaphone("string")
 
 // Easy access to types and companion objects.
@@ -388,7 +386,7 @@ val metaphone: StringAlgorithm.MetaphoneAlgorithm = StringAlgorithm.MetaphoneAlg
 
 __StringMetric:__
 ```scala
-// Invoke compare methods. Each metric backed by an undecorated lazy val.
+// Easy access to compare methods.
 StringMetric.compareWithJaroWinkler("string1", "string2")
 
 // Easy access to types and companion objects.
@@ -408,7 +406,7 @@ val asciiSpace: StringFilter.AsciiSpaceStringFilter = StringFilter.asciiControl
 
 __ConfigurableStringAlgorithm:__
 ```scala
-// Invoke compute methods. Each algorithm backed by an undecorated lazy val.
+// Easy access to compute methods.
 ConfigurableStringAlgorithm.computeWithNGram("string")(2)
 
 // Easy access to types and companion objects.
@@ -419,7 +417,7 @@ val nGram: ConfigurableStringAlgorithm.NGramAlgorithm: = ConfigurableStringAlgor
 
 __ConfigurableStringMetric:__
 ```scala
-// Invoke compute methods. Each algorithm backed by an undecorated lazy val.
+// Easy access to compare methods.
 ConfigurableStringMetric.compareWithDiceSorensen("string1", "string2")(2)
 
 // Easy access to types and companion objects.
