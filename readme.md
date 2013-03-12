@@ -3,21 +3,25 @@ String metrics and phonetic algorithms for Scala. The library provides facilitie
 
 ## Metrics and Algorithms
 * __[Dice / Sorensen](http://en.wikipedia.org/wiki/Dice%27s_coefficient)__ (Similarity metric)
-* __[Double Metaphone](http://en.wikipedia.org/wiki/Metaphone)__ (On roadmap)
+* __[Double Metaphone](http://en.wikipedia.org/wiki/Metaphone)__ (Queued phonetic metric and algorithm)
 * __[Hamming](http://en.wikipedia.org/wiki/Hamming_distance)__ (Similarity metric)
 * __[Jaccard](http://en.wikipedia.org/wiki/Jaccard_index)__ (Similarity metric)
 * __[Jaro](http://en.wikipedia.org/wiki/Jaro-Winkler_distance)__ (Similarity metric)
 * __[Jaro-Winkler](http://en.wikipedia.org/wiki/Jaro-Winkler_distance)__ (Similarity metric)
 * __[Levenshtein](http://en.wikipedia.org/wiki/Levenshtein_distance)__ (Similarity metric)
 * __[Metaphone](http://en.wikipedia.org/wiki/Metaphone)__ (Phonetic metric and algorithm)
-* __[Monge-Elkan](http://www.cs.cmu.edu/~pradeepr/papers/ijcai03.pdf)__ (On roadmap)
-* __[Needleman-Wunch](http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm)__ (On roadmap)
+* __[Monge-Elkan](http://www.cs.cmu.edu/~pradeepr/papers/ijcai03.pdf)__ (Queued similarity metric)
+* __[Match Rating Approach](http://en.wikipedia.org/wiki/Match_rating_approach)__ (Queued phonetic metric and algorithm)
+* __[Needleman-Wunch](http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm)__ (Queued similarity metric)
 * __[N-Gram](http://en.wikipedia.org/wiki/N-gram)__ (Similarity metric and algorithm)
 * __[NYSIIS](http://en.wikipedia.org/wiki/New_York_State_Identification_and_Intelligence_System)__ (Phonetic metric and algorithm)
+* __[Overlap](http://en.wikipedia.org/wiki/Overlap_coefficient)__ (Queued similarity metric)
 * __[Ratcliff-Obershelp](http://xlinux.nist.gov/dads/HTML/ratcliffObershelp.html)__ (Similarity metric)
 * __[Refined NYSIIS](http://www.markcrocker.com/rexxtipsntricks/rxtt28.2.0482.html)__ (Phonetic metric and algorithm)
 * __[Refined Soundex](http://ntz-develop.blogspot.com/2011/03/phonetic-algorithms.html)__ (Phonetic metric and algorithm)
-* __[Smith-Waterman](http://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm)__ (On roadmap)
+* __[Tanimoto](http://en.wikipedia.org/wiki/Tanimoto_coefficient)__ (Queued similarity metric)
+* __[Tversky](http://en.wikipedia.org/wiki/Tversky_index)__ (Queued similarity metric)
+* __[Smith-Waterman](http://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm)__ (Queued similarity metric)
 * __[Soundex](http://en.wikipedia.org/wiki/Soundex)__ (Phonetic metric and algorithm)
 * __Weighted Levenshtein__ (Similarity metric)
 
@@ -347,7 +351,7 @@ l222
 ```
 
 ## Decorating
-It is possible to decorate algorithms and metrics with additional functionality. The most common decorations are filters, which are useful for filtering strings prior to evaluation (e.g. ignore case, ignore non-alpha, ignore spaces). __NOTE:__ Memoization decorator on roadmap.
+It is possible to decorate algorithms and metrics with additional functionality. The most common decorations are filters, which are useful for filtering strings prior to evaluation (e.g. ignore case, ignore non-alpha, ignore spaces). __NOTE:__ Memoization decorator queued.
 
 Basic examples with no filtering:
 ```scala
