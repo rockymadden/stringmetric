@@ -20,7 +20,7 @@ class MetaphoneAlgorithm extends StringAlgorithm[String] {
 		}
 	}
 
-	final override def compute(string: String): Option[String] = compute(filter(string.toCharArray)).map(_.mkString)
+	final override def compute(string: String): Option[String] = compute(string.toCharArray).map(_.mkString)
 
 	private[this] def deduplicate(ca: Array[Char]) =
 		if (ca.length <= 1) ca

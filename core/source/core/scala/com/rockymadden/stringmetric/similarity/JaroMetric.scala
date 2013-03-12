@@ -30,7 +30,7 @@ class JaroMetric extends StringMetric[Double] {
 	}
 
 	final override def compare(string1: String, string2: String): Option[Double] =
-		compare(filter(string1.toCharArray), filter(string2.toCharArray))
+		compare(string1.toCharArray, string2.toCharArray)
 
 	private[this] def `match`(ct: CompareTuple[Char]): MatchTuple[Char] = {
 		lazy val window = math.abs((math.max(ct._1.length, ct._2.length) / 2d).floor.toInt - 1)

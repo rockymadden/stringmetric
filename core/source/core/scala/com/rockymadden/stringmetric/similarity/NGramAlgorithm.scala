@@ -17,7 +17,7 @@ class NGramAlgorithm extends ConfigurableStringAlgorithm[Array[String], Int] {
 	}
 
 	final override def compute(string: String)(implicit n: Int): Option[Array[String]] =
-		compute(filter(string.toCharArray))(n).map(_.map(_.mkString))
+		compute(string.toCharArray)(n).map(_.map(_.mkString))
 
 	@tailrec
 	private[this] def sequence(i: Array[Char], o: Array[Array[Char]], n: Int): Array[Array[Char]] = {

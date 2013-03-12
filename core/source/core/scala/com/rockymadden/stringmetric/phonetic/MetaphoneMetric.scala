@@ -21,7 +21,7 @@ class MetaphoneMetric extends StringMetric[Boolean] {
 	}
 
 	final override def compare(string1: String, string2: String): Option[Boolean] =
-		compare(filter(string1.toCharArray), filter(string2.toCharArray))
+		compare(string1.toCharArray, string2.toCharArray)
 }
 
 object MetaphoneMetric {

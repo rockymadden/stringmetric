@@ -31,7 +31,7 @@ class DiceSorensenMetric extends ConfigurableStringMetric[Double, Int] {
 	}
 
 	final override def compare(string1: String, string2: String)(implicit n: Int): Option[Double] =
-		compare(filter(string1.toCharArray), filter(string2.toCharArray))(n: Int)
+		compare(string1.toCharArray, string2.toCharArray)(n: Int)
 
 	private[this] def scoreMatches(mt: MatchTuple[String]) = mt._1.intersect(mt._2).length
 }

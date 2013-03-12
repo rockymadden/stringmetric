@@ -19,7 +19,7 @@ class SoundexAlgorithm extends StringAlgorithm[String] {
 		}
 	}
 
-	final override def compute(string: String): Option[String] = compute(filter(string.toCharArray)).map(_.mkString)
+	final override def compute(string: String): Option[String] = compute(string.toCharArray).map(_.mkString)
 
 	@tailrec
 	private[this] def transcode(i: Array[Char], pc: Char, o: Array[Char]): Array[Char] = {

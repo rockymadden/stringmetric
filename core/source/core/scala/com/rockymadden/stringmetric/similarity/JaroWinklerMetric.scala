@@ -26,7 +26,7 @@ class JaroWinklerMetric extends StringMetric[Double] {
 	}
 
 	final override def compare(string1: String, string2: String): Option[Double] =
-		compare(filter(string1.toCharArray), filter(string2.toCharArray))
+		compare(string1.toCharArray, string2.toCharArray)
 }
 
 object JaroWinklerMetric {

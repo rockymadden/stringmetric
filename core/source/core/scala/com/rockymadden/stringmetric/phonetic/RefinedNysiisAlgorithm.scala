@@ -22,7 +22,7 @@ class RefinedNysiisAlgorithm extends StringAlgorithm[String] {
 		}
 	}
 
-	final override def compute(string: String): Option[String] = compute(filter(string.toCharArray)).map(_.mkString)
+	final override def compute(string: String): Option[String] = compute(string.toCharArray).map(_.mkString)
 
 	private[this] def cleanLast(ca: Array[Char], s: Set[Char]) =
 		if (ca.length == 0) ca
