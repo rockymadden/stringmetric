@@ -181,6 +181,20 @@ Array("abc", "bcd", "cde", "def", "efg", "fgh", "ghi", "hij", "ijk", "jkl", "klm
 
 ---
 
+__Overlap Metric:__ _(Note you must specify the size of the n-gram you wish to use. This can be done implicitly.)_
+```scala
+println(OverlapMetric.compare("night", "nacht")(1))
+println(OverlapMetric.compare("context", "contact")(1))
+```
+
+Output:
+```
+0.6
+0.7142857142857143
+```
+
+---
+
 __Ratcliff/Obershelp Metric:__
 ```scala
 println(RatcliffObershelpMetric.compare("aleksander", "alexandre"))
