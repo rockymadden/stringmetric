@@ -17,12 +17,12 @@ class JaroMetric extends StringMetric[Double] {
 		if (fca1.length == 0 || fca2.length == 0) None
 		else if (fca1.sameElements(fca2)) Some(1d)
 		else {
-			val mt = `match`((fca1, fca2))
-			val ms = scoreMatches((mt._1, mt._2))
+			val mt = `match`(fca1, fca2)
+			val ms = scoreMatches(mt._1, mt._2)
 
 			if (ms == 0) Some(0d)
 			else {
-				val ts = scoreTranspositions((mt._1, mt._2))
+				val ts = scoreTranspositions(mt._1, mt._2)
 
 				Some(((ms.toDouble / fca1.length) + (ms.toDouble / fca2.length) + ((ms.toDouble - ts) / ms)) / 3)
 			}
