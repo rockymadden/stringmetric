@@ -38,7 +38,7 @@ object diceSorensenMetric extends Command {
 			tab + "-h, --help" + ls +
 			tab + tab + "Outputs description, syntax, and options." +
 			tab + "--n" + ls +
-			tab + tab + "The n, traditionally 2."
+			tab + tab + "The n-gram size, traditionally 2."
 		)
 	}
 

@@ -14,6 +14,9 @@ object ConfigurableStringMetric {
 	type NGramMetric = com.rockymadden.stringmetric.similarity.NGramMetric
 	val NGramMetric = com.rockymadden.stringmetric.similarity.NGramMetric
 
+	type OverlapMetric = com.rockymadden.stringmetric.similarity.OverlapMetric
+	val OverlapMetric = com.rockymadden.stringmetric.similarity.OverlapMetric
+
 	type WeightedLevenshteinMetric = com.rockymadden.stringmetric.similarity.WeightedLevenshteinMetric
 	val WeightedLevenshteinMetric = com.rockymadden.stringmetric.similarity.WeightedLevenshteinMetric
 
@@ -32,6 +35,11 @@ object ConfigurableStringMetric {
 		NGramMetric.compare(charArray1, charArray2)(n)
 
 	def compareWithNGram(string1: String, string2: String)(n: Int) = NGramMetric.compare(string1, string2)(n)
+
+	def compareWithOverlap(charArray1: Array[Char], charArray2: Array[Char])(n: Int) =
+		OverlapMetric.compare(charArray1, charArray2)(n)
+
+	def compareWithOverlap(string1: String, string2: String)(n: Int) = OverlapMetric.compare(string1, string2)(n)
 
 	def compareWithWeightedLevenshtein(charArray1: Array[Char], charArray2: Array[Char])
 		(options: (BigDecimal, BigDecimal, BigDecimal)) =

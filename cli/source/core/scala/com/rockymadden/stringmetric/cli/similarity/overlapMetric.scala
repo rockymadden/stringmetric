@@ -1,13 +1,13 @@
 package com.rockymadden.stringmetric.cli.similarity
 
 import com.rockymadden.stringmetric.cli._
-import com.rockymadden.stringmetric.similarity.JaccardMetric
+import com.rockymadden.stringmetric.similarity.OverlapMetric
 
 /**
- * The jaccardMetric [[com.rockymadden.stringmetric.cli.Command]]. Compares the similarity of two strings using the
- * Jaccard coefficient.
+ * The overlapMetric [[com.rockymadden.stringmetric.cli.Command]]. Compares the similarity of two strings using the
+ * overlap coefficient.
  */
-object jaccardMetric extends Command {
+object overlapMetric extends Command {
 	override def main(args: Array[String]): Unit = {
 		val options = OptionMap(args)
 
@@ -31,9 +31,9 @@ object jaccardMetric extends Command {
 		val tab = "  "
 
 		println(
-			"Compares the similarity of two strings using the Jaccard coefficient." + ls + ls +
+			"Compares the similarity of two strings using the overlap coefficient." + ls + ls +
 			"Syntax:" + ls +
-			tab + "jaccardMetric [Options] string1 string2..." + ls + ls +
+			tab + "overlapMetric [Options] string1 string2..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
 			tab + tab + "Outputs description, syntax, and options." +
@@ -46,6 +46,6 @@ object jaccardMetric extends Command {
 		val strings: OptionMapArray = options('dashless)
 		val n: OptionMapInt = options('n)
 
-		println(JaccardMetric.compare(strings(0), strings(1))(n).getOrElse("not comparable"))
+		println(OverlapMetric.compare(strings(0), strings(1))(n).getOrElse("not comparable"))
 	}
 }
