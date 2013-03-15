@@ -13,9 +13,6 @@ object StringFilter {
 	type AsciiControlOnly = com.rockymadden.stringmetric.filter.AsciiControlOnlyStringFilter
 	lazy val asciiControlOnly = new StringFilterDelegate with AsciiControlOnly
 
-	type AsciiLetterCase = com.rockymadden.stringmetric.filter.AsciiLetterCaseStringFilter
-	lazy val asciiLetterCase = new StringFilterDelegate with AsciiLetterCase
-
 	type AsciiLetterNumber = com.rockymadden.stringmetric.filter.AsciiLetterNumberStringFilter
 	lazy val asciiLetterNumber = new StringFilterDelegate with AsciiLetterNumber
 
@@ -34,12 +31,15 @@ object StringFilter {
 	type AsciiNumberOnly = com.rockymadden.stringmetric.filter.AsciiNumberOnlyStringFilter
 	lazy val asciiNumberOnly = new StringFilterDelegate with AsciiNumberOnly
 
-	type AsciiSpace = com.rockymadden.stringmetric.filter.AsciiSpaceStringFilter
-	lazy val asciiSpace = new StringFilterDelegate with AsciiSpace
-
 	type AsciiSymbol = com.rockymadden.stringmetric.filter.AsciiSymbolStringFilter
 	lazy val asciiSymbol = new StringFilterDelegate with AsciiSymbol
 
 	type AsciiSymbolOnly = com.rockymadden.stringmetric.filter.AsciiSymbolOnlyStringFilter
 	lazy val asciiSymbolOnly = new StringFilterDelegate with AsciiSymbolOnly
+
+	type IgnoreAsciiLetterCase = com.rockymadden.stringmetric.filter.IgnoreAsciiLetterCaseStringFilter
+	lazy val asciiLetterCase = new StringFilterDelegate with IgnoreAsciiLetterCase
+
+	type IgnoreAsciiSpace = com.rockymadden.stringmetric.filter.IgnoreAsciiSpaceStringFilter
+	lazy val asciiSpace = new StringFilterDelegate with IgnoreAsciiSpace
 }

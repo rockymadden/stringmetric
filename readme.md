@@ -378,14 +378,14 @@ JaroWinklerMetric().compare("string1", "string2")
 
 Basic example with single filter:
 ```scala
-(new JaroWinklerMetric with AsciiLetterCaseStringFilter).compare("string1", "string2")
+(new JaroWinklerMetric with IgnoreAsciiLetterCaseStringFilter).compare("string1", "string2")
 ```
 
 ---
 
-Basic example with stacked filter. Filters are applied in reverse order:
+Basic example with stacked filters. Filters are applied in reverse order:
 ```scala
-(new JaroWinklerMetric with AsciiLetterCaseStringFilter with AsciiLetterOnlyStringFilter).compare("string1", "string2")
+(new JaroWinklerMetric with IgnoreAsciiLetterCaseStringFilter with AsciiLetterOnlyStringFilter).compare("string1", "string2")
 ```
 
 ## Convenience objects
@@ -416,8 +416,8 @@ val jaro: StringMetric.Jaro = StringMetric.Jaro()
 __StringFilter:__
 ```scala
 // Easy access to types and instances.
-val metaphone: StringAlgorithm.Metaphone = StringAlgorithm.Metaphone() with StringFilter.asciiControl
-val asciiSpace: StringFilter.AsciiSpace = StringFilter.asciiControl
+val metaphone: StringAlgorithm.Metaphone = StringAlgorithm.Metaphone() with StringFilter.ignoreAsciiSpace
+val ignoreAsciiSpace: StringFilter.IgnoreAsciiSpace = StringFilter.ignoreAsciiSpace
 ```
 
 ---
