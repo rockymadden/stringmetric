@@ -7,39 +7,39 @@ trait StringFilter extends Filter[String] with StringFilterable {
 }
 
 object StringFilter {
-	type AsciiControlStringFilter = com.rockymadden.stringmetric.filter.AsciiControlStringFilter
-	lazy val asciiControl = new StringFilterDelegate with AsciiControlStringFilter
+	type AsciiControl = com.rockymadden.stringmetric.filter.AsciiControlStringFilter
+	lazy val asciiControl = new StringFilterDelegate with AsciiControl
 
-	type AsciiControlOnlyStringFilter = com.rockymadden.stringmetric.filter.AsciiControlOnlyStringFilter
-	lazy val asciiControlOnly = new StringFilterDelegate with AsciiControlOnlyStringFilter
+	type AsciiControlOnly = com.rockymadden.stringmetric.filter.AsciiControlOnlyStringFilter
+	lazy val asciiControlOnly = new StringFilterDelegate with AsciiControlOnly
 
-	type AsciiLetterCaseStringFilter = com.rockymadden.stringmetric.filter.AsciiLetterCaseStringFilter
-	lazy val asciiLetterCase = new StringFilterDelegate with AsciiLetterCaseStringFilter
+	type AsciiLetterCase = com.rockymadden.stringmetric.filter.AsciiLetterCaseStringFilter
+	lazy val asciiLetterCase = new StringFilterDelegate with AsciiLetterCase
 
-	type AsciiLetterNumberStringFilter = com.rockymadden.stringmetric.filter.AsciiLetterNumberStringFilter
-	lazy val asciiLetterNumber = new StringFilterDelegate with AsciiLetterNumberStringFilter
+	type AsciiLetterNumber = com.rockymadden.stringmetric.filter.AsciiLetterNumberStringFilter
+	lazy val asciiLetterNumber = new StringFilterDelegate with AsciiLetterNumber
 
-	type AsciiLetterNumberOnlyStringFilter = com.rockymadden.stringmetric.filter.AsciiLetterNumberOnlyStringFilter
-	lazy val asciiLetterNumberOnly = new StringFilterDelegate with AsciiLetterNumberOnlyStringFilter
+	type AsciiLetterNumberOnly = com.rockymadden.stringmetric.filter.AsciiLetterNumberOnlyStringFilter
+	lazy val asciiLetterNumberOnly = new StringFilterDelegate with AsciiLetterNumberOnly
 
-	type AsciiLetterStringFilter = com.rockymadden.stringmetric.filter.AsciiLetterStringFilter
-	lazy val asciiLetter = new StringFilterDelegate with AsciiLetterStringFilter
+	type AsciiLetter = com.rockymadden.stringmetric.filter.AsciiLetterStringFilter
+	lazy val asciiLetter = new StringFilterDelegate with AsciiLetter
 
-	type AsciiLetterOnlyStringFilter = com.rockymadden.stringmetric.filter.AsciiLetterOnlyStringFilter
-	lazy val asciiLetterOnly = new StringFilterDelegate with AsciiLetterOnlyStringFilter
+	type AsciiLetterOnly = com.rockymadden.stringmetric.filter.AsciiLetterOnlyStringFilter
+	lazy val asciiLetterOnly = new StringFilterDelegate with AsciiLetterOnly
 
-	type AsciiNumberStringFilter = com.rockymadden.stringmetric.filter.AsciiNumberStringFilter
-	lazy val asciiNumber = new StringFilterDelegate with AsciiNumberStringFilter
+	type AsciiNumber = com.rockymadden.stringmetric.filter.AsciiNumberStringFilter
+	lazy val asciiNumber = new StringFilterDelegate with AsciiNumber
 
-	type AsciiNumberOnlyStringFilter = com.rockymadden.stringmetric.filter.AsciiNumberOnlyStringFilter
-	lazy val asciiNumberOnly = new StringFilterDelegate with AsciiNumberOnlyStringFilter
+	type AsciiNumberOnly = com.rockymadden.stringmetric.filter.AsciiNumberOnlyStringFilter
+	lazy val asciiNumberOnly = new StringFilterDelegate with AsciiNumberOnly
 
-	type AsciiSpaceStringFilter = com.rockymadden.stringmetric.filter.AsciiSpaceStringFilter
-	lazy val asciiSpace = new StringFilterDelegate with AsciiSpaceStringFilter
+	type AsciiSpace = com.rockymadden.stringmetric.filter.AsciiSpaceStringFilter
+	lazy val asciiSpace = new StringFilterDelegate with AsciiSpace
 
-	type AsciiSymbolStringFilter = com.rockymadden.stringmetric.filter.AsciiSymbolStringFilter
-	lazy val asciiSymbol = new StringFilterDelegate with AsciiSymbolStringFilter
+	type AsciiSymbol = com.rockymadden.stringmetric.filter.AsciiSymbolStringFilter
+	lazy val asciiSymbol = new StringFilterDelegate with AsciiSymbol
 
-	type AsciiSymbolOnlyStringFilter = com.rockymadden.stringmetric.filter.AsciiSymbolOnlyStringFilter
-	lazy val asciiSymbolOnly = new StringFilterDelegate with AsciiSymbolOnlyStringFilter
+	type AsciiSymbolOnly = com.rockymadden.stringmetric.filter.AsciiSymbolOnlyStringFilter
+	lazy val asciiSymbolOnly = new StringFilterDelegate with AsciiSymbolOnly
 }

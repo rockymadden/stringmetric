@@ -5,49 +5,48 @@ trait ConfigurableStringMetric[R, O] extends ConfigurableMetric[String, R, O] {
 }
 
 object ConfigurableStringMetric {
-	type DiceSorensenMetric = com.rockymadden.stringmetric.similarity.DiceSorensenMetric
-	val DiceSorensenMetric = com.rockymadden.stringmetric.similarity.DiceSorensenMetric
+	type DiceSorensen = com.rockymadden.stringmetric.similarity.DiceSorensenMetric
+	val DiceSorensen = com.rockymadden.stringmetric.similarity.DiceSorensenMetric
 
-	type JaccardMetric = com.rockymadden.stringmetric.similarity.JaccardMetric
-	val JaccardMetric = com.rockymadden.stringmetric.similarity.JaccardMetric
+	type Jaccard = com.rockymadden.stringmetric.similarity.JaccardMetric
+	val Jaccard = com.rockymadden.stringmetric.similarity.JaccardMetric
 
-	type NGramMetric = com.rockymadden.stringmetric.similarity.NGramMetric
-	val NGramMetric = com.rockymadden.stringmetric.similarity.NGramMetric
+	type NGram = com.rockymadden.stringmetric.similarity.NGramMetric
+	val NGram = com.rockymadden.stringmetric.similarity.NGramMetric
 
-	type OverlapMetric = com.rockymadden.stringmetric.similarity.OverlapMetric
-	val OverlapMetric = com.rockymadden.stringmetric.similarity.OverlapMetric
+	type Overlap = com.rockymadden.stringmetric.similarity.OverlapMetric
+	val Overlap = com.rockymadden.stringmetric.similarity.OverlapMetric
 
-	type WeightedLevenshteinMetric = com.rockymadden.stringmetric.similarity.WeightedLevenshteinMetric
-	val WeightedLevenshteinMetric = com.rockymadden.stringmetric.similarity.WeightedLevenshteinMetric
+	type WeightedLevenshtein = com.rockymadden.stringmetric.similarity.WeightedLevenshteinMetric
+	val WeightedLevenshtein = com.rockymadden.stringmetric.similarity.WeightedLevenshteinMetric
 
 	def compareWithDiceSorensen(charArray1: Array[Char], charArray2: Array[Char])(n: Int) =
-		DiceSorensenMetric.compare(charArray1, charArray2)(n)
+		DiceSorensen.compare(charArray1, charArray2)(n)
 
-	def compareWithDiceSorensen(string1: String, string2: String)(n: Int) =
-		DiceSorensenMetric.compare(string1, string2)(n)
+	def compareWithDiceSorensen(string1: String, string2: String)(n: Int) = DiceSorensen.compare(string1, string2)(n)
 
 	def compareWithJaccard(charArray1: Array[Char], charArray2: Array[Char])(n: Int) =
-		JaccardMetric.compare(charArray1, charArray2)(n)
+		Jaccard.compare(charArray1, charArray2)(n)
 
-	def compareWithJaccard(string1: String, string2: String)(n: Int) = JaccardMetric.compare(string1, string2)(n)
+	def compareWithJaccard(string1: String, string2: String)(n: Int) = Jaccard.compare(string1, string2)(n)
 
 	def compareWithNGram(charArray1: Array[Char], charArray2: Array[Char])(n: Int) =
-		NGramMetric.compare(charArray1, charArray2)(n)
+		NGram.compare(charArray1, charArray2)(n)
 
-	def compareWithNGram(string1: String, string2: String)(n: Int) = NGramMetric.compare(string1, string2)(n)
+	def compareWithNGram(string1: String, string2: String)(n: Int) = NGram.compare(string1, string2)(n)
 
 	def compareWithOverlap(charArray1: Array[Char], charArray2: Array[Char])(n: Int) =
-		OverlapMetric.compare(charArray1, charArray2)(n)
+		Overlap.compare(charArray1, charArray2)(n)
 
-	def compareWithOverlap(string1: String, string2: String)(n: Int) = OverlapMetric.compare(string1, string2)(n)
+	def compareWithOverlap(string1: String, string2: String)(n: Int) = Overlap.compare(string1, string2)(n)
 
 	def compareWithWeightedLevenshtein(charArray1: Array[Char], charArray2: Array[Char])
 		(options: (BigDecimal, BigDecimal, BigDecimal)) =
 
-		WeightedLevenshteinMetric.compare(charArray1, charArray2)(options)
+		WeightedLevenshtein.compare(charArray1, charArray2)(options)
 
 	def compareWithWeightedLevenshtein(string1: String, string2: String)
 		(options: (BigDecimal, BigDecimal, BigDecimal)) =
 
-		WeightedLevenshteinMetric.compare(string1, string2)(options)
+		WeightedLevenshtein.compare(string1, string2)(options)
 }

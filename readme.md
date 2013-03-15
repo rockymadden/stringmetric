@@ -397,7 +397,7 @@ __StringAlgorithm:__
 StringAlgorithm.computeWithMetaphone("string")
 
 // Easy access to types and companion objects.
-val metaphone: StringAlgorithm.MetaphoneAlgorithm = StringAlgorithm.MetaphoneAlgorithm()
+val metaphone: StringAlgorithm.Metaphone = StringAlgorithm.Metaphone()
 ```
 
 ---
@@ -408,7 +408,7 @@ __StringMetric:__
 StringMetric.compareWithJaroWinkler("string1", "string2")
 
 // Easy access to types and companion objects.
-val jaro: StringMetric.JaroMetric = StringMetric.JaroMetric()
+val jaro: StringMetric.Jaro = StringMetric.Jaro()
 ```
 
 ---
@@ -416,8 +416,8 @@ val jaro: StringMetric.JaroMetric = StringMetric.JaroMetric()
 __StringFilter:__
 ```scala
 // Easy access to types and instances.
-val metaphone: StringAlgorithm.MetaphoneAlgorithm = StringAlgorithm.MetaphoneAlgorithm() with StringFilter.asciiControl
-val asciiSpace: StringFilter.AsciiSpaceStringFilter = StringFilter.asciiControl
+val metaphone: StringAlgorithm.Metaphone = StringAlgorithm.Metaphone() with StringFilter.asciiControl
+val asciiSpace: StringFilter.AsciiSpace = StringFilter.asciiControl
 ```
 
 ---
@@ -428,7 +428,7 @@ __ConfigurableStringAlgorithm:__
 ConfigurableStringAlgorithm.computeWithNGram("string")(2)
 
 // Easy access to types and companion objects.
-val nGram: ConfigurableStringAlgorithm.NGramAlgorithm: = ConfigurableStringAlgorithm.NGramAlgorithm()
+val nGram: ConfigurableStringAlgorithm.NGram: = ConfigurableStringAlgorithm.NGram()
 ```
 
 ---
@@ -439,7 +439,7 @@ __ConfigurableStringMetric:__
 ConfigurableStringMetric.compareWithDiceSorensen("string1", "string2")(2)
 
 // Easy access to types and companion objects.
-val diceSorensen: ConfigurableStringMetric.DiceSorensenMetric = ConfigurableStringMetric.DiceSorensenMetric()
+val diceSorensen: ConfigurableStringMetric.DiceSorensen = ConfigurableStringMetric.DiceSorensen()
 ```
 
 ## Command line interfaces

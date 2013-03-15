@@ -5,10 +5,10 @@ trait ConfigurableStringAlgorithm[R, O] extends ConfigurableAlgorithm[String, R,
 }
 
 object ConfigurableStringAlgorithm {
-	type NGramAlgorithm = com.rockymadden.stringmetric.similarity.NGramAlgorithm
-	val NGramAlgorithm = com.rockymadden.stringmetric.similarity.NGramAlgorithm
+	type NGram = com.rockymadden.stringmetric.similarity.NGramAlgorithm
+	val NGram = com.rockymadden.stringmetric.similarity.NGramAlgorithm
 
-	def computeWithNGram(charArray: Array[Char])(n: Int) = NGramAlgorithm.compute(charArray)(n)
+	def computeWithNGram(charArray: Array[Char])(n: Int) = NGram.compute(charArray)(n)
 
-	def computeWithNGram(string: String)(n: Int) = NGramAlgorithm.compute(string)(n)
+	def computeWithNGram(string: String)(n: Int) = NGram.compute(string)(n)
 }

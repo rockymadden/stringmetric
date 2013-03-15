@@ -5,38 +5,38 @@ trait StringAlgorithm[R] extends Algorithm[String, R] {
 }
 
 object StringAlgorithm {
-	type MetaphoneAlgorithm = com.rockymadden.stringmetric.phonetic.MetaphoneAlgorithm
-	val MetaphoneAlgorithm = com.rockymadden.stringmetric.phonetic.MetaphoneAlgorithm
+	type Metaphone = com.rockymadden.stringmetric.phonetic.MetaphoneAlgorithm
+	val Metaphone = com.rockymadden.stringmetric.phonetic.MetaphoneAlgorithm
 
-	type NysiisAlgorithm = com.rockymadden.stringmetric.phonetic.NysiisAlgorithm
-	val NysiisAlgorithm = com.rockymadden.stringmetric.phonetic.NysiisAlgorithm
+	type Nysiis = com.rockymadden.stringmetric.phonetic.NysiisAlgorithm
+	val Nysiis = com.rockymadden.stringmetric.phonetic.NysiisAlgorithm
 
-	type RefinedNysiisAlgorithm = com.rockymadden.stringmetric.phonetic.RefinedNysiisAlgorithm
-	val RefinedNysiisAlgorithm = com.rockymadden.stringmetric.phonetic.RefinedNysiisAlgorithm
+	type RefinedNysiis = com.rockymadden.stringmetric.phonetic.RefinedNysiisAlgorithm
+	val RefinedNysiis = com.rockymadden.stringmetric.phonetic.RefinedNysiisAlgorithm
 
-	type RefinedSoundexAlgorithm = com.rockymadden.stringmetric.phonetic.RefinedSoundexAlgorithm
-	val RefinedSoundexAlgorithm = com.rockymadden.stringmetric.phonetic.RefinedSoundexAlgorithm
+	type RefinedSoundex = com.rockymadden.stringmetric.phonetic.RefinedSoundexAlgorithm
+	val RefinedSoundex = com.rockymadden.stringmetric.phonetic.RefinedSoundexAlgorithm
 
-	type SoundexAlgorithm = com.rockymadden.stringmetric.phonetic.SoundexAlgorithm
-	val SoundexAlgorithm = com.rockymadden.stringmetric.phonetic.SoundexAlgorithm
+	type Soundex = com.rockymadden.stringmetric.phonetic.SoundexAlgorithm
+	val Soundex = com.rockymadden.stringmetric.phonetic.SoundexAlgorithm
 
-	def computeWithMetaphone(charArray: Array[Char]) = MetaphoneAlgorithm.compute(charArray)
+	def computeWithMetaphone(charArray: Array[Char]) = Metaphone.compute(charArray)
 
-	def computeWithMetaphone(string: String) = MetaphoneAlgorithm.compute(string)
+	def computeWithMetaphone(string: String) = Metaphone.compute(string)
 
-	def computeWithNysiis(charArray: Array[Char]) = NysiisAlgorithm.compute(charArray)
+	def computeWithNysiis(charArray: Array[Char]) = Nysiis.compute(charArray)
 
-	def computeWithNysiis(string: String) = NysiisAlgorithm.compute(string)
+	def computeWithNysiis(string: String) = Nysiis.compute(string)
 
-	def computeWithRefinedNysiis(charArray: Array[Char]) = RefinedNysiisAlgorithm.compute(charArray)
+	def computeWithRefinedNysiis(charArray: Array[Char]) = RefinedNysiis.compute(charArray)
 
-	def computeWithRefinedNysiis(string: String) = RefinedNysiisAlgorithm.compute(string)
+	def computeWithRefinedNysiis(string: String) = RefinedNysiis.compute(string)
 
-	def computeWithRefinedSoundex(charArray: Array[Char]) = RefinedSoundexAlgorithm.compute(charArray)
+	def computeWithRefinedSoundex(charArray: Array[Char]) = RefinedSoundex.compute(charArray)
 
-	def computeWithRefinedSoundex(string: String) = RefinedSoundexAlgorithm.compute(string)
+	def computeWithRefinedSoundex(string: String) = RefinedSoundex.compute(string)
 
-	def computeWithSoundex(charArray: Array[Char]) = SoundexAlgorithm.compute(charArray)
+	def computeWithSoundex(charArray: Array[Char]) = Soundex.compute(charArray)
 
-	def computeWithSoundex(string: String) = SoundexAlgorithm.compute(string)
+	def computeWithSoundex(string: String) = Soundex.compute(string)
 }
