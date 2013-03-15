@@ -416,8 +416,8 @@ val jaro: StringMetric.Jaro = StringMetric.Jaro()
 __StringFilter:__
 ```scala
 // Easy access to types and instances.
-val metaphone: StringAlgorithm.Metaphone = StringAlgorithm.Metaphone() with StringFilter.ignoreAsciiSpace
-val ignoreAsciiSpace: StringFilter.IgnoreAsciiSpace = StringFilter.ignoreAsciiSpace
+val metaphone: StringAlgorithm.Metaphone = StringAlgorithm.Metaphone() with StringFilter.asciiSpace
+val asciiSpace: StringFilter.AsciiSpace = StringFilter.asciiSpace
 ```
 
 ---
