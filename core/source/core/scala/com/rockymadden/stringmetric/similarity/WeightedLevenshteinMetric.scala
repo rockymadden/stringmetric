@@ -35,14 +35,13 @@ class WeightedLevenshteinMetric
 		for (c <- 0 to ct._2.length) m(0)(c) = w._2 * c
 
 		for (r <- 1 to ct._1.length; c <- 1 to ct._2.length) {
-			m(r)(c) = {
+			m(r)(c) =
 				if (ct._1(r - 1) == ct._2(c - 1)) m(r - 1)(c - 1)
 				else (m(r - 1)(c) + w._1).min( // Delete (left).
 					(m(r)(c - 1) + w._2).min( // Insert (up).
 						m(r - 1)(c - 1) + w._3 // Substitute (left-up).
 					)
 				)
-			}
 		}
 
 		m(ct._1.length)(ct._2.length)

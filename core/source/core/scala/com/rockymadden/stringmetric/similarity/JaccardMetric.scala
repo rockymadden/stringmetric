@@ -17,7 +17,7 @@ class JaccardMetric extends ConfigurableStringMetric[Double, Int] { this: String
 
 			nGramAlgorithm.compute(fca1)(n).flatMap { ca1bg =>
 				nGramAlgorithm.compute(fca2)(n).map { ca2bg =>
-					val ms = scoreMatches((ca1bg.map(_.mkString), ca2bg.map(_.mkString)))
+					val ms = scoreMatches(ca1bg.map(_.mkString), ca2bg.map(_.mkString))
 
 					ms.toDouble / (ca1bg.length + ca2bg.length)
 				}

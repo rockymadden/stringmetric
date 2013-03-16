@@ -25,7 +25,7 @@ class LevenshteinMetric extends StringMetric[Int] { this: StringFilter =>
 				case (0, c) => c
 				case (r, c) if m(r)(c) != -1 => m(r)(c)
 				case (r, c) => {
-					val min = {
+					val min =
 						if (ct._1(r - 1) == ct._2(c - 1)) distance(r - 1, c - 1)
 						else math.min(
 							math.min(
@@ -34,7 +34,6 @@ class LevenshteinMetric extends StringMetric[Int] { this: StringFilter =>
 							),
 							distance(r - 1, c - 1) + 1 // Substitute (left-up).
 						)
-					}
 
 					m(r)(c) = min
 					min
