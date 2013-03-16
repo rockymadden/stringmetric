@@ -4,9 +4,7 @@ import com.rockymadden.stringmetric.{ StringFilter, StringMetric }
 import com.rockymadden.stringmetric.phonetic.Alphabet.Alpha
 
 /** An implementation of the NYSIIS metric. */
-class NysiisMetric extends StringMetric[Boolean] {
-	this: StringFilter =>
-
+class NysiisMetric extends StringMetric[Boolean] { this: StringFilter =>
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] = {
 		val unequal = (c1: Char, c2: Char) => {
 			val lc1 = c1.toLower

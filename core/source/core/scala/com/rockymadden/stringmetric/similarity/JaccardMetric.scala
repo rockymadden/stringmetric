@@ -3,9 +3,7 @@ package com.rockymadden.stringmetric.similarity
 import com.rockymadden.stringmetric.{ ConfigurableStringMetric, MatchTuple, StringFilter }
 
 /* An implementation of the Jaccard metric. */
-class JaccardMetric extends ConfigurableStringMetric[Double, Int] {
-	this: StringFilter =>
-
+class JaccardMetric extends ConfigurableStringMetric[Double, Int] { this: StringFilter =>
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit n: Int): Option[Double] = {
 		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
 

@@ -5,9 +5,7 @@ import com.rockymadden.stringmetric.phonetic.Alphabet.{ Alpha, LowercaseVowel }
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the refined NYSIIS algorithm. */
-class RefinedNysiisAlgorithm extends StringAlgorithm[String] {
-	this: StringFilter =>
-
+class RefinedNysiisAlgorithm extends StringAlgorithm[String] { this: StringFilter =>
 	final override def compute(charArray: Array[Char]): Option[Array[Char]] = {
 		val fca = filter(charArray)
 

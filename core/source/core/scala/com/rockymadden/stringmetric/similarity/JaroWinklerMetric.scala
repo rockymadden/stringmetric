@@ -7,9 +7,7 @@ import com.rockymadden.stringmetric.{ StringFilter, StringMetric }
  * matched in string2, it cannot be matched upon again. This results in a more penalized distance in these scenarios
  * (e.g. comparing henka and henkan distance is 0.9666 versus the typical 0.9722).
  */
-class JaroWinklerMetric extends StringMetric[Double] {
-	this: StringFilter =>
-
+class JaroWinklerMetric extends StringMetric[Double] { this: StringFilter =>
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Double] = {
 		val fca1 = filter(charArray1)
 		val fca2 = filter(charArray2)

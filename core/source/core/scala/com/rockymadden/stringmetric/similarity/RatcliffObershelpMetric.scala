@@ -3,9 +3,7 @@ package com.rockymadden.stringmetric.similarity
 import com.rockymadden.stringmetric.{ CompareTuple, StringFilter, StringMetric }
 
 /** An implementation of the Ratcliff/Obershelp metric. */
-class RatcliffObershelpMetric extends StringMetric[Double] {
-	this: StringFilter =>
-
+class RatcliffObershelpMetric extends StringMetric[Double] { this: StringFilter =>
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Double] = {
 		val fca1 = filter(charArray1)
 		lazy val fca2 = filter(charArray2)

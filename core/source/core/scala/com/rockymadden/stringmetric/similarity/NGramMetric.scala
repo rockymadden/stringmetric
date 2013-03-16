@@ -4,9 +4,7 @@ import com.rockymadden.stringmetric.{ ConfigurableStringMetric, MatchTuple, Stri
 import scala.math
 
 /** An implementation of the N-Gram metric. */
-class NGramMetric extends ConfigurableStringMetric[Double, Int] {
-	this: StringFilter =>
-
+class NGramMetric extends ConfigurableStringMetric[Double, Int] { this: StringFilter =>
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit n: Int): Option[Double] = {
 		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
 

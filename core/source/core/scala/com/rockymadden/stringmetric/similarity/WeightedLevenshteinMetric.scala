@@ -5,9 +5,7 @@ import scala.math.BigDecimal
 
 /** An implementation of a weighted Levenshtein metric. */
 class WeightedLevenshteinMetric
-	extends ConfigurableStringMetric[Double, (BigDecimal, BigDecimal, BigDecimal)] {
-
-	this: StringFilter =>
+	extends ConfigurableStringMetric[Double, (BigDecimal, BigDecimal, BigDecimal)] { this: StringFilter =>
 
 	/** Options order is delete, insert, then substitute weight. */
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char])
