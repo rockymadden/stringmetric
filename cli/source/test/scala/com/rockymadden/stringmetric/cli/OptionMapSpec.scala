@@ -10,73 +10,73 @@ final class OptionMapSpec extends ScalaTest {
 		"apply method" when passed {
 			"single valid double dashed option" should returns {
 				"populated Map" in {
-					val options = OptionMap("--help")
+					val opts: OptionMap = Array("--help")
 
-					options('help) should equal ("")
+					(opts('help): String) should equal ("")
 				}
 			}
-			"multiple valid double dashed options" should returns {
+			"multiple valid double dashed opts" should returns {
 				"populated Map" in {
-					val options = OptionMap("--help", "--test=test")
+					val opts: OptionMap = Array("--help", "--test=test")
 
-					options('help) should equal ("")
-					options('test) should equal ("test")
+					(opts('help): String) should equal ("")
+					(opts('test): String) should equal ("test")
 				}
 			}
-			"invalid double dashed options" should returns {
+			"invalid double dashed opts" should returns {
 				"empty Map" in {
-					val options = OptionMap("--help#", "--test%=test")
+					val opts: OptionMap = Array("--help#", "--test%=test")
 
-					options.keysIterator.length should be (0)
+					opts.keysIterator.length should be (0)
 				}
 			}
 			"single valid single dashed option" should returns {
 				"populated Map" in {
-					val options = OptionMap("-h")
+					val opts: OptionMap = Array("-h")
 
-					options('h) should equal ("")
+					(opts('h): String) should equal ("")
 				}
 			}
-			"multiple valid single dashed options" should returns {
+			"multiple valid single dashed opts" should returns {
 				"populated Map" in {
-					val options = OptionMap("-h", "-i")
+					val opts: OptionMap = Array("-h", "-i")
 
-					options('h) should equal ("")
-					options('i) should equal ("")
+					(opts('h): String) should equal ("")
+					(opts('i): String) should equal ("")
 				}
 			}
-			"invalid single dashed options" should returns {
+			"invalid single dashed opts" should returns {
 				"empty Map" in {
-					val options = OptionMap("-h-i", "-i#gloo")
+					val opts: OptionMap = Array("-h-i", "-i#gloo")
 
-					options.keysIterator.length should be (0)
+					opts.keysIterator.length should be (0)
 				}
 			}
 			"single nameless option" should returns {
 				"single key populated Map" in {
-					val options = OptionMap("filename0")
+					val opts: OptionMap = Array("filename0")
 
-					options('dashless).count(_ == ' ') should be (0)
+					(opts('dashless): String).count(_ == ' ') should be (0)
 				}
 			}
-			"multiple single nameless options" should returns {
+			"multiple single nameless opts" should returns {
 				"single key populated Map" in {
-					val options = OptionMap("filename0", "filename1", "filename2")
+					val opts: OptionMap = Array("filename0", "filename1", "filename2")
 
-					options('dashless).count(_ == ' ') should be (2)
+					(opts('dashless): String).count(_ == ' ') should be (2)
 				}
 			}
-			"mixed options" should returns {
+			"mixed opts" should returns {
 				"populated Map" in {
-					val options = OptionMap(
+					val opts: OptionMap = Array(
 						"-q", "--help", "--test=test", "-go", "filename0", "filename1", "filename2"
 					)
 
-					options('q) should equal ("")
-					options('help) should equal ("")
-					options('test) should equal ("test")
-					options('go) should equal ("")
-					options('dashless).count(_ == ' ') should be (2)
+					(opts('q): String) should equal ("")
+					(opts('help): String) should equal ("")
+					(opts('test): String) should equal ("test")
+					(opts('go): String) should equal ("")
+					(opts('dashless): String).count(_ == ' ') should be (2)
 				}
 			}
 		}

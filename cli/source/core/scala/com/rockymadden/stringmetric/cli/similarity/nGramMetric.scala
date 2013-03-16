@@ -9,21 +9,19 @@ import com.rockymadden.stringmetric.similarity.NGramMetric
  */
 object nGramMetric extends Command {
 	override def main(args: Array[String]): Unit = {
-		val options = OptionMap(args)
+		val options: OptionMap = args
 
 		try
 			if (options.contains('h) || options.contains('help)) {
 				help()
 				exit(options)
-			} else if (options.contains('dashless) && (options('dashless): OptionMapArray).length == 2
-				&& options.contains('n) && (options('n): OptionMapInt) >= 1) {
+			} else if (options.contains('dashless) && (options('dashless): Array[String]).length == 2
+				&& options.contains('n) && (options('n): Int) >= 1) {
 
 				execute(options)
 				exit(options)
 			} else throw new IllegalArgumentException("Expected valid syntax. See --help.")
-		catch {
-			case e: Throwable => error(e, options)
-		}
+		catch { case e: Throwable => error(e, options) }
 	}
 
 	override def help(): Unit = {
@@ -43,8 +41,8 @@ object nGramMetric extends Command {
 	}
 
 	override def execute(options: OptionMap): Unit = {
-		val strings: OptionMapArray = options('dashless)
-		val n: OptionMapInt = options('n)
+		val strings: Array[String] = options('dashless)
+		val n: Int = options('n)
 
 		println(NGramMetric.compare(strings(0), strings(1))(n).getOrElse("not comparable"))
 	}

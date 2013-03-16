@@ -11,23 +11,21 @@ import scala.math.BigDecimal
  */
 object weightedLevenshteinMetric extends Command {
 	override def main(args: Array[String]): Unit = {
-		val options = OptionMap(args)
+		val opts: OptionMap = args
 
 		try
-			if (options.contains('h) || options.contains('help)) {
+			if (opts.contains('h) || opts.contains('help)) {
 				help()
-				exit(options)
-			} else if (options.contains('dashless) && (options('dashless): OptionMapArray).length == 2
-				&& options.contains('deleteWeight) && (options('deleteWeight): OptionMapDouble) >= 0
-				&& options.contains('insertWeight) && (options('insertWeight): OptionMapDouble) >= 0
-				&& options.contains('substituteWeight) && (options('substituteWeight): OptionMapDouble) >= 0) {
+				exit(opts)
+			} else if (opts.contains('dashless) && (opts('dashless): Array[String]).length == 2
+				&& opts.contains('deleteWeight) && (opts('deleteWeight): Double) >= 0
+				&& opts.contains('insertWeight) && (opts('insertWeight): Double) >= 0
+				&& opts.contains('substituteWeight) && (opts('substituteWeight): Double) >= 0) {
 
-				execute(options)
-				exit(options)
+				execute(opts)
+				exit(opts)
 			} else throw new IllegalArgumentException("Expected valid syntax. See --help.")
-		catch {
-			case e: Throwable => error(e, options)
-		}
+		catch { case e: Throwable => error(e, opts) }
 	}
 
 	override def help(): Unit = {
@@ -43,7 +41,7 @@ object weightedLevenshteinMetric extends Command {
 			tab + "--deleteWeight" + ls +
 			tab + tab + "The weight given to delete operations." +
 			tab + "-h, --help" + ls +
-			tab + tab + "Outputs description, syntax, and options." +
+			tab + tab + "Outputs description, syntax, and opts." +
 			tab + "--insertWeight" + ls +
 			tab + tab + "The weight given to insert operations." +
 			tab + "--substituteWeight" + ls +
@@ -51,12 +49,12 @@ object weightedLevenshteinMetric extends Command {
 		)
 	}
 
-	override def execute(options: OptionMap): Unit = {
-		val strings: OptionMapArray = options('dashless)
+	override def execute(opts: OptionMap): Unit = {
+		val strings: Array[String] = opts('dashless)
 		val weights = Tuple3[BigDecimal, BigDecimal, BigDecimal](
-			(options('deleteWeight): OptionMapBigDecimal),
-			(options('insertWeight): OptionMapBigDecimal),
-			(options('substituteWeight): OptionMapBigDecimal)
+			opts('deleteWeight),
+			opts('insertWeight),
+			opts('substituteWeight)
 		)
 
 		println(WeightedLevenshteinMetric.compare(strings(0), strings(1))(weights).getOrElse("not comparable"))

@@ -9,21 +9,19 @@ import com.rockymadden.stringmetric.similarity.NGramAlgorithm
  */
 object nGramAlgorithm extends Command {
 	override def main(args: Array[String]): Unit = {
-		val options = OptionMap(args)
+		val opts: OptionMap = args
 
 		try
-			if (options.contains('h) || options.contains('help)) {
+			if (opts.contains('h) || opts.contains('help)) {
 				help()
-				exit(options)
-			} else if (options.contains('dashless) && (options('dashless): OptionMapArray).length == 1
-				&& options.contains('n) && (options('n): OptionMapInt) >= 1) {
+				exit(opts)
+			} else if (opts.contains('dashless) && (opts('dashless): Array[String]).length == 1
+				&& opts.contains('n) && (opts('n): Int) >= 1) {
 
-				execute(options)
-				exit(options)
+				execute(opts)
+				exit(opts)
 			} else throw new IllegalArgumentException("Expected valid syntax. See --help.")
-		catch {
-			case e: Throwable => error(e, options)
-		}
+		catch { case e: Throwable => error(e, opts) }
 	}
 
 	override def help(): Unit = {
@@ -36,15 +34,25 @@ object nGramAlgorithm extends Command {
 			tab + "nGramAlgorithm [Options] string..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
-			tab + tab + "Outputs description, syntax, and options." +
+			tab + tab + "Outputs description, syntax, and opts." +
 			tab + "--n" + ls +
 			tab + tab + "The n."
 		)
 	}
 
-	override def execute(options: OptionMap): Unit = {
-		val n: OptionMapInt = options('n)
+	override def execute(opts: OptionMap): Unit =
+		NGramAlgorithm.compute(opts('dashless))(opts('n)) match {
+			// Implicits a pain here.
+			case Some(c) => {
+				val sb = new StringBuilder
 
-		println(NGramAlgorithm.compute(options('dashless))(n).map(_.mkString("|")).getOrElse("not computable"))
-	}
+				Range(0, c.length).foreach { i =>
+					sb.append(c(i))
+					if (i < c.length - 1) sb.append("|")
+				}
+
+				println(sb.result())
+			}
+			case None => println("not computable")
+		}
 }

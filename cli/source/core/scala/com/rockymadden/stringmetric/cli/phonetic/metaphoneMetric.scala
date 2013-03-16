@@ -9,19 +9,17 @@ import com.rockymadden.stringmetric.phonetic.MetaphoneMetric
  */
 object metaphoneMetric extends Command {
 	override def main(args: Array[String]): Unit = {
-		val options = OptionMap(args)
+		val opts: OptionMap = args
 
 		try
-			if (options.contains('h) || options.contains('help)) {
+			if (opts.contains('h) || opts.contains('help)) {
 				help()
-				exit(options)
-			} else if (options.contains('dashless) && (options('dashless): OptionMapArray).length == 2) {
-				execute(options)
-				exit(options)
+				exit(opts)
+			} else if (opts.contains('dashless) && (opts('dashless): Array[String]).length == 2) {
+				execute(opts)
+				exit(opts)
 			} else throw new IllegalArgumentException("Expected valid syntax. See --help.")
-		catch {
-			case e: Throwable => error(e, options)
-		}
+		catch { case e: Throwable => error(e, opts) }
 	}
 
 	override def help(): Unit = {
@@ -34,12 +32,12 @@ object metaphoneMetric extends Command {
 			tab + "metaphoneMetric [Options] string1 string2..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
-			tab + tab + "Outputs description, syntax, and options."
+			tab + tab + "Outputs description, syntax, and opts."
 		)
 	}
 
-	override def execute(options: OptionMap): Unit = {
-		val strings: OptionMapArray = options('dashless)
+	override def execute(opts: OptionMap): Unit = {
+		val strings: Array[String] = opts('dashless)
 
 		println(MetaphoneMetric.compare(strings(0), strings(1)).getOrElse("not comparable"))
 	}

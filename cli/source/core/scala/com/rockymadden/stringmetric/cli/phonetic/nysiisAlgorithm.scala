@@ -9,19 +9,17 @@ import com.rockymadden.stringmetric.phonetic.NysiisAlgorithm
  */
 object nysiisAlgorithm extends Command {
 	override def main(args: Array[String]): Unit = {
-		val options = OptionMap(args)
+		val options: OptionMap = args
 
 		try
 			if (options.contains('h) || options.contains('help)) {
 				help()
 				exit(options)
-			} else if (options.contains('dashless) && (options('dashless): OptionMapArray).length == 1) {
+			} else if (options.contains('dashless) && (options('dashless): Array[String]).length == 1) {
 				execute(options)
 				exit(options)
 			} else throw new IllegalArgumentException("Expected valid syntax. See --help.")
-		catch {
-			case e: Throwable => error(e, options)
-		}
+		catch { case e: Throwable => error(e, options) }
 	}
 
 	override def help(): Unit = {
