@@ -7,7 +7,7 @@ import com.rockymadden.stringmetric.tokenization.NGramTokenizer
  * An implementation of the Dice/Sorensen metric. This implementation differs in that n-gram size is required.
  * Traditionally, the algorithm uses bigrams.
  */
-class DiceSorensenMetric extends ConfigurableStringMetric[Double, Int] { this: StringFilter =>
+class DiceSorensenMetric extends ConfigurableStringMetric[Int, Double] { this: StringFilter =>
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit n: Int): Option[Double] = {
 		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
 

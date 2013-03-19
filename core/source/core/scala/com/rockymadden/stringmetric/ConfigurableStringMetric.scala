@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric
 
-trait ConfigurableStringMetric[R, O] extends ConfigurableMetric[String, R, O] {
+trait ConfigurableStringMetric[O, R] extends ConfigurableMetric[String, O, R] {
 	def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit o: O): Option[R]
 }
 
