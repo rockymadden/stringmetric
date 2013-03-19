@@ -5,10 +5,10 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-final class AsciiControlStringFilterSpec extends ScalaTest {
-	import AsciiControlStringFilterSpec.Filter
+final class AsciiControlFilterSpec extends ScalaTest {
+	import AsciiControlFilterSpec.Filter
 
-	"AsciiControlStringFilter" should provide {
+	"AsciiControlFilter" should provide {
 		"overloaded filter method" when passed {
 			"String with controls" should returns {
 				"String with controls removed" in {
@@ -28,6 +28,6 @@ final class AsciiControlStringFilterSpec extends ScalaTest {
 	}
 }
 
-object AsciiControlStringFilterSpec {
-	private final val Filter = new StringFilterDelegate with AsciiControlStringFilter
+object AsciiControlFilterSpec {
+	private final val Filter = new StringFilterDelegate with AsciiControlFilter
 }

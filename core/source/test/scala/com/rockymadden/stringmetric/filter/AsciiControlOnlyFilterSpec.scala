@@ -5,10 +5,10 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-final class AsciiControlOnlyStringFilterSpec extends ScalaTest {
-	import AsciiControlOnlyStringFilterSpec.Filter
+final class AsciiControlOnlyFilterSpec extends ScalaTest {
+	import AsciiControlOnlyFilterSpec.Filter
 
-	"AsciiControlOnlyStringFilter" should provide {
+	"AsciiControlOnlyFilter" should provide {
 		"overloaded filter method" when passed {
 			"String with mixed characters" should returns {
 				"String with non-controls removed" in {
@@ -28,6 +28,6 @@ final class AsciiControlOnlyStringFilterSpec extends ScalaTest {
 	}
 }
 
-object AsciiControlOnlyStringFilterSpec {
-	private final val Filter = new StringFilterDelegate with AsciiControlOnlyStringFilter
+object AsciiControlOnlyFilterSpec {
+	private final val Filter = new StringFilterDelegate with AsciiControlOnlyFilter
 }

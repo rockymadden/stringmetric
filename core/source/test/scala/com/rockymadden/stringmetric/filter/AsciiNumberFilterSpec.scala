@@ -5,10 +5,10 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-final class AsciiNumberStringFilterSpec extends ScalaTest {
-	import AsciiNumberStringFilterSpec.Filter
+final class AsciiNumberFilterSpec extends ScalaTest {
+	import AsciiNumberFilterSpec.Filter
 
-	"AsciiNumberStringFilter" should provide {
+	"AsciiNumberFilter" should provide {
 		"overloaded filter method" when passed {
 			"String with numbers" should returns {
 				"String with numbers removed" in {
@@ -28,6 +28,6 @@ final class AsciiNumberStringFilterSpec extends ScalaTest {
 	}
 }
 
-object AsciiNumberStringFilterSpec {
-	private final val Filter = new StringFilterDelegate with AsciiNumberStringFilter
+object AsciiNumberFilterSpec {
+	private final val Filter = new StringFilterDelegate with AsciiNumberFilter
 }

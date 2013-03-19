@@ -5,10 +5,10 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-final class IgnoreAsciiLetterCaseStringFilterSpec extends ScalaTest {
-	import IgnoreAsciiLetterCaseStringFilterSpec.Filter
+final class IgnoreAsciiLetterCaseFilterSpec extends ScalaTest {
+	import IgnoreAsciiLetterCaseFilterSpec.Filter
 
-	"IgnoreAsciiLetterCaseStringFilter" should provide {
+	"IgnoreAsciiLetterCaseFilter" should provide {
 		"overloaded filter method" when passed {
 			"String with mixed case" should returns {
 				"String with the same case" in {
@@ -36,6 +36,6 @@ final class IgnoreAsciiLetterCaseStringFilterSpec extends ScalaTest {
 	}
 }
 
-object IgnoreAsciiLetterCaseStringFilterSpec {
-	private final val Filter = new StringFilterDelegate with IgnoreAsciiLetterCaseStringFilter
+object IgnoreAsciiLetterCaseFilterSpec {
+	private final val Filter = new StringFilterDelegate with IgnoreAsciiLetterCaseFilter
 }

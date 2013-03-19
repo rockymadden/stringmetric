@@ -5,10 +5,10 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-final class AsciiSymbolOnlyStringFilterSpec extends ScalaTest {
-	import AsciiSymbolOnlyStringFilterSpec.Filter
+final class AsciiSymbolOnlyFilterSpec extends ScalaTest {
+	import AsciiSymbolOnlyFilterSpec.Filter
 
-	"AsciiSymbolOnlyStringFilter" should provide {
+	"AsciiSymbolOnlyFilter" should provide {
 		"overloaded filter method" when passed {
 			"String with mixed characters" should returns {
 				"String with non-symbols removed" in {
@@ -28,6 +28,6 @@ final class AsciiSymbolOnlyStringFilterSpec extends ScalaTest {
 	}
 }
 
-object AsciiSymbolOnlyStringFilterSpec {
-	private final val Filter = new StringFilterDelegate with AsciiSymbolOnlyStringFilter
+object AsciiSymbolOnlyFilterSpec {
+	private final val Filter = new StringFilterDelegate with AsciiSymbolOnlyFilter
 }

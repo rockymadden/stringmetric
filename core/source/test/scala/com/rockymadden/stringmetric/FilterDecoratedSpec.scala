@@ -1,8 +1,8 @@
 package com.rockymadden.stringmetric
 
+import com.rockymadden.stringmetric.filter.AsciiNumberFilter
 import com.rockymadden.stringmetric.phonetic.MetaphoneAlgorithm
 import com.rockymadden.stringmetric.similarity.DiceSorensenMetric
-import com.rockymadden.stringmetric.filter.AsciiNumberStringFilter
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
@@ -33,6 +33,6 @@ final class FilterDecoratedSpec extends ScalaTest {
 }
 
 object FilterDecoratedSpec {
-	private final val Algorithm = new MetaphoneAlgorithm with AsciiNumberStringFilter
-	private final val Metric = new DiceSorensenMetric with AsciiNumberStringFilter
+	private final val Algorithm = new MetaphoneAlgorithm with AsciiNumberFilter
+	private final val Metric = new DiceSorensenMetric with AsciiNumberFilter
 }
