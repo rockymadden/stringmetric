@@ -5,8 +5,8 @@ import com.rockymadden.stringmetric.phonetic.Alphabet.{ Alpha, LowercaseVowel }
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the Metaphone algorithm. */
-class MetaphoneAlgorithm extends StringAlgorithm[String] { this: StringFilter =>
-	final override def compute(charArray: Array[Char]): Option[Array[Char]] = {
+class MetaphoneAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: StringFilter =>
+	final override def compute(charArray: Array[Char])(implicit di: DummyImplicit): Option[Array[Char]] = {
 		val fca = filter(charArray)
 
 		if (fca.length == 0 || !(Alpha isSuperset fca.head)) None
@@ -18,7 +18,8 @@ class MetaphoneAlgorithm extends StringAlgorithm[String] { this: StringFilter =>
 		}
 	}
 
-	final override def compute(string: String): Option[String] = compute(string.toCharArray).map(_.mkString)
+	final override def compute(string: String)(implicit di: DummyImplicit): Option[String] =
+		compute(string.toCharArray).map(_.mkString)
 
 	private[this] def deduplicate(ca: Array[Char]) =
 		if (ca.length <= 1) ca

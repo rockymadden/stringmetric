@@ -5,8 +5,8 @@ import com.rockymadden.stringmetric.phonetic.Alphabet.{ Alpha, LowercaseVowel }
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the refined NYSIIS algorithm. */
-class RefinedNysiisAlgorithm extends StringAlgorithm[String] { this: StringFilter =>
-	final override def compute(charArray: Array[Char]): Option[Array[Char]] = {
+class RefinedNysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: StringFilter =>
+	final override def compute(charArray: Array[Char])(implicit di: DummyImplicit): Option[Array[Char]] = {
 		val fca = filter(charArray)
 
 		if (fca.length == 0 || !(Alpha isSuperset fca.head)) None
@@ -20,7 +20,8 @@ class RefinedNysiisAlgorithm extends StringAlgorithm[String] { this: StringFilte
 		}
 	}
 
-	final override def compute(string: String): Option[String] = compute(string.toCharArray).map(_.mkString)
+	final override def compute(string: String)(implicit di: DummyImplicit): Option[String] =
+		compute(string.toCharArray).map(_.mkString)
 
 	private[this] def cleanLast(ca: Array[Char], s: Set[Char]) =
 		if (ca.length == 0) ca

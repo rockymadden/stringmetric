@@ -1,11 +1,11 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ ConfigurableStringMetric, MatchTuple, StringFilter }
+import com.rockymadden.stringmetric.{ StringMetric, MatchTuple, StringFilter }
 import com.rockymadden.stringmetric.tokenization.NGramTokenizer
 import scala.math
 
 /** An implementation of the N-Gram metric. */
-class NGramMetric extends ConfigurableStringMetric[Int, Double] { this: StringFilter =>
+class NGramMetric extends StringMetric[Int, Double] { this: StringFilter =>
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit n: Int): Option[Double] = {
 		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
 

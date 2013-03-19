@@ -5,15 +5,16 @@ import com.rockymadden.stringmetric.phonetic.Alphabet.Alpha
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the refined Soundex algorithm. */
-class RefinedSoundexAlgorithm extends StringAlgorithm[String] { this: StringFilter =>
-	final override def compute(charArray: Array[Char]): Option[Array[Char]] = {
+class RefinedSoundexAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: StringFilter =>
+	final override def compute(charArray: Array[Char])(implicit di: DummyImplicit): Option[Array[Char]] = {
 		val fca = filter(charArray)
 
 		if (fca.length == 0 || !(Alpha isSuperset fca.head)) None
 		else Some(transcode(fca, Array(fca.head.toLower)))
 	}
 
-	final override def compute(string: String): Option[String] = compute(string.toCharArray).map(_.mkString)
+	final override def compute(string: String)(implicit di: DummyImplicit): Option[String] =
+		compute(string.toCharArray).map(_.mkString)
 
 	@tailrec
 	private[this] def transcode(i: Array[Char], o: Array[Char]): Array[Char] = {

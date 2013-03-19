@@ -4,8 +4,10 @@ import com.rockymadden.stringmetric.{ StringFilter, StringMetric }
 import com.rockymadden.stringmetric.phonetic.Alphabet.Alpha
 
 /** An implementation of the Soundex metric. */
-class SoundexMetric extends StringMetric[Boolean] { this: StringFilter =>
-	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Boolean] = {
+class SoundexMetric extends StringMetric[DummyImplicit, Boolean] { this: StringFilter =>
+	final override def compare(charArray1: Array[Char], charArray2: Array[Char])
+		(implicit di: DummyImplicit): Option[Boolean] = {
+
 		val fca1 = filter(charArray1)
 		lazy val fca2 = filter(charArray2)
 
@@ -19,7 +21,7 @@ class SoundexMetric extends StringMetric[Boolean] { this: StringFilter =>
 		}
 	}
 
-	final override def compare(string1: String, string2: String): Option[Boolean] =
+	final override def compare(string1: String, string2: String)(implicit di: DummyImplicit): Option[Boolean] =
 		compare(string1.toCharArray, string2.toCharArray)
 }
 

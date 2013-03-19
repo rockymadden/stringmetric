@@ -1,12 +1,18 @@
 package com.rockymadden.stringmetric
 
-trait StringMetric[R] extends Metric[String, R] {
-	def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[R]
+trait StringMetric[O, R] extends Metric[String, O, R] {
+	def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit o: O): Option[R]
 }
 
 object StringMetric {
+	type DiceSorensen = com.rockymadden.stringmetric.similarity.DiceSorensenMetric
+	val DiceSorensen = com.rockymadden.stringmetric.similarity.DiceSorensenMetric
+
 	type Hamming = com.rockymadden.stringmetric.similarity.HammingMetric
 	val Hamming = com.rockymadden.stringmetric.similarity.HammingMetric
+
+	type Jaccard = com.rockymadden.stringmetric.similarity.JaccardMetric
+	val Jaccard = com.rockymadden.stringmetric.similarity.JaccardMetric
 
 	type Jaro = com.rockymadden.stringmetric.similarity.JaroMetric
 	val Jaro = com.rockymadden.stringmetric.similarity.JaroMetric
@@ -20,8 +26,14 @@ object StringMetric {
 	type Metaphone = com.rockymadden.stringmetric.phonetic.MetaphoneMetric
 	val Metaphone = com.rockymadden.stringmetric.phonetic.MetaphoneMetric
 
+	type NGram = com.rockymadden.stringmetric.similarity.NGramMetric
+	val NGram = com.rockymadden.stringmetric.similarity.NGramMetric
+
 	type Nysiis = com.rockymadden.stringmetric.phonetic.NysiisMetric
 	val Nysiis = com.rockymadden.stringmetric.phonetic.NysiisMetric
+
+	type Overlap = com.rockymadden.stringmetric.similarity.OverlapMetric
+	val Overlap = com.rockymadden.stringmetric.similarity.OverlapMetric
 
 	type RefinedNysiis = com.rockymadden.stringmetric.phonetic.RefinedNysiisMetric
 	val RefinedNysiis = com.rockymadden.stringmetric.phonetic.RefinedNysiisMetric
@@ -32,9 +44,22 @@ object StringMetric {
 	type Soundex = com.rockymadden.stringmetric.phonetic.SoundexMetric
 	val Soundex = com.rockymadden.stringmetric.phonetic.SoundexMetric
 
+	type WeightedLevenshtein = com.rockymadden.stringmetric.similarity.WeightedLevenshteinMetric
+	val WeightedLevenshtein = com.rockymadden.stringmetric.similarity.WeightedLevenshteinMetric
+
+	def compareWithDiceSorensen(charArray1: Array[Char], charArray2: Array[Char])(n: Int) =
+		DiceSorensen.compare(charArray1, charArray2)(n)
+
+	def compareWithDiceSorensen(string1: String, string2: String)(n: Int) = DiceSorensen.compare(string1, string2)(n)
+
 	def compareWithHamming(charArray1: Array[Char], charArray2: Array[Char]) = Hamming.compare(charArray1, charArray2)
 
 	def compareWithHamming(string1: String, string2: String)= Hamming.compare(string1, string2)
+
+	def compareWithJaccard(charArray1: Array[Char], charArray2: Array[Char])(n: Int) =
+		Jaccard.compare(charArray1, charArray2)(n)
+
+	def compareWithJaccard(string1: String, string2: String)(n: Int) = Jaccard.compare(string1, string2)(n)
 
 	def compareWithJaro(charArray1: Array[Char], charArray2: Array[Char]) = Jaro.compare(charArray1, charArray2)
 
@@ -55,9 +80,19 @@ object StringMetric {
 
 	def compareWithMetaphone(string1: String, string2: String) = Metaphone.compare(string1, string2)
 
+	def compareWithNGram(charArray1: Array[Char], charArray2: Array[Char])(n: Int) =
+		NGram.compare(charArray1, charArray2)(n)
+
+	def compareWithNGram(string1: String, string2: String)(n: Int) = NGram.compare(string1, string2)(n)
+
 	def compareWithNysiis(charArray1: Array[Char], charArray2: Array[Char]) = Nysiis.compare(charArray1, charArray2)
 
 	def compareWithNysiis(string1: String, string2: String) = Nysiis.compare(string1, string2)
+
+	def compareWithOverlap(charArray1: Array[Char], charArray2: Array[Char])(n: Int) =
+		Overlap.compare(charArray1, charArray2)(n)
+
+	def compareWithOverlap(string1: String, string2: String)(n: Int) = Overlap.compare(string1, string2)(n)
 
 	def compareWithRefinedNysiis(charArray1: Array[Char], charArray2: Array[Char]) =
 		RefinedNysiis.compare(charArray1, charArray2)
@@ -72,4 +107,14 @@ object StringMetric {
 	def compareWithSoundex(charArray1: Array[Char], charArray2: Array[Char]) = Soundex.compare(charArray1, charArray2)
 
 	def compareWithSoundex(string1: String, string2: String) = Soundex.compare(string1, string2)
+
+	def compareWithWeightedLevenshtein(charArray1: Array[Char], charArray2: Array[Char])
+		(options: (BigDecimal, BigDecimal, BigDecimal)) =
+
+		WeightedLevenshtein.compare(charArray1, charArray2)(options)
+
+	def compareWithWeightedLevenshtein(string1: String, string2: String)
+		(options: (BigDecimal, BigDecimal, BigDecimal)) =
+
+		WeightedLevenshtein.compare(string1, string2)(options)
 }

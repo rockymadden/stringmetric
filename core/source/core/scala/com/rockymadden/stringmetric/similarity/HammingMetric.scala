@@ -3,8 +3,10 @@ package com.rockymadden.stringmetric.similarity
 import com.rockymadden.stringmetric.{ CompareTuple, StringFilter, StringMetric }
 
 /** An implementation of the Hamming metric. */
-class HammingMetric extends StringMetric[Int] { this: StringFilter =>
-	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Int] = {
+class HammingMetric extends StringMetric[DummyImplicit, Int] { this: StringFilter =>
+	final override def compare(charArray1: Array[Char], charArray2: Array[Char])
+		(implicit di: DummyImplicit): Option[Int] = {
+
 		val fca1 = filter(charArray1)
 		lazy val fca2 = filter(charArray2)
 
@@ -13,7 +15,7 @@ class HammingMetric extends StringMetric[Int] { this: StringFilter =>
 		else Some(hamming(fca1, fca2))
 	}
 
-	final override def compare(string1: String, string2: String): Option[Int] =
+	final override def compare(string1: String, string2: String)(implicit di: DummyImplicit): Option[Int] =
 		compare(string1.toCharArray, string2.toCharArray)
 
 	private[this] def hamming(ct: CompareTuple[Char]) = {

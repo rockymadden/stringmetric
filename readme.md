@@ -404,28 +404,6 @@ val metaphone: StringAlgorithm.Metaphone = StringAlgorithm.Metaphone() with Stri
 val asciiSpace: StringFilter.AsciiSpace = StringFilter.asciiSpace
 ```
 
----
-
-__ConfigurableStringAlgorithm:__
-```scala
-// Easy access to compute methods.
-ConfigurableStringAlgorithm.computeWithNGram("string")(2)
-
-// Easy access to types and companion objects.
-val nGram: ConfigurableStringAlgorithm.NGram: = ConfigurableStringAlgorithm.NGram()
-```
-
----
-
-__ConfigurableStringMetric:__
-```scala
-// Easy access to compare methods.
-ConfigurableStringMetric.compareWithDiceSorensen("string1", "string2")(2)
-
-// Easy access to types and companion objects.
-val diceSorensen: ConfigurableStringMetric.DiceSorensen = ConfigurableStringMetric.DiceSorensen()
-```
-
 ## Command line interfaces
 Every metric and algorithm has a command line interface. Said code is housed in a separate sub-project from the core library called "stringmetric-cli".
 

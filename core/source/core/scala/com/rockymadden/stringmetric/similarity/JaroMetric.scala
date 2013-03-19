@@ -7,8 +7,10 @@ import scala.collection.mutable.{ ArrayBuffer, HashSet }
  * An implementation of the Jaro metric. One differing detail in this implementation is that if a character is matched
  * in string2, it cannot be matched upon again. This results in a more penalized distance in these scenarios.
  */
-class JaroMetric extends StringMetric[Double] { this: StringFilter =>
-	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Double] = {
+class JaroMetric extends StringMetric[DummyImplicit, Double] { this: StringFilter =>
+	final override def compare(charArray1: Array[Char], charArray2: Array[Char])
+		(implicit di: DummyImplicit): Option[Double] = {
+
 		val fca1 = filter(charArray1)
 		lazy val fca2 = filter(charArray2)
 
@@ -27,7 +29,7 @@ class JaroMetric extends StringMetric[Double] { this: StringFilter =>
 		}
 	}
 
-	final override def compare(string1: String, string2: String): Option[Double] =
+	final override def compare(string1: String, string2: String)(implicit di: DummyImplicit): Option[Double] =
 		compare(string1.toCharArray, string2.toCharArray)
 
 	private[this] def `match`(ct: CompareTuple[Char]): MatchTuple[Char] = {

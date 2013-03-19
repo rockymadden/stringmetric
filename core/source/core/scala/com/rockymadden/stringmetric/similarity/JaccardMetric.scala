@@ -1,10 +1,10 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ ConfigurableStringMetric, MatchTuple, StringFilter }
+import com.rockymadden.stringmetric.{ StringMetric, MatchTuple, StringFilter }
 import com.rockymadden.stringmetric.tokenization.NGramTokenizer
 
 /* An implementation of the Jaccard metric. */
-class JaccardMetric extends ConfigurableStringMetric[Int, Double] { this: StringFilter =>
+class JaccardMetric extends StringMetric[Int, Double] { this: StringFilter =>
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit n: Int): Option[Double] = {
 		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
 

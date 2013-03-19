@@ -3,8 +3,10 @@ package com.rockymadden.stringmetric.similarity
 import com.rockymadden.stringmetric.{ CompareTuple, StringFilter, StringMetric }
 
 /** An implementation of the Ratcliff/Obershelp metric. */
-class RatcliffObershelpMetric extends StringMetric[Double] { this: StringFilter =>
-	final override def compare(charArray1: Array[Char], charArray2: Array[Char]): Option[Double] = {
+class RatcliffObershelpMetric extends StringMetric[DummyImplicit, Double] { this: StringFilter =>
+	final override def compare(charArray1: Array[Char], charArray2: Array[Char])
+		(implicit di: DummyImplicit): Option[Double] = {
+
 		val fca1 = filter(charArray1)
 		lazy val fca2 = filter(charArray2)
 
@@ -13,7 +15,7 @@ class RatcliffObershelpMetric extends StringMetric[Double] { this: StringFilter 
 		else Some(2d * commonSequences(fca1, fca2).foldLeft(0)(_ + _.length) / (fca1.length + fca2.length))
 	}
 
-	final override def compare(string1: String, string2: String): Option[Double] =
+	final override def compare(string1: String, string2: String)(implicit di: DummyImplicit): Option[Double] =
 		compare(string1.toCharArray, string2.toCharArray)
 
 	private[this] def longestCommonSubsequence(ct: CompareTuple[Char]) = {

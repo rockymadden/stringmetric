@@ -1,13 +1,13 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ ConfigurableStringMetric, MatchTuple, StringFilter }
+import com.rockymadden.stringmetric.{ StringMetric, MatchTuple, StringFilter }
 import com.rockymadden.stringmetric.tokenization.NGramTokenizer
 
 /**
  * An implementation of the Dice/Sorensen metric. This implementation differs in that n-gram size is required.
  * Traditionally, the algorithm uses bigrams.
  */
-class DiceSorensenMetric extends ConfigurableStringMetric[Int, Double] { this: StringFilter =>
+class DiceSorensenMetric extends StringMetric[Int, Double] { this: StringFilter =>
 	final override def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit n: Int): Option[Double] = {
 		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
 
