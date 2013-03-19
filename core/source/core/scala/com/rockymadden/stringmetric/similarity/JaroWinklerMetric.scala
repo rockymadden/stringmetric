@@ -14,7 +14,7 @@ class JaroWinklerMetric extends StringMetric[DummyImplicit, Double] { this: Stri
 		val fca1 = filter(charArray1)
 		val fca2 = filter(charArray2)
 
-		JaroMetric().compare(fca1, fca2).map {
+		JaroMetric.compare(fca1, fca2).map {
 			case 0d => 0d
 			case 1d => 1d
 			case jaro => {

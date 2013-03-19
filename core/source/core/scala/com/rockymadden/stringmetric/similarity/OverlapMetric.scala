@@ -14,15 +14,11 @@ class OverlapMetric extends StringMetric[Int, Double] { this: StringFilter =>
 
 		if (fca1.length < n || fca2.length < n) None // Because length is less than n, it is not possible to compare.
 		else if (fca1.sameElements(fca2)) Some(1d)
-		else {
-			val nGramTokenizer = NGramTokenizer()
+		else NGramTokenizer.tokenize(fca1)(n).flatMap { ca1bg =>
+			NGramTokenizer.tokenize(fca2)(n).map { ca2bg =>
+				val ms = scoreMatches(ca1bg.map(_.mkString), ca2bg.map(_.mkString))
 
-			nGramTokenizer.tokenize(fca1)(n).flatMap { ca1bg =>
-				nGramTokenizer.tokenize(fca2)(n).map { ca2bg =>
-					val ms = scoreMatches(ca1bg.map(_.mkString), ca2bg.map(_.mkString))
-
-					ms.toDouble / (math.min(ca1bg.length, ca2bg.length))
-				}
+				ms.toDouble / (math.min(ca1bg.length, ca2bg.length))
 			}
 		}
 	}

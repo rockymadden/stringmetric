@@ -20,12 +20,9 @@ class NysiisMetric extends StringMetric[DummyImplicit, Boolean] { this: StringFi
 
 		if (fca1.length == 0 || !(Alpha isSuperset fca1.head) || fca2.length == 0 || !(Alpha isSuperset fca2.head)) None
 		else if (unequal(fca1.head, fca2.head)) Some(false)
-		else {
-			val nysiisAlgorithm = NysiisAlgorithm()
-
-			nysiisAlgorithm.compute(fca1).filter(_.length > 0).flatMap(ny1 =>
-				nysiisAlgorithm.compute(fca2).filter(_.length > 0).map(ny1.sameElements(_)))
-		}
+		else NysiisAlgorithm.compute(fca1).filter(_.length > 0).flatMap(ny1 =>
+			NysiisAlgorithm.compute(fca2).filter(_.length > 0).map(ny1.sameElements(_))
+		)
 	}
 
 	final override def compare(string1: String, string2: String)(implicit di: DummyImplicit): Option[Boolean] =

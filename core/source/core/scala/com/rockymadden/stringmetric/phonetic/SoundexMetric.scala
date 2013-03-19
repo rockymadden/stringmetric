@@ -13,12 +13,9 @@ class SoundexMetric extends StringMetric[DummyImplicit, Boolean] { this: StringF
 
 		if (fca1.length == 0 || !(Alpha isSuperset fca1.head) || fca2.length == 0 || !(Alpha isSuperset fca2.head)) None
 		else if (fca1.head.toLower != fca2.head.toLower) Some(false)
-		else {
-			val soundexAlgorithm = SoundexAlgorithm()
-
-			soundexAlgorithm.compute(fca1).filter(_.length > 0).flatMap(se1 =>
-				soundexAlgorithm.compute(fca2).filter(_.length > 0).map(se1.sameElements(_)))
-		}
+		else SoundexAlgorithm.compute(fca1).filter(_.length > 0).flatMap(se1 =>
+			SoundexAlgorithm.compute(fca2).filter(_.length > 0).map(se1.sameElements(_))
+		)
 	}
 
 	final override def compare(string1: String, string2: String)(implicit di: DummyImplicit): Option[Boolean] =
