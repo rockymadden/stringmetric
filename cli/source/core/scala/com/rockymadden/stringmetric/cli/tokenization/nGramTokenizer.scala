@@ -1,13 +1,13 @@
-package com.rockymadden.stringmetric.cli.similarity
+package com.rockymadden.stringmetric.cli.tokenization
 
 import com.rockymadden.stringmetric.cli._
-import com.rockymadden.stringmetric.similarity.NGramAlgorithm
+import com.rockymadden.stringmetric.tokenization.NGramTokenizer
 
 /**
- * The nGramAlgorithm [[com.rockymadden.stringmetric.cli.Command]]. Returns the N-Gram representation of the passed
+ * The nGramTokenizer [[com.rockymadden.stringmetric.cli.Command]]. Returns the N-Gram representation of the passed
  * string.
  */
-object nGramAlgorithm extends Command {
+object nGramTokenizer extends Command {
 	override def main(args: Array[String]): Unit = {
 		val opts: OptionMap = args
 
@@ -31,7 +31,7 @@ object nGramAlgorithm extends Command {
 		println(
 			"Returns the N-Gram representation of the passed string." + ls + ls +
 			"Syntax:" + ls +
-			tab + "nGramAlgorithm [Options] string..." + ls + ls +
+			tab + "nGramTokenizer [Options] string..." + ls + ls +
 			"Options:" + ls +
 			tab + "-h, --help" + ls +
 			tab + tab + "Outputs description, syntax, and opts." +
@@ -41,8 +41,8 @@ object nGramAlgorithm extends Command {
 	}
 
 	override def execute(opts: OptionMap): Unit =
-		NGramAlgorithm.compute(opts('dashless))(opts('n)) match {
-			// Implicits a pain here.
+		NGramTokenizer.tokenize(opts('dashless))(opts('n)) match {
+			// Implicits are a pain here.
 			case Some(c) => {
 				val sb = new StringBuilder
 

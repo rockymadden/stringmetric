@@ -13,7 +13,7 @@ String metrics and phonetic algorithms for Scala. The library provides facilitie
 * __[Monge-Elkan](http://www.cs.cmu.edu/~pradeepr/papers/ijcai03.pdf)__ (Queued similarity metric)
 * __[Match Rating Approach](http://en.wikipedia.org/wiki/Match_rating_approach)__ (Queued phonetic metric and algorithm)
 * __[Needleman-Wunch](http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm)__ (Queued similarity metric)
-* __[N-Gram](http://en.wikipedia.org/wiki/N-gram)__ (Similarity metric and algorithm)
+* __[N-Gram](http://en.wikipedia.org/wiki/N-gram)__ (Similarity metric)
 * __[NYSIIS](http://en.wikipedia.org/wiki/New_York_State_Identification_and_Intelligence_System)__ (Phonetic metric and algorithm)
 * __[Overlap](http://en.wikipedia.org/wiki/Overlap_coefficient)__ (Similarity metric)
 * __[Ratcliff-Obershelp](http://xlinux.nist.gov/dads/HTML/ratcliffObershelp.html)__ (Similarity metric)
@@ -161,22 +161,6 @@ Output:
 0.6
 0.25
 0.5
-```
-
----
-
-__N-Gram Algorithm:__ _(Note you must specify the size of the n-gram you wish to use. This can be done implicitly.)_
-```scala
-println(NGramAlgorithm.compute("abcdefghijklmnopqrstuvwxyz")(1))
-println(NGramAlgorithm.compute("abcdefghijklmnopqrstuvwxyz")(2))
-println(NGramAlgorithm.compute("abcdefghijklmnopqrstuvwxyz")(3))
-```
-
-Output:
-```
-Array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
-Array("ab", "bc", "cd", "de", "ef", "fg", "gh", "hi", "ij", "jk", "kl", "lm", "mn", "no", "op", "pq", "qr", "rs", "st", "tu", "uv", "vw", "wx", "xy", "yz")
-Array("abc", "bcd", "cde", "def", "efg", "fgh", "ghi", "hij", "ijk", "jkl", "klm", "lmn", "mno", "nop", "opq", "pqr", "qrs", "rst", "stu", "tuv", "uvw", "vwx", "wxy", "xyz")
 ```
 
 ---

@@ -1,19 +1,19 @@
-package com.rockymadden.stringmetric.cli.similarity
+package com.rockymadden.stringmetric.cli.tokenization
 
 import com.rockymadden.stringmetric.ScalaTest
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-final class nGramAlgorithmSpec extends ScalaTest {
-	"nGramAlgorithm" should provide {
+final class nGramTokenizerSpec extends ScalaTest {
+	"nGramTokenizer" should provide {
 		"main method" when passed {
 			"valid dashless argument and valid n argument" should executes {
 				"print N-Gram representation" in {
 					val out = new java.io.ByteArrayOutputStream()
 
 					Console.withOut(out)(
-						nGramAlgorithm.main(
+						nGramTokenizer.main(
 							Array(
 								"--unitTest",
 								"--debug",
@@ -27,7 +27,7 @@ final class nGramAlgorithmSpec extends ScalaTest {
 					out.reset()
 
 					Console.withOut(out)(
-						nGramAlgorithm.main(
+						nGramTokenizer.main(
 							Array(
 								"--unitTest",
 								"--debug",
@@ -44,7 +44,7 @@ final class nGramAlgorithmSpec extends ScalaTest {
 			"valid dashless argument and invalid n argument" should throws {
 				"IllegalArgumentException" in {
 					evaluating {
-						nGramAlgorithm.main(
+						nGramTokenizer.main(
 							Array(
 								"--unitTest",
 								"abc",
@@ -57,7 +57,7 @@ final class nGramAlgorithmSpec extends ScalaTest {
 			"no dashless argument" should throws {
 				"IllegalArgumentException" in {
 					evaluating {
-						nGramAlgorithm.main(Array("--unitTest", "--debug"))
+						nGramTokenizer.main(Array("--unitTest", "--debug"))
 					} should produce [IllegalArgumentException]
 				}
 			}

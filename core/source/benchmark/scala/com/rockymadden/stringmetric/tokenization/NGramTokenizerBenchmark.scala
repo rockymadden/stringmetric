@@ -1,11 +1,11 @@
-package com.rockymadden.stringmetric.similarity
+package com.rockymadden.stringmetric.tokenization
 
 import com.google.caliper.Param
 import com.rockymadden.stringmetric.{ CaliperBenchmark, CaliperRunner }
 import scala.util.Random
 
-final class NGramAlgorithmBenchmark extends CaliperBenchmark {
-	import NGramAlgorithmBenchmark.Algorithm
+final class NGramTokenizerBenchmark extends CaliperBenchmark {
+	import NGramTokenizerBenchmark.Tokenizer
 
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
@@ -22,14 +22,14 @@ final class NGramAlgorithmBenchmark extends CaliperBenchmark {
 	}
 
 	def timeComputeWithCharArray(reps: Int) = run(reps) {
-		Algorithm.compute(charArray)(n)
+		Tokenizer.tokenize(charArray)(n)
 	}
 
 	def timeComputeWithString(reps: Int) = run(reps) {
-		Algorithm.compute(string)(n)
+		Tokenizer.tokenize(string)(n)
 	}
 }
 
-object NGramAlgorithmBenchmark extends CaliperRunner(classOf[NGramAlgorithmBenchmark]) {
-	private final val Algorithm = NGramAlgorithm()
+object NGramTokenizerBenchmark extends CaliperRunner(classOf[NGramTokenizerBenchmark]) {
+	private final val Tokenizer = NGramTokenizer()
 }

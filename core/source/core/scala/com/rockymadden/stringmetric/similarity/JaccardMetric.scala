@@ -1,6 +1,7 @@
 package com.rockymadden.stringmetric.similarity
 
 import com.rockymadden.stringmetric.{ ConfigurableStringMetric, MatchTuple, StringFilter }
+import com.rockymadden.stringmetric.tokenization.NGramTokenizer
 
 /* An implementation of the Jaccard metric. */
 class JaccardMetric extends ConfigurableStringMetric[Double, Int] { this: StringFilter =>
@@ -13,10 +14,10 @@ class JaccardMetric extends ConfigurableStringMetric[Double, Int] { this: String
 		if (fca1.length < n || fca2.length < n) None // Because length is less than n, it is not possible to compare.
 		else if (fca1.sameElements(fca2)) Some(1d)
 		else {
-			val nGramAlgorithm = NGramAlgorithm()
+			val nGramTokenizer = NGramTokenizer()
 
-			nGramAlgorithm.compute(fca1)(n).flatMap { ca1bg =>
-				nGramAlgorithm.compute(fca2)(n).map { ca2bg =>
+			nGramTokenizer.tokenize(fca1)(n).flatMap { ca1bg =>
+				nGramTokenizer.tokenize(fca2)(n).map { ca2bg =>
 					val ms = scoreMatches(ca1bg.map(_.mkString), ca2bg.map(_.mkString))
 
 					ms.toDouble / (ca1bg.length + ca2bg.length)
