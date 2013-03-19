@@ -362,14 +362,14 @@ JaroWinklerMetric().compare("string1", "string2")
 
 Basic example with single filter:
 ```scala
-(new JaroWinklerMetric with IgnoreAsciiLetterCaseStringFilter).compare("string1", "string2")
+(new JaroWinklerMetric with IgnoreAsciiLetterCaseFilter).compare("string1", "string2")
 ```
 
 ---
 
 Basic example with stacked filters. Filters are applied in reverse order:
 ```scala
-(new JaroWinklerMetric with IgnoreAsciiLetterCaseStringFilter with AsciiLetterOnlyStringFilter).compare("string1", "string2")
+(new JaroWinklerMetric with IgnoreAsciiLetterCaseFilter with AsciiLetterOnlyFilter).compare("string1", "string2")
 ```
 
 ## Convenience objects
