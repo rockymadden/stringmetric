@@ -1,4 +1,4 @@
-package com.rockymadden.stringmetric.phonetic
+package com.rockymadden.stringmetric
 
 import scala.collection.immutable.Set
 

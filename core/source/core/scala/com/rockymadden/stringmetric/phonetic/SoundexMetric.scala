@@ -1,7 +1,7 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.{ StringFilter, StringMetric }
-import com.rockymadden.stringmetric.phonetic.Alphabet.Alpha
+import com.rockymadden.stringmetric.Alphabet.Alpha
 
 /** An implementation of the Soundex metric. */
 class SoundexMetric extends StringMetric[DummyImplicit, Boolean] { this: StringFilter =>

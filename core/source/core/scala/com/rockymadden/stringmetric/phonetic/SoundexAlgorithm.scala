@@ -1,7 +1,7 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.{ StringAlgorithm, StringFilter }
-import com.rockymadden.stringmetric.phonetic.Alphabet.Alpha
+import com.rockymadden.stringmetric.Alphabet.Alpha
 import scala.annotation.{ switch, tailrec }
 
 /** An implementation of the Soundex algorithm. */

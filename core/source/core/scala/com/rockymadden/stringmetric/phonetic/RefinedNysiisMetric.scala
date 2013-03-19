@@ -1,7 +1,7 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.{ StringFilter, StringMetric }
-import com.rockymadden.stringmetric.phonetic.Alphabet.Alpha
+import com.rockymadden.stringmetric.Alphabet.Alpha
 
 /** An implementation of the refined NYSIIS metric. */
 class RefinedNysiisMetric extends StringMetric[DummyImplicit, Boolean] { this: StringFilter =>
