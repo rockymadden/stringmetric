@@ -1,5 +1,5 @@
 package com.rockymadden.stringmetric
 
-trait Tokenizer[T, O, R] {
-	def tokenize(t: T)(implicit o: O): Option[R]
+trait Tokenizer[A, B, C] {
+	def tokenize(a: A)(implicit b: B): Option[C]
 }

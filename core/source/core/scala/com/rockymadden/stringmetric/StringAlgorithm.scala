@@ -1,7 +1,7 @@
 package com.rockymadden.stringmetric
 
-trait StringAlgorithm[O, R] extends Algorithm[String, O, R] {
-	def compute(charArray: Array[Char])(implicit o: O): Option[Array[_]]
+trait StringAlgorithm[A, B] extends Algorithm[String, A, B] {
+	def compute(charArray: Array[Char])(implicit a: A): Option[Array[_]]
 }
 
 object StringAlgorithm {

@@ -1,5 +1,5 @@
 package com.rockymadden.stringmetric
 
-trait Metric[T, O, R] {
-	def compare(t1: T, t2: T)(implicit o: O): Option[R]
+trait Metric[A, B, C] {
+	def compare(a1: A, a2: A)(implicit b: B): Option[C]
 }

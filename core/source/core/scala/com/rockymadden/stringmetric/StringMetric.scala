@@ -1,7 +1,7 @@
 package com.rockymadden.stringmetric
 
-trait StringMetric[O, R] extends Metric[String, O, R] {
-	def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit o: O): Option[R]
+trait StringMetric[A, B] extends Metric[String, A, B] {
+	def compare(charArray1: Array[Char], charArray2: Array[Char])(implicit a: A): Option[B]
 }
 
 object StringMetric {

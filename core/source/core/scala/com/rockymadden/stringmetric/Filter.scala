@@ -1,5 +1,5 @@
 package com.rockymadden.stringmetric
 
-trait Filter[T] extends Filterable[T] {
-	override def filter(t: T): T = t
+trait Filter[A] extends Filterable[A] {
+	override def filter(a: A): A = a
 }

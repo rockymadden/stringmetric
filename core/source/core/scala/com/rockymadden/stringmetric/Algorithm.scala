@@ -1,5 +1,5 @@
 package com.rockymadden.stringmetric
 
-trait Algorithm[T, O, R] {
-	def compute(t: T)(implicit o: O): Option[R]
+trait Algorithm[A, B, C] {
+	def compute(a: A)(implicit b: B): Option[C]
 }

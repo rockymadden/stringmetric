@@ -1,7 +1,7 @@
 package com.rockymadden.stringmetric
 
-trait StringTokenizer[O, R] extends Tokenizer[String, O, R] {
-	def tokenize(charArray: Array[Char])(implicit o: O): Option[Array[Array[Char]]]
+trait StringTokenizer[A, B] extends Tokenizer[String, A, B] {
+	def tokenize(charArray: Array[Char])(implicit a: A): Option[Array[Array[Char]]]
 }
 
 object StringTokenizer {
