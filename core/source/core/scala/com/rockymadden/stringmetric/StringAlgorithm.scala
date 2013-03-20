@@ -1,7 +1,7 @@
 package com.rockymadden.stringmetric
 
 trait StringAlgorithm[A, B] extends Algorithm[String, A, B] {
-	def compute(charArray: Array[Char])(implicit a: A): Option[Array[_]]
+	def compute(charArray: Array[Char])(implicit a: A): Option[Array[Char]]
 }
 
 object StringAlgorithm {
