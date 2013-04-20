@@ -8,7 +8,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class FilterDecoratedSpec extends ScalaTest {
-	import FilterDecoratedSpec.{ Algorithm, Metric }
+	import FilterDecoratedSpec.{Algorithm, Metric}
 
 	"Filter decorated metrics" should provide {
 		"compare method" when passed {

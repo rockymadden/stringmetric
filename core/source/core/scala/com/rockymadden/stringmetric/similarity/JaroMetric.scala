@@ -1,7 +1,7 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ CompareTuple, MatchTuple, StringFilter, StringMetric }
-import scala.collection.mutable.{ ArrayBuffer, HashSet }
+import com.rockymadden.stringmetric.{CompareTuple, MatchTuple, StringFilter, StringMetric}
+import scala.collection.mutable.{ArrayBuffer, HashSet}
 
 /**
  * An implementation of the Jaro metric. One differing detail in this implementation is that if a character is matched

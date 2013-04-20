@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ CompareTuple, StringFilter, StringMetric }
+import com.rockymadden.stringmetric.{CompareTuple, StringFilter, StringMetric}
 
 /** An implementation of the Ratcliff/Obershelp metric. */
 class RatcliffObershelpMetric extends StringMetric[DummyImplicit, Double] { this: StringFilter =>

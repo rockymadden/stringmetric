@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ StringMetric, MatchTuple, StringFilter }
+import com.rockymadden.stringmetric.{StringMetric, MatchTuple, StringFilter}
 import com.rockymadden.stringmetric.tokenization.NGramTokenizer
 import scala.math
 

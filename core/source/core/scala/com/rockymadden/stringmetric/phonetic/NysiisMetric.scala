@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.{ StringFilter, StringMetric }
+import com.rockymadden.stringmetric.{StringFilter, StringMetric}
 import com.rockymadden.stringmetric.Alphabet.Alpha
 
 /** An implementation of the NYSIIS metric. */

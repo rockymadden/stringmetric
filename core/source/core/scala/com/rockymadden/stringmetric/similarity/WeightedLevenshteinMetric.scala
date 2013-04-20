@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ CompareTuple, StringMetric, StringFilter }
+import com.rockymadden.stringmetric.{CompareTuple, StringMetric, StringFilter}
 import scala.math.BigDecimal
 
 /** An implementation of a weighted Levenshtein metric. */

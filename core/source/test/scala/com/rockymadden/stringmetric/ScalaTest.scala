@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric
 
-import org.scalatest.{ BeforeAndAfter, ParallelTestExecution, WordSpec }
+import org.scalatest.{BeforeAndAfter, ParallelTestExecution, WordSpec}
 import org.scalatest.matchers.ShouldMatchers
 
 trait ScalaTest extends WordSpec with ShouldMatchers with BeforeAndAfter with ParallelTestExecution {

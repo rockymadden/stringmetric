@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ StringFilter, StringMetric }
+import com.rockymadden.stringmetric.{StringFilter, StringMetric}
 
 /**
  * An implementation of the Jaro-Winkler metric. One differing detail in this implementation is that if a character is

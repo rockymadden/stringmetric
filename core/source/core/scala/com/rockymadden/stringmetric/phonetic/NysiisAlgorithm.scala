@@ -1,8 +1,8 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.{ StringAlgorithm, StringFilter }
-import com.rockymadden.stringmetric.Alphabet.{ Alpha, LowercaseVowel }
-import scala.annotation.{ switch, tailrec }
+import com.rockymadden.stringmetric.{StringAlgorithm, StringFilter}
+import com.rockymadden.stringmetric.Alphabet.{Alpha, LowercaseVowel}
+import scala.annotation.{switch, tailrec}
 
 /** An implementation of the NYSIIS algorithm. */
 class NysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: StringFilter =>

@@ -1,8 +1,8 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.{ StringAlgorithm, StringFilter }
+import com.rockymadden.stringmetric.{StringAlgorithm, StringFilter}
 import com.rockymadden.stringmetric.Alphabet.Alpha
-import scala.annotation.{ switch, tailrec }
+import scala.annotation.{switch, tailrec}
 
 /** An implementation of the Soundex algorithm. */
 class SoundexAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: StringFilter =>

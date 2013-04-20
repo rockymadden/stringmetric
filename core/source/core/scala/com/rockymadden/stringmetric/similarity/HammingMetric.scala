@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ CompareTuple, StringFilter, StringMetric }
+import com.rockymadden.stringmetric.{CompareTuple, StringFilter, StringMetric}
 
 /** An implementation of the Hamming metric. */
 class HammingMetric extends StringMetric[DummyImplicit, Int] { this: StringFilter =>

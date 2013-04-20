@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.tokenization
 
-import com.rockymadden.stringmetric.{ StringFilter, StringTokenizer }
+import com.rockymadden.stringmetric.{StringFilter, StringTokenizer}
 import scala.annotation.tailrec
 
 /** An implementation of the N-Gram tokenizer. */

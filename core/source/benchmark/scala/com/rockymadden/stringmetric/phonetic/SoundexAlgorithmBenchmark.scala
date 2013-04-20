@@ -1,7 +1,7 @@
 package com.rockymadden.stringmetric.phonetic
 
 import com.google.caliper.Param
-import com.rockymadden.stringmetric.{ CaliperBenchmark, CaliperRunner }
+import com.rockymadden.stringmetric.{CaliperBenchmark, CaliperRunner}
 import scala.util.Random
 
 final class SoundexAlgorithmBenchmark extends CaliperBenchmark {
