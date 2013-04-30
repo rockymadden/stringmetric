@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{StringMetric, MatchTuple, StringFilter}
+import com.rockymadden.stringmetric.{ StringMetric, MatchTuple, StringFilter }
 import com.rockymadden.stringmetric.tokenization.NGramTokenizer
 
 /* An implementation of the Jaccard metric. */
@@ -15,17 +15,15 @@ class JaccardMetric extends StringMetric[Int, Double] { this: StringFilter =>
 		else if (fca1.sameElements(fca2)) Some(1d)
 		else NGramTokenizer.tokenize(fca1)(n).flatMap { ca1bg =>
 			NGramTokenizer.tokenize(fca2)(n).map { ca2bg =>
-				val ms = scoreMatches(ca1bg.map(_.mkString), ca2bg.map(_.mkString))
+				val i = (ca1bg.map(_.mkString) intersect ca2bg.map(_.mkString)).length
 
-				ms.toDouble / (ca1bg.length + ca2bg.length)
+				i.toDouble / (ca1bg.length + ca2bg.length - i)
 			}
 		}
 	}
 
 	final override def compare(string1: String, string2: String)(implicit n: Int): Option[Double] =
 		compare(string1.toCharArray, string2.toCharArray)(n: Int)
-
-	private[this] def scoreMatches(mt: MatchTuple[String]) = mt._1.intersect(mt._2).length
 }
 
 object JaccardMetric {

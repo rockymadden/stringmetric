@@ -41,22 +41,22 @@ final class JaccardMetricSpec extends ScalaTest {
 			}
 			"valid arguments" should returns {
 				"Double indicating distance" in {
-					Metric.compare("night", "nacht")(1).get should be (0.3)
-					Metric.compare("night", "naght")(1).get should be (0.4)
-					Metric.compare("context", "contact")(1).get should be (0.35714285714285715)
+					Metric.compare("night", "nacht")(1).get should be (0.42857142857142855)
+					Metric.compare("night", "naght")(1).get should be (0.6666666666666666)
+					Metric.compare("context", "contact")(1).get should be (0.5555555555555556)
 
-					Metric.compare("night", "nacht")(2).get should be (0.125)
-					Metric.compare("night", "naght")(2).get should be (0.25)
-					Metric.compare("context", "contact")(2).get should be (0.25)
-					Metric.compare("contextcontext", "contact")(2).get should be (0.15789473684210525)
-					Metric.compare("context", "contactcontact")(2).get should be (0.15789473684210525)
-					Metric.compare("ht", "nacht")(2).get should be (0.2)
+					Metric.compare("night", "nacht")(2).get should be (0.14285714285714285)
+					Metric.compare("night", "naght")(2).get should be (0.3333333333333333)
+					Metric.compare("context", "contact")(2).get should be (0.3333333333333333)
+					Metric.compare("contextcontext", "contact")(2).get should be (0.1875)
+					Metric.compare("context", "contactcontact")(2).get should be (0.1875)
+					Metric.compare("ht", "nacht")(2).get should be (0.25)
 					Metric.compare("xp", "nacht")(2).get should be (0)
-					Metric.compare("ht", "hththt")(2).get should be (0.16666666666666666)
+					Metric.compare("ht", "hththt")(2).get should be (0.2)
 
 					Metric.compare("night", "nacht")(3).get should be (0)
-					Metric.compare("night", "naght")(3).get should be (0.16666666666666666)
-					Metric.compare("context", "contact")(3).get should be (0.2)
+					Metric.compare("night", "naght")(3).get should be (0.2)
+					Metric.compare("context", "contact")(3).get should be (0.25)
 				}
 			}
 		}
@@ -64,7 +64,7 @@ final class JaccardMetricSpec extends ScalaTest {
 	"JaccardMetric companion object" should provide {
 		"pass-through compare method" should returns {
 			"same value as class" in {
-				JaccardMetric.compare("context", "contact")(3).get should be (0.2)
+				JaccardMetric.compare("context", "contact")(3).get should be (0.25)
 			}
 		}
 	}
