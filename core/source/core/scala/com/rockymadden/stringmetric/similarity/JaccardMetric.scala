@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{ StringMetric, MatchTuple, StringFilter }
+import com.rockymadden.stringmetric.{StringMetric, StringFilter}
 import com.rockymadden.stringmetric.tokenization.NGramTokenizer
 
 /* An implementation of the Jaccard metric. */
