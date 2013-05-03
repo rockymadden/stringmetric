@@ -453,6 +453,25 @@ $ metaphoneAlgorithm dog
 tk
 ```
 
+## Building the command line interfaces
+The CLI files are built via a Gradle task. The steps are as follows:
+
+```shell
+git clone https://github.com/rockymadden/stringmetric.git
+cd stringmetric
+gradle :stringmetric-cli:tar
+```
+
+Running the CLI subproject's tar task will create a compressed archive __and__ an unarchived copy of the built files. The files can be found under the ```build``` directory that Gradle creates. The archive is named ```stringmetric-cli.tar.gz``` and the unarchived copy can be found in the directory named ```stringmetric-cli```. 
+
+To run a command from the current directory that you would be in from doing the above:
+
+```shell
+./cli/build/stringmetric-cli/jaroMetric abc xyz
+```
+
+You can move said CLI files wherever you want. Lastly, you may need to chmod the files because of the inability for Gradle to do so reliably.
+
 ## Requirements
 * Scala 2.10.x
 * Gradle 1.x
