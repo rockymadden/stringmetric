@@ -47,8 +47,8 @@ compile 'com.rockymadden.stringmetric:stringmetric-core:0.25.2'
 __Maven:__
 ```xml
 <dependency>
-	<artifactId>com.rockymadden.stringmetric</artifactId>
-	<groupId>stringmetric-core</groupId>
+	<groupId>com.rockymadden.stringmetric</groupId>
+	<artifactId>stringmetric-core</artifactId>
 	<version>0.25.2</version>
 </dependency>
 ```
