@@ -1,7 +1,7 @@
 #stringmetric [![Build Status](https://travis-ci.org/rockymadden/stringmetric.png?branch=master)](http://travis-ci.org/rockymadden/stringmetric)
 String metrics and phonetic algorithms for Scala. The library provides facilities to perform approximate string matching, measurement of string similarity/distance, indexing by word pronunciation, and sounds-like comparisons. In addition to the core library, each metric and algorithm has a command line interface. Heavy emphasis is placed on unit testing and performance (verified via microbenchmark suites).
 
-## Metrics and Algorithms
+## Metrics and algorithms
 * __[Dice / Sorensen](http://en.wikipedia.org/wiki/Dice%27s_coefficient)__ (Similarity metric)
 * __[Double Metaphone](http://en.wikipedia.org/wiki/Metaphone)__ (Queued phonetic metric and algorithm)
 * __[Hamming](http://en.wikipedia.org/wiki/Hamming_distance)__ (Similarity metric)
@@ -26,11 +26,11 @@ String metrics and phonetic algorithms for Scala. The library provides facilitie
 * __Weighted Levenshtein__ (Similarity metric)
 
 
-## Installation
-Available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22). Depending on the core sub-project shown below (add others, like the CLI, as needed):
+## Depending upon
+The project is available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22). Here is how you would add a dependency to the core sub-project in various build systems (add other sub-projects as needed):
 
 
-__SBT:__
+__Simple Build Tool:__
 ```scala
 libraryDependencies += "com.rockymadden.stringmetric" % "stringmetric-core" % "0.25.2"
 ```
@@ -53,8 +53,24 @@ __Maven:__
 </dependency>
 ```
 
-## Scaladoc
-[Scaladoc](http://rockymadden.com/stringmetric/scaladoc/) is available on the project website.
+## Building the CLIs
+When built, the CLI sub-project creates an individual shell command for each algorithm and metric. The sub-project is built via a Gradle task:
+
+```shell
+git clone https://github.com/rockymadden/stringmetric.git
+cd stringmetric
+gradle :stringmetric-cli:tar
+```
+
+Running the ```tar``` task will create a compressed archive __and__ an unarchived copy of the built files. The files can be found under the ```build``` directory that Gradle creates. The archive is named ```stringmetric-cli.tar.gz``` and the unarchived files can be found in the directory named ```stringmetric-cli```. 
+
+To run a command from the current directory that you would be in from doing the above:
+
+```shell
+./cli/build/stringmetric-cli/jaroMetric abc xyz
+```
+
+Lastly, you may need to chmod the files because of the inability for Gradle to do so reliably.
 
 ## Similarity package
 Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.
@@ -404,8 +420,8 @@ val metaphone: StringAlgorithm.Metaphone = StringAlgorithm.Metaphone() with Stri
 val asciiSpace: StringFilter.AsciiSpace = StringFilter.asciiSpace
 ```
 
-## Command line interfaces
-Every metric and algorithm has a command line interface. Said code is housed in a separate sub-project from the core library called "stringmetric-cli".
+## CLIs
+Every metric and algorithm has a command line interface. Said code is housed in a separate sub-project called ```stringmetric-cli```.
 
 The help option prints command syntax and usage:
 ```shell
@@ -453,24 +469,8 @@ $ metaphoneAlgorithm dog
 tk
 ```
 
-## Building the command line interfaces
-The CLI files are built via a Gradle task. The steps are as follows:
-
-```shell
-git clone https://github.com/rockymadden/stringmetric.git
-cd stringmetric
-gradle :stringmetric-cli:tar
-```
-
-Running the CLI subproject's tar task will create a compressed archive __and__ an unarchived copy of the built files. The files can be found under the ```build``` directory that Gradle creates. The archive is named ```stringmetric-cli.tar.gz``` and the unarchived copy can be found in the directory named ```stringmetric-cli```. 
-
-To run a command from the current directory that you would be in from doing the above:
-
-```shell
-./cli/build/stringmetric-cli/jaroMetric abc xyz
-```
-
-You can move said CLI files wherever you want. Lastly, you may need to chmod the files because of the inability for Gradle to do so reliably.
+## API
+[Scaladoc](http://rockymadden.com/stringmetric/scaladoc/) is available on the project website.
 
 ## Requirements
 * Scala 2.10.x
@@ -481,9 +481,3 @@ You can move said CLI files wherever you want. Lastly, you may need to chmod the
 
 ## License
 [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-## Bugs and Issues
-Please submit bugs and issues via [GitHub issues](https://github.com/rockymadden/stringmetric/issues).
-
-## Questions, Comments, and Requests
-Please contact me directly. Find all my contact information on my [personal website](http://rockymadden.com/).
