@@ -27,7 +27,7 @@ String metrics and phonetic algorithms for Scala. The library provides facilitie
 
 
 ## Depending upon
-The project is available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22). Here is how you would add a dependency to the core sub-project in various build systems (add other sub-projects as needed):
+The project is available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22). Adding a dependency to the core sub-project in various build systems (add other sub-projects as needed):
 
 
 __Simple Build Tool:__
@@ -52,25 +52,6 @@ __Maven:__
 	<version>0.25.2</version>
 </dependency>
 ```
-
-## Building the CLIs
-When built, the CLI sub-project creates an individual shell command for each algorithm and metric. The sub-project is built via a Gradle task:
-
-```shell
-git clone https://github.com/rockymadden/stringmetric.git
-cd stringmetric
-gradle :stringmetric-cli:tar
-```
-
-Running the ```tar``` task will create a compressed archive __and__ an unarchived copy of the built files. The files can be found under the ```build``` directory that Gradle creates. The archive is named ```stringmetric-cli.tar.gz``` and the unarchived files can be found in the directory named ```stringmetric-cli```. 
-
-To run a command from the current directory that you would be in from doing the above:
-
-```shell
-./cli/build/stringmetric-cli/jaroMetric abc xyz
-```
-
-Lastly, you may need to chmod the files because of the inability for Gradle to do so reliably.
 
 ## Similarity package
 Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.
@@ -420,7 +401,26 @@ val metaphone: StringAlgorithm.Metaphone = StringAlgorithm.Metaphone() with Stri
 val asciiSpace: StringFilter.AsciiSpace = StringFilter.asciiSpace
 ```
 
-## CLIs
+## Building the CLIs
+When built, the CLI sub-project creates an individual shell command for each algorithm and metric. The sub-project is built via a Gradle task:
+
+```shell
+git clone https://github.com/rockymadden/stringmetric.git
+cd stringmetric
+gradle :stringmetric-cli:tar
+```
+
+Running the ```tar``` task will create a compressed archive __and__ an unarchived copy of the built files. The files can be found under the ```build``` directory that Gradle creates. The archive is named ```stringmetric-cli.tar.gz``` and the unarchived files can be found in the directory named ```stringmetric-cli```. 
+
+To run a command from the current directory that you would be in from doing the above:
+
+```shell
+./cli/build/stringmetric-cli/jaroMetric abc xyz
+```
+
+Lastly, you may need to chmod the files because of the inability for Gradle to do so reliably.
+
+## Using the CLIs
 Every metric and algorithm has a command line interface. Said code is housed in a separate sub-project called ```stringmetric-cli```.
 
 The help option prints command syntax and usage:
