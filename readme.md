@@ -415,7 +415,7 @@ Running the ```tar``` task will create a compressed archive __and__ an unarchive
 To run a command from the current directory that you would be in from doing the above:
 
 ```shell
-./cli/build/stringmetric-cli/jaroMetric abc xyz
+./cli/build/stringmetric-cli/jarometric abc xyz
 ```
 
 Lastly, you may need to chmod the files because of the inability for Gradle to do so reliably.
@@ -425,11 +425,11 @@ Every metric and algorithm has a command line interface. Said code is housed in 
 
 The help option prints command syntax and usage:
 ```shell
-$ metaphoneMetric --help
+$ metaphonemetric --help
 Compares two strings to determine if they are phonetically similarly, per the Metaphone algorithm.
 
 Syntax:
-  metaphoneMetric [Options] string1 string2...
+  metaphonemetric [Options] string1 string2...
 
 Options:
   -h, --help
@@ -437,11 +437,11 @@ Options:
 ```
 
 ```shell
-$ jaroWinklerMetric --help
+$ jarowinklermetric --help
 Compares two strings to calculate the Jaro-Winkler distance.
 
 Syntax:
-  jaroWinklerMetric [Options] string1 string2...
+  jarowinklermetric [Options] string1 string2...
 
 Options:
   -h, --help
@@ -452,12 +452,12 @@ Options:
 
 Compare "dog" to "dawg":
 ```shell
-$ metaphoneMetric dog dawg
+$ metaphonemetric dog dawg
 true
 ```
 
 ```shell
-$ jaroWinklerMetric dog dawg
+$ jarowinklermetric dog dawg
 0.75
 ```
 
@@ -465,7 +465,7 @@ $ jaroWinklerMetric dog dawg
 
 Get the phonetic representation of "dog" using the Metaphone phonetic algorithm:
 ```shell
-$ metaphoneAlgorithm dog
+$ metaphonealgorithm dog
 tk
 ```
 
