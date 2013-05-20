@@ -1,6 +1,4 @@
-include 'cli'
-include 'core'
+include 'stringmetric-cli'
+include 'stringmetric-core'
 
 rootProject.name = 'stringmetric'
-project(':cli').name = 'stringmetric-cli'
-project(':core').name = 'stringmetric-core'

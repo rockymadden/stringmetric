@@ -21,14 +21,14 @@ subprojects {
 	}
 
 	dependencies {
-		compile 'org.scala-lang:scala-compiler:2.10.0'
-		compile 'org.scala-lang:scala-library:2.10.0'
+		compile 'org.scala-lang:scala-compiler:2.10.1'
+		compile 'org.scala-lang:scala-library:2.10.1'
 
-		scalaTools 'org.scala-lang:scala-compiler:2.10.0'
-		scalaTools 'org.scala-lang:scala-library:2.10.0'
+		scalaTools 'org.scala-lang:scala-compiler:2.10.1'
+		scalaTools 'org.scala-lang:scala-library:2.10.1'
 
 		testCompile 'junit:junit:4.11'
-		testCompile 'org.scalatest:scalatest_2.10.0:2.0.M5'
+		testCompile 'org.scalatest:scalatest_2.10:2.0.M5b'
 	}
 
 	repositories {
