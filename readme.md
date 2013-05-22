@@ -3,25 +3,25 @@ String metrics and phonetic algorithms for Scala. The library provides facilitie
 
 ## Metrics and algorithms
 * __[Dice / Sorensen](http://en.wikipedia.org/wiki/Dice%27s_coefficient)__ (Similarity metric)
-* __[Double Metaphone](http://en.wikipedia.org/wiki/Metaphone)__ (Queued phonetic metric and algorithm)
+* __[Double Metaphone](http://en.wikipedia.org/wiki/Metaphone)__ ([Queued](https://github.com/rockymadden/stringmetric/issues/6) phonetic metric and algorithm)
 * __[Hamming](http://en.wikipedia.org/wiki/Hamming_distance)__ (Similarity metric)
 * __[Jaccard](http://en.wikipedia.org/wiki/Jaccard_index)__ (Similarity metric)
 * __[Jaro](http://en.wikipedia.org/wiki/Jaro-Winkler_distance)__ (Similarity metric)
 * __[Jaro-Winkler](http://en.wikipedia.org/wiki/Jaro-Winkler_distance)__ (Similarity metric)
 * __[Levenshtein](http://en.wikipedia.org/wiki/Levenshtein_distance)__ (Similarity metric)
 * __[Metaphone](http://en.wikipedia.org/wiki/Metaphone)__ (Phonetic metric and algorithm)
-* __[Monge-Elkan](http://www.cs.cmu.edu/~pradeepr/papers/ijcai03.pdf)__ (Queued similarity metric)
-* __[Match Rating Approach](http://en.wikipedia.org/wiki/Match_rating_approach)__ (Queued phonetic metric and algorithm)
-* __[Needleman-Wunch](http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm)__ (Queued similarity metric)
+* __[Monge-Elkan](http://www.cs.cmu.edu/~pradeepr/papers/ijcai03.pdf)__ ([Queued](https://github.com/rockymadden/stringmetric/issues/7) similarity metric)
+* __[Match Rating Approach](http://en.wikipedia.org/wiki/Match_rating_approach)__ ([Queued](https://github.com/rockymadden/stringmetric/issues/8) phonetic metric and algorithm)
+* __[Needleman-Wunch](http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm)__ ([Queued](https://github.com/rockymadden/stringmetric/issues/9) similarity metric)
 * __[N-Gram](http://en.wikipedia.org/wiki/N-gram)__ (Similarity metric)
 * __[NYSIIS](http://en.wikipedia.org/wiki/New_York_State_Identification_and_Intelligence_System)__ (Phonetic metric and algorithm)
 * __[Overlap](http://en.wikipedia.org/wiki/Overlap_coefficient)__ (Similarity metric)
 * __[Ratcliff-Obershelp](http://xlinux.nist.gov/dads/HTML/ratcliffObershelp.html)__ (Similarity metric)
 * __[Refined NYSIIS](http://www.markcrocker.com/rexxtipsntricks/rxtt28.2.0482.html)__ (Phonetic metric and algorithm)
 * __[Refined Soundex](http://ntz-develop.blogspot.com/2011/03/phonetic-algorithms.html)__ (Phonetic metric and algorithm)
-* __[Tanimoto](http://en.wikipedia.org/wiki/Tanimoto_coefficient)__ (Queued similarity metric)
-* __[Tversky](http://en.wikipedia.org/wiki/Tversky_index)__ (Queued similarity metric)
-* __[Smith-Waterman](http://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm)__ (Queued similarity metric)
+* __[Tanimoto](http://en.wikipedia.org/wiki/Tanimoto_coefficient)__ ([Queued](https://github.com/rockymadden/stringmetric/issues/10) similarity metric)
+* __[Tversky](http://en.wikipedia.org/wiki/Tversky_index)__ ([Queued](https://github.com/rockymadden/stringmetric/issues/16) similarity metric)
+* __[Smith-Waterman](http://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm)__ ([Queued](https://github.com/rockymadden/stringmetric/issues/11) similarity metric)
 * __[Soundex](http://en.wikipedia.org/wiki/Soundex)__ (Phonetic metric and algorithm)
 * __Weighted Levenshtein__ (Similarity metric)
 
@@ -346,7 +346,7 @@ l222
 ```
 
 ## Decorating
-It is possible to decorate algorithms and metrics with additional functionality. The most common decorations are filters, which are useful for filtering strings prior to evaluation (e.g. ignore case, ignore non-alpha, ignore spaces). __NOTE:__ Memoization decorator queued.
+It is possible to decorate algorithms and metrics with additional functionality. The most common decorations are filters, which are useful for filtering strings prior to evaluation (e.g. ignore case, ignore non-alpha, ignore spaces). __NOTE:__ [Memoization decorator queued](https://github.com/rockymadden/stringmetric/issues/5)
 
 Basic examples with no filtering:
 ```scala
@@ -471,6 +471,9 @@ tk
 
 ## API
 [Scaladoc](http://rockymadden.com/stringmetric/scaladoc/) is available on the project website.
+
+## Enhancements
+[Issues labeled enhancement and accepted](https://github.com/rockymadden/stringmetric/issues?labels=accepted%2Cenhancement&page=1&state=open) indicate queued enhancements.
 
 ## Requirements
 * Scala 2.10.x
