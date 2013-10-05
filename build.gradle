@@ -5,33 +5,25 @@ version = '0.25.3'
 ext.scm = 'scm:git@github.com:rockymadden/stringmetric.git'
 ext.url = 'http://rockymadden.com/stringmetric/'
 
-allprojects {
-	apply plugin: 'idea'
+buildscript {
+	dependencies { classpath 'net.coacoas.gradle:gradle-ensime:0.1.8' }
+	repositories { mavenCentral() }
 }
 
 subprojects {
+	apply plugin: 'ensime'
 	apply plugin: 'scala'
 
-	compileScala {
-		compileScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6', '–Xdisable-assertions']
-	}
-
-	compileTestScala {
-		compileTestScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6']
-	}
+	compileScala { compileScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6', '–Xdisable-assertions'] }
+	compileTestScala { compileTestScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6'] }
 
 	dependencies {
 		compile 'org.scala-lang:scala-compiler:2.10.1'
 		compile 'org.scala-lang:scala-library:2.10.1'
 
-		scalaTools 'org.scala-lang:scala-compiler:2.10.1'
-		scalaTools 'org.scala-lang:scala-library:2.10.1'
-
 		testCompile 'junit:junit:4.11'
 		testCompile 'org.scalatest:scalatest_2.10:2.0.M5b'
 	}
 
-	repositories {
-		mavenCentral()
-	}
+	repositories { mavenCentral() }
 }

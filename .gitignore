@@ -15,12 +15,8 @@
 .DS_Store
 
 # Editor ignores.
-*.ids
-*.iml
-*.ipr
-*.iws
-.idea/
-out/
+.ensime
 
 # Build ignores.
+.gradle/
 build/

@@ -1,13 +1,9 @@
-apply plugin: 'maven'
-apply plugin: 'signing'
-
-def isMavenDeployable = hasProperty('mavenRepositoryUrl') && hasProperty('mavenRepositoryUsername') && hasProperty('mavenRepositoryPassword')
+apply from: '../maven.gradle'
 
 evaluationDependsOn(':stringmetric-core')
 
 dependencies {
 	compile project(':stringmetric-core')
-
 	testCompile project(':stringmetric-core').sourceSets.test.output
 }
 
@@ -50,7 +46,7 @@ task tar(description: 'Assembles a compressed tar archive of source files.', dep
 	outputs.upToDateWhen {
 		new File(workingPath).isDirectory()
 	}
-	
+
 	doLast {
 		// Clean up working directory and tar from last execution, should they exist.
 		ant.delete(dir: workingPath, failOnError: false)
@@ -99,69 +95,6 @@ task tar(description: 'Assembles a compressed tar archive of source files.', dep
 		// Assemble compressed tar.
 		ant.tar(compression: 'gzip', destFile: "${project.buildDir}/${project.name}.tar.gz") {
 			tarfileset(dir: workingPath, fileMode: 755, prefix: project.name)
-		}
-	}
-}
-
-if (isMavenDeployable) {
-	signing {
-		sign configurations.archives
-	}
-
-	task scaladocJar(type: Jar, dependsOn: scaladoc) {
-		classifier = 'javadoc'
-		from "${project.buildDir}/docs/scaladoc"
-	}
-
-	task sourceJar(type: Jar, dependsOn: classes) {
-		classifier = 'sources'
-		from sourceSets.main.allSource
-	}
-
-	artifacts {
-		archives jar
-		archives scaladocJar
-		archives sourceJar
-	}
-
-	uploadArchives {
-		repositories {
-			mavenDeployer {
-				beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-				repository(url: mavenRepositoryUrl) {
-					authentication(userName: mavenRepositoryUsername, password: mavenRepositoryPassword)
-				}
-
-				pom.project {
-					description "${parent.project.description}"
-					groupId "${parent.project.group}"
-					name "${project.name}"
-					packaging 'jar'
-					url "${parent.project.url}"
-					version "${parent.project.version}"
-
-					developers {
-						developer {
-							id 'rockymadden'
-							name 'Rocky Madden'
-						}
-					}
-	 
-					licenses {
-						license {
-							name 'Apache License v2.0'
-							url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-							distribution 'repo'
-						}
-					}
-
-					scm {
-						url "${parent.project.scm}"
-						connection "${parent.project.scm}"
-					}
-				}
-			}
 		}
 	}
 }
