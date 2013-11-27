@@ -1,4 +1,4 @@
-apply from: '../maven.gradle'
+apply from: '../deploy.gradle'
 
 dependencies {
 	testCompile 'com.google.caliper:caliper:0.5-rc1'

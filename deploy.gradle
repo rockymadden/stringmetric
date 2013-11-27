@@ -6,9 +6,7 @@ def isMavenDeployable = hasProperty('mavenRepositoryUrl') &&
 	hasProperty('mavenRepositoryPassword')
 
 if (isMavenDeployable) {
-	signing {
-		sign configurations.archives
-	}
+	signing { sign configurations.archives }
 
 	task scaladocJar(type: Jar, dependsOn: scaladoc) {
 		classifier = 'javadoc'
