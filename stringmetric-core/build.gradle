@@ -1,47 +1,27 @@
 apply from: '../deploy.gradle'
 
-dependencies {
-	testCompile 'com.google.caliper:caliper:0.5-rc1'
-}
+dependencies { testCompile 'com.google.caliper:caliper:0.5-rc1' }
 
 sourceSets {
 	benchmark {
 		output.resourcesDir "${project.buildDir}/classes/benchmark"
 
-		java {
-			srcDir 'source/benchmark/java'
-		}
-		resources {
-			srcDir 'source/benchmark/resource'
-		}
-		scala {
-			srcDir 'source/benchmark/scala'
-		}
+		java { srcDir 'source/benchmark/java' }
+		resources { srcDir 'source/benchmark/resource' }
+		scala { srcDir 'source/benchmark/scala' }
 	}
 	main {
 		output.resourcesDir "${project.buildDir}/classes/main"
 
-		java {
-			srcDir 'source/core/java'
-		}
-		resources {
-			srcDir 'source/core/resource'
-		}
-		scala {
-			srcDir 'source/core/scala'
-		}
+		java { srcDir 'source/core/java' }
+		resources { srcDir 'source/core/resource' }
+		scala { srcDir 'source/core/scala' }
 	}
 	test {
 		output.resourcesDir "${project.buildDir}/classes/test"
 
-		java {
-			srcDir 'source/test/java'
-		}
-		resources {
-			srcDir 'source/test/resource'
-		}
-		scala {
-			srcDir 'source/test/scala'
-		}
+		java { srcDir 'source/test/java' }
+		resources { srcDir 'source/test/resource' }
+		scala { srcDir 'source/test/scala' }
 	}
 }

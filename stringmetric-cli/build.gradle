@@ -11,28 +11,16 @@ sourceSets {
 	main {
 		output.resourcesDir "${project.buildDir}/classes/main"
 
-		java {
-			srcDir 'source/core/java'
-		}
-		resources {
-			srcDir 'source/core/resource'
-		}
-		scala {
-			srcDir 'source/core/scala'
-		}
+		java { srcDir 'source/core/java' }
+		resources { srcDir 'source/core/resource' }
+		scala { srcDir 'source/core/scala' }
 	}
 	test {
 		output.resourcesDir "${project.buildDir}/classes/test"
 
-		java {
-			srcDir 'source/test/java'
-		}
-		resources {
-			srcDir 'source/test/resource'
-		}
-		scala {
-			srcDir 'source/test/scala'
-		}
+		java { srcDir 'source/test/java' }
+		resources { srcDir 'source/test/resource' }
+		scala { srcDir 'source/test/scala' }
 	}
 }
 
@@ -43,9 +31,7 @@ task tar(description: 'Assembles a compressed tar archive of source files.', dep
 
 	inputs.dir new File(sourcePath)
 	outputs.dir new File(outputPath, 'generated')
-	outputs.upToDateWhen {
-		new File(workingPath).isDirectory()
-	}
+	outputs.upToDateWhen { new File(workingPath).isDirectory() }
 
 	doLast {
 		// Clean up working directory and tar from last execution, should they exist.
@@ -55,8 +41,8 @@ task tar(description: 'Assembles a compressed tar archive of source files.', dep
 		// Create project working directory.
 		ant.mkdir(dir: workingPath)
 
-		// Create scalascript header file.
-		ant.echo(file: "${workingPath}/scalascript.sh", message: '#!/bin/bash\ndir="`dirname \\"$0\\"`"\ndir="`( cd \\"$dir\\" && pwd )`"\ncp=`echo $dir/*.jar|sed \'s/ /:/g\'`\nexec scala -classpath "$cp" -savecompiled "$0" "$@"\n!#\n//')
+		// Create scala.sh header file.
+		ant.echo(file: "${workingPath}/scala.sh", message: '#!/bin/bash\ndir="`dirname \\"$0\\"`"\ndir="`( cd \\"$dir\\" && pwd )`"\ncp=`echo $dir/*.jar|sed \'s/ /:/g\'`\nexec scala -classpath "$cp" -savecompiled "$0" "$@"\n!#\n//')
 
 		// Copy source files to working directory.
 		ant.copy(toDir: workingPath, force: true, overwrite: true) {
@@ -65,12 +51,12 @@ task tar(description: 'Assembles a compressed tar archive of source files.', dep
 				exclude(name: '**/package.scala')
 			}
 			filterchain {
-				concatfilter(prepend: "${workingPath}/scalascript.sh")
+				concatfilter(prepend: "${workingPath}/scala.sh")
 			}
 		}
 
-		// Delete scalascript header file.
-		ant.delete(file: "${workingPath}/scalascript.sh")
+		// Delete scala.sh header file.
+		ant.delete(file: "${workingPath}/scala.sh")
 
 		// Flatten and remove file extension.
 		ant.move(toDir: workingPath) {
