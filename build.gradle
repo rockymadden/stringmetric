@@ -18,8 +18,8 @@ subprojects {
 	compileTestScala { compileTestScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6'] }
 
 	dependencies {
-		compile'org.scala-lang:scala-compiler:2.10.1'
-		compile 'org.scala-lang:scala-library:2.10.1'
+		compile'org.scala-lang:scala-compiler:2.10.2'
+		compile 'org.scala-lang:scala-library:2.10.2'
 
 		testCompile 'junit:junit:4.11'
 		testCompile 'org.scalatest:scalatest_2.10:2.0.M5b'
