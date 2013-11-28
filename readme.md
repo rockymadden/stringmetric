@@ -426,8 +426,6 @@ To run a command from the current directory that you would be in from doing the 
 Lastly, you may need to chmod the files because of the inability for Gradle to do so reliably.
 
 ## Using the CLIs
-Every metric and algorithm has a command line interface. Said code is housed in a separate sub-project called ```stringmetric-cli```.
-
 The help option prints command syntax and usage:
 ```shell
 $ metaphonemetric --help
