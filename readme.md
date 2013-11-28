@@ -2,7 +2,7 @@
 String metrics and phonetic algorithms for Scala. The library provides facilities to perform approximate string matching, measurement of string similarity/distance, indexing by word pronunciation, and sounds-like comparisons. In addition to the core library, each metric and algorithm has a command line interface. 
 
 * __Requirements:__ Scala 2.10.x and, if building yourself, Gradle 1.6+
-* __ScalaDoc:__ [Available on the project website](http://rockymadden.com/stringmetric/scaladoc/)
+* __Documentation:__ [ScalaDoc](http://rockymadden.com/stringmetric/scaladoc/)
 * __Issues:__ [Enhancements](https://github.com/rockymadden/stringmetric/issues?labels=accepted%2Cenhancement&page=1&state=open), [Questions](https://github.com/rockymadden/stringmetric/issues?labels=accepted%2Cquestion&page=1&state=open), [Bugs](https://github.com/rockymadden/stringmetric/issues?labels=accepted%2Cbug&page=1&state=open)
 * __Versioning:__ [Semantic Versioning v2.0](http://semver.org/)
 
