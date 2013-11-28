@@ -4,4 +4,8 @@ scala:
 jdk:
   - openjdk7
   - oraclejdk7
-script: "gradle check"
+script:
+  - "gradle check"
+after_success:
+  - gradle cobertura
+  - gradle coveralls

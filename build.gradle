@@ -6,14 +6,21 @@ ext.scm = 'scm:git@github.com:rockymadden/stringmetric.git'
 ext.url = 'http://rockymadden.com/stringmetric/'
 
 buildscript {
-	dependencies { classpath 'net.coacoas.gradle:gradle-ensime:0.1.8' }
+	dependencies {
+		classpath 'net.coacoas.gradle:gradle-ensime:0.1.8'
+		classpath 'net.saliman:gradle-cobertura-plugin:2.0.0'
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:0.1.6'
+	}
 	repositories { mavenCentral() }
 }
 
 subprojects {
+	apply plugin: 'cobertura'
+	apply plugin: 'coveralls'
 	apply plugin: 'ensime'
 	apply plugin: 'scala'
 
+	cobertura.coverageFormats = ['html', 'xml']
 	compileScala { compileScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6', '–Xdisable-assertions'] }
 	compileTestScala { compileTestScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6'] }
 
