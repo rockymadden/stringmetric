@@ -7,4 +7,5 @@ jdk:
 script:
   - "gradle test"
 after_success:
-  - gradle :stringmetric-core:cobertura :stringmetric-core:coveralls
+  - gradle :stringmetric-core:cobertura
+  - gradle --info :stringmetric-core:coveralls
