@@ -1,6 +1,29 @@
-apply from: '../deploy.gradle'
+buildscript {
+	dependencies {
+		classpath 'net.saliman:gradle-cobertura-plugin:2.0.0'
+		classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:0.2.1'
+	}
+	repositories { mavenCentral() }
+}
 
-dependencies { testCompile 'com.google.caliper:caliper:0.5-rc1' }
+apply from: '../deploy.gradle'
+apply plugin: 'cobertura'
+apply plugin: 'coveralls'
+apply plugin: 'scala'
+
+cobertura.coverageFormats = ['html', 'xml']
+
+compileScala { compileScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6', '–Xdisable-assertions'] }
+compileTestScala { compileTestScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6'] }
+
+dependencies {
+	compile'org.scala-lang:scala-compiler:2.10.2'
+	compile 'org.scala-lang:scala-library:2.10.2'
+
+	testCompile 'com.google.caliper:caliper:0.5-rc1'
+	testCompile 'junit:junit:4.11'
+	testCompile 'org.scalatest:scalatest_2.10:2.0.M5b'
+}
 
 sourceSets {
 	benchmark {

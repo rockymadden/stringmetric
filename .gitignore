@@ -9,14 +9,17 @@
 *.vi
 *~
 *#
-.git/
+.git
 
 # OS ignores.
 .DS_Store
 
 # Editor ignores.
-.ensime*
+*.idea
+*.iml
+*.ipr
+*.iws
 
 # Build ignores.
-.gradle/
-build/
+.gradle
+build

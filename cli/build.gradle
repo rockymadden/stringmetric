@@ -1,10 +1,32 @@
-apply from: '../deploy.gradle'
+buildscript {
+	dependencies {
+		classpath 'net.saliman:gradle-cobertura-plugin:2.0.0'
+		classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:0.2.1'
+	}
+	repositories { mavenCentral() }
+}
 
 evaluationDependsOn(':stringmetric-core')
 
+apply from: '../deploy.gradle'
+apply plugin: 'cobertura'
+apply plugin: 'coveralls'
+apply plugin: 'scala'
+
+cobertura.coverageFormats = ['html', 'xml']
+
+compileScala { compileScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6', '–Xdisable-assertions'] }
+compileTestScala { compileTestScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6'] }
+
 dependencies {
 	compile project(':stringmetric-core')
+	compile'org.scala-lang:scala-compiler:2.10.2'
+	compile 'org.scala-lang:scala-library:2.10.2'
+
 	testCompile project(':stringmetric-core').sourceSets.test.output
+	testCompile 'com.google.caliper:caliper:0.5-rc1'
+	testCompile 'junit:junit:4.11'
+	testCompile 'org.scalatest:scalatest_2.10:2.0.M5b'
 }
 
 sourceSets {
@@ -67,7 +89,7 @@ task tar(description: 'Assembles a compressed tar archive of source files.', dep
 			}
 		}
 
-		// Clean up emtpy folder(s) from flatten.
+		// Clean up empty folder(s) from flatten.
 		ant.delete(dir: "${workingPath}/org", includeEmptyDirs: true)
 
 		// Copy project jars into place.

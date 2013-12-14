@@ -5,7 +5,6 @@ jdk:
   - openjdk7
   - oraclejdk7
 script:
-  - "gradle check"
+  - "gradle test"
 after_success:
-  - gradle cobertura
-  - gradle coveralls
+  - gradle :stringmetric-core:cobertura :stringmetric-core:coveralls
