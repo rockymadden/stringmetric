@@ -42,6 +42,21 @@ if (isMavenDeployable) {
 					url "${parent.project.url}"
 					version "${parent.project.version}"
 
+					developers {
+						developer {
+							id 'rockymadden'
+							name 'Rocky Madden'
+						}
+					}
+
+					licenses {
+						license {
+							name 'MIT'
+							url 'http://opensource.org/licenses/MIT'
+							distribution 'repo'
+						}
+					}
+
 					scm {
 						url "${parent.project.scm}"
 						connection "${parent.project.scm}"
