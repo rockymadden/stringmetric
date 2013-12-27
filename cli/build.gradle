@@ -32,9 +32,9 @@ sourceSets {
 	main {
 		output.resourcesDir "${project.buildDir}/classes/main"
 
-		java { srcDir 'source/core/java' }
-		resources { srcDir 'source/core/resource' }
-		scala { srcDir 'source/core/scala' }
+		java { srcDir 'source/main/java' }
+		resources { srcDir 'source/main/resource' }
+		scala { srcDir 'source/main/scala' }
 	}
 	test {
 		output.resourcesDir "${project.buildDir}/classes/test"
@@ -46,7 +46,7 @@ sourceSets {
 }
 
 task tar(description: 'Assembles a compressed tar archive of source files.', dependsOn: [':stringmetric-cli:jar', ':stringmetric-core:jar']) {
-	ext.sourcePath = "${project.projectDir}/source/core/scala"
+	ext.sourcePath = "${project.projectDir}/source/main/scala"
 	ext.outputPath = "${project.buildDir}"
 	ext.workingPath = "${project.buildDir}/${project.name}"
 

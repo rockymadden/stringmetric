@@ -35,9 +35,9 @@ sourceSets {
 	main {
 		output.resourcesDir "${project.buildDir}/classes/main"
 
-		java { srcDir 'source/core/java' }
-		resources { srcDir 'source/core/resource' }
-		scala { srcDir 'source/core/scala' }
+		java { srcDir 'source/main/java' }
+		resources { srcDir 'source/main/resource' }
+		scala { srcDir 'source/main/scala' }
 	}
 	test {
 		output.resourcesDir "${project.buildDir}/classes/test"
