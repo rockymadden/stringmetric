@@ -1,7 +1,6 @@
 package com.rockymadden.stringmetric.tokenization
 
 import com.rockymadden.stringmetric.{StringFilter, StringTokenizer}
-import scala.annotation.tailrec
 
 /** An implementation of the N-Gram tokenizer. */
 class NGramTokenizer extends StringTokenizer[Int, Array[String]] { this: StringFilter =>
@@ -17,7 +16,7 @@ class NGramTokenizer extends StringTokenizer[Int, Array[String]] { this: StringF
 	final override def tokenize(string: String)(implicit n: Int): Option[Array[String]] =
 		tokenize(string.toCharArray)(n).map(_.map(_.mkString))
 
-	@tailrec
+	@annotation.tailrec
 	private[this] def sequence(i: Array[Char], o: Array[Array[Char]], n: Int): Array[Array[Char]] = {
 		require(n > 0)
 

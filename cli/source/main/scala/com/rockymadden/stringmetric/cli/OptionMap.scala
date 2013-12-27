@@ -1,12 +1,10 @@
 package com.rockymadden.stringmetric.cli
 
-import scala.annotation.tailrec
-
 object OptionMap {
 	def apply(args: Array[String]): OptionMap = apply(args: _*)
 
 	def apply(varargs: String*): OptionMap = {
-		@tailrec
+		@annotation.tailrec
 		def next(om: OptionMap, a: List[String]): OptionMap = {
 			val double = """^(--[a-zA-Z0-9]+)(=[a-zA-Z0-9\.\-_]+)?""".r
 			val single = """^(-[a-zA-Z0-9]+)(=[a-zA-Z0-9\.\-_]+)?""".r

@@ -2,7 +2,6 @@ package com.rockymadden.stringmetric.similarity
 
 import com.google.caliper.Param
 import com.rockymadden.stringmetric.{CaliperBenchmark, CaliperRunner}
-import scala.annotation.tailrec
 import scala.util.Random
 
 final class OverlapMetricBenchmark extends CaliperBenchmark {
@@ -17,7 +16,7 @@ final class OverlapMetricBenchmark extends CaliperBenchmark {
 	var charArray2: Array[Char] = _
 
 	override protected def setUp() {
-		@tailrec
+		@annotation.tailrec
 		def random(l: Int, ps: String = null): String =
 			if (l == 0) ""
 			else {

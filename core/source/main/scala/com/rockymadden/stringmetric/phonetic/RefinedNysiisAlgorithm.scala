@@ -2,7 +2,6 @@ package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.{StringAlgorithm, StringFilter}
 import com.rockymadden.stringmetric.Alphabet.{Alpha, LowercaseVowel}
-import scala.annotation.{switch, tailrec}
 
 /** An implementation of the refined NYSIIS algorithm. */
 class RefinedNysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: StringFilter =>
@@ -36,7 +35,7 @@ class RefinedNysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { th
 		if (ca.length <= 1) ca
 		else ca.sliding(2).withFilter(a => a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
 
-	@tailrec
+	@annotation.tailrec
 	private[this] def transcode(l: Array[Char], c: Char, r: Array[Char], o: Array[Char]): Array[Char] = {
 		if (c == '\0' && r.length == 0) o
 		else {
@@ -52,7 +51,7 @@ class RefinedNysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { th
 			}
 
 			val t = {
-				(c: @switch) match {
+				(c: @annotation.switch) match {
 					case 'a' | 'i' | 'o' | 'u' =>
 						if (l.length == 0) shift(1, o :+ c)
 						else shift(1, o :+ 'a')
@@ -99,7 +98,7 @@ class RefinedNysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { th
 	private[this] def transcodeHead(ca: Array[Char]) = {
 		if (ca.length == 0) ca
 		else
-			(ca.head: @switch) match {
+			(ca.head: @annotation.switch) match {
 				case 'm' if (ca.length >= 3 && ca(1) == 'a' && ca(2) == 'c') => Array('m', 'c') ++ ca.takeRight(ca.length - 3)
 				case 'p' if (ca.length >= 2 && ca(1) == 'f') => 'f' +: ca.takeRight(ca.length - 2)
 				case _ => ca
@@ -112,7 +111,7 @@ class RefinedNysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { th
 			val lcm1 = ca(ca.length - 2)
 			lazy val t2 = ca.take(ca.length - 2)
 
-			(lc: @switch) match {
+			(lc: @annotation.switch) match {
 				case 'd' if (lcm1 == 'n' || lcm1 == 'r') => t2 :+ 'd'
 				case 'e' if (lcm1 == 'e' || lcm1 == 'i' || lcm1 =='y') => t2 :+ 'y'
 				case 't' if (lcm1 == 'd' || lcm1 == 'n' || lcm1 == 'r') => t2 :+ 'd'

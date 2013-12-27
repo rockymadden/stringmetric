@@ -2,7 +2,6 @@ package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.{StringAlgorithm, StringFilter}
 import com.rockymadden.stringmetric.Alphabet.Alpha
-import scala.annotation.{switch, tailrec}
 
 /** An implementation of the refined Soundex algorithm. */
 class RefinedSoundexAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: StringFilter =>
@@ -16,12 +15,12 @@ class RefinedSoundexAlgorithm extends StringAlgorithm[DummyImplicit, String] { t
 	final override def compute(string: String)(implicit di: DummyImplicit): Option[String] =
 		compute(string.toCharArray).map(_.mkString)
 
-	@tailrec
+	@annotation.tailrec
 	private[this] def transcode(i: Array[Char], o: Array[Char]): Array[Char] = {
 		if (i.length == 0) o
 		else {
 			val c = i.head.toLower
-			val m2 = (mc: Char) => (mc: @switch) match {
+			val m2 = (mc: Char) => (mc: @annotation.switch) match {
 				case 'a' | 'e' | 'h' | 'i' | 'o' | 'u' | 'w' | 'y' => '0'
 				case 'b' | 'p' => '1'
 				case 'f' | 'v' => '2'
@@ -34,7 +33,7 @@ class RefinedSoundexAlgorithm extends StringAlgorithm[DummyImplicit, String] { t
 				case 'r' => '9'
 				case _ => '\0'
 			}
-			val m1 = (mc: Char, pc: Char) => (mc: @switch) match {
+			val m1 = (mc: Char, pc: Char) => (mc: @annotation.switch) match {
 				case 'a' | 'e' | 'h' | 'i' | 'o' | 'u' | 'w' | 'y' if pc != '0' => '0'
 				case 'b' | 'p' if pc != '1' => '1'
 				case 'f' | 'v' if pc != '2' => '2'
@@ -53,7 +52,7 @@ class RefinedSoundexAlgorithm extends StringAlgorithm[DummyImplicit, String] { t
 				// Code once.
 				else m1(
 					c,
-					(o.last: @switch) match {
+					(o.last: @annotation.switch) match {
 						case '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' => o.last
 						case _ => m2(o.last)
 					}

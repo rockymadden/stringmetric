@@ -2,7 +2,6 @@ package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.{StringAlgorithm, StringFilter}
 import com.rockymadden.stringmetric.Alphabet.{Alpha, LowercaseVowel}
-import scala.annotation.{switch, tailrec}
 
 /** An implementation of the Metaphone algorithm. */
 class MetaphoneAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: StringFilter =>
@@ -25,7 +24,7 @@ class MetaphoneAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: 
 		if (ca.length <= 1) ca
 		else ca.sliding(2).withFilter(a => a(0) == 'c' || a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
 
-	@tailrec
+	@annotation.tailrec
 	private[this] def transcode(l: Array[Char], c: Char, r: Array[Char], o: Array[Char]): Array[Char] = {
 		if (c == '\0' && r.length == 0) o
 		else {
@@ -41,7 +40,7 @@ class MetaphoneAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: 
 			}
 
 			val t = {
-				(c: @switch) match {
+				(c: @annotation.switch) match {
 					case 'a' | 'e' | 'i' | 'o' | 'u' => if (l.length == 0) shift(1, o:+ c) else shift(1, o)
 					case 'f' | 'j' | 'l' | 'm' | 'n' | 'r' => shift(1, o :+ c)
 					case 'b' => if (l.length >= 1 && l.last == 'm' && r.length == 0) shift(1, o) else shift(1, o :+ 'b')
@@ -95,11 +94,11 @@ class MetaphoneAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: 
 	}
 
 	private[this] def transcodeHead(ca: Array[Char]) = {
-		(ca.length: @switch) match {
+		(ca.length: @annotation.switch) match {
 			case 0 => ca
 			case 1 => if (ca.head == 'x') Array('s') else ca
 			case _ =>
-				(ca.head: @switch) match {
+				(ca.head: @annotation.switch) match {
 					case 'a' if (ca(1) == 'e') => ca.tail
 					case 'g' | 'k' | 'p' if (ca(1) == 'n') => ca.tail
 					case 'w' if (ca(1) == 'r') => ca.tail

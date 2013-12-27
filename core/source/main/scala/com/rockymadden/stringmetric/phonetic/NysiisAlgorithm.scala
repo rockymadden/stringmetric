@@ -2,7 +2,6 @@ package com.rockymadden.stringmetric.phonetic
 
 import com.rockymadden.stringmetric.{StringAlgorithm, StringFilter}
 import com.rockymadden.stringmetric.Alphabet.{Alpha, LowercaseVowel}
-import scala.annotation.{switch, tailrec}
 
 /** An implementation of the NYSIIS algorithm. */
 class NysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: StringFilter =>
@@ -43,7 +42,7 @@ class NysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: Str
 		if (ca.length <= 1) ca
 		else ca.sliding(2).withFilter(a => a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
 
-	@tailrec
+	@annotation.tailrec
 	private[this] def transcodeCenter(l: Array[Char], c: Char, r: Array[Char], o: Array[Char]): Array[Char] = {
 		if (c == '\0' && r.length == 0) o
 		else {
@@ -59,7 +58,7 @@ class NysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: Str
 			}
 
 			val t = {
-				(c: @switch) match {
+				(c: @annotation.switch) match {
 					case 'a' | 'i' | 'o' | 'u' => shift(1, o :+ 'a')
 					case 'b' | 'c' | 'd' | 'f' | 'g' | 'j' | 'l' | 'n' | 'r' | 't' | 'v' | 'x' | 'y' => shift(1, o :+ c)
 					case 'e' =>
@@ -93,7 +92,7 @@ class NysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: Str
 			lazy val tr2 = ca.takeRight(ca.length - 2)
 			lazy val tr3 = ca.takeRight(ca.length - 3)
 
-			(ca.head: @switch) match {
+			(ca.head: @annotation.switch) match {
 				case 'k' if (ca.length >= 2 && ca(1) == 'n') => (Array('n', 'n'), tr2)
 				case 'k' => (Array('c'), ca.tail)
 				case 'm' if (ca.length >= 3 && (ca(1) == 'a' && ca(2) == 'c')) => (Array('m', 'c'), tr3)
@@ -110,7 +109,7 @@ class NysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: Str
 			val lcm1 = ca(ca.length - 2)
 			lazy val t2 = ca.take(ca.length - 2)
 
-			(lc: @switch) match {
+			(lc: @annotation.switch) match {
 				case 'd' if (lcm1 == 'n' || lcm1 == 'r') => (t2, Array('d'))
 				case 'e' if (lcm1 == 'e' || lcm1 == 'i') => (t2, Array('y'))
 				case 't' if (lcm1 == 'd' || lcm1 == 'n' || lcm1 == 'r') => (t2, Array('d'))
