@@ -1,8 +1,5 @@
 buildscript {
-	dependencies {
-		classpath 'net.saliman:gradle-cobertura-plugin:2.0.0'
-		classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:0.2.1'
-	}
+	dependencies { classpath 'net.saliman:gradle-cobertura-plugin:2.2.2' }
 	repositories { mavenCentral() }
 }
 
@@ -10,11 +7,12 @@ evaluationDependsOn(':stringmetric-core')
 
 apply from: '../deploy.gradle'
 apply plugin: 'cobertura'
-apply plugin: 'coveralls'
 apply plugin: 'scala'
 
-cobertura.coverageFormats = ['html', 'xml']
-cobertura.coverageSourceDirs = sourceSets.main.scala.srcDirs
+cobertura {
+	coverageFormats = ['html', 'xml']
+	coverageSourceDirs = sourceSets.main.scala.srcDirs
+}
 
 compileScala { compileScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6', '–Xdisable-assertions'] }
 compileTestScala { compileTestScala.scalaCompileOptions.additionalParameters = ['-target:jvm-1.6'] }

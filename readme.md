@@ -1,5 +1,5 @@
-#stringmetric [![Build Status](https://travis-ci.org/rockymadden/stringmetric.png?branch=master)](http://travis-ci.org/rockymadden/stringmetric) [![Coverage Status](https://coveralls.io/repos/rockymadden/stringmetric/badge.png)](https://coveralls.io/r/rockymadden/stringmetric)
-String metrics and phonetic algorithms for Scala. The library provides facilities to perform approximate string matching, measurement of string similarity/distance, indexing by word pronunciation, and sounds-like comparisons. In addition to the core library, each metric and algorithm has a command line interface. 
+#stringmetric [![Build Status](https://travis-ci.org/rockymadden/stringmetric.png?branch=master)](http://travis-ci.org/rockymadden/stringmetric)
+String metrics and phonetic algorithms for Scala. The library provides facilities to perform approximate string matching, measurement of string similarity/distance, indexing by word pronunciation, and sounds-like comparisons. In addition to the core library, each metric and algorithm has a command line interface.
 
 * __Requirements:__ Scala 2.10.x and, if building yourself, Gradle 1.6+
 * __Documentation:__ [ScalaDoc](http://rockymadden.com/stringmetric/scaladoc/)
@@ -415,7 +415,7 @@ cd stringmetric
 gradle :stringmetric-cli:tar
 ```
 
-Running the ```tar``` task will create a compressed archive __and__ an unarchived copy of the built files. The files can be found under the ```build``` directory that Gradle creates. The archive is named ```stringmetric-cli.tar.gz``` and the unarchived files can be found in the directory named ```stringmetric-cli```. 
+Running the ```tar``` task will create a compressed archive __and__ an unarchived copy of the built files. The files can be found under the ```build``` directory that Gradle creates. The archive is named ```stringmetric-cli.tar.gz``` and the unarchived files can be found in the directory named ```stringmetric-cli```.
 
 To run a command from the current directory that you would be in from doing the above:
 
