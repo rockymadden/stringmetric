@@ -28,21 +28,18 @@ sourceSets {
 	benchmark {
 		output.resourcesDir "${project.buildDir}/classes/benchmark"
 
-		java { srcDir 'source/benchmark/java' }
 		resources { srcDir 'source/benchmark/resource' }
 		scala { srcDir 'source/benchmark/scala' }
 	}
 	main {
 		output.resourcesDir "${project.buildDir}/classes/main"
 
-		java { srcDir 'source/main/java' }
 		resources { srcDir 'source/main/resource' }
 		scala { srcDir 'source/main/scala' }
 	}
 	test {
 		output.resourcesDir "${project.buildDir}/classes/test"
 
-		java { srcDir 'source/test/java' }
 		resources { srcDir 'source/test/resource' }
 		scala { srcDir 'source/test/scala' }
 	}
