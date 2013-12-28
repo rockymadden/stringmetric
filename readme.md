@@ -62,10 +62,10 @@ __Maven:__
 Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.
 
 
-__Dice / Sorensen Metric:__ _(Note you must specify the size of the n-gram you wish to use. This can be done implicitly.)_
+__Dice / Sorensen Metric:__ _(Note you must specify the size of the n-gram you wish to use.)_
 ```scala
-println(DiceSorensenMetric.compare("night", "nacht")(1))
-println(DiceSorensenMetric.compare("context", "contact")(1))
+DiceSorensenMetric(1).compare("night", "nacht")
+DiceSorensenMetric(1).compare("context", "contact")
 ```
 
 Output:
@@ -78,8 +78,8 @@ Output:
 
 __Hamming Metric:__
 ```scala
-println(HammingMetric.compare("toned", "roses"))
-println(HammingMetric.compare("1011101", "1001001"))
+HammingMetric.compare("toned", "roses")
+HammingMetric.compare("1011101", "1001001")
 ```
 
 Output: _(Note the exception of integers, rather than doubles, being returned.)_
@@ -90,10 +90,10 @@ Output: _(Note the exception of integers, rather than doubles, being returned.)_
 
 ---
 
-__Jaccard Metric:__ _(Note you must specify the size of the n-gram you wish to use. This can be done implicitly.)_
+__Jaccard Metric:__ _(Note you must specify the size of the n-gram you wish to use.)_
 ```scala
-println(JaccardMetric.compare("night", "nacht")(1))
-println(JaccardMetric.compare("context", "contact")(1))
+JaccardMetric(1).compare("night", "nacht")
+JaccardMetric(1).compare("context", "contact")
 ```
 
 Output:
@@ -106,9 +106,9 @@ Output:
 
 __Jaro Metric:__
 ```scala
-println(JaroMetric.compare("dwayne", "duane"))
-println(JaroMetric.compare("jones", "johnson"))
-println(JaroMetric.compare("fvie", "ten"))
+JaroMetric.compare("dwayne", "duane")
+JaroMetric.compare("jones", "johnson")
+JaroMetric.compare("fvie", "ten")
 ```
 
 Output:
@@ -122,9 +122,9 @@ Output:
 
 __Jaro-Winkler Metric:__
 ```scala
-println(JaroWinklerMetric.compare("dwayne", "duane"))
-println(JaroWinklerMetric.compare("jones", "johnson"))
-println(JaroWinklerMetric.compare("fvie", "ten"))
+JaroWinklerMetric.compare("dwayne", "duane")
+JaroWinklerMetric.compare("jones", "johnson")
+JaroWinklerMetric.compare("fvie", "ten")
 ```
 
 Output:
@@ -138,8 +138,8 @@ Output:
 
 __Levenshtein Metric:__
 ```scala
-println(LevenshteinMetric.compare("sitting", "kitten"))
-println(LevenshteinMetric.compare("cake", "drake"))
+LevenshteinMetric.compare("sitting", "kitten")
+LevenshteinMetric.compare("cake", "drake")
 ```
 
 Output: _(Note the exception of integers, rather than doubles, being returned.)_
@@ -151,11 +151,11 @@ Output: _(Note the exception of integers, rather than doubles, being returned.)_
 ---
 
 
-__N-Gram Metric:__ _(Note you must specify the size of the n-gram you wish to use. This can be done implicitly.)_
+__N-Gram Metric:__ _(Note you must specify the size of the n-gram you wish to use.)_
 ```scala
-println(NGramMetric.compare("night", "nacht")(1))
-println(NGramMetric.compare("night", "nacht")(2))
-println(NGramMetric.compare("context", "contact")(2))
+NGramMetric(1).compare("night", "nacht")
+NGramMetric(2).compare("night", "nacht")
+NGramMetric(2).compare("context", "contact")
 ```
 
 Output:
@@ -167,10 +167,10 @@ Output:
 
 ---
 
-__Overlap Metric:__ _(Note you must specify the size of the n-gram you wish to use. This can be done implicitly.)_
+__Overlap Metric:__ _(Note you must specify the size of the n-gram you wish to use.)_
 ```scala
-println(OverlapMetric.compare("night", "nacht")(1))
-println(OverlapMetric.compare("context", "contact")(1))
+OverlapMetric(1).compare("night", "nacht")
+OverlapMetric(1).compare("context", "contact")
 ```
 
 Output:
@@ -183,8 +183,8 @@ Output:
 
 __Ratcliff/Obershelp Metric:__
 ```scala
-println(RatcliffObershelpMetric.compare("aleksander", "alexandre"))
-println(RatcliffObershelpMetric.compare("pennsylvania", "pencilvaneya"))
+RatcliffObershelpMetric.compare("aleksander", "alexandre")
+RatcliffObershelpMetric.compare("pennsylvania", "pencilvaneya")
 ```
 
 Output:
@@ -195,11 +195,11 @@ Output:
 
 ---
 
-__Weighted Levenshtein Metric:__ _(Note you must specify the weight of each operation. Delete, insert, and then substitute. This can be done implicitly.)_
+__Weighted Levenshtein Metric:__ _(Note you must specify the weight of each operation. Delete, insert, and then substitute.)_
 ```scala
-println(WeightedLevenshteinMetric.compare("book", "back")(10, 0.1, 1))
-println(WeightedLevenshteinMetric.compare("hosp", "hospital")(10, 0.1, 1))
-println(WeightedLevenshteinMetric.compare("hospital", "hosp")(10, 0.1, 1))
+WeightedLevenshteinMetric(10, 0.1, 1).compare("book", "back")
+WeightedLevenshteinMetric(10, 0.1, 1).compare("hosp", "hospital")
+WeightedLevenshteinMetric(10, 0.1, 1).compare("hospital", "hosp")
 ```
 
 Output: _(Note that while a double is returned, it can be outside the range of 0 to 1, based upon the weights used.)_
@@ -214,8 +214,8 @@ Useful for indexing by word pronunciation and performing sounds-like comparisons
 
 __Metaphone Metric:__
 ```scala
-println(MetaphoneMetric.compare("merci", "mercy"))
-println(MetaphoneMetric.compare("dumb", "gum"))
+MetaphoneMetric.compare("merci", "mercy")
+MetaphoneMetric.compare("dumb", "gum")
 ```
 
 Output:
@@ -228,8 +228,8 @@ false
 
 __Metaphone Algorithm:__
 ```scala
-println(MetaphoneAlgorithm.compute("dumb"))
-println(MetaphoneAlgorithm.compute("knuth"))
+MetaphoneAlgorithm.compute("dumb")
+MetaphoneAlgorithm.compute("knuth")
 ```
 
 Output:
@@ -242,8 +242,8 @@ n0
 
 __NYSIIS Metric:__
 ```scala
-println(NysiisMetric.compare("ham", "hum"))
-println(NysiisMetric.compare("dumb", "gum"))
+NysiisMetric.compare("ham", "hum")
+NysiisMetric.compare("dumb", "gum")
 ```
 
 Output:
@@ -256,8 +256,8 @@ false
 
 __NYSIIS Algorithm:__
 ```scala
-println(NysiisAlgorithm.compute("macintosh"))
-println(NysiisAlgorithm.compute("knuth"))
+NysiisAlgorithm.compute("macintosh")
+NysiisAlgorithm.compute("knuth")
 ```
 
 Output:
@@ -270,8 +270,8 @@ nnat
 
 __Refined NYSIIS Metric:__
 ```scala
-println(RefinedNysiisMetric.compare("ham", "hum"))
-println(RefinedNysiisMetric.compare("dumb", "gum"))
+RefinedNysiisMetric.compare("ham", "hum")
+RefinedNysiisMetric.compare("dumb", "gum")
 ```
 
 Output:
@@ -284,8 +284,8 @@ false
 
 __Refined NYSIIS Algorithm:__
 ```scala
-println(RefinedNysiisAlgorithm.compute("macintosh"))
-println(RefinedNysiisAlgorithm.compute("westerlund"))
+RefinedNysiisAlgorithm.compute("macintosh")
+RefinedNysiisAlgorithm.compute("westerlund")
 ```
 
 Output:
@@ -298,8 +298,8 @@ wastarlad
 
 __Refined Soundex Metric:__
 ```scala
-println(RefinedSoundexMetric.compare("robert", "rupert"))
-println(RefinedSoundexMetric.compare("robert", "rubin"))
+RefinedSoundexMetric.compare("robert", "rupert")
+RefinedSoundexMetric.compare("robert", "rubin")
 ```
 
 Output:
@@ -312,8 +312,8 @@ false
 
 __Refined Soundex Algorithm:__
 ```scala
-println(RefinedSoundexAlgorithm.compute("hairs"))
-println(RefinedSoundexAlgorithm.compute("lambert"))
+RefinedSoundexAlgorithm.compute("hairs")
+RefinedSoundexAlgorithm.compute("lambert")
 ```
 
 Output:
@@ -326,8 +326,8 @@ l7081096
 
 __Soundex Metric:__
 ```scala
-println(SoundexMetric.compare("robert", "rupert"))
-println(SoundexMetric.compare("robert", "rubin"))
+SoundexMetric.compare("robert", "rupert")
+SoundexMetric.compare("robert", "rubin")
 ```
 
 Output:
@@ -340,8 +340,8 @@ false
 
 __Soundex Algorithm:__
 ```scala
-println(SoundexAlgorithm.compute("rupert"))
-println(SoundexAlgorithm.compute("lukasiewicz"))
+SoundexAlgorithm.compute("rupert")
+SoundexAlgorithm.compute("lukasiewicz")
 ```
 
 Output:
