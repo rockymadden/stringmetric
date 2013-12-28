@@ -15,9 +15,9 @@ case object RefinedNysiisMetric extends StringMetricLike[Boolean] {
 
 		if (a.length == 0 || !(Alpha isSuperset a.head) || b.length == 0 || !(Alpha isSuperset b.head)) None
 		else if (unequal(a.head, b.head)) Some(false)
-		else RefinedNysiisAlgorithm.compute(a).filter(_.length > 0).flatMap(rny1 =>
+		else RefinedNysiisAlgorithm.compute(a).filter(_.length > 0).flatMap { rny1 =>
 			RefinedNysiisAlgorithm.compute(b).filter(_.length > 0).map(rny1.sameElements(_))
-		)
+		}
 	}
 
 	override def compare(a: String, b: String): Option[Boolean] = compare(a.toCharArray, b.toCharArray)

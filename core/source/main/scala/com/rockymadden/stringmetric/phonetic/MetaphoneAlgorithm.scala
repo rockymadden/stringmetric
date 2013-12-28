@@ -8,7 +8,7 @@ case object MetaphoneAlgorithm extends StringAlgorithmLike {
 	override def compute(a: Array[Char]): Option[Array[Char]] =
 		if (a.length == 0 || !(Alpha isSuperset a.head)) None
 		else {
-			val th = deduplicate(transcodeHead(a.map(_.toLower)))
+			val th = (transcodeHead andThen deduplicate)(a.map(_.toLower))
 			val t = transcode(Array.empty[Char], th.head, th.tail, Array.empty[Char])
 
 			if (t.length == 0) None else Some(t) // Single Y or W would have 0 length.
@@ -16,12 +16,12 @@ case object MetaphoneAlgorithm extends StringAlgorithmLike {
 
 	override def compute(a: String): Option[String] = compute(a.toCharArray).map(_.mkString)
 
-	private def deduplicate(ca: Array[Char]) =
+	private val deduplicate: (Array[Char] => Array[Char]) = (ca) =>
 		if (ca.length <= 1) ca
-		else ca.sliding(2).withFilter(a => a(0) == 'c' || a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
+		else ca.sliding(2).withFilter(a => a(0) == 'c' || a(0) != a(1)).map(_(0)).toArray[Char] :+ ca.last
 
 	@annotation.tailrec
-	private def transcode(l: Array[Char], c: Char, r: Array[Char], o: Array[Char]): Array[Char] = {
+	private val transcode: ((Array[Char], Char, Array[Char], Array[Char]) => Array[Char]) = (l, c, r, o) => {
 		if (c == '\0' && r.length == 0) o
 		else {
 			def shift(d: Int, ca: Array[Char]) = {
@@ -89,19 +89,18 @@ case object MetaphoneAlgorithm extends StringAlgorithmLike {
 		}
 	}
 
-	private def transcodeHead(ca: Array[Char]) = {
+	private val transcodeHead: (Array[Char] => Array[Char]) = (ca) =>
 		(ca.length: @annotation.switch) match {
 			case 0 => ca
 			case 1 => if (ca.head == 'x') Array('s') else ca
 			case _ =>
 				(ca.head: @annotation.switch) match {
-					case 'a' if (ca(1) == 'e') => ca.tail
-					case 'g' | 'k' | 'p' if (ca(1) == 'n') => ca.tail
-					case 'w' if (ca(1) == 'r') => ca.tail
-					case 'w' if (ca(1) == 'h') => 'w' +: ca.drop(2)
+					case 'a' if ca(1) == 'e' => ca.tail
+					case 'g' | 'k' | 'p' if ca(1) == 'n' => ca.tail
+					case 'w' if ca(1) == 'r' => ca.tail
+					case 'w' if ca(1) == 'h' => 'w' +: ca.drop(2)
 					case 'x' => 's' +: ca.tail
 					case _ => ca
 				}
 		}
-	}
 }

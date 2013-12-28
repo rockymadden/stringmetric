@@ -12,7 +12,7 @@ case object HammingMetric extends StringMetricLike[Int] {
 
 	override def compare(a: String, b: String): Option[Int] = compare(a.toCharArray, b.toCharArray)
 
-	private def hamming(ct: CompareTuple[Char]) =
+	private val hamming: (CompareTuple[Char] => Int) = (ct) =>
 		if (ct._1.length == 0) 0
 		else ct._1.zip(ct._2).count(t => t._1 != t._2)
 }

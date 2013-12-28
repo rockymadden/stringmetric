@@ -12,28 +12,26 @@ case object LevenshteinMetric extends StringMetricLike[Int] {
 
 	override def compare(a: String, b: String): Option[Int] = compare(a.toCharArray, b.toCharArray)
 
-	private def levenshtein(ct: CompareTuple[Char]) = {
+	private val levenshtein: (CompareTuple[Char] => Int) = (ct) => {
 		val m = Array.fill[Int](ct._1.length + 1, ct._2.length + 1)(-1)
 
-		def distance(t: (Int, Int)): Int = {
-			t match {
-				case (r, 0) => r
-				case (0, c) => c
-				case (r, c) if m(r)(c) != -1 => m(r)(c)
-				case (r, c) => {
-					val min =
-						if (ct._1(r - 1) == ct._2(c - 1)) distance(r - 1, c - 1)
-						else math.min(
-							math.min(
-								distance(r - 1, c) + 1, // Delete (left).
-								distance(r, c - 1) + 1 // Insert (up).
-							),
-							distance(r - 1, c - 1) + 1 // Substitute (left-up).
-						)
+		def distance(t: (Int, Int)): Int = t match {
+			case (r, 0) => r
+			case (0, c) => c
+			case (r, c) if m(r)(c) != -1 => m(r)(c)
+			case (r, c) => {
+				val min =
+					if (ct._1(r - 1) == ct._2(c - 1)) distance(r - 1, c - 1)
+					else math.min(
+						math.min(
+							distance(r - 1, c) + 1, // Delete (left).
+							distance(r, c - 1) + 1 // Insert (up).
+						),
+						distance(r - 1, c - 1) + 1 // Substitute (left-up).
+					)
 
-					m(r)(c) = min
-					min
-				}
+				m(r)(c) = min
+				min
 			}
 		}
 

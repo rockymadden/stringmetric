@@ -20,26 +20,27 @@ case object NysiisAlgorithm extends StringAlgorithmLike {
 				) ++ tr._2
 
 			if (t.length == 1) Some(t)
-			else Some(t.head +: deduplicate(cleanTerminal(cleanLast(t.tail))))
+			else Some(t.head +: (cleanLast andThen cleanTerminal andThen deduplicate)(t.tail))
 		}
 
 	override def compute(a: String): Option[String] = compute(a.toCharArray).map(_.mkString)
 
-	private def cleanLast(ca: Array[Char]) =
+	private val cleanLast: (Array[Char] => Array[Char]) = (ca) =>
 		if (ca.length == 0) ca
-		else if(ca.last == 'a' || ca.last == 's') ca.dropRight(ca.reverseIterator.takeWhile(c => c == 'a' || c == 's').length)
+		else if(ca.last == 'a' || ca.last == 's')
+			ca.dropRight(ca.reverseIterator.takeWhile(c => c == 'a' || c == 's').length)
 		else ca
 
-	private def cleanTerminal(ca: Array[Char]) =
+	private val cleanTerminal: (Array[Char] => Array[Char]) = (ca) =>
 		if (ca.length >= 2 && ca.last == 'y' && ca(ca.length - 2) == 'a') ca.dropRight(2) :+ 'y'
 		else ca
 
-	private def deduplicate(ca: Array[Char]) =
+	private val deduplicate: (Array[Char] => Array[Char]) = (ca) =>
 		if (ca.length <= 1) ca
-		else ca.sliding(2).withFilter(a => a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
+		else ca.sliding(2).withFilter(a => a(0) != a(1)).map(_(0)).toArray[Char] :+ ca.last
 
 	@annotation.tailrec
-	private def transcodeCenter(l: Array[Char], c: Char, r: Array[Char], o: Array[Char]): Array[Char] = {
+	private val transcodeCenter: ((Array[Char], Char, Array[Char], Array[Char]) => Array[Char]) = (l, c, r, o) =>
 		if (c == '\0' && r.length == 0) o
 		else {
 			def shift(d: Int, ca: Array[Char]) = {
@@ -61,7 +62,8 @@ case object NysiisAlgorithm extends StringAlgorithmLike {
 						if (r.length >= 1 && r.head == 'v') shift(2, o ++ Array('a', 'f'))
 						else shift(1, o :+ 'a')
 					case 'h' =>
-						if (l.length >= 1 && (!(LowercaseVowel isSuperset l.last) || (r.length >= 1 && !(LowercaseVowel isSuperset r.head)))) shift(1, o)
+						if (l.length >= 1 && (!(LowercaseVowel isSuperset l.last) || (r.length >= 1 && !(LowercaseVowel isSuperset r.head))))
+							shift(1, o)
 						else shift(1, o :+ c)
 					case 'k' => if (r.length >= 1 && r.head == 'n') shift(2, o :+ 'n') else shift(1, o :+ 'c')
 					case 'm' => shift(1, o :+ 'n')
@@ -80,37 +82,34 @@ case object NysiisAlgorithm extends StringAlgorithmLike {
 
 			transcodeCenter(t._1, t._2, t._3, t._4)
 		}
-	}
 
-	private def transcodeLeft(ca: Array[Char]) = {
+	private val transcodeLeft: (Array[Char] => (Array[Char], Array[Char])) = (ca) =>
 		if (ca.length == 0) (Array.empty[Char], ca)
 		else {
 			lazy val tr2 = ca.takeRight(ca.length - 2)
 			lazy val tr3 = ca.takeRight(ca.length - 3)
 
 			(ca.head: @annotation.switch) match {
-				case 'k' if (ca.length >= 2 && ca(1) == 'n') => (Array('n', 'n'), tr2)
+				case 'k' if ca.length >= 2 && ca(1) == 'n' => (Array('n', 'n'), tr2)
 				case 'k' => (Array('c'), ca.tail)
-				case 'm' if (ca.length >= 3 && (ca(1) == 'a' && ca(2) == 'c')) => (Array('m', 'c'), tr3)
-				case 'p' if (ca.length >= 2 && (ca(1) == 'h' || ca(1) == 'f')) => (Array('f', 'f'), tr2)
-				case 's' if (ca.length >= 3 && (ca(1) == 'c' && ca(2) == 'h')) => (Array('s', 's'), tr3)
+				case 'm' if ca.length >= 3 && (ca(1) == 'a' && ca(2) == 'c') => (Array('m', 'c'), tr3)
+				case 'p' if ca.length >= 2 && (ca(1) == 'h' || ca(1) == 'f') => (Array('f', 'f'), tr2)
+				case 's' if ca.length >= 3 && (ca(1) == 'c' && ca(2) == 'h') => (Array('s', 's'), tr3)
 				case _ => (Array(ca.head), ca.tail)
 			}
 		}
-	}
 
-	private def transcodeRight(ca: Array[Char]) = {
+	private val transcodeRight: (Array[Char] => (Array[Char], Array[Char])) = (ca) =>
 		if (ca.length >= 2) {
 			val lc = ca(ca.length - 1)
 			val lcm1 = ca(ca.length - 2)
 			lazy val t2 = ca.take(ca.length - 2)
 
 			(lc: @annotation.switch) match {
-				case 'd' if (lcm1 == 'n' || lcm1 == 'r') => (t2, Array('d'))
-				case 'e' if (lcm1 == 'e' || lcm1 == 'i') => (t2, Array('y'))
-				case 't' if (lcm1 == 'd' || lcm1 == 'n' || lcm1 == 'r') => (t2, Array('d'))
+				case 'd' if lcm1 == 'n' || lcm1 == 'r' => (t2, Array('d'))
+				case 'e' if lcm1 == 'e' || lcm1 == 'i' => (t2, Array('y'))
+				case 't' if lcm1 == 'd' || lcm1 == 'n' || lcm1 == 'r' => (t2, Array('d'))
 				case _ => (ca, Array.empty[Char])
 			}
 		} else (ca, Array.empty[Char])
-	}
 }

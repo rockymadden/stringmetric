@@ -23,5 +23,5 @@ final case class NGramMetric(private val n: Int) extends StringMetricLike[Double
 
 	override def compare(a: String, b: String): Option[Double] = compare(a.toCharArray, b.toCharArray)
 
-	private[this] def scoreMatches(mt: MatchTuple[String]) = mt._1.intersect(mt._2).length
+	private val scoreMatches: (MatchTuple[String] => Int) = (mt) => mt._1.intersect(mt._2).length
 }

@@ -1,6 +1,7 @@
 package com.rockymadden.stringmetric.similarity
 
 import com.rockymadden.stringmetric.Metric.StringMetricLike
+import scala.Some
 
 /**
  * An implementation of the Jaro metric. One differing detail in this implementation is that if a character is matched
@@ -27,7 +28,7 @@ case object JaroMetric extends StringMetricLike[Double] {
 
 	override def compare(a: String, b: String): Option[Double] = compare(a.toCharArray, b.toCharArray)
 
-	private def `match`(ct: CompareTuple[Char]): MatchTuple[Char] = {
+	private val `match`: (CompareTuple[Char] => MatchTuple[Char]) = (ct) => {
 		lazy val window = math.abs((math.max(ct._1.length, ct._2.length) / 2d).floor.toInt - 1)
 		val one = ArrayBuffer.empty[Int]
 		val two = HashSet.empty[Int]
@@ -58,7 +59,8 @@ case object JaroMetric extends StringMetricLike[Double] {
 		(one.toArray.map(ct._1(_)), two.toArray.sortWith(_ < _).map(ct._2(_)))
 	}
 
-	private def scoreMatches(mt: MatchTuple[Char]) = mt._1.length
+	private val scoreMatches: (MatchTuple[Char] => Int) = (mt) => mt._1.length
 
-	private def scoreTranspositions(mt: MatchTuple[Char]) = (mt._1.zip(mt._2).count(t => t._1 != t._2) / 2d).floor.toInt
+	private val scoreTranspositions: (MatchTuple[Char] => Int) = (mt) =>
+		(mt._1.zip(mt._2).count(t => t._1 != t._2) / 2d).floor.toInt
 }

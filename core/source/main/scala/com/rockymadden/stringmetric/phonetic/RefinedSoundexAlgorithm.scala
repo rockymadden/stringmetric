@@ -12,7 +12,7 @@ case object RefinedSoundexAlgorithm extends StringAlgorithmLike {
 	override def compute(a: String): Option[String] = compute(a.toCharArray).map(_.mkString)
 
 	@annotation.tailrec
-	private def transcode(i: Array[Char], o: Array[Char]): Array[Char] =
+	private val transcode: ((Array[Char], Array[Char]) => Array[Char]) = (i, o) =>
 		if (i.length == 0) o
 		else {
 			val c = i.head.toLower

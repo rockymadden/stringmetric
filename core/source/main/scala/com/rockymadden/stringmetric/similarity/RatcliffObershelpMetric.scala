@@ -27,7 +27,7 @@ case object RatcliffObershelpMetric extends StringMetricLike[Double] {
 		lrc
 	}
 
-	private def commonSequences(ct: CompareTuple[Char]): Array[Array[Char]] = {
+	private val commonSequences: (CompareTuple[Char] => Array[Array[Char]]) = (ct) => {
 		val lcs = longestCommonSubsequence(ct)
 
 		if (lcs._1 == 0) Array.empty
@@ -35,7 +35,9 @@ case object RatcliffObershelpMetric extends StringMetricLike[Double] {
 			val sct1 = (ct._1.take(lcs._2 - lcs._1), ct._1.takeRight(ct._1.length - lcs._2))
 			val sct2 = (ct._2.take(lcs._3 - lcs._1), ct._2.takeRight(ct._2.length - lcs._3))
 
-			Array(ct._1.slice(lcs._2 - lcs._1, lcs._2)) ++ commonSequences(sct1._1, sct2._1) ++ commonSequences(sct1._2, sct2._2)
+			Array(ct._1.slice(lcs._2 - lcs._1, lcs._2)) ++
+				commonSequences(sct1._1, sct2._1) ++
+				commonSequences(sct1._2, sct2._2)
 		}
 	}
 }

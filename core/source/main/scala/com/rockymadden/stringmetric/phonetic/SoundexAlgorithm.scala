@@ -16,7 +16,7 @@ case object SoundexAlgorithm extends StringAlgorithmLike {
 	override def compute(string: String): Option[String] = compute(string.toCharArray).map(_.mkString)
 
 	@annotation.tailrec
-	private def transcode(i: Array[Char], pc: Char, o: Array[Char]): Array[Char] =
+	private val transcode: ((Array[Char], Char, Array[Char]) => Array[Char]) = (i, pc, o) =>
 		if (i.length == 0) o
 		else {
 			val c = i.head.toLower
