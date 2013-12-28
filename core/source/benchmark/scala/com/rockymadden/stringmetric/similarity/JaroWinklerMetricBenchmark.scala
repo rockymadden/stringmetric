@@ -5,8 +5,6 @@ import com.rockymadden.stringmetric.{CaliperBenchmark, CaliperRunner}
 import scala.util.Random
 
 final class JaroWinklerMetricBenchmark extends CaliperBenchmark {
-	import JaroWinklerMetricBenchmark.Metric
-
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
 
@@ -33,22 +31,18 @@ final class JaroWinklerMetricBenchmark extends CaliperBenchmark {
 	}
 
 	def timeCompareWithDifferentCharArrays(reps: Int) = run(reps) {
-		Metric.compare(charArray1, charArray2)
+		JaroWinklerMetric.compare(charArray1, charArray2)
 	}
 
 	def timeCompareWithDifferentStrings(reps: Int) = run(reps) {
-		Metric.compare(string1, string2)
+		JaroWinklerMetric.compare(string1, string2)
 	}
 
 	def timeCompareWithIdenticalCharArrays(reps: Int) = run(reps) {
-		Metric.compare(charArray1, charArray1)
+		JaroWinklerMetric.compare(charArray1, charArray1)
 	}
 
 	def timeCompareWithIdenticalStrings(reps: Int) = run(reps) {
-		Metric.compare(string1, string1)
+		JaroWinklerMetric.compare(string1, string1)
 	}
-}
-
-object JaroWinklerMetricBenchmark extends CaliperRunner(classOf[JaroWinklerMetricBenchmark]) {
-	private final val Metric = JaroWinklerMetric()
 }

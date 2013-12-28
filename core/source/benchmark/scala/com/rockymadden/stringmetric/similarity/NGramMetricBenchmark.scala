@@ -5,8 +5,6 @@ import com.rockymadden.stringmetric.{CaliperBenchmark, CaliperRunner}
 import scala.util.Random
 
 final class NGramMetricBenchmark extends CaliperBenchmark {
-	import NGramMetricBenchmark.Metric
-
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
 
@@ -36,22 +34,18 @@ final class NGramMetricBenchmark extends CaliperBenchmark {
 	}
 
 	def timeCompareWithDifferentCharArrays(reps: Int) = run(reps) {
-		Metric.compare(charArray1, charArray2)(n)
+		NGramMetric(n).compare(charArray1, charArray2)
 	}
 
 	def timeCompareWithDifferentStrings(reps: Int) = run(reps) {
-		Metric.compare(string1, string2)(n)
+		NGramMetric(n).compare(string1, string2)
 	}
 
 	def timeCompareWithIdenticalCharArrays(reps: Int) = run(reps) {
-		Metric.compare(charArray1, charArray1)(n)
+		NGramMetric(n).compare(charArray1, charArray1)
 	}
 
 	def timeCompareWithIdenticalStrings(reps: Int) = run(reps) {
-		Metric.compare(string1, string1)(n)
+		NGramMetric(n).compare(string1, string1)
 	}
-}
-
-object NGramMetricBenchmark extends CaliperRunner(classOf[NGramMetricBenchmark]) {
-	private final val Metric = NGramMetric()
 }

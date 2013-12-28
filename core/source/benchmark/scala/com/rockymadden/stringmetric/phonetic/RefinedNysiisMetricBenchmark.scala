@@ -6,8 +6,6 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 final class RefinedNysiisMetricBenchmark extends CaliperBenchmark {
-	import RefinedNysiisMetricBenchmark.Metric
-
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
 
@@ -34,22 +32,18 @@ final class RefinedNysiisMetricBenchmark extends CaliperBenchmark {
 	}
 
 	def timeCompareWithDifferentCharArrays(reps: Int) = run(reps) {
-		Metric.compare(charArray1, charArray2)
+		RefinedNysiisMetric.compare(charArray1, charArray2)
 	}
 
 	def timeCompareWithDifferentStrings(reps: Int) = run(reps) {
-		Metric.compare(string1, string2)
+		RefinedNysiisMetric.compare(string1, string2)
 	}
 
 	def timeCompareWithIdenticalCharArrays(reps: Int) = run(reps) {
-		Metric.compare(charArray1, charArray1)
+		RefinedNysiisMetric.compare(charArray1, charArray1)
 	}
 
 	def timeCompareWithIdenticalStrings(reps: Int) = run(reps) {
-		Metric.compare(string1, string1)
+		RefinedNysiisMetric.compare(string1, string1)
 	}
-}
-
-object RefinedNysiisMetricBenchmark extends CaliperRunner(classOf[RefinedNysiisMetricBenchmark]) {
-	private final val Metric = RefinedNysiisMetric()
 }

@@ -5,8 +5,6 @@ import com.rockymadden.stringmetric.{CaliperBenchmark, CaliperRunner}
 import scala.util.Random
 
 final class NysiisAlgorithmBenchmark extends CaliperBenchmark {
-	import NysiisAlgorithmBenchmark.Algorithm
-
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
 
@@ -19,14 +17,10 @@ final class NysiisAlgorithmBenchmark extends CaliperBenchmark {
 	}
 
 	def timeComputeWithCharArray(reps: Int) = run(reps) {
-		Algorithm.compute(charArray)
+		NysiisAlgorithm.compute(charArray)
 	}
 
 	def timeComputeWithString(reps: Int) = run(reps) {
-		Algorithm.compute(string)
+		NysiisAlgorithm.compute(string)
 	}
-}
-
-object NysiisAlgorithmBenchmark extends CaliperRunner(classOf[NysiisAlgorithmBenchmark]) {
-	private final val Algorithm = NysiisAlgorithm()
 }

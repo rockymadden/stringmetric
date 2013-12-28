@@ -5,8 +5,6 @@ import com.rockymadden.stringmetric.{CaliperBenchmark, CaliperRunner}
 import scala.util.Random
 
 final class RatcliffObershelpMetricBenchmark extends CaliperBenchmark {
-	import RatcliffObershelpMetricBenchmark.Metric
-
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
 
@@ -33,22 +31,18 @@ final class RatcliffObershelpMetricBenchmark extends CaliperBenchmark {
 	}
 
 	def timeCompareWithDifferentCharArrays(reps: Int) = run(reps) {
-		Metric.compare(charArray1, charArray2)
+		RatcliffObershelpMetric.compare(charArray1, charArray2)
 	}
 
 	def timeCompareWithDifferentStrings(reps: Int) = run(reps) {
-		Metric.compare(string1, string2)
+		RatcliffObershelpMetric.compare(string1, string2)
 	}
 
 	def timeCompareWithIdenticalCharArrays(reps: Int) = run(reps) {
-		Metric.compare(charArray1, charArray1)
+		RatcliffObershelpMetric.compare(charArray1, charArray1)
 	}
 
 	def timeCompareWithIdenticalStrings(reps: Int) = run(reps) {
-		Metric.compare(string1, string1)
+		RatcliffObershelpMetric.compare(string1, string1)
 	}
-}
-
-object RatcliffObershelpMetricBenchmark extends CaliperRunner(classOf[RatcliffObershelpMetricBenchmark]) {
-	private final val Metric = RatcliffObershelpMetric()
 }

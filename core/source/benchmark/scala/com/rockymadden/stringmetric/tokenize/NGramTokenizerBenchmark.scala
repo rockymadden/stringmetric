@@ -5,8 +5,6 @@ import com.rockymadden.stringmetric.{CaliperBenchmark, CaliperRunner}
 import scala.util.Random
 
 final class NGramTokenizerBenchmark extends CaliperBenchmark {
-	import NGramTokenizerBenchmark.Tokenizer
-
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
 
@@ -22,14 +20,10 @@ final class NGramTokenizerBenchmark extends CaliperBenchmark {
 	}
 
 	def timeComputeWithCharArray(reps: Int) = run(reps) {
-		Tokenizer.tokenize(charArray)(n)
+		NGramTokenizer(n).tokenize(charArray)
 	}
 
 	def timeComputeWithString(reps: Int) = run(reps) {
-		Tokenizer.tokenize(string)(n)
+		NGramTokenizer(n).tokenize(string)
 	}
-}
-
-object NGramTokenizerBenchmark extends CaliperRunner(classOf[NGramTokenizerBenchmark]) {
-	private final val Tokenizer = NGramTokenizer()
 }

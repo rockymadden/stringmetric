@@ -5,8 +5,6 @@ import com.rockymadden.stringmetric.{CaliperBenchmark, CaliperRunner}
 import scala.util.Random
 
 final class WeightedLevenshteinMetricBenchmark extends CaliperBenchmark {
-	import WeightedLevenshteinMetricBenchmark.Metric
-
 	@Param(Array("0", "1", "2", "4", "8", "16"))
 	var length: Int = _
 
@@ -33,22 +31,18 @@ final class WeightedLevenshteinMetricBenchmark extends CaliperBenchmark {
 	}
 
 	def timeCompareWithDifferentCharArrays(reps: Int) = run(reps) {
-		Metric.compare(charArray1, charArray2)(1, 1, 1)
+		WeightedLevenshteinMetric(1, 1, 1).compare(charArray1, charArray2)
 	}
 
 	def timeCompareWithDifferentStrings(reps: Int) = run(reps) {
-		Metric.compare(string1, string2)(1, 1, 1)
+		WeightedLevenshteinMetric(1, 1, 1).compare(string1, string2)
 	}
 
 	def timeCompareWithIdenticalCharArrays(reps: Int) = run(reps) {
-		Metric.compare(charArray1, charArray1)(1, 1, 1)
+		WeightedLevenshteinMetric(1, 1, 1).compare(charArray1, charArray1)
 	}
 
 	def timeCompareWithIdenticalStrings(reps: Int) = run(reps) {
-		Metric.compare(string1, string1)(1, 1, 1)
+		WeightedLevenshteinMetric(1, 1, 1).compare(string1, string1)
 	}
-}
-
-object WeightedLevenshteinMetricBenchmark extends CaliperRunner(classOf[WeightedLevenshteinMetricBenchmark]) {
-	private final val Metric = WeightedLevenshteinMetric()
 }
