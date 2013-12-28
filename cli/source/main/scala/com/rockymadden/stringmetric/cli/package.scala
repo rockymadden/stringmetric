@@ -22,6 +22,10 @@ package object cli {
 	implicit def arrayOfStringToOptionMap(stringArray: Array[String]): OptionMap = OptionMap(stringArray)
 
 
+	final val Ls = sys.props("line.separator")
+	final val Tab = "  "
+
+
 	class OptionString(val get: String)
 
 	object OptionString {
