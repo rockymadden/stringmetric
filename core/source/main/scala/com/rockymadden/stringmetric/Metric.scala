@@ -1,5 +1,12 @@
 package com.rockymadden.stringmetric
 
-trait Metric[A, B, C] {
-	def compare(a1: A, a2: A)(implicit b: B): Option[C]
+object Metric {
+	trait MetricLike[A, B] {
+		def compare(a1: A, a2: A): Option[B]
+	}
+
+
+	trait StringMetricLike[A] extends MetricLike[Array[Char], A] {
+		def compare(string1: String, string2: String): Option[A]
+	}
 }

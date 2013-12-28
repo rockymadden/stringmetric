@@ -44,6 +44,6 @@ object overlapmetric extends Command {
 		val strings: Array[String] = opts('dashless)
 		val n: Int = opts('n)
 
-		println(OverlapMetric.compare(strings(0), strings(1))(n).getOrElse("not comparable"))
+		println(OverlapMetric(n).compare(strings(0), strings(1)).getOrElse("not comparable"))
 	}
 }

@@ -1,31 +1,27 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.{StringAlgorithm, StringFilter}
-import com.rockymadden.stringmetric.Alphabet.{Alpha, LowercaseVowel}
+import com.rockymadden.stringmetric.Algorithm.StringAlgorithmLike
 
-/** An implementation of the Metaphone algorithm. */
-class MetaphoneAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: StringFilter =>
-	final override def compute(charArray: Array[Char])(implicit di: DummyImplicit): Option[Array[Char]] = {
-		val fca = filter(charArray)
+case object MetaphoneAlgorithm extends StringAlgorithmLike {
+	import com.rockymadden.stringmetric.Alphabet.{Alpha, LowercaseVowel}
 
-		if (fca.length == 0 || !(Alpha isSuperset fca.head)) None
+	override def compute(a: Array[Char]): Option[Array[Char]] =
+		if (a.length == 0 || !(Alpha isSuperset a.head)) None
 		else {
-			val th = deduplicate(transcodeHead(fca.map(_.toLower)))
+			val th = deduplicate(transcodeHead(a.map(_.toLower)))
 			val t = transcode(Array.empty[Char], th.head, th.tail, Array.empty[Char])
 
 			if (t.length == 0) None else Some(t) // Single Y or W would have 0 length.
 		}
-	}
 
-	final override def compute(string: String)(implicit di: DummyImplicit): Option[String] =
-		compute(string.toCharArray).map(_.mkString)
+	override def compute(a: String): Option[String] = compute(a.toCharArray).map(_.mkString)
 
-	private[this] def deduplicate(ca: Array[Char]) =
+	private def deduplicate(ca: Array[Char]) =
 		if (ca.length <= 1) ca
 		else ca.sliding(2).withFilter(a => a(0) == 'c' || a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
 
 	@annotation.tailrec
-	private[this] def transcode(l: Array[Char], c: Char, r: Array[Char], o: Array[Char]): Array[Char] = {
+	private def transcode(l: Array[Char], c: Char, r: Array[Char], o: Array[Char]): Array[Char] = {
 		if (c == '\0' && r.length == 0) o
 		else {
 			def shift(d: Int, ca: Array[Char]) = {
@@ -93,7 +89,7 @@ class MetaphoneAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: 
 		}
 	}
 
-	private[this] def transcodeHead(ca: Array[Char]) = {
+	private def transcodeHead(ca: Array[Char]) = {
 		(ca.length: @annotation.switch) match {
 			case 0 => ca
 			case 1 => if (ca.head == 'x') Array('s') else ca
@@ -108,14 +104,4 @@ class MetaphoneAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: 
 				}
 		}
 	}
-}
-
-object MetaphoneAlgorithm {
-	private lazy val self = apply()
-
-	def apply(): MetaphoneAlgorithm = new MetaphoneAlgorithm with StringFilter
-
-	def compute(charArray: Array[Char]) = self.compute(charArray)
-
-	def compute(string: String) = self.compute(string)
 }

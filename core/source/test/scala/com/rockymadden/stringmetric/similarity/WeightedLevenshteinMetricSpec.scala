@@ -6,59 +6,45 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class WeightedLevenshteinMetricSpec extends ScalaTest {
-	import WeightedLevenshteinMetricSpec.{Metric, Options}
-
 	"WeightedLevenshteinMetric" should provide {
 		"compare method" when passed {
 			"empty arguments" should returns {
 				"None" in {
-					Metric.compare("", "")(Options).isDefined should be (false)
-					Metric.compare("abc", "")(Options).isDefined should be (false)
-					Metric.compare("", "xyz")(Options).isDefined should be (false)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("", "").isDefined should be (false)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("abc", "").isDefined should be (false)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("", "xyz").isDefined should be (false)
 				}
 			}
 			"equal arguments" should returns {
 				"0" in {
-					Metric.compare("abc", "abc")(Options).get should be (0)
-					Metric.compare("123", "123")(Options).get should be (0)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("abc", "abc").get should be (0)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("123", "123").get should be (0)
 				}
 			}
 			"unequal arguments" should returns {
 				"Double indicating distance" in {
-					Metric.compare("abc", "xyz")(Options).get should be (3)
-					Metric.compare("123", "456")(Options).get should be (3)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("abc", "xyz").get should be (3)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("123", "456").get should be (3)
 				}
 			}
 			"valid arguments" should returns {
 				"Double indicating distance" in {
-					Metric.compare("az", "z")(Options).get should be (10)
-					Metric.compare("z", "az")(Options).get should be (0.1)
-					Metric.compare("a", "z")(Options).get should be (1)
-					Metric.compare("z", "a")(Options).get should be (1)
-					Metric.compare("ab", "yz")(Options).get should be (2)
-					Metric.compare("yz", "ab")(Options).get should be (2)
-					Metric.compare("0", "0123456789")(Options).get should be (0.9)
-					Metric.compare("0123456789", "0")(Options).get should be (90)
-					Metric.compare("book", "back")(Options).get should be (2)
-					Metric.compare("back", "book")(Options).get should be (2)
-					Metric.compare("hosp", "hospital")(Options).get should be (0.4)
-					Metric.compare("hospital", "hosp")(Options).get should be (40)
-					Metric.compare("clmbs blvd", "columbus boulevard")(Options).get should be (0.8)
-					Metric.compare("columbus boulevard", "clmbs blvd")(Options).get should be (80)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("az", "z").get should be (10)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("z", "az").get should be (0.1)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("a", "z").get should be (1)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("z", "a").get should be (1)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("ab", "yz").get should be (2)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("yz", "ab").get should be (2)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("0", "0123456789").get should be (0.9)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("0123456789", "0").get should be (90)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("book", "back").get should be (2)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("back", "book").get should be (2)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("hosp", "hospital").get should be (0.4)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("hospital", "hosp").get should be (40)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("clmbs blvd", "columbus boulevard").get should be (0.8)
+					WeightedLevenshteinMetric(10, 0.1, 1).compare("columbus boulevard", "clmbs blvd").get should be (80)
 				}
 			}
 		}
 	}
-	"WeightedLevenshteinMetric companion object" should provide {
-		"pass-through compare method" should returns {
-			"same value as class" in {
-				WeightedLevenshteinMetric.compare("hospital", "hosp")(Options).get should be (40)
-			}
-		}
-	}
-}
-
-object WeightedLevenshteinMetricSpec {
-	private final val Options = Tuple3[BigDecimal, BigDecimal, BigDecimal](10, 0.1, 1)
-	private final val Metric = WeightedLevenshteinMetric()
 }

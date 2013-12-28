@@ -1,38 +1,33 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{CompareTuple, MatchTuple, StringFilter, StringMetric}
-import scala.collection.mutable.{ArrayBuffer, HashSet}
+import com.rockymadden.stringmetric.Metric.StringMetricLike
 
 /**
  * An implementation of the Jaro metric. One differing detail in this implementation is that if a character is matched
  * in string2, it cannot be matched upon again. This results in a more penalized distance in these scenarios.
  */
-class JaroMetric extends StringMetric[DummyImplicit, Double] { this: StringFilter =>
-	final override def compare(charArray1: Array[Char], charArray2: Array[Char])
-		(implicit di: DummyImplicit): Option[Double] = {
+case object JaroMetric extends StringMetricLike[Double] {
+	import com.rockymadden.stringmetric.{CompareTuple, MatchTuple}
+	import scala.collection.mutable.{ArrayBuffer, HashSet}
 
-		val fca1 = filter(charArray1)
-		lazy val fca2 = filter(charArray2)
-
-		if (fca1.length == 0 || fca2.length == 0) None
-		else if (fca1.sameElements(fca2)) Some(1d)
+	override def compare(a: Array[Char], b: Array[Char]): Option[Double] =
+		if (a.length == 0 || b.length == 0) None
+		else if (a.sameElements(b)) Some(1d)
 		else {
-			val mt = `match`(fca1, fca2)
+			val mt = `match`(a, b)
 			val ms = scoreMatches(mt._1, mt._2)
 
 			if (ms == 0) Some(0d)
 			else {
 				val ts = scoreTranspositions(mt._1, mt._2)
 
-				Some(((ms.toDouble / fca1.length) + (ms.toDouble / fca2.length) + ((ms.toDouble - ts) / ms)) / 3)
+				Some(((ms.toDouble / a.length) + (ms.toDouble / b.length) + ((ms.toDouble - ts) / ms)) / 3)
 			}
 		}
-	}
 
-	final override def compare(string1: String, string2: String)(implicit di: DummyImplicit): Option[Double] =
-		compare(string1.toCharArray, string2.toCharArray)
+	override def compare(a: String, b: String): Option[Double] = compare(a.toCharArray, b.toCharArray)
 
-	private[this] def `match`(ct: CompareTuple[Char]): MatchTuple[Char] = {
+	private def `match`(ct: CompareTuple[Char]): MatchTuple[Char] = {
 		lazy val window = math.abs((math.max(ct._1.length, ct._2.length) / 2d).floor.toInt - 1)
 		val one = ArrayBuffer.empty[Int]
 		val two = HashSet.empty[Int]
@@ -63,25 +58,7 @@ class JaroMetric extends StringMetric[DummyImplicit, Double] { this: StringFilte
 		(one.toArray.map(ct._1(_)), two.toArray.sortWith(_ < _).map(ct._2(_)))
 	}
 
-	private[this] def scoreMatches(mt: MatchTuple[Char]) = {
-		require(mt._1.length == mt._2.length)
+	private def scoreMatches(mt: MatchTuple[Char]) = mt._1.length
 
-		mt._1.length
-	}
-
-	private[this] def scoreTranspositions(mt: MatchTuple[Char]) = {
-		require(mt._1.length == mt._2.length)
-
-		(mt._1.zip(mt._2).count(t => t._1 != t._2) / 2d).floor.toInt
-	}
-}
-
-object JaroMetric {
-	private lazy val self = apply()
-
-	def apply(): JaroMetric = new JaroMetric with StringFilter
-
-	def compare(charArray1: Array[Char], charArray2: Array[Char]) = self.compare(charArray1, charArray2)
-
-	def compare(string1: String, string2: String) = self.compare(string1, string2)
+	private def scoreTranspositions(mt: MatchTuple[Char]) = (mt._1.zip(mt._2).count(t => t._1 != t._2) / 2d).floor.toInt
 }

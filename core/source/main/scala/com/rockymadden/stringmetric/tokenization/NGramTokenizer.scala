@@ -1,20 +1,16 @@
 package com.rockymadden.stringmetric.tokenization
 
-import com.rockymadden.stringmetric.{StringFilter, StringTokenizer}
+import com.rockymadden.stringmetric.Tokenizer.StringTokenizerLike
 
-/** An implementation of the N-Gram tokenizer. */
-class NGramTokenizer extends StringTokenizer[Int, Array[String]] { this: StringFilter =>
-	final override def tokenize(charArray: Array[Char])(implicit n: Int): Option[Array[Array[Char]]] = {
-		if (n <= 0) throw new IllegalArgumentException("Expected valid n.")
+final case class NGramTokenizer(private val n: Int) extends StringTokenizerLike {
+	override def tokenize(a: Array[Char]): Option[Array[Array[Char]]] = {
+		if (n <= 0) return None
 
-		val fca = filter(charArray)
-
-		if (fca.length < n) None
-		else Some(sequence(fca, Array.empty[Array[Char]], n))
+		if (a.length < n) None
+		else Some(sequence(a, Array.empty[Array[Char]], n))
 	}
 
-	final override def tokenize(string: String)(implicit n: Int): Option[Array[String]] =
-		tokenize(string.toCharArray)(n).map(_.map(_.mkString))
+	override def tokenize(a: String): Option[Array[String]] = tokenize(a.toCharArray).map(_.map(_.mkString))
 
 	@annotation.tailrec
 	private[this] def sequence(i: Array[Char], o: Array[Array[Char]], n: Int): Array[Array[Char]] = {
@@ -23,14 +19,4 @@ class NGramTokenizer extends StringTokenizer[Int, Array[String]] { this: StringF
 		if (i.length <= n) o :+ i
 		else sequence(i.tail, o :+ i.take(n), n)
 	}
-}
-
-object NGramTokenizer {
-	private lazy val self = apply()
-
-	def apply(): NGramTokenizer = new NGramTokenizer with StringFilter
-
-	def tokenize(charArray: Array[Char])(n: Int) = self.tokenize(charArray)(n)
-
-	def tokenize(string: String)(n: Int) = self.tokenize(string)(n)
 }

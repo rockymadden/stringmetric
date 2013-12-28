@@ -1,22 +1,18 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.{StringAlgorithm, StringFilter}
-import com.rockymadden.stringmetric.Alphabet.Alpha
+import com.rockymadden.stringmetric.Algorithm.StringAlgorithmLike
 
-/** An implementation of the refined Soundex algorithm. */
-class RefinedSoundexAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: StringFilter =>
-	final override def compute(charArray: Array[Char])(implicit di: DummyImplicit): Option[Array[Char]] = {
-		val fca = filter(charArray)
+case object RefinedSoundexAlgorithm extends StringAlgorithmLike {
+	import com.rockymadden.stringmetric.Alphabet.Alpha
 
-		if (fca.length == 0 || !(Alpha isSuperset fca.head)) None
-		else Some(transcode(fca, Array(fca.head.toLower)))
-	}
+	override def compute(a: Array[Char]): Option[Array[Char]] =
+		if (a.length == 0 || !(Alpha isSuperset a.head)) None
+		else Some(transcode(a, Array(a.head.toLower)))
 
-	final override def compute(string: String)(implicit di: DummyImplicit): Option[String] =
-		compute(string.toCharArray).map(_.mkString)
+	override def compute(a: String): Option[String] = compute(a.toCharArray).map(_.mkString)
 
 	@annotation.tailrec
-	private[this] def transcode(i: Array[Char], o: Array[Char]): Array[Char] = {
+	private def transcode(i: Array[Char], o: Array[Char]): Array[Char] =
 		if (i.length == 0) o
 		else {
 			val c = i.head.toLower
@@ -60,15 +56,4 @@ class RefinedSoundexAlgorithm extends StringAlgorithm[DummyImplicit, String] { t
 
 			transcode(i.tail, if (a != '\0') o :+ a else o)
 		}
-	}
-}
-
-object RefinedSoundexAlgorithm {
-	private lazy val self = apply()
-
-	def apply(): RefinedSoundexAlgorithm = new RefinedSoundexAlgorithm with StringFilter
-
-	def compute(charArray: Array[Char]) = self.compute(charArray)
-
-	def compute(string: String) = self.compute(string)
 }

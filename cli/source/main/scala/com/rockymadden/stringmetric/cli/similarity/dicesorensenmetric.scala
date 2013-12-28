@@ -44,6 +44,6 @@ object dicesorensenmetric extends Command {
 		val strings: Array[String] = opts('dashless)
 		val n: Int = opts('n)
 
-		println(DiceSorensenMetric.compare(strings(0), strings(1))(n).getOrElse("not comparable"))
+		println(DiceSorensenMetric(n).compare(strings(0), strings(1)).getOrElse("not comparable"))
 	}
 }

@@ -51,12 +51,9 @@ object weightedlevenshteinmetric extends Command {
 
 	override def execute(opts: OptionMap): Unit = {
 		val strings: Array[String] = opts('dashless)
-		val weights = Tuple3[BigDecimal, BigDecimal, BigDecimal](
-			opts('deleteWeight),
-			opts('insertWeight),
-			opts('substituteWeight)
-		)
 
-		println(WeightedLevenshteinMetric.compare(strings(0), strings(1))(weights).getOrElse("not comparable"))
+		println(WeightedLevenshteinMetric(
+			opts('deleteWeight), opts('insertWeight), opts('substituteWeight)
+		).compare(strings(0), strings(1)).getOrElse("not comparable"))
 	}
 }

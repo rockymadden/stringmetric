@@ -1,5 +1,12 @@
 package com.rockymadden.stringmetric
 
-trait Tokenizer[A, B, C] {
-	def tokenize(a: A)(implicit b: B): Option[C]
+object Tokenizer {
+	trait TokenizerLike[A] {
+		def tokenize(a: A): Option[Array[A]]
+	}
+
+
+	trait StringTokenizerLike extends TokenizerLike[Array[Char]] {
+		def tokenize(a: String): Option[Array[String]]
+	}
 }

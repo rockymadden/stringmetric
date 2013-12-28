@@ -44,6 +44,6 @@ object ngrammetric extends Command {
 		val strings: Array[String] = options('dashless)
 		val n: Int = options('n)
 
-		println(NGramMetric.compare(strings(0), strings(1))(n).getOrElse("not comparable"))
+		println(NGramMetric(n).compare(strings(0), strings(1)).getOrElse("not comparable"))
 	}
 }

@@ -1,37 +1,18 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{CompareTuple, StringFilter, StringMetric}
+import com.rockymadden.stringmetric.Metric.StringMetricLike
 
-/** An implementation of the Hamming metric. */
-class HammingMetric extends StringMetric[DummyImplicit, Int] { this: StringFilter =>
-	final override def compare(charArray1: Array[Char], charArray2: Array[Char])
-		(implicit di: DummyImplicit): Option[Int] = {
+case object HammingMetric extends StringMetricLike[Int] {
+	import com.rockymadden.stringmetric.CompareTuple
 
-		val fca1 = filter(charArray1)
-		lazy val fca2 = filter(charArray2)
+	override def compare(a: Array[Char], b: Array[Char]): Option[Int] =
+		if (a.length == 0 || b.length == 0 || a.length != b.length) None
+		else if (a.sameElements(b)) Some(0)
+		else Some(hamming(a, b))
 
-		if (fca1.length == 0 || fca2.length == 0 || fca1.length != fca2.length) None
-		else if (fca1.sameElements(fca2)) Some(0)
-		else Some(hamming(fca1, fca2))
-	}
+	override def compare(a: String, b: String): Option[Int] = compare(a.toCharArray, b.toCharArray)
 
-	final override def compare(string1: String, string2: String)(implicit di: DummyImplicit): Option[Int] =
-		compare(string1.toCharArray, string2.toCharArray)
-
-	private[this] def hamming(ct: CompareTuple[Char]) = {
-		require(ct._1.length == ct._2.length)
-
+	private def hamming(ct: CompareTuple[Char]) =
 		if (ct._1.length == 0) 0
 		else ct._1.zip(ct._2).count(t => t._1 != t._2)
-	}
-}
-
-object HammingMetric {
-	private lazy val self = apply()
-
-	def apply(): HammingMetric = new HammingMetric with StringFilter
-
-	def compare(charArray1: Array[Char], charArray2: Array[Char]) = self.compare(charArray1, charArray2)
-
-	def compare(string1: String, string2: String) = self.compare(string1, string2)
 }

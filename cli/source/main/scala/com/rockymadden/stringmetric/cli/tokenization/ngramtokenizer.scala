@@ -41,7 +41,7 @@ object ngramtokenizer extends Command {
 	}
 
 	override def execute(opts: OptionMap): Unit =
-		NGramTokenizer.tokenize(opts('dashless))(opts('n)) match {
+		NGramTokenizer(opts('n)).tokenize(opts('dashless)) match {
 			// Implicits are a pain here.
 			case Some(c) => {
 				val sb = new StringBuilder

@@ -1,24 +1,18 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{CompareTuple, StringFilter, StringMetric}
+import com.rockymadden.stringmetric.Metric.StringMetricLike
 
-/** An implementation of the Levenshtein metric. */
-class LevenshteinMetric extends StringMetric[DummyImplicit, Int] { this: StringFilter =>
-	final override def compare(charArray1: Array[Char], charArray2: Array[Char])
-		(implicit di: DummyImplicit): Option[Int] = {
+case object LevenshteinMetric extends StringMetricLike[Int] {
+	import com.rockymadden.stringmetric.CompareTuple
 
-		val fca1 = filter(charArray1)
-		lazy val fca2 = filter(charArray2)
+	override def compare(a: Array[Char], b: Array[Char]): Option[Int] =
+		if (a.length == 0 || b.length == 0) None
+		else if (a.sameElements(b)) Some(0)
+		else Some(levenshtein(a, b))
 
-		if (fca1.length == 0 || fca2.length == 0) None
-		else if (fca1.sameElements(fca2)) Some(0)
-		else Some(levenshtein(fca1, fca2))
-	}
+	override def compare(a: String, b: String): Option[Int] = compare(a.toCharArray, b.toCharArray)
 
-	final override def compare(string1: String, string2: String)(implicit di: DummyImplicit): Option[Int] =
-		compare(string1.toCharArray, string2.toCharArray)
-
-	private[this] def levenshtein(ct: CompareTuple[Char]) = {
+	private def levenshtein(ct: CompareTuple[Char]) = {
 		val m = Array.fill[Int](ct._1.length + 1, ct._2.length + 1)(-1)
 
 		def distance(t: (Int, Int)): Int = {
@@ -45,14 +39,4 @@ class LevenshteinMetric extends StringMetric[DummyImplicit, Int] { this: StringF
 
 		distance(ct._1.length, ct._2.length)
 	}
-}
-
-object LevenshteinMetric {
-	private lazy val self = apply()
-
-	def apply(): LevenshteinMetric = new LevenshteinMetric with StringFilter
-
-	def compare(charArray1: Array[Char], charArray2: Array[Char]) = self.compare(charArray1, charArray2)
-
-	def compare(string1: String, string2: String) = self.compare(string1, string2)
 }

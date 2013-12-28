@@ -1,32 +1,18 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{CompareTuple, StringMetric, StringFilter}
-import scala.math.BigDecimal
+import com.rockymadden.stringmetric.Metric.StringMetricLike
 
-/** An implementation of a weighted Levenshtein metric. */
-class WeightedLevenshteinMetric
-	extends StringMetric[(BigDecimal, BigDecimal, BigDecimal), Double] { this: StringFilter =>
+final case class WeightedLevenshteinMetric(delete: BigDecimal, insert: BigDecimal, substitute: BigDecimal)
+	extends StringMetricLike[Double] {
 
-	/** Options order is delete, insert, then substitute weight. */
-	final override def compare(charArray1: Array[Char], charArray2: Array[Char])
-		(implicit options: (BigDecimal, BigDecimal, BigDecimal)): Option[Double] = {
+	import com.rockymadden.stringmetric.CompareTuple
 
-		if (options._1 < 0 || options._2 < 0 || options._3 < 0)
-			throw new IllegalArgumentException("Expected valid weight options.")
+	override def compare(a: Array[Char], b: Array[Char]): Option[Double] =
+		if (a.length == 0 || b.length == 0) None
+		else if (a.sameElements(b)) Some(0d)
+		else Some(weightedLevenshtein((a, b), (delete, insert, substitute)).toDouble)
 
-		val fca1 = filter(charArray1)
-		lazy val fca2 = filter(charArray2)
-
-		if (fca1.length == 0 || fca2.length == 0) None
-		else if (fca1.sameElements(fca2)) Some(0d)
-		else Some(weightedLevenshtein((fca1, fca2), options).toDouble)
-	}
-
-	/** Options order is delete, insert, then substitute weight. */
-	final override def compare(string1: String, string2: String)
-		(implicit options: (BigDecimal, BigDecimal, BigDecimal)): Option[Double] =
-
-		compare(string1.toCharArray, string2.toCharArray)(options)
+	override def compare(a: String, b: String): Option[Double] = compare(a.toCharArray, b.toCharArray)
 
 	private[this] def weightedLevenshtein(ct: CompareTuple[Char], w: (BigDecimal, BigDecimal, BigDecimal)) = {
 		val m = Array.ofDim[BigDecimal](ct._1.length + 1, ct._2.length + 1)
@@ -46,16 +32,4 @@ class WeightedLevenshteinMetric
 
 		m(ct._1.length)(ct._2.length)
 	}
-}
-
-object WeightedLevenshteinMetric {
-	private lazy val self = apply()
-
-	def apply(): WeightedLevenshteinMetric = new WeightedLevenshteinMetric with StringFilter
-
-	def compare(charArray1: Array[Char], charArray2: Array[Char])(options: (BigDecimal, BigDecimal, BigDecimal)) =
-		self.compare(charArray1, charArray2)(options)
-
-	def compare(string1: String, string2: String)(options: (BigDecimal, BigDecimal, BigDecimal)) =
-		self.compare(string1, string2)(options)
 }

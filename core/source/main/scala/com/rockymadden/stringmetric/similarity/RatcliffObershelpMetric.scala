@@ -1,24 +1,18 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.{CompareTuple, StringFilter, StringMetric}
+import com.rockymadden.stringmetric.Metric.StringMetricLike
 
-/** An implementation of the Ratcliff/Obershelp metric. */
-class RatcliffObershelpMetric extends StringMetric[DummyImplicit, Double] { this: StringFilter =>
-	final override def compare(charArray1: Array[Char], charArray2: Array[Char])
-		(implicit di: DummyImplicit): Option[Double] = {
+case object RatcliffObershelpMetric extends StringMetricLike[Double] {
+	import com.rockymadden.stringmetric.CompareTuple
 
-		val fca1 = filter(charArray1)
-		lazy val fca2 = filter(charArray2)
+	override def compare(a: Array[Char], b: Array[Char]): Option[Double] =
+		if (a.length == 0 || b.length == 0) None
+		else if (a.sameElements(b)) Some(1d)
+		else Some(2d * commonSequences(a, b).foldLeft(0)(_ + _.length) / (a.length + b.length))
 
-		if (fca1.length == 0 || fca2.length == 0) None
-		else if (fca1.sameElements(fca2)) Some(1d)
-		else Some(2d * commonSequences(fca1, fca2).foldLeft(0)(_ + _.length) / (fca1.length + fca2.length))
-	}
+	override def compare(a: String, b: String): Option[Double] = compare(a.toCharArray, b.toCharArray)
 
-	final override def compare(string1: String, string2: String)(implicit di: DummyImplicit): Option[Double] =
-		compare(string1.toCharArray, string2.toCharArray)
-
-	private[this] def longestCommonSubsequence(ct: CompareTuple[Char]) = {
+	private def longestCommonSubsequence(ct: CompareTuple[Char]) = {
 		val m = Array.ofDim[Int](ct._1.length + 1, ct._2.length + 1)
 		var lrc = (0, 0, 0) // Length, row, column.
 
@@ -33,7 +27,7 @@ class RatcliffObershelpMetric extends StringMetric[DummyImplicit, Double] { this
 		lrc
 	}
 
-	private[this] def commonSequences(ct: CompareTuple[Char]): Array[Array[Char]] = {
+	private def commonSequences(ct: CompareTuple[Char]): Array[Array[Char]] = {
 		val lcs = longestCommonSubsequence(ct)
 
 		if (lcs._1 == 0) Array.empty
@@ -44,14 +38,4 @@ class RatcliffObershelpMetric extends StringMetric[DummyImplicit, Double] { this
 			Array(ct._1.slice(lcs._2 - lcs._1, lcs._2)) ++ commonSequences(sct1._1, sct2._1) ++ commonSequences(sct1._2, sct2._2)
 		}
 	}
-}
-
-object RatcliffObershelpMetric {
-	private lazy val self = apply()
-
-	def apply(): RatcliffObershelpMetric = new RatcliffObershelpMetric with StringFilter
-
-	def compare(charArray1: Array[Char], charArray2: Array[Char]) = self.compare(charArray1, charArray2)
-
-	def compare(string1: String, string2: String) = self.compare(string1, string2)
 }

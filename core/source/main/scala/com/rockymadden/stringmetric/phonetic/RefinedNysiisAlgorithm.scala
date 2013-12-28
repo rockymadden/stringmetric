@@ -1,42 +1,38 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.{StringAlgorithm, StringFilter}
-import com.rockymadden.stringmetric.Alphabet.{Alpha, LowercaseVowel}
+import com.rockymadden.stringmetric.Algorithm.StringAlgorithmLike
 
-/** An implementation of the refined NYSIIS algorithm. */
-class RefinedNysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { this: StringFilter =>
-	final override def compute(charArray: Array[Char])(implicit di: DummyImplicit): Option[Array[Char]] = {
-		val fca = filter(charArray)
+case object RefinedNysiisAlgorithm extends StringAlgorithmLike {
+	import com.rockymadden.stringmetric.Alphabet.{Alpha, LowercaseVowel}
 
-		if (fca.length == 0 || !(Alpha isSuperset fca.head)) None
+	override def compute(a: Array[Char]): Option[Array[Char]] =
+		if (a.length == 0 || !(Alpha isSuperset a.head)) None
 		else {
-			val lfca = fca.map(_.toLower)
-			val tlh = transcodeLast(transcodeHead(lfca.head +: cleanLast(lfca.tail, Set('s', 'z'))))
+			val lca = a.map(_.toLower)
+			val tlh = transcodeLast(transcodeHead(lca.head +: cleanLast(lca.tail, Set('s', 'z'))))
 			val t = transcode(Array.empty[Char], tlh.head, tlh.tail, Array.empty[Char])
 
 			if (t.length == 1) Some(t)
 			else Some(deduplicate(t.head +: cleanTerminal(cleanLast(t.tail, Set('a')))))
 		}
-	}
 
-	final override def compute(string: String)(implicit di: DummyImplicit): Option[String] =
-		compute(string.toCharArray).map(_.mkString)
+	override def compute(string: String): Option[String] = compute(string.toCharArray).map(_.mkString)
 
-	private[this] def cleanLast(ca: Array[Char], s: Set[Char]) =
+	private def cleanLast(ca: Array[Char], s: Set[Char]) =
 		if (ca.length == 0) ca
 		else if(s.contains(ca.last)) ca.dropRight(ca.reverseIterator.takeWhile(c => s.contains(c)).length)
 		else ca
 
-	private[this] def cleanTerminal(ca: Array[Char]) =
+	private def cleanTerminal(ca: Array[Char]) =
 		if (ca.length >= 2 && ca.last == 'y' && ca(ca.length - 2) == 'a') ca.dropRight(2) :+ 'y'
 		else ca
 
-	private[this] def deduplicate(ca: Array[Char]) =
+	private def deduplicate(ca: Array[Char]) =
 		if (ca.length <= 1) ca
 		else ca.sliding(2).withFilter(a => a(0) != a(1)).map(a => a(0)).toArray[Char] :+ ca.last
 
 	@annotation.tailrec
-	private[this] def transcode(l: Array[Char], c: Char, r: Array[Char], o: Array[Char]): Array[Char] = {
+	private def transcode(l: Array[Char], c: Char, r: Array[Char], o: Array[Char]): Array[Char] = {
 		if (c == '\0' && r.length == 0) o
 		else {
 			def shift(d: Int, ca: Array[Char]) = {
@@ -95,7 +91,7 @@ class RefinedNysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { th
 		}
 	}
 
-	private[this] def transcodeHead(ca: Array[Char]) = {
+	private def transcodeHead(ca: Array[Char]) =
 		if (ca.length == 0) ca
 		else
 			(ca.head: @annotation.switch) match {
@@ -103,9 +99,8 @@ class RefinedNysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { th
 				case 'p' if (ca.length >= 2 && ca(1) == 'f') => 'f' +: ca.takeRight(ca.length - 2)
 				case _ => ca
 			}
-	}
 
-	private[this] def transcodeLast(ca: Array[Char]) = {
+	private def transcodeLast(ca: Array[Char]) =
 		if (ca.length >= 2) {
 			val lc = ca(ca.length - 1)
 			val lcm1 = ca(ca.length - 2)
@@ -120,15 +115,4 @@ class RefinedNysiisAlgorithm extends StringAlgorithm[DummyImplicit, String] { th
 				case _ => ca
 			}
 		} else ca
-	}
-}
-
-object RefinedNysiisAlgorithm {
-	private lazy val self = apply()
-
-	def apply(): RefinedNysiisAlgorithm = new RefinedNysiisAlgorithm with StringFilter
-
-	def compute(charArray: Array[Char]) = self.compute(charArray)
-
-	def compute(string: String) = self.compute(string)
 }
