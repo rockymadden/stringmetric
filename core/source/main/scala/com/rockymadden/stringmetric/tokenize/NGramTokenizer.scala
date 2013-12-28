@@ -13,10 +13,7 @@ final case class NGramTokenizer(private val n: Int) extends StringTokenizerLike 
 	override def tokenize(a: String): Option[Array[String]] = tokenize(a.toCharArray).map(_.map(_.mkString))
 
 	@annotation.tailrec
-	private[this] def sequence(i: Array[Char], o: Array[Array[Char]], n: Int): Array[Array[Char]] = {
-		require(n > 0)
-
+	private[this] def sequence(i: Array[Char], o: Array[Array[Char]], n: Int): Array[Array[Char]] =
 		if (i.length <= n) o :+ i
 		else sequence(i.tail, o :+ i.take(n), n)
-	}
 }
