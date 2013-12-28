@@ -1,4 +1,4 @@
-package com.rockymadden.stringmetric.tokenization
+package com.rockymadden.stringmetric.tokenize
 
 import com.rockymadden.stringmetric.Tokenizer.StringTokenizerLike
 

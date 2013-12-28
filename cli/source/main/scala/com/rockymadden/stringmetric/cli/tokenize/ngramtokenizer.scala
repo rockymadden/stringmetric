@@ -1,7 +1,7 @@
-package com.rockymadden.stringmetric.cli.tokenization
+package com.rockymadden.stringmetric.cli.tokenize
 
 import com.rockymadden.stringmetric.cli._
-import com.rockymadden.stringmetric.tokenization.NGramTokenizer
+import com.rockymadden.stringmetric.tokenize.NGramTokenizer
 
 /**
  * The ngramtokenizer [[com.rockymadden.stringmetric.cli.Command]]. Returns the N-Gram representation of the passed

@@ -4,7 +4,7 @@ import com.rockymadden.stringmetric.Metric.StringMetricLike
 
 final case class OverlapMetric(private val n: Int) extends StringMetricLike[Double] {
 	import com.rockymadden.stringmetric.MatchTuple
-	import com.rockymadden.stringmetric.tokenization.NGramTokenizer
+	import com.rockymadden.stringmetric.tokenize.NGramTokenizer
 	import scala.math
 
 	override def compare(a: Array[Char], b: Array[Char]): Option[Double] = {

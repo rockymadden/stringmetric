@@ -1,4 +1,4 @@
-package com.rockymadden.stringmetric.cli.tokenization
+package com.rockymadden.stringmetric.cli.tokenize
 
 import com.rockymadden.stringmetric.ScalaTest
 import org.junit.runner.RunWith
