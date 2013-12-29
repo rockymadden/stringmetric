@@ -58,6 +58,8 @@ __Maven:__
 </dependency>
 ```
 
+---
+
 ## Similarity package
 Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.
 
@@ -209,6 +211,8 @@ Output: _(Note that while a double is returned, it can be outside the range of 0
 40
 ```
 
+---
+
 ## Phonetic package
 Useful for indexing by word pronunciation and performing sounds-like comparisons. All metrics return a boolean value indicating if the two strings sound the same, per the algorithm used. All metrics have an algorithm counterpart which provide the means to perform indexing by word pronunciation.
 
@@ -350,6 +354,8 @@ r163
 l222
 ```
 
+---
+
 ## Decorating
 It is possible to decorate algorithms and metrics with additional functionality. The most common decorations are filters, which are useful for filtering strings prior to evaluation (e.g. ignore case, ignore non-alpha, ignore spaces). __NOTE:__ [Memoization decorator queued](https://github.com/rockymadden/stringmetric/issues/5)
 
@@ -458,6 +464,8 @@ Get the phonetic representation of "dog" using the Metaphone phonetic algorithm:
 $ metaphonealgorithm dog
 tk
 ```
+
+---
 
 ## License
 ```
