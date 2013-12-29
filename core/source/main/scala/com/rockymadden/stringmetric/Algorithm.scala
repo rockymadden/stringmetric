@@ -18,14 +18,14 @@ object Algorithm {
 		final val RefinedSoundex = com.rockymadden.stringmetric.phonetic.RefinedSoundexAlgorithm
 		final val Soundex = com.rockymadden.stringmetric.phonetic.SoundexAlgorithm
 
-		def computeWithMetaphone(charArray: Array[Char]) = Metaphone.compute(charArray)
+		def computeWithMetaphone(a: Array[Char]) = Metaphone.compute(a)
 
-		def computeWithNysiis(charArray: Array[Char]) = Nysiis.compute(charArray)
+		def computeWithNysiis(a: Array[Char]) = Nysiis.compute(a)
 
-		def computeWithRefinedNysiis(charArray: Array[Char]) = RefinedNysiis.compute(charArray)
+		def computeWithRefinedNysiis(a: Array[Char]) = RefinedNysiis.compute(a)
 
-		def computeWithRefinedSoundex(charArray: Array[Char]) = RefinedSoundex.compute(charArray)
+		def computeWithRefinedSoundex(a: Array[Char]) = RefinedSoundex.compute(a)
 
-		def computeWithSoundex(charArray: Array[Char]) = Soundex.compute(charArray)
+		def computeWithSoundex(a: Array[Char]) = Soundex.compute(a)
 	}
 }
