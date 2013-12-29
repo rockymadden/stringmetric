@@ -2,7 +2,7 @@ package com.rockymadden.stringmetric.similarity
 
 import com.rockymadden.stringmetric.Metric.StringMetric
 
-final case class JaccardMetric(private val n: Int) extends StringMetric[Double] {
+final case class JaccardMetric(n: Int) extends StringMetric[Double] {
 	import com.rockymadden.stringmetric.tokenize.NGramTokenizer
 
 	override def compare(a: Array[Char], b: Array[Char]): Option[Double] = {
