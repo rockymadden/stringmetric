@@ -12,11 +12,11 @@ object Algorithm {
 
 
 	object StringAlgorithm {
-		val Metaphone = com.rockymadden.stringmetric.phonetic.MetaphoneAlgorithm
-		val Nysiis = com.rockymadden.stringmetric.phonetic.NysiisAlgorithm
-		val RefinedNysiis = com.rockymadden.stringmetric.phonetic.RefinedNysiisAlgorithm
-		val RefinedSoundex = com.rockymadden.stringmetric.phonetic.RefinedSoundexAlgorithm
-		val Soundex = com.rockymadden.stringmetric.phonetic.SoundexAlgorithm
+		final val Metaphone = com.rockymadden.stringmetric.phonetic.MetaphoneAlgorithm
+		final val Nysiis = com.rockymadden.stringmetric.phonetic.NysiisAlgorithm
+		final val RefinedNysiis = com.rockymadden.stringmetric.phonetic.RefinedNysiisAlgorithm
+		final val RefinedSoundex = com.rockymadden.stringmetric.phonetic.RefinedSoundexAlgorithm
+		final val Soundex = com.rockymadden.stringmetric.phonetic.SoundexAlgorithm
 
 		def computeWithMetaphone(charArray: Array[Char]) = Metaphone.compute(charArray)
 
