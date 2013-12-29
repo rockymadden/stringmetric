@@ -64,7 +64,7 @@ __Maven:__
 Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.
 
 
-__Dice / Sorensen Metric:__ _(Note you must specify the size of the n-gram you wish to use.)_
+__Dice / Sorensen Metric:__ <sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
 ```scala
 DiceSorensenMetric(1).compare("night", "nacht")
 DiceSorensenMetric(1).compare("context", "contact")
@@ -84,7 +84,7 @@ HammingMetric.compare("toned", "roses")
 HammingMetric.compare("1011101", "1001001")
 ```
 
-Output: _(Note the exception of integers, rather than doubles, being returned.)_
+Output: <sup>(Note the exception of integers, rather than doubles, being returned.)</sup>
 ```
 3
 2
@@ -92,7 +92,7 @@ Output: _(Note the exception of integers, rather than doubles, being returned.)_
 
 ---
 
-__Jaccard Metric:__ _(Note you must specify the size of the n-gram you wish to use.)_
+__Jaccard Metric:__ <sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
 ```scala
 JaccardMetric(1).compare("night", "nacht")
 JaccardMetric(1).compare("context", "contact")
@@ -144,7 +144,7 @@ LevenshteinMetric.compare("sitting", "kitten")
 LevenshteinMetric.compare("cake", "drake")
 ```
 
-Output: _(Note the exception of integers, rather than doubles, being returned.)_
+Output: <sup>(Note the exception of integers, rather than doubles, being returned.)</sup>
 ```
 3
 2
@@ -153,7 +153,7 @@ Output: _(Note the exception of integers, rather than doubles, being returned.)_
 ---
 
 
-__N-Gram Metric:__ _(Note you must specify the size of the n-gram you wish to use.)_
+__N-Gram Metric:__ <sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
 ```scala
 NGramMetric(1).compare("night", "nacht")
 NGramMetric(2).compare("night", "nacht")
@@ -169,7 +169,7 @@ Output:
 
 ---
 
-__Overlap Metric:__ _(Note you must specify the size of the n-gram you wish to use.)_
+__Overlap Metric:__ <sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
 ```scala
 OverlapMetric(1).compare("night", "nacht")
 OverlapMetric(1).compare("context", "contact")
@@ -197,14 +197,14 @@ Output:
 
 ---
 
-__Weighted Levenshtein Metric:__ _(Note you must specify the weight of each operation. Delete, insert, and then substitute.)_
+__Weighted Levenshtein Metric:__ <sup>(Note you must specify the weight of each operation. Delete, insert, and then substitute.)</sup>
 ```scala
 WeightedLevenshteinMetric(10, 0.1, 1).compare("book", "back")
 WeightedLevenshteinMetric(10, 0.1, 1).compare("hosp", "hospital")
 WeightedLevenshteinMetric(10, 0.1, 1).compare("hospital", "hosp")
 ```
 
-Output: _(Note that while a double is returned, it can be outside the range of 0 to 1, based upon the weights used.)_
+Output: <sup>(Note that while a double is returned, it can be outside the range of 0 to 1, based upon the weights used.)</sup>
 ```
 2
 0.4
@@ -357,7 +357,7 @@ l222
 ---
 
 ## Decorating
-It is possible to decorate algorithms and metrics with additional functionality. The most common decorations are filters, which are useful for filtering strings prior to evaluation (e.g. ignore case, ignore non-alpha, ignore spaces). __NOTE:__ [Memoization decorator queued](https://github.com/rockymadden/stringmetric/issues/5)
+It is possible to decorate algorithms and metrics with additional functionality. The most common decorations are filters, which are useful for filtering strings prior to evaluation (e.g. ignore case, ignore non-alpha, ignore spaces).
 
 Basic examples with no filtering:
 ```scala
