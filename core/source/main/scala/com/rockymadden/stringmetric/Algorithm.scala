@@ -1,6 +1,9 @@
 package com.rockymadden.stringmetric
 
 object Algorithm {
+	import com.rockymadden.stringmetric.Transform.StringTransform
+
+
 	trait Algorithm[A] {
 		def compute(a: A): Option[A]
 	}
@@ -27,5 +30,17 @@ object Algorithm {
 		def computeWithRefinedSoundex(a: Array[Char]) = RefinedSoundex.compute(a)
 
 		def computeWithSoundex(a: Array[Char]) = Soundex.compute(a)
+	}
+
+
+	final class StringAlgorithmDecorator(val sa: StringAlgorithm) {
+		val withTransform: (StringTransform => StringAlgorithm) = (st) => new StringAlgorithm {
+			private[this] val self: StringAlgorithm = sa
+			private[this] val transform: StringTransform = st
+
+			override def compute(a: Array[Char]): Option[Array[Char]] = self.compute(transform(a))
+
+			override def compute(a: String): Option[String] = self.compute(transform(a.toCharArray)).map(_.mkString)
+		}
 	}
 }

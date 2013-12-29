@@ -1,6 +1,9 @@
 package com.rockymadden.stringmetric
 
 object Metric {
+	import com.rockymadden.stringmetric.Transform.StringTransform
+
+
 	trait Metric[A, B] {
 		def compare(a: A, b: A): Option[B]
 	}
@@ -57,5 +60,18 @@ object Metric {
 			(a: Array[Char], b: Array[Char]) =
 
 			WeightedLevenshtein(delete, insert, substitute).compare(a, b)
+	}
+
+	final class StringMetricDecorator[A](val sm: StringMetric[A]) {
+		val withTransform: (StringTransform => StringMetric[A]) = (st) => new StringMetric[A] {
+			private[this] val self: StringMetric[A] = sm
+			private[this] val transform: StringTransform = st
+
+			override def compare(a: Array[Char], b: Array[Char]): Option[A] =
+				self.compare(transform(a), transform(b))
+
+			override def compare(a: String, b: String): Option[A] =
+				self.compare(transform(a.toCharArray), transform(b.toCharArray))
+		}
 	}
 }
