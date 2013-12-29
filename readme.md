@@ -64,152 +64,97 @@ __Maven:__
 Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.
 
 
-__Dice / Sorensen Metric:__ <sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
+__Dice / Sorensen Metric:__
 ```scala
-DiceSorensenMetric(1).compare("night", "nacht")
-DiceSorensenMetric(1).compare("context", "contact")
+DiceSorensenMetric(1).compare("night", "nacht") // 0.6
+DiceSorensenMetric(1).compare("context", "contact") // 0.7142857142857143
 ```
-
-Output:
-```
-0.6
-0.7142857142857143
-```
+<sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
 
 ---
 
 __Hamming Metric:__
 ```scala
-HammingMetric.compare("toned", "roses")
-HammingMetric.compare("1011101", "1001001")
+HammingMetric.compare("toned", "roses") // 3
+HammingMetric.compare("1011101", "1001001") // 2
 ```
-
-Output: <sup>(Note the exception of integers, rather than doubles, being returned.)</sup>
-```
-3
-2
-```
+<sup>(Note the exception of integers, rather than doubles, being returned.)</sup>
 
 ---
 
-__Jaccard Metric:__ <sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
-```scala
-JaccardMetric(1).compare("night", "nacht")
-JaccardMetric(1).compare("context", "contact")
-```
 
-Output:
+__Jaccard Metric:__
+```scala
+JaccardMetric(1).compare("night", "nacht") // 0.3
+JaccardMetric(1).compare("context", "contact") // 0.35714285714285715
 ```
-0.3
-0.35714285714285715
-```
+<sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
+
 
 ---
 
 __Jaro Metric:__
 ```scala
-JaroMetric.compare("dwayne", "duane")
-JaroMetric.compare("jones", "johnson")
-JaroMetric.compare("fvie", "ten")
-```
-
-Output:
-```
-0.8222222222222223
-0.7904761904761904
-0
+JaroMetric.compare("dwayne", "duane") // 0.8222222222222223
+JaroMetric.compare("jones", "johnson") // 0.7904761904761904
+JaroMetric.compare("fvie", "ten") // 0.0
 ```
 
 ---
 
 __Jaro-Winkler Metric:__
 ```scala
-JaroWinklerMetric.compare("dwayne", "duane")
-JaroWinklerMetric.compare("jones", "johnson")
-JaroWinklerMetric.compare("fvie", "ten")
-```
-
-Output:
-```
-0.8400000000000001
-0.8323809523809523
-0
+JaroWinklerMetric.compare("dwayne", "duane") // 0.8400000000000001
+JaroWinklerMetric.compare("jones", "johnson") // 0.8323809523809523
+JaroWinklerMetric.compare("fvie", "ten") // 0.0
 ```
 
 ---
 
 __Levenshtein Metric:__
 ```scala
-LevenshteinMetric.compare("sitting", "kitten")
-LevenshteinMetric.compare("cake", "drake")
+LevenshteinMetric.compare("sitting", "kitten") // 3
+LevenshteinMetric.compare("cake", "drake") // 2
 ```
-
-Output: <sup>(Note the exception of integers, rather than doubles, being returned.)</sup>
-```
-3
-2
-```
+<sup>(Note the exception of integers, rather than doubles, being returned.)</sup>
 
 ---
 
 
-__N-Gram Metric:__ <sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
+__N-Gram Metric:__ 
 ```scala
-NGramMetric(1).compare("night", "nacht")
-NGramMetric(2).compare("night", "nacht")
-NGramMetric(2).compare("context", "contact")
+NGramMetric(1).compare("night", "nacht") // 0.6
+NGramMetric(2).compare("night", "nacht") // 0.25
+NGramMetric(2).compare("context", "contact") // 0.5
 ```
-
-Output:
-```
-0.6
-0.25
-0.5
-```
+<sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
 
 ---
 
-__Overlap Metric:__ <sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
+__Overlap Metric:__ 
 ```scala
-OverlapMetric(1).compare("night", "nacht")
-OverlapMetric(1).compare("context", "contact")
+OverlapMetric(1).compare("night", "nacht") // 0.6
+OverlapMetric(1).compare("context", "contact") // 0.7142857142857143
 ```
-
-Output:
-```
-0.6
-0.7142857142857143
-```
+<sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
 
 ---
 
 __Ratcliff/Obershelp Metric:__
 ```scala
-RatcliffObershelpMetric.compare("aleksander", "alexandre")
-RatcliffObershelpMetric.compare("pennsylvania", "pencilvaneya")
-```
-
-Output:
-```
-0.7368421052631579
-0.6666666666666666
+RatcliffObershelpMetric.compare("aleksander", "alexandre") // 0.7368421052631579
+RatcliffObershelpMetric.compare("pennsylvania", "pencilvaneya") // 0.6666666666666666
 ```
 
 ---
 
-__Weighted Levenshtein Metric:__ <sup>(Note you must specify the weight of each operation. Delete, insert, and then substitute.)</sup>
+__Weighted Levenshtein Metric:__ 
 ```scala
-WeightedLevenshteinMetric(10, 0.1, 1).compare("book", "back")
-WeightedLevenshteinMetric(10, 0.1, 1).compare("hosp", "hospital")
-WeightedLevenshteinMetric(10, 0.1, 1).compare("hospital", "hosp")
+WeightedLevenshteinMetric(10, 0.1, 1).compare("book", "back") // 2
+WeightedLevenshteinMetric(10, 0.1, 1).compare("hosp", "hospital") // 0.4
+WeightedLevenshteinMetric(10, 0.1, 1).compare("hospital", "hosp") // 40
 ```
-
-Output: <sup>(Note that while a double is returned, it can be outside the range of 0 to 1, based upon the weights used.)</sup>
-```
-2
-0.4
-40
-```
+<sup>(Note you must specify the weight of each operation. Delete, insert, and then substitute. Note that while a double is returned, it can be outside the range of 0 to 1, based upon the weights used.)</sup>
 
 ---
 
@@ -218,140 +163,79 @@ Useful for indexing by word pronunciation and performing sounds-like comparisons
 
 __Metaphone Metric:__
 ```scala
-MetaphoneMetric.compare("merci", "mercy")
-MetaphoneMetric.compare("dumb", "gum")
+MetaphoneMetric.compare("merci", "mercy") // true
+MetaphoneMetric.compare("dumb", "gum") // false
 ```
-
-Output:
-```
-true
-false
-```
-
 ---
 
 __Metaphone Algorithm:__
 ```scala
-MetaphoneAlgorithm.compute("dumb")
-MetaphoneAlgorithm.compute("knuth")
-```
-
-Output:
-```
-tm
-n0
+MetaphoneAlgorithm.compute("dumb") // tm
+MetaphoneAlgorithm.compute("knuth") // n0
 ```
 
 ---
 
 __NYSIIS Metric:__
 ```scala
-NysiisMetric.compare("ham", "hum")
-NysiisMetric.compare("dumb", "gum")
-```
-
-Output:
-```
-true
-false
+NysiisMetric.compare("ham", "hum") // true
+NysiisMetric.compare("dumb", "gum") // false
 ```
 
 ---
 
 __NYSIIS Algorithm:__
 ```scala
-NysiisAlgorithm.compute("macintosh")
-NysiisAlgorithm.compute("knuth")
-```
-
-Output:
-```
-mcant
-nnat
+NysiisAlgorithm.compute("macintosh") // mcant
+NysiisAlgorithm.compute("knuth") // nnat
 ```
 
 ---
 
 __Refined NYSIIS Metric:__
 ```scala
-RefinedNysiisMetric.compare("ham", "hum")
-RefinedNysiisMetric.compare("dumb", "gum")
-```
-
-Output:
-```
-true
-false
+RefinedNysiisMetric.compare("ham", "hum") // true
+RefinedNysiisMetric.compare("dumb", "gum") // false
 ```
 
 ---
 
 __Refined NYSIIS Algorithm:__
 ```scala
-RefinedNysiisAlgorithm.compute("macintosh")
-RefinedNysiisAlgorithm.compute("westerlund")
-```
-
-Output:
-```
-mcantas
-wastarlad
+RefinedNysiisAlgorithm.compute("macintosh") // mcantas
+RefinedNysiisAlgorithm.compute("westerlund") // wastarlad
 ```
 
 ---
 
 __Refined Soundex Metric:__
 ```scala
-RefinedSoundexMetric.compare("robert", "rupert")
-RefinedSoundexMetric.compare("robert", "rubin")
-```
-
-Output:
-```
-true
-false
+RefinedSoundexMetric.compare("robert", "rupert") // true
+RefinedSoundexMetric.compare("robert", "rubin") // false
 ```
 
 ---
 
 __Refined Soundex Algorithm:__
 ```scala
-RefinedSoundexAlgorithm.compute("hairs")
-RefinedSoundexAlgorithm.compute("lambert")
-```
-
-Output:
-```
-h093
-l7081096
+RefinedSoundexAlgorithm.compute("hairs") // h093
+RefinedSoundexAlgorithm.compute("lambert") // l7081096
 ```
 
 ---
 
 __Soundex Metric:__
 ```scala
-SoundexMetric.compare("robert", "rupert")
-SoundexMetric.compare("robert", "rubin")
-```
-
-Output:
-```
-true
-false
+SoundexMetric.compare("robert", "rupert") // true
+SoundexMetric.compare("robert", "rubin") // false
 ```
 
 ---
 
 __Soundex Algorithm:__
 ```scala
-SoundexAlgorithm.compute("rupert")
-SoundexAlgorithm.compute("lukasiewicz")
-```
-
-Output:
-```
-r163
-l222
+SoundexAlgorithm.compute("rupert") // r163
+SoundexAlgorithm.compute("lukasiewicz") // l222
 ```
 
 ---
