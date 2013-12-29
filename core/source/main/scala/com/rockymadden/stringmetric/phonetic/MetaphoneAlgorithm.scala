@@ -1,8 +1,8 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.Algorithm.StringAlgorithmLike
+import com.rockymadden.stringmetric.Algorithm.StringAlgorithm
 
-case object MetaphoneAlgorithm extends StringAlgorithmLike {
+case object MetaphoneAlgorithm extends StringAlgorithm {
 	import com.rockymadden.stringmetric.Alphabet.{Alpha, LowercaseVowel}
 
 	override def compute(a: Array[Char]): Option[Array[Char]] =

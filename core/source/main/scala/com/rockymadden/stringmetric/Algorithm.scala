@@ -1,12 +1,12 @@
 package com.rockymadden.stringmetric
 
 object Algorithm {
-	trait AlgorithmLike[A] {
+	trait Algorithm[A] {
 		def compute(a: A): Option[A]
 	}
 
 
-	trait StringAlgorithmLike extends AlgorithmLike[Array[Char]] {
+	trait StringAlgorithm extends Algorithm[Array[Char]] {
 		def compute(a: String): Option[String]
 	}
 }

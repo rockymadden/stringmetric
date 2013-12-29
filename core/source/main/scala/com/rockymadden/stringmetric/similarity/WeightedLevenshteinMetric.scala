@@ -1,9 +1,9 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.Metric.StringMetricLike
+import com.rockymadden.stringmetric.Metric.StringMetric
 
 final case class WeightedLevenshteinMetric(delete: BigDecimal, insert: BigDecimal, substitute: BigDecimal)
-	extends StringMetricLike[Double] {
+	extends StringMetric[Double] {
 
 	import com.rockymadden.stringmetric.CompareTuple
 

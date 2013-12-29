@@ -4,7 +4,7 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-final class TransformSpec extends ScalaTest { "Transform" should provide {
+final class TransformSpec extends ScalaTest { "StringTransform" should provide {
 	import com.rockymadden.stringmetric.Transform._
 
 	"filterAlpha()" when passed {

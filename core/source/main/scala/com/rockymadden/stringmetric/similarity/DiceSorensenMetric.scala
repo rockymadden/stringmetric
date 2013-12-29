@@ -1,12 +1,12 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.Metric.StringMetricLike
+import com.rockymadden.stringmetric.Metric.StringMetric
 
 /**
  * An implementation of the Dice/Sorensen metric. This implementation differs in that n-gram size is required.
  * Traditionally, the algorithm uses bigrams.
  */
-final case class DiceSorensenMetric(private val n: Int) extends StringMetricLike[Double] {
+final case class DiceSorensenMetric(private val n: Int) extends StringMetric[Double] {
 	import com.rockymadden.stringmetric.tokenize.NGramTokenizer
 	import com.rockymadden.stringmetric.MatchTuple
 

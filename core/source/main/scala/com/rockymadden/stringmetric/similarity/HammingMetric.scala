@@ -1,8 +1,8 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.Metric.StringMetricLike
+import com.rockymadden.stringmetric.Metric.StringMetric
 
-case object HammingMetric extends StringMetricLike[Int] {
+case object HammingMetric extends StringMetric[Int] {
 	import com.rockymadden.stringmetric.CompareTuple
 
 	override def compare(a: Array[Char], b: Array[Char]): Option[Int] =

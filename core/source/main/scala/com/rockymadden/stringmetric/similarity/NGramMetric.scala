@@ -1,8 +1,8 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.Metric.StringMetricLike
+import com.rockymadden.stringmetric.Metric.StringMetric
 
-final case class NGramMetric(private val n: Int) extends StringMetricLike[Double] {
+final case class NGramMetric(private val n: Int) extends StringMetric[Double] {
 	import com.rockymadden.stringmetric.MatchTuple
 	import com.rockymadden.stringmetric.tokenize.NGramTokenizer
 	import scala.math

@@ -1,13 +1,13 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.Metric.StringMetricLike
+import com.rockymadden.stringmetric.Metric.StringMetric
 import scala.Some
 
 /**
  * An implementation of the Jaro metric. One differing detail in this implementation is that if a character is matched
  * in string2, it cannot be matched upon again. This results in a more penalized distance in these scenarios.
  */
-case object JaroMetric extends StringMetricLike[Double] {
+case object JaroMetric extends StringMetric[Double] {
 	import com.rockymadden.stringmetric.{CompareTuple, MatchTuple}
 	import scala.collection.mutable.{ArrayBuffer, HashSet}
 

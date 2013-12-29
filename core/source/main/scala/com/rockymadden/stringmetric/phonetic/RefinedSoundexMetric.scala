@@ -1,8 +1,8 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.Metric.StringMetricLike
+import com.rockymadden.stringmetric.Metric.StringMetric
 
-case object RefinedSoundexMetric extends StringMetricLike[Boolean] {
+case object RefinedSoundexMetric extends StringMetric[Boolean] {
 	import com.rockymadden.stringmetric.Alphabet.Alpha
 
 	override def compare(a: Array[Char], b: Array[Char]): Option[Boolean] =

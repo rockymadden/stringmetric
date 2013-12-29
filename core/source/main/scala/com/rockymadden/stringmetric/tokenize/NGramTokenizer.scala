@@ -1,8 +1,8 @@
 package com.rockymadden.stringmetric.tokenize
 
-import com.rockymadden.stringmetric.Tokenizer.StringTokenizerLike
+import com.rockymadden.stringmetric.Tokenizer.StringTokenizer
 
-final case class NGramTokenizer(private val n: Int) extends StringTokenizerLike {
+final case class NGramTokenizer(private val n: Int) extends StringTokenizer {
 	override def tokenize(a: Array[Char]): Option[Array[Array[Char]]] = {
 		if (n <= 0) return None
 
