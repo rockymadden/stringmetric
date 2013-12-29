@@ -381,9 +381,6 @@ __StringAlgorithm:__
 ```scala
 // Easy access to compute methods.
 StringAlgorithm.computeWithMetaphone("string")
-
-// Easy access to types and companion objects.
-val metaphone: StringAlgorithm.Metaphone = StringAlgorithm.Metaphone()
 ```
 
 ---
@@ -392,19 +389,9 @@ __StringMetric:__
 ```scala
 // Easy access to compare methods.
 StringMetric.compareWithJaroWinkler("string1", "string2")
-
-// Easy access to types and companion objects.
-val jaro: StringMetric.Jaro = StringMetric.Jaro()
 ```
 
 ---
-
-__StringFilter:__
-```scala
-// Easy access to types and instances.
-val metaphone: StringAlgorithm.Metaphone = StringAlgorithm.Metaphone() with StringFilter.asciiSpace
-val asciiSpace: StringFilter.AsciiSpace = StringFilter.asciiSpace
-```
 
 ## Building the CLIs
 When built, the CLI sub-project creates an individual shell command for each algorithm and metric. The sub-project is built via a Gradle task:
