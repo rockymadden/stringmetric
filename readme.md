@@ -37,14 +37,14 @@ The project is available on the [Maven Central Repository](http://search.maven.o
 
 __Simple Build Tool:__
 ```scala
-libraryDependencies += "com.rockymadden.stringmetric" % "stringmetric-core" % "0.25.3"
+libraryDependencies += "com.rockymadden.stringmetric" % "stringmetric-core" % "0.26.0"
 ```
 
 ---
 
 __Gradle:__
 ```groovy
-compile 'com.rockymadden.stringmetric:stringmetric-core:0.25.3'
+compile 'com.rockymadden.stringmetric:stringmetric-core:0.26.0'
 ```
 
 ---
@@ -54,7 +54,7 @@ __Maven:__
 <dependency>
 	<groupId>com.rockymadden.stringmetric</groupId>
 	<artifactId>stringmetric-core</artifactId>
-	<version>0.25.3</version>
+	<version>0.26.0</version>
 </dependency>
 ```
 
@@ -122,7 +122,7 @@ LevenshteinMetric.compare("cake", "drake") // 2
 ---
 
 
-__N-Gram Metric:__ 
+__N-Gram Metric:__
 ```scala
 NGramMetric(1).compare("night", "nacht") // 0.6
 NGramMetric(2).compare("night", "nacht") // 0.25
@@ -132,7 +132,7 @@ NGramMetric(2).compare("context", "contact") // 0.5
 
 ---
 
-__Overlap Metric:__ 
+__Overlap Metric:__
 ```scala
 OverlapMetric(1).compare("night", "nacht") // 0.6
 OverlapMetric(1).compare("context", "contact") // 0.7142857142857143
@@ -149,7 +149,7 @@ RatcliffObershelpMetric.compare("pennsylvania", "pencilvaneya") // 0.66666666666
 
 ---
 
-__Weighted Levenshtein Metric:__ 
+__Weighted Levenshtein Metric:__
 ```scala
 WeightedLevenshteinMetric(10, 0.1, 1).compare("book", "back") // 2
 WeightedLevenshteinMetric(10, 0.1, 1).compare("hosp", "hospital") // 0.4
@@ -277,7 +277,7 @@ val composedTransform = (StringTransform.filterAlpha andThen StringTransform.fil
 Make your own:
 ```scala
 // StringTransform is a type alias for (Array[Char] => Array[Char])
-val myTransform: StringTransform = (ca) => ca.filter(_ == 'x') 
+val myTransform: StringTransform = (ca) => ca.filter(_ == 'x')
 
 (MetaphoneAlgorithm withTransform myTransform).compute("abc123")
 (MetaphoneMetric withTransform myTransform).compare("abc123", "abc456")
