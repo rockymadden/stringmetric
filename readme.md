@@ -63,13 +63,14 @@ __Maven:__
 ## Similarity package
 Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.
 
+---
 
 __Dice / Sorensen Metric:__
 ```scala
 DiceSorensenMetric(1).compare("night", "nacht") // 0.6
 DiceSorensenMetric(1).compare("context", "contact") // 0.7142857142857143
 ```
-<sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
+<sup>Note you must specify the size of the n-gram you wish to use.</sup>
 
 ---
 
@@ -78,7 +79,7 @@ __Hamming Metric:__
 HammingMetric.compare("toned", "roses") // 3
 HammingMetric.compare("1011101", "1001001") // 2
 ```
-<sup>(Note the exception of integers, rather than doubles, being returned.)</sup>
+<sup>Note the exception of integers, rather than doubles, being returned.</sup>
 
 ---
 
@@ -88,7 +89,7 @@ __Jaccard Metric:__
 JaccardMetric(1).compare("night", "nacht") // 0.3
 JaccardMetric(1).compare("context", "contact") // 0.35714285714285715
 ```
-<sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
+<sup>Note you must specify the size of the n-gram you wish to use.</sup>
 
 
 ---
@@ -116,7 +117,7 @@ __Levenshtein Metric:__
 LevenshteinMetric.compare("sitting", "kitten") // 3
 LevenshteinMetric.compare("cake", "drake") // 2
 ```
-<sup>(Note the exception of integers, rather than doubles, being returned.)</sup>
+<sup>Note the exception of integers, rather than doubles, being returned.</sup>
 
 ---
 
@@ -127,7 +128,7 @@ NGramMetric(1).compare("night", "nacht") // 0.6
 NGramMetric(2).compare("night", "nacht") // 0.25
 NGramMetric(2).compare("context", "contact") // 0.5
 ```
-<sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
+<sup>Note you must specify the size of the n-gram you wish to use.</sup>
 
 ---
 
@@ -136,7 +137,7 @@ __Overlap Metric:__
 OverlapMetric(1).compare("night", "nacht") // 0.6
 OverlapMetric(1).compare("context", "contact") // 0.7142857142857143
 ```
-<sup>(Note you must specify the size of the n-gram you wish to use.)</sup>
+<sup>Note you must specify the size of the n-gram you wish to use.</sup>
 
 ---
 
@@ -154,12 +155,14 @@ WeightedLevenshteinMetric(10, 0.1, 1).compare("book", "back") // 2
 WeightedLevenshteinMetric(10, 0.1, 1).compare("hosp", "hospital") // 0.4
 WeightedLevenshteinMetric(10, 0.1, 1).compare("hospital", "hosp") // 40
 ```
-<sup>(Note you must specify the weight of each operation. Delete, insert, and then substitute. Note that while a double is returned, it can be outside the range of 0 to 1, based upon the weights used.)</sup>
+<sup>Note you must specify the weight of each operation. Delete, insert, and then substitute. Note that while a double is returned, it can be outside the range of 0 to 1, based upon the weights used.</sup>
 
 ---
 
 ## Phonetic package
 Useful for indexing by word pronunciation and performing sounds-like comparisons. All metrics return a boolean value indicating if the two strings sound the same, per the algorithm used. All metrics have an algorithm counterpart which provide the means to perform indexing by word pronunciation.
+
+---
 
 __Metaphone Metric:__
 ```scala
@@ -241,45 +244,64 @@ SoundexAlgorithm.compute("lukasiewicz") // l222
 ---
 
 ## Decorating
-It is possible to decorate algorithms and metrics with additional functionality. The most common decorations are filters, which are useful for filtering strings prior to evaluation (e.g. ignore case, ignore non-alpha, ignore spaces).
+It is possible to decorate algorithms and metrics with additional functionality. This is provided by rich wrapping via implicits, and [StringAlgorithmDecorator](https://github.com/rockymadden/stringmetric/blob/master/core/source/main/scala/com/rockymadden/stringmetric/Algorithm.scala)/[StringMetricDecorator](https://github.com/rockymadden/stringmetric/blob/master/core/source/main/scala/com/rockymadden/stringmetric/Metric.scala). A handful of pre-built transforms are located in the [transform module](https://github.com/rockymadden/stringmetric/blob/master/core/source/main/scala/com/rockymadden/stringmetric/Transform.scala).
 
-Basic examples with no filtering:
+---
+
+Non-decorated usage:
 ```scala
-JaroWinklerMetric.compare("string1", "string2")
-JaroWinklerMetric().compare("string1", "string2")
-(new JaroWinklerMetric).compare("string1", "string2")
+MetaphoneAlgorithm.compute("abc123")
+MetaphoneMetric.compare("abc123", "abc456")
 ```
 
 ---
 
-Basic example with single filter:
+Single filter, so that we only examine alphabetical characters:
 ```scala
-(new JaroWinklerMetric with IgnoreAsciiLetterCaseFilter).compare("string1", "string2")
+(MetaphoneAlgorithm withTransform StringTransform.filterAlpha).compute("abc123")
+(MetaphoneMetric withTransform StringTransform.filterAlpha).compare("abc123", "abc456")
 ```
 
 ---
 
-Basic example with stacked filters. Filters are applied in reverse order:
+Functionally composed filter, so that we only examine uppercase characters:
 ```scala
-(new JaroWinklerMetric with IgnoreAsciiLetterCaseFilter with AsciiLetterOnlyFilter).compare("string1", "string2")
+val composedTransform = (StringTransform.filterAlpha andThen StringTransform.filterUpperCase)
+
+(MetaphoneAlgorithm withTransform composedTransform).compute("abc123")
+(MetaphoneMetric withTransform composedTransform).compare("abc123", "abc456")
 ```
+
+---
+
+Make your own:
+```scala
+// StringTransform is a type alias for (Array[Char] => Array[Char])
+val myTransform: StringTransform = (ca) => ca.filter(_ == 'x') 
+
+(MetaphoneAlgorithm withTransform myTransform).compute("abc123")
+(MetaphoneMetric withTransform myTransform).compare("abc123", "abc456")
+```
+
+---
 
 ## Convenience objects
 Convenience objects are available to make interactions with the library easier.
 
 __StringAlgorithm:__
 ```scala
-// Easy access to compute methods.
 StringAlgorithm.computeWithMetaphone("string")
 ```
+<sup>Located in the [algorithm module](https://github.com/rockymadden/stringmetric/blob/master/core/source/main/scala/com/rockymadden/stringmetric/Algorithm.scala).</sup>
 
 ---
 
 __StringMetric:__
 ```scala
-// Easy access to compare methods.
-StringMetric.compareWithJaroWinkler("string1", "string2")
+StringMetric.compareWithJaccard(1)("abc123", "abc456")
+StringMetric.compareWithJaroWinkler("abc123", "abc456")
 ```
+<sup>Located in the [metric module](https://github.com/rockymadden/stringmetric/blob/master/core/source/main/scala/com/rockymadden/stringmetric/Metric.scala).</sup>
 
 ---
 

@@ -49,6 +49,8 @@ final class MetricSpec extends ScalaTest {
 				equal (true)
 			(DiceSorensenMetric(1) withTransform StringTransform.filterAlpha).compare("abc123", "abc456").get should
 				equal (1.0)
+
+			(MetaphoneMetric withTransform (StringTransform.filterAlpha andThen StringTransform.filterUpperCase)).compare("abc123", "abc456")
 		}
 	}
 }
