@@ -10,10 +10,8 @@ final case class DiceSorensenMetric(n: Int) extends StringMetric[Double] {
 	import com.rockymadden.stringmetric.tokenize.NGramTokenizer
 	import com.rockymadden.stringmetric.MatchTuple
 
-	override def compare(a: Array[Char], b: Array[Char]): Option[Double] = {
-		if (n <= 0) return None
-
-		if (a.length < n || b.length < n) None // Because length is less than n, it is not possible to compare.
+	override def compare(a: Array[Char], b: Array[Char]): Option[Double] =
+		if (n <= 0 || a.length < n || b.length < n) None // Because length is less than n, it is not possible to compare.
 		else if (a.sameElements(b)) Some(1d)
 		else NGramTokenizer(n).tokenize(a).flatMap { ca1bg =>
 			NGramTokenizer(n).tokenize(b).map { ca2bg =>
@@ -22,7 +20,6 @@ final case class DiceSorensenMetric(n: Int) extends StringMetric[Double] {
 				(2d * ms) / (ca1bg.length + ca2bg.length)
 			}
 		}
-	}
 
 	override def compare(a: String, b: String): Option[Double] = compare(a.toCharArray, b.toCharArray)
 
