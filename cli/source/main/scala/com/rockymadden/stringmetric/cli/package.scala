@@ -9,7 +9,8 @@ package object cli {
 
 
 	implicit def optionStringToArray(os: OptionString): Array[String] =
-		if (os.get.length == 0) Array.empty[String] else os.get.split(" ")
+		if (os.get.length == 0) Array.empty[String]
+		else os.get.split(" ")
 	implicit def optionStringToBigDecimal(os: OptionString): BigDecimal = BigDecimal(os.get)
 	implicit def optionStringToBigInt(os: OptionString): BigInt = BigInt(os.get)
 	implicit def optionStringToDouble(os: OptionString): Double = os.get.toDouble
@@ -68,5 +69,37 @@ package object cli {
 
 			next(Map.empty[Symbol, OptionString], varargs.toList)
 		}
+	}
+
+
+	abstract class Command(
+		protected val help: (OptionMap => String),
+		protected val predicate: (OptionMap => Boolean),
+		protected val execute: (OptionMap => String)
+	) {
+		final def main(args: Array[String]): Unit = {
+			val opts: OptionMap = args
+
+			try
+				if (opts.contains('h) || opts.contains('help)) {
+					println(help(opts))
+					exit(opts)
+				} else if (predicate(opts)) {
+					println(execute(opts))
+					exit(opts)
+				} else throw new IllegalArgumentException("Expected valid syntax. See --help.")
+			catch { case e: Throwable => error(e, opts) }
+		}
+
+		private def error(error: Throwable, opts: OptionMap): Unit =
+			if (!isUnitTest(opts)) {
+				println(error.getMessage)
+				sys.exit(1)
+			} else throw error
+
+		private def exit(opts: OptionMap): Unit = if (!isUnitTest(opts)) sys.exit(0)
+
+		private def isUnitTest(opts: OptionMap) =
+			opts.contains('ut) || (opts.contains('unitTest) && opts.get('unitTest) != "false")
 	}
 }
