@@ -306,26 +306,26 @@ StringMetric.compareWithJaroWinkler("abc123", "abc456")
 ---
 
 ## Building the CLIs
-When built, the CLI sub-project creates an individual shell command for each algorithm and metric. The sub-project is built via a Gradle task:
-
 ```shell
-git clone https://github.com/rockymadden/stringmetric.git
-cd stringmetric
-gradle :stringmetric-cli:tar
+$ git clone https://github.com/rockymadden/stringmetric.git
+$ cd stringmetric
+$ gradle :stringmetric-cli:tar
 ```
 
-Running the ```tar``` task will create a compressed archive __and__ an unarchived copy of the built files. The files can be found under the ```build``` directory that Gradle creates. The archive is named ```stringmetric-cli.tar.gz``` and the unarchived files can be found in the directory named ```stringmetric-cli```.
+Running the ```tar``` task will create a compressed archive and an unarchived copy of the built algorithms and metrics. The files can be found under the ```build``` directory that Gradle creates. The archive is named ```stringmetric-cli.tar.gz``` and the unarchived files can be found in the directory named ```stringmetric-cli```. You may need to chmod the files because of the inability for Gradle to do so reliably
+
+---
 
 To run a command from the current directory that you would be in from doing the above:
 
 ```shell
-./cli/build/stringmetric-cli/jarometric abc xyz
+$ ./cli/build/stringmetric-cli/jarometric abc xyz
 ```
 
-Lastly, you may need to chmod the files because of the inability for Gradle to do so reliably.
+---
 
 ## Using the CLIs
-The help option prints command syntax and usage:
+Get help:
 ```shell
 $ metaphonemetric --help
 Compares two strings to determine if they are phonetically similarly, per the Metaphone algorithm.
@@ -338,26 +338,9 @@ Options:
     Outputs description, syntax, and options.
 ```
 
-```shell
-$ jarowinklermetric --help
-Compares two strings to calculate the Jaro-Winkler distance.
-
-Syntax:
-  jarowinklermetric [Options] string1 string2...
-
-Options:
-  -h, --help
-    Outputs description, syntax, and options.
-```
-
 ---
 
-Compare "dog" to "dawg":
-```shell
-$ metaphonemetric dog dawg
-true
-```
-
+Get comparison with metrics:
 ```shell
 $ jarowinklermetric dog dawg
 0.75
@@ -365,7 +348,7 @@ $ jarowinklermetric dog dawg
 
 ---
 
-Get the phonetic representation of "dog" using the Metaphone phonetic algorithm:
+Get representation with phonetic algorithms:
 ```shell
 $ metaphonealgorithm dog
 tk
