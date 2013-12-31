@@ -264,9 +264,9 @@ Single filter, so that we only examine alphabetical characters:
 
 ---
 
-Functionally composed filter, so that we only examine uppercase characters:
+Functionally composed filter, so that we only examine alphabetical characters but the case won't matter:
 ```scala
-val composedTransform = (StringTransform.filterAlpha andThen StringTransform.filterUpperCase)
+val composedTransform = (StringTransform.filterAlpha andThen StringTransform.ignoreAlphaCase)
 
 (MetaphoneAlgorithm withTransform composedTransform).compute("abc123")
 (MetaphoneMetric withTransform composedTransform).compare("abc123", "abc456")

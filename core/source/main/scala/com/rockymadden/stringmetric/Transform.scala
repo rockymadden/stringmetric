@@ -65,5 +65,7 @@ object Transform {
 		val filterUpperCase: StringTransform = (ca) => filter(ca, c => UpperCase.contains(c.toInt))
 
 		val filterNotUpperCase: StringTransform = (ca) => filterNot(ca, c => UpperCase.contains(c.toInt))
+
+		val ignoreAlphaCase: StringTransform = (ca) => ca.map(c => if (c >= 65 && c <= 90) (c + 32).toChar else c)
 	}
 }

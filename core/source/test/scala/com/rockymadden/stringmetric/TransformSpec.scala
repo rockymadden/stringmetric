@@ -167,4 +167,15 @@ final class TransformSpec extends ScalaTest { "StringTransform" should provide {
 			}
 		}
 	}
+	"ignoreAlphaCase()" when passed {
+		"String" should returns {
+			"transformed String" in {
+				StringTransform.ignoreAlphaCase(
+					("aBc123" + 0x250.toChar).toCharArray
+				) should equal (
+					("abc123" + 0x250.toChar).toCharArray
+				)
+			}
+		}
+	}
 }}
