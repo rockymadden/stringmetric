@@ -19,12 +19,9 @@ object Tokenize {
 
 
 	final case class NGramTokenizer(n: Int) extends StringTokenizer {
-		override def tokenize(a: Array[Char]): Option[Array[Array[Char]]] = {
-			if (n <= 0) return None
-
-			if (a.length < n) None
+		override def tokenize(a: Array[Char]): Option[Array[Array[Char]]] =
+			if (n <= 0 || a.length < n) None
 			else Some(sequence(a, Array.empty[Array[Char]], n))
-		}
 
 		override def tokenize(a: String): Option[Array[String]] = tokenize(a.toCharArray).map(_.map(_.mkString))
 
