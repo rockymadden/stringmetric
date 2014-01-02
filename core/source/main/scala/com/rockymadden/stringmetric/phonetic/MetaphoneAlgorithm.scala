@@ -21,7 +21,7 @@ case object MetaphoneAlgorithm extends StringAlgorithm {
 		else ca.sliding(2).withFilter(a => a(0) == 'c' || a(0) != a(1)).map(_(0)).toArray[Char] :+ ca.last
 
 	@annotation.tailrec
-	private val transcode: ((Array[Char], Char, Array[Char], Array[Char]) => Array[Char]) = (l, c, r, o) => {
+	private val transcode: ((Array[Char], Char, Array[Char], Array[Char]) => Array[Char]) = (l, c, r, o) =>
 		if (c == '\0' && r.length == 0) o
 		else {
 			def shift(d: Int, ca: Array[Char]) = {
@@ -87,7 +87,6 @@ case object MetaphoneAlgorithm extends StringAlgorithm {
 
 			transcode(t._1, t._2, t._3, t._4)
 		}
-	}
 
 	private val transcodeHead: (Array[Char] => Array[Char]) = (ca) =>
 		(ca.length: @annotation.switch) match {
