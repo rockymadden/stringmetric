@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric
 
-object Tokenizer {
+object Tokenize {
 	trait Tokenizer[A] {
 		def tokenize(a: A): Option[Array[A]]
 	}

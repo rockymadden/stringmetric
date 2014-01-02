@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.tokenize
 
-import com.rockymadden.stringmetric.Tokenizer.StringTokenizer
+import com.rockymadden.stringmetric.Tokenize.StringTokenizer
 
 final case class NGramTokenizer(n: Int) extends StringTokenizer {
 	override def tokenize(a: Array[Char]): Option[Array[Array[Char]]] = {
