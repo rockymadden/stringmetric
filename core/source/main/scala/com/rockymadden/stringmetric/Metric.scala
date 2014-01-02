@@ -1,7 +1,7 @@
 package com.rockymadden.stringmetric
 
 object Metric {
-	import com.rockymadden.stringmetric.Transform.StringTransform
+	import Transform.StringTransform
 
 
 	trait Metric[A, B] {
@@ -15,20 +15,20 @@ object Metric {
 
 
 	object StringMetric {
-		final val DiceSorensen = com.rockymadden.stringmetric.similarity.DiceSorensenMetric
-		final val Hamming = com.rockymadden.stringmetric.similarity.HammingMetric
-		final val Jaccard = com.rockymadden.stringmetric.similarity.JaccardMetric
-		final val Jaro = com.rockymadden.stringmetric.similarity.JaroMetric
-		final val JaroWinkler = com.rockymadden.stringmetric.similarity.JaroWinklerMetric
-		final val Levenshtein = com.rockymadden.stringmetric.similarity.LevenshteinMetric
-		final val Metaphone = com.rockymadden.stringmetric.phonetic.MetaphoneMetric
-		final val NGram = com.rockymadden.stringmetric.similarity.NGramMetric
-		final val Nysiis = com.rockymadden.stringmetric.phonetic.NysiisMetric
-		final val Overlap = com.rockymadden.stringmetric.similarity.OverlapMetric
-		final val RefinedNysiis = com.rockymadden.stringmetric.phonetic.RefinedNysiisMetric
-		final val RefinedSoundex = com.rockymadden.stringmetric.phonetic.RefinedSoundexMetric
-		final val Soundex = com.rockymadden.stringmetric.phonetic.SoundexMetric
-		final val WeightedLevenshtein = com.rockymadden.stringmetric.similarity.WeightedLevenshteinMetric
+		final val DiceSorensen = similarity.DiceSorensenMetric
+		final val Hamming = similarity.HammingMetric
+		final val Jaccard = similarity.JaccardMetric
+		final val Jaro = similarity.JaroMetric
+		final val JaroWinkler = similarity.JaroWinklerMetric
+		final val Levenshtein = similarity.LevenshteinMetric
+		final val Metaphone = phonetic.MetaphoneMetric
+		final val NGram = similarity.NGramMetric
+		final val Nysiis = phonetic.NysiisMetric
+		final val Overlap = similarity.OverlapMetric
+		final val RefinedNysiis = phonetic.RefinedNysiisMetric
+		final val RefinedSoundex = phonetic.RefinedSoundexMetric
+		final val Soundex = phonetic.SoundexMetric
+		final val WeightedLevenshtein = similarity.WeightedLevenshteinMetric
 
 		def compareWithDiceSorensen(n: Int)(a: Array[Char], b: Array[Char]) = DiceSorensen(n).compare(a, b)
 

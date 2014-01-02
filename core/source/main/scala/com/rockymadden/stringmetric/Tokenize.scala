@@ -12,7 +12,7 @@ object Tokenize {
 
 
 	object StringTokenizer {
-		val NGram = com.rockymadden.stringmetric.tokenize.NGramTokenizer
+		val NGram = tokenize.NGramTokenizer
 
 		def tokenizeWithNGram(n: Int)(charArray: Array[Char]) = NGram(n).tokenize(charArray)
 	}

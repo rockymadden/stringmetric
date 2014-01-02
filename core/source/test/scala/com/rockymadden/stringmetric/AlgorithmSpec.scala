@@ -5,9 +5,9 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class AlgorithmSpec extends ScalaTest {
-	import com.rockymadden.stringmetric.phonetic._
-	import com.rockymadden.stringmetric.Algorithm._
-	import com.rockymadden.stringmetric.Transform.StringTransform
+	import phonetic._
+	import Algorithm._
+	import Transform.StringTransform
 
 	"StringAlgorithm" should provide {
 		"compute method and companion object pass through" in {

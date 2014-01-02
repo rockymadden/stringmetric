@@ -1,7 +1,7 @@
 package com.rockymadden.stringmetric
 
 object Algorithm {
-	import com.rockymadden.stringmetric.Transform.StringTransform
+	import Transform.StringTransform
 
 
 	trait Algorithm[A] {
@@ -15,11 +15,11 @@ object Algorithm {
 
 
 	object StringAlgorithm {
-		final val Metaphone = com.rockymadden.stringmetric.phonetic.MetaphoneAlgorithm
-		final val Nysiis = com.rockymadden.stringmetric.phonetic.NysiisAlgorithm
-		final val RefinedNysiis = com.rockymadden.stringmetric.phonetic.RefinedNysiisAlgorithm
-		final val RefinedSoundex = com.rockymadden.stringmetric.phonetic.RefinedSoundexAlgorithm
-		final val Soundex = com.rockymadden.stringmetric.phonetic.SoundexAlgorithm
+		final val Metaphone = phonetic.MetaphoneAlgorithm
+		final val Nysiis = phonetic.NysiisAlgorithm
+		final val RefinedNysiis = phonetic.RefinedNysiisAlgorithm
+		final val RefinedSoundex = phonetic.RefinedSoundexAlgorithm
+		final val Soundex = phonetic.SoundexAlgorithm
 
 		def computeWithMetaphone(a: Array[Char]) = Metaphone.compute(a)
 

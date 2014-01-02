@@ -2,8 +2,8 @@ package com.rockymadden
 
 package object stringmetric {
 	import scala.language.implicitConversions
-	import com.rockymadden.stringmetric.Algorithm._
-	import com.rockymadden.stringmetric.Metric._
+	import Algorithm._
+	import Metric._
 
 	type CompareTuple[T] = (Array[T], Array[T])
 	type MatchTuple[T] = (Array[T], Array[T])

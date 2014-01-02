@@ -5,10 +5,10 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 final class MetricSpec extends ScalaTest {
-	import com.rockymadden.stringmetric.phonetic._
-	import com.rockymadden.stringmetric.similarity._
-	import com.rockymadden.stringmetric.Metric._
-	import com.rockymadden.stringmetric.Transform.StringTransform
+	import phonetic._
+	import similarity._
+	import Metric._
+	import Transform.StringTransform
 
 	"StringMetric standalone object" should provide {
 		"compare method and companion object pass through" in {
