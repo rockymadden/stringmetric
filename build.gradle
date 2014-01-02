@@ -1,9 +1,0 @@
-description = 'String metrics and phonetic algorithms for Scala.'
-group = 'com.rockymadden.stringmetric'
-version = '0.26.1'
-
-ext.scm = 'scm:git@github.com:rockymadden/stringmetric.git'
-ext.url = 'http://rockymadden.com/stringmetric/'
-
-allprojects { apply plugin: 'idea' }
-subprojects { repositories { mavenCentral() } }
