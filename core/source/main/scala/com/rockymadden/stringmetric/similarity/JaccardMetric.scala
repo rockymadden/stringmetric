@@ -3,7 +3,7 @@ package com.rockymadden.stringmetric.similarity
 import com.rockymadden.stringmetric.Metric.StringMetric
 
 final case class JaccardMetric(n: Int) extends StringMetric[Double] {
-	import com.rockymadden.stringmetric.tokenize.NGramTokenizer
+	import com.rockymadden.stringmetric.Tokenize.NGramTokenizer
 
 	override def compare(a: Array[Char], b: Array[Char]): Option[Double] =
 		if (n <= 0 || a.length < n || b.length < n) None // Because length is less than n, it is not possible to compare.

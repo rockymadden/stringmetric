@@ -1,11 +1,12 @@
-package com.rockymadden.stringmetric.tokenize
+package com.rockymadden.stringmetric
 
-import com.rockymadden.stringmetric.ScalaTest
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-final class NGramTokenizerSpec extends ScalaTest { "NGramTokenizer" should provide {
+final class TokenizeSpec extends ScalaTest { "NGramTokenizer" should provide {
+	import Tokenize._
+
 	"tokenize method" when passed {
 		"empty argument" should returns {
 			"None" in {

@@ -7,7 +7,7 @@ import com.rockymadden.stringmetric.Metric.StringMetric
  * Traditionally, the algorithm uses bigrams.
  */
 final case class DiceSorensenMetric(n: Int) extends StringMetric[Double] {
-	import com.rockymadden.stringmetric.tokenize.NGramTokenizer
+	import com.rockymadden.stringmetric.Tokenize.NGramTokenizer
 	import com.rockymadden.stringmetric.MatchTuple
 
 	override def compare(a: Array[Char], b: Array[Char]): Option[Double] =
