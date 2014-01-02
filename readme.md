@@ -1,7 +1,7 @@
 #stringmetric [![Build Status](https://travis-ci.org/rockymadden/stringmetric.png?branch=master)](http://travis-ci.org/rockymadden/stringmetric)
 String metrics and phonetic algorithms for Scala. The library provides facilities to perform approximate string matching, measurement of string similarity/distance, indexing by word pronunciation, and sounds-like comparisons. In addition to the core library, each metric and algorithm has a command line interface.
 
-* __Requirements:__ Scala 2.10.x and, if building yourself, Gradle 1.8+
+* __Requirements:__ Scala 2.10+
 * __Documentation:__ [Scaladoc](http://rockymadden.com/stringmetric/scaladoc/)
 * __Issues:__ [Enhancements](https://github.com/rockymadden/stringmetric/issues?labels=accepted%2Cenhancement&page=1&state=open), [Questions](https://github.com/rockymadden/stringmetric/issues?labels=accepted%2Cquestion&page=1&state=open), [Bugs](https://github.com/rockymadden/stringmetric/issues?labels=accepted%2Cbug&page=1&state=open)
 * __Versioning:__ [Semantic Versioning v2.0](http://semver.org/)
@@ -37,14 +37,14 @@ The project is available on the [Maven Central Repository](http://search.maven.o
 
 __Simple Build Tool:__
 ```scala
-libraryDependencies += "com.rockymadden.stringmetric" % "stringmetric-core" % "0.26.1"
+libraryDependencies += "com.rockymadden.stringmetric" % "stringmetric-core_2.10" % "0.26.1"
 ```
 
 ---
 
 __Gradle:__
 ```groovy
-compile 'com.rockymadden.stringmetric:stringmetric-core:0.26.1'
+compile 'com.rockymadden.stringmetric:stringmetric-core_2.10:0.26.1'
 ```
 
 ---
@@ -53,7 +53,7 @@ __Maven:__
 ```xml
 <dependency>
 	<groupId>com.rockymadden.stringmetric</groupId>
-	<artifactId>stringmetric-core</artifactId>
+	<artifactId>stringmetric-core_2.10</artifactId>
 	<version>0.26.1</version>
 </dependency>
 ```
