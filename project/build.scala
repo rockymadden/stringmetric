@@ -6,7 +6,7 @@ object CoreBuild extends Build {
 		settings = Defaults.defaultSettings ++ Seq(
 			organization := "com.rockymadden.stringmetric",
 			name := "stringmetric",
-			version := "0.26.1",
+			version := "0.27.0",
 			scalaVersion := "2.10.3",
 			resolvers ++= Seq(DefaultMavenRepository),
 			publishTo := Some("Sonatype" at "https://oss.sonatype.org/service/local/staging/deploy/maven2"),
