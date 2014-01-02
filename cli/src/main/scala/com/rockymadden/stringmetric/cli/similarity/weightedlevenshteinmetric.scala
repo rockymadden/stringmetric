@@ -30,4 +30,4 @@ case object weightedlevenshteinmetric extends Command(
 			.map(_.toString)
 			.getOrElse("not comparable")
 	}
-)
+) { override def main(args: Array[String]): Unit = super.main(args) }

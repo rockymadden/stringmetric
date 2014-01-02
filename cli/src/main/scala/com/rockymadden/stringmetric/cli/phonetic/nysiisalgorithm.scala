@@ -13,4 +13,4 @@ case object nysiisalgorithm extends Command(
 		Tab + Tab + "Outputs description, syntax, and options.",
 	(opts) => opts.contains('dashless) && (opts('dashless): Array[String]).length == 1,
 	(opts) => NysiisAlgorithm.compute(opts('dashless)).getOrElse("not computable")
-)
+) { override def main(args: Array[String]): Unit = super.main(args) }

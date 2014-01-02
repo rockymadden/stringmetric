@@ -77,7 +77,7 @@ package object cli {
 		protected val predicate: (OptionMap => Boolean),
 		protected val execute: (OptionMap => String)
 	) {
-		final def main(args: Array[String]): Unit = {
+		def main(args: Array[String]): Unit = {
 			val opts: OptionMap = args
 
 			try
