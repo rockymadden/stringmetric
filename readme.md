@@ -308,8 +308,9 @@ StringMetric.compareWithJaroWinkler("abc123", "abc456")
 ## Building the CLIs
 ```shell
 $ git clone https://github.com/rockymadden/stringmetric.git
-$ cd stringmetric/project
-$ ./build.sh
+$ cd stringmetric
+$ sbt clean package
+$ ./project/build.sh
 ```
 
 ---
@@ -317,7 +318,7 @@ $ ./build.sh
 To run a command from the current directory that you would be in from doing the above:
 
 ```shell
-$ ../target/cli/jarometric abc xyz
+$ ./target/cli/jarometric abc xyz
 ```
 
 ---
