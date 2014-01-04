@@ -37,14 +37,14 @@ The project is available on the [Maven Central Repository](http://search.maven.o
 
 __Simple Build Tool:__
 ```scala
-libraryDependencies += "com.rockymadden.stringmetric" % "stringmetric-core_2.10" % "0.27.0"
+libraryDependencies += "com.rockymadden.stringmetric" %% "stringmetric-core" % "0.27.1"
 ```
 
 ---
 
 __Gradle:__
 ```groovy
-compile 'com.rockymadden.stringmetric:stringmetric-core_2.10:0.27.0'
+compile 'com.rockymadden.stringmetric:stringmetric-core_2.10:0.27.1'
 ```
 
 ---
@@ -54,7 +54,7 @@ __Maven:__
 <dependency>
 	<groupId>com.rockymadden.stringmetric</groupId>
 	<artifactId>stringmetric-core_2.10</artifactId>
-	<version>0.27.0</version>
+	<version>0.27.1</version>
 </dependency>
 ```
 
