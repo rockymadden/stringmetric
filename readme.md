@@ -244,7 +244,7 @@ SoundexAlgorithm.compute("lukasiewicz") // l222
 ---
 
 ## Decorating
-It is possible to decorate algorithms and metrics with additional functionality. This is provided by rich wrapping via implicits, and [StringAlgorithmDecorator](https://github.com/rockymadden/stringmetric/blob/master/core/source/main/scala/com/rockymadden/stringmetric/Algorithm.scala)/[StringMetricDecorator](https://github.com/rockymadden/stringmetric/blob/master/core/source/main/scala/com/rockymadden/stringmetric/Metric.scala). A handful of pre-built transforms are located in the [transform module](https://github.com/rockymadden/stringmetric/blob/master/core/source/main/scala/com/rockymadden/stringmetric/Transform.scala).
+It is possible to decorate algorithms and metrics with additional functionality. This is provided by rich wrapping via implicits, and [StringAlgorithmDecorator](https://github.com/rockymadden/stringmetric/blob/master/core/src/main/scala/com/rockymadden/stringmetric/Algorithm.scala)/[StringMetricDecorator](https://github.com/rockymadden/stringmetric/blob/master/core/src/main/scala/com/rockymadden/stringmetric/Metric.scala). A handful of pre-built transforms are located in the [transform module](https://github.com/rockymadden/stringmetric/blob/master/core/src/main/scala/com/rockymadden/stringmetric/Transform.scala).
 
 ---
 
@@ -292,7 +292,7 @@ __StringAlgorithm:__
 ```scala
 StringAlgorithm.computeWithMetaphone("string")
 ```
-<sup>Located in the [algorithm module](https://github.com/rockymadden/stringmetric/blob/master/core/source/main/scala/com/rockymadden/stringmetric/Algorithm.scala).</sup>
+<sup>Located in the [algorithm module](https://github.com/rockymadden/stringmetric/blob/master/core/src/main/scala/com/rockymadden/stringmetric/Algorithm.scala).</sup>
 
 ---
 
@@ -301,7 +301,7 @@ __StringMetric:__
 StringMetric.compareWithJaccard(1)("abc123", "abc456")
 StringMetric.compareWithJaroWinkler("abc123", "abc456")
 ```
-<sup>Located in the [metric module](https://github.com/rockymadden/stringmetric/blob/master/core/source/main/scala/com/rockymadden/stringmetric/Metric.scala).</sup>
+<sup>Located in the [metric module](https://github.com/rockymadden/stringmetric/blob/master/core/src/main/scala/com/rockymadden/stringmetric/Metric.scala).</sup>
 
 ---
 
