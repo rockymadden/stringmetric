@@ -35,12 +35,12 @@ object Algorithm {
 
 	final class StringAlgorithmDecorator(val sa: StringAlgorithm) {
 		val withTransform: (StringTransform => StringAlgorithm) = (st) => new StringAlgorithm {
-			private[this] val self: StringAlgorithm = sa
-			private[this] val transform: StringTransform = st
+			private val base: StringAlgorithm = sa
+			private val transform: StringTransform = st
 
-			override def compute(a: Array[Char]): Option[Array[Char]] = self.compute(transform(a))
+			override def compute(a: Array[Char]): Option[Array[Char]] = base.compute(transform(a))
 
-			override def compute(a: String): Option[String] = self.compute(transform(a.toCharArray)).map(_.mkString)
+			override def compute(a: String): Option[String] = base.compute(transform(a.toCharArray)).map(_.mkString)
 		}
 	}
 }

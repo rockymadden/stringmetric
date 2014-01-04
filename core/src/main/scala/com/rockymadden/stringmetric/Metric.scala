@@ -64,14 +64,14 @@ object Metric {
 
 	final class StringMetricDecorator[A](val sm: StringMetric[A]) {
 		val withTransform: (StringTransform => StringMetric[A]) = (st) => new StringMetric[A] {
-			private[this] val self: StringMetric[A] = sm
-			private[this] val transform: StringTransform = st
+			private val base: StringMetric[A] = sm
+			private val transform: StringTransform = st
 
 			override def compare(a: Array[Char], b: Array[Char]): Option[A] =
-				self.compare(transform(a), transform(b))
+				base.compare(transform(a), transform(b))
 
 			override def compare(a: String, b: String): Option[A] =
-				self.compare(transform(a.toCharArray), transform(b.toCharArray))
+				base.compare(transform(a.toCharArray), transform(b.toCharArray))
 		}
 	}
 }
