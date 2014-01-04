@@ -15,20 +15,20 @@ object Metric {
 
 
 	object StringMetric {
-		final val DiceSorensen = similarity.DiceSorensenMetric
-		final val Hamming = similarity.HammingMetric
-		final val Jaccard = similarity.JaccardMetric
-		final val Jaro = similarity.JaroMetric
-		final val JaroWinkler = similarity.JaroWinklerMetric
-		final val Levenshtein = similarity.LevenshteinMetric
-		final val Metaphone = phonetic.MetaphoneMetric
-		final val NGram = similarity.NGramMetric
-		final val Nysiis = phonetic.NysiisMetric
-		final val Overlap = similarity.OverlapMetric
-		final val RefinedNysiis = phonetic.RefinedNysiisMetric
-		final val RefinedSoundex = phonetic.RefinedSoundexMetric
-		final val Soundex = phonetic.SoundexMetric
-		final val WeightedLevenshtein = similarity.WeightedLevenshteinMetric
+		val DiceSorensen = similarity.DiceSorensenMetric
+		val Hamming = similarity.HammingMetric
+		val Jaccard = similarity.JaccardMetric
+		val Jaro = similarity.JaroMetric
+		val JaroWinkler = similarity.JaroWinklerMetric
+		val Levenshtein = similarity.LevenshteinMetric
+		val Metaphone = phonetic.MetaphoneMetric
+		val NGram = similarity.NGramMetric
+		val Nysiis = phonetic.NysiisMetric
+		val Overlap = similarity.OverlapMetric
+		val RefinedNysiis = phonetic.RefinedNysiisMetric
+		val RefinedSoundex = phonetic.RefinedSoundexMetric
+		val Soundex = phonetic.SoundexMetric
+		val WeightedLevenshtein = similarity.WeightedLevenshteinMetric
 
 		def compareWithDiceSorensen(n: Int)(a: Array[Char], b: Array[Char]) = DiceSorensen(n).compare(a, b)
 

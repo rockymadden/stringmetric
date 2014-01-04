@@ -15,11 +15,11 @@ object Algorithm {
 
 
 	object StringAlgorithm {
-		final val Metaphone = phonetic.MetaphoneAlgorithm
-		final val Nysiis = phonetic.NysiisAlgorithm
-		final val RefinedNysiis = phonetic.RefinedNysiisAlgorithm
-		final val RefinedSoundex = phonetic.RefinedSoundexAlgorithm
-		final val Soundex = phonetic.SoundexAlgorithm
+		val Metaphone = phonetic.MetaphoneAlgorithm
+		val Nysiis = phonetic.NysiisAlgorithm
+		val RefinedNysiis = phonetic.RefinedNysiisAlgorithm
+		val RefinedSoundex = phonetic.RefinedSoundexAlgorithm
+		val Soundex = phonetic.SoundexAlgorithm
 
 		def computeWithMetaphone(a: Array[Char]) = Metaphone.compute(a)
 

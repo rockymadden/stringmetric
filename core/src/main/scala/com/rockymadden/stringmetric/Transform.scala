@@ -9,17 +9,17 @@ object Transform {
 
 
 	object StringTransform {
-		private final val Ascii = NumericRange(0x00, 0x7F, 1)
-		private final val ExtendedAscii = NumericRange(0x00, 0x7F, 1)
-		private final val Latin = NumericRange(0x00, 0x24F, 1)
-		private final val LowerCase = NumericRange(0x61, 0x7A, 1)
-		private final val Numbers = NumericRange(0x30, 0x39, 1)
-		private final val UpperCase = NumericRange(0x41, 0x5A, 1)
+		private val Ascii = NumericRange(0x00, 0x7F, 1)
+		private val ExtendedAscii = NumericRange(0x00, 0x7F, 1)
+		private val Latin = NumericRange(0x00, 0x24F, 1)
+		private val LowerCase = NumericRange(0x61, 0x7A, 1)
+		private val Numbers = NumericRange(0x30, 0x39, 1)
+		private val UpperCase = NumericRange(0x41, 0x5A, 1)
 
-		private final val filter: ((Array[Char], (Char => Boolean)) => String) = (ca, f) =>
+		private val filter: ((Array[Char], (Char => Boolean)) => String) = (ca, f) =>
 			ca.filter(c => f(c)).mkString
 
-		private final val filterNot: ((Array[Char], (Char => Boolean)) => String) = (ca, f) =>
+		private val filterNot: ((Array[Char], (Char => Boolean)) => String) = (ca, f) =>
 			ca.filterNot(c => f(c)).mkString
 
 		val filterAlpha: StringTransform = (ca) => filter(ca, c => {
