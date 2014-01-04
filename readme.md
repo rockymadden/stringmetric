@@ -303,7 +303,6 @@ __StringAlgorithm:__
 ```scala
 StringAlgorithm.computeWithMetaphone("string")
 ```
-<sup>Located in the [algorithm module](https://github.com/rockymadden/stringmetric/blob/master/core/src/main/scala/com/rockymadden/stringmetric/Algorithm.scala).</sup>
 
 ---
 
@@ -312,7 +311,6 @@ __StringMetric:__
 StringMetric.compareWithJaccard(1)("abc123", "abc456")
 StringMetric.compareWithJaroWinkler("abc123", "abc456")
 ```
-<sup>Located in the [metric module](https://github.com/rockymadden/stringmetric/blob/master/core/src/main/scala/com/rockymadden/stringmetric/Metric.scala).</sup>
 
 ---
 
