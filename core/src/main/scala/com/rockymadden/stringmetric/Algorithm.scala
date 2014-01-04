@@ -1,6 +1,7 @@
 package com.rockymadden.stringmetric
 
 object Algorithm {
+	import scala.collection.immutable.Map
 	import Transform.StringTransform
 
 
@@ -34,13 +35,28 @@ object Algorithm {
 
 
 	final class StringAlgorithmDecorator(val sa: StringAlgorithm) {
+		val withMemoization: StringAlgorithm = new StringAlgorithm {
+			private val base: StringAlgorithm = sa
+			private var memo: Map[String, Option[String]] = Map()
+
+			override def compute(a: Array[Char]): Option[Array[Char]] =
+				compute(a.toString).map(_.toCharArray)
+
+			override def compute(a: String): Option[String] =
+				if (memo.contains(a)) memo(a)
+				else {
+					memo = memo + (a -> base.compute(a))
+					memo(a)
+				}
+		}
+
 		val withTransform: (StringTransform => StringAlgorithm) = (st) => new StringAlgorithm {
 			private val base: StringAlgorithm = sa
 			private val transform: StringTransform = st
 
 			override def compute(a: Array[Char]): Option[Array[Char]] = base.compute(transform(a))
 
-			override def compute(a: String): Option[String] = base.compute(transform(a.toCharArray)).map(_.mkString)
+			override def compute(a: String): Option[String] = compute(a.toCharArray).map(_.mkString)
 		}
 	}
 }

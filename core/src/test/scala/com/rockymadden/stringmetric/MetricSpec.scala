@@ -44,6 +44,15 @@ final class MetricSpec extends ScalaTest {
 	}
 
 	"StringMetricDecorator" should provide {
+		"withMemoization()" in {
+			val memo = MetaphoneMetric withMemoization
+
+			(0 until 1000000) foreach { i =>
+				memo.compare("abc123", "abc456")
+				memo.compare("abc456", "abc123")
+			}
+		}
+
 		"withTransform()" in {
 			(MetaphoneMetric withTransform StringTransform.filterAlpha).compare("abc123", "abc456").get should
 				equal (true)

@@ -244,11 +244,11 @@ SoundexAlgorithm.compute("lukasiewicz") // l222
 ---
 
 ## Decorating
-It is possible to decorate algorithms and metrics with additional functionality, this is provided by rich wrapping via implicits. Decorations include:
+It is possible to decorate algorithms and metrics with additional functionality, this is provided by rich wrapping via implicits. Decorations include (you can mix and match):
 
 * __withTransform:__ Transform arguments prior to computation/comparison. A handful of pre-built transforms are located in the [transform module](https://github.com/rockymadden/stringmetric/blob/master/core/src/main/scala/com/rockymadden/stringmetric/Transform.scala).
 
-* __withMemoization:__ Queued.
+* __[withMemoization](https://en.wikipedia.org/wiki/Memoization):__ All computations/comparisons are cached. Any further calls made with identical arguments will be looked up, rather than computed/compared.
 
 ---
 
@@ -256,6 +256,13 @@ Non-decorated usage:
 ```scala
 MetaphoneAlgorithm.compute("abc123")
 MetaphoneMetric.compare("abc123", "abc456")
+```
+
+---
+
+Memoized:
+```scala
+(MetaphoneAlgorithm withMemoization).compute("abc123")
 ```
 
 ---

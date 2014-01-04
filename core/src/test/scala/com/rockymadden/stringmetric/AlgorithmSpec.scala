@@ -7,7 +7,7 @@ import org.scalatest.junit.JUnitRunner
 final class AlgorithmSpec extends ScalaTest {
 	import phonetic._
 	import Algorithm._
-	import Transform.StringTransform
+	import Transform._
 
 	"StringAlgorithm" should provide {
 		"compute method and companion object pass through" in {
@@ -25,6 +25,15 @@ final class AlgorithmSpec extends ScalaTest {
 	}
 
 	"StringAlgorithmDecorator" should provide {
+		"withMemoization()" in {
+			val memo = MetaphoneAlgorithm withMemoization
+
+			(0 until 1000000) foreach { i =>
+				memo.compute("abc123")
+				memo.compute("abc456")
+			}
+		}
+
 		"withTransform()" in {
 			(MetaphoneAlgorithm withTransform StringTransform.filterAlpha).compute("abc123").get should
 				equal (MetaphoneAlgorithm.compute("abc").get)
