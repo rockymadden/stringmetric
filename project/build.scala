@@ -54,8 +54,4 @@ object CoreBuild extends Build {
 			name := "stringmetric-cli"
 		)
 	).dependsOn(core)
-
-	lazy val js: Project = project.in(file("core")).settings(scalaJSSettings: _*).settings(
-		target <<= baseDirectory apply ( _ / "target" / "js" )
-	)
 }
