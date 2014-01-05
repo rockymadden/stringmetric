@@ -1,5 +1,4 @@
 import sbt._
-import scala.scalajs.sbtplugin.ScalaJSPlugin._
 import Keys._
 
 object CoreBuild extends Build {
