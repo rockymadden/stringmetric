@@ -40,7 +40,7 @@ object Algorithm {
 	}
 
 
-	trait AlgorithmDecorator[A] {
+	sealed trait AlgorithmDecorator[A] {
 		val withMemoization: Algorithm[A]
 
 		val withTransform: (Transform[A] => Algorithm[A])
