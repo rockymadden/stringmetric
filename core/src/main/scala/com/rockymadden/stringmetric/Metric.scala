@@ -1,11 +1,17 @@
 package com.rockymadden.stringmetric
 
 object Metric {
-	import Transform.StringTransform
+	import Transform._
 
 
 	trait Metric[A, B] {
 		def compare(a: A, b: A): Option[B]
+	}
+
+
+	object Metric {
+		implicit def stringMetricToDecorated[A](sa: StringMetric[A]): StringMetricDecorator[A] =
+			new StringMetricDecorator[A](sa)
 	}
 
 
@@ -62,8 +68,16 @@ object Metric {
 			WeightedLevenshtein(delete, insert, substitute).compare(a, b)
 	}
 
-	final class StringMetricDecorator[A](val sm: StringMetric[A]) {
-		val withMemoization: StringMetric[A] = new StringMetric[A] {
+
+	sealed trait MetricDecorator[A, B] {
+		val withMemoization: Metric[A, B]
+
+		val withTransform: (Transform[A] => Metric[A, B])
+	}
+
+
+	final case class StringMetricDecorator[A](sm: StringMetric[A]) extends MetricDecorator[Array[Char], A] {
+		override val withMemoization: StringMetric[A] = new StringMetric[A] {
 			private val base: StringMetric[A] = sm
 			private var memo: Map[(String, String), Option[A]] = Map()
 
@@ -80,7 +94,7 @@ object Metric {
 			}
 		}
 
-		val withTransform: (StringTransform => StringMetric[A]) = (st) => new StringMetric[A] {
+		override val withTransform: (StringTransform => StringMetric[A]) = (st) => new StringMetric[A] {
 			private val base: StringMetric[A] = sm
 			private val transform: StringTransform = st
 

@@ -2,11 +2,17 @@ package com.rockymadden.stringmetric
 
 object Algorithm {
 	import scala.collection.immutable.Map
-	import Transform.StringTransform
+	import Transform._
 
 
 	trait Algorithm[A] {
 		def compute(a: A): Option[A]
+	}
+
+
+	object Algorithm {
+		implicit def stringAlgorithmToDecorated(sa: StringAlgorithm): StringAlgorithmDecorator =
+			new StringAlgorithmDecorator(sa)
 	}
 
 
@@ -34,8 +40,15 @@ object Algorithm {
 	}
 
 
-	final class StringAlgorithmDecorator(val sa: StringAlgorithm) {
-		val withMemoization: StringAlgorithm = new StringAlgorithm {
+	trait AlgorithmDecorator[A] {
+		val withMemoization: Algorithm[A]
+
+		val withTransform: (Transform[A] => Algorithm[A])
+	}
+
+
+	final case class StringAlgorithmDecorator(sa: StringAlgorithm) extends AlgorithmDecorator[Array[Char]] {
+		override val withMemoization: StringAlgorithm = new StringAlgorithm {
 			private val base: StringAlgorithm = sa
 			private var memo: Map[String, Option[String]] = Map()
 
@@ -50,7 +63,7 @@ object Algorithm {
 				}
 		}
 
-		val withTransform: (StringTransform => StringAlgorithm) = (st) => new StringAlgorithm {
+		override val withTransform: (StringTransform => StringAlgorithm) = (st) => new StringAlgorithm {
 			private val base: StringAlgorithm = sa
 			private val transform: StringTransform = st
 
