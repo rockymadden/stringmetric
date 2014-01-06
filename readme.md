@@ -32,10 +32,8 @@ String metrics and phonetic algorithms for Scala. The library provides facilitie
 
 
 ## Depending upon
-The project is available on the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.rockymadden.stringmetric%22). Adding a dependency to the core sub-project in various build systems (add other sub-projects as needed):
 
-
-__Simple Build Tool:__
+__SBT:__
 ```scala
 libraryDependencies += "com.rockymadden.stringmetric" %% "stringmetric-core" % "0.27.1"
 ```
@@ -243,27 +241,45 @@ SoundexAlgorithm.compute("lukasiewicz") // l222
 
 ---
 
+## Convenience objects
+
+__StringAlgorithm:__
+```scala
+StringAlgorithm.computeWithMetaphone("abcdef")
+StringAlgorithm.computeWithNysiis("abcdef")
+```
+
+---
+
+__StringMetric:__
+```scala
+StringMetric.compareWithJaccard(1)("abcdef", "abcxyz")
+StringMetric.compareWithJaroWinkler("abcdef", "abcxyz")
+```
+
+---
+
 ## Decorating
 It is possible to decorate algorithms and metrics with additional functionality, which you can mix and match. Decorations include:
 
-* __withTransform:__ Transform arguments prior to computation/comparison. A handful of pre-built transforms are located in the [transform module](https://github.com/rockymadden/stringmetric/blob/master/core/src/main/scala/com/rockymadden/stringmetric/Transform.scala).
-
 * __[withMemoization](https://en.wikipedia.org/wiki/Memoization):__ Computations and comparisons are cached. Future calls made with identical arguments will be looked up, rather than computed.
+
+* __withTransform:__ Transform arguments prior to computation/comparison. A handful of pre-built transforms are located in the [transform module](https://github.com/rockymadden/stringmetric/blob/master/core/src/main/scala/com/rockymadden/stringmetric/Transform.scala).
 
 ---
 
 Non-decorated:
 ```scala
-MetaphoneAlgorithm.compute("abc123")
-MetaphoneMetric.compare("abc123", "abc456")
+MetaphoneAlgorithm.compute("abcdef")
+MetaphoneMetric.compare("abcdef", "abcxyz")
 ```
 
 ---
 
 Using a transform so that we only examine alphabetical characters:
 ```scala
-(MetaphoneAlgorithm withTransform StringTransform.filterAlpha).compute("abc123")
-(MetaphoneMetric withTransform StringTransform.filterAlpha).compare("abc123", "abc456")
+(MetaphoneAlgorithm withTransform StringTransform.filterAlpha).compute("abcdef")
+(MetaphoneMetric withTransform StringTransform.filterAlpha).compare("abcdef", "abcxyz")
 ```
 
 ---
@@ -272,8 +288,8 @@ Using a functionally composed transform so that we only examine alphabetical cha
 ```scala
 val composedTransform = (StringTransform.filterAlpha andThen StringTransform.ignoreAlphaCase)
 
-(MetaphoneAlgorithm withTransform composedTransform).compute("abc123")
-(MetaphoneMetric withTransform composedTransform).compare("abc123", "abc456")
+(MetaphoneAlgorithm withTransform composedTransform).compute("abcdef")
+(MetaphoneMetric withTransform composedTransform).compare("abcdef", "abcxyz")
 ```
 
 ---
@@ -282,33 +298,22 @@ Making your own transform:
 ```scala
 val myTransform: StringTransform = (ca) => ca.filter(_ == 'x')
 
-(MetaphoneAlgorithm withTransform myTransform).compute("abc123")
-(MetaphoneMetric withTransform myTransform).compare("abc123", "abc456")
+(MetaphoneAlgorithm withTransform myTransform).compute("abcdef")
+(MetaphoneMetric withTransform myTransform).compare("abcdef", "abcxyz")
 ```
 
 ---
 
 Using memoization:
 ```scala
-(MetaphoneAlgorithm withMemoization).compute("abc123")
+(MetaphoneAlgorithm withMemoization).compute("abcdef")
 ```
 
 ---
 
-## Convenience objects
-Convenience objects are available to make interactions with the library easier.
-
-__StringAlgorithm:__
+Using memoization and a transform:
 ```scala
-StringAlgorithm.computeWithMetaphone("string")
-```
-
----
-
-__StringMetric:__
-```scala
-StringMetric.compareWithJaccard(1)("abc123", "abc456")
-StringMetric.compareWithJaroWinkler("abc123", "abc456")
+((MetaphoneAlgorithm withMemoization) withTransform StringTransform.filterAlpha).compute("abcdef")
 ```
 
 ---
@@ -319,13 +324,6 @@ $ git clone https://github.com/rockymadden/stringmetric.git
 $ cd stringmetric
 $ sbt clean package
 $ ./project/build.sh
-```
-
----
-
-To run a command from the current directory that you would be in from doing the above:
-
-```shell
 $ ./target/cli/jarometric abc xyz
 ```
 
@@ -347,7 +345,7 @@ Options:
 
 ---
 
-Get comparison with metrics:
+Get comparison value with metrics:
 ```shell
 $ jarowinklermetric dog dawg
 0.75
@@ -355,7 +353,7 @@ $ jarowinklermetric dog dawg
 
 ---
 
-Get representation with phonetic algorithms:
+Get representation value with phonetic algorithms:
 ```shell
 $ metaphonealgorithm dog
 tk
