@@ -244,7 +244,7 @@ SoundexAlgorithm.compute("lukasiewicz") // l222
 ---
 
 ## Decorating
-It is possible to decorate algorithms and metrics with additional functionality, this is provided by rich wrapping via implicits. Decorations include (you can mix and match):
+It is possible to decorate algorithms and metrics with additional functionality, which you can mix and match. Decorations include:
 
 * __withTransform:__ Transform arguments prior to computation/comparison. A handful of pre-built transforms are located in the [transform module](https://github.com/rockymadden/stringmetric/blob/master/core/src/main/scala/com/rockymadden/stringmetric/Transform.scala).
 
