@@ -16,6 +16,7 @@ object Transform {
 		private val Numbers = NumericRange(0x30, 0x39, 1)
 		private val UpperCase = NumericRange(0x41, 0x5A, 1)
 
+
 		private val filter: ((Array[Char], (Char => Boolean)) => String) = (ca, f) =>
 			ca.filter(c => f(c)).mkString
 

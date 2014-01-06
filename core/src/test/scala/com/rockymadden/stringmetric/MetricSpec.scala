@@ -8,7 +8,7 @@ final class MetricSpec extends ScalaTest {
 	import phonetic._
 	import similarity._
 	import Metric._
-	import Transform.StringTransform
+	import Transform._
 
 	"StringMetric standalone object" should provide {
 		"compare method and companion object pass through" in {

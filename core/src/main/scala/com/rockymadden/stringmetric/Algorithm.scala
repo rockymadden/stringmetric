@@ -52,8 +52,7 @@ object Algorithm {
 			private val base: StringAlgorithm = sa
 			private var memo: Map[String, Option[String]] = Map()
 
-			override def compute(a: Array[Char]): Option[Array[Char]] =
-				compute(a.toString).map(_.toCharArray)
+			override def compute(a: Array[Char]): Option[Array[Char]] = compute(a.toString).map(_.toCharArray)
 
 			override def compute(a: String): Option[String] =
 				if (memo.contains(a)) memo(a)
