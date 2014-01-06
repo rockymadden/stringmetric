@@ -1,66 +1,22 @@
 package com.rockymadden.stringmetric.cli.similarity
 
-import com.rockymadden.stringmetric.cli.ScalaTest
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
+object ngrammetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+	"ngrammetric main()" should {
+		"print if they are a match with valid dashless arguments and valid n argument" in {
+			val out = new java.io.ByteArrayOutputStream()
 
-@RunWith(classOf[JUnitRunner])
-final class ngrammetricSpec extends ScalaTest { "ngrammetric" should provide {
-	"main method" when passed {
-		"valid dashless arguments and valid n argument" should executes {
-			"print if they are a match" in {
-				val out = new java.io.ByteArrayOutputStream()
+			Console.withOut(out)(ngrammetric.main(Array("--unitTest", "--debug", "--n=1", "abc", "abc")))
+			out.toString must beEqualTo("1.0\n")
+			out.reset()
 
-				Console.withOut(out)(
-					ngrammetric.main(
-						Array(
-							"--unitTest",
-							"--debug",
-							"--n=1",
-							"abc",
-							"abc"
-						)
-					)
-				)
-
-				out.toString should equal ("1.0\n")
-				out.reset()
-
-				Console.withOut(out)(
-					ngrammetric.main(
-						Array(
-							"--unitTest",
-							"--debug",
-							"--n=1",
-							"abc",
-							"xyz"
-						)
-					)
-				)
-
-				out.toString should equal ("0.0\n")
-				out.reset()
-			}
+			Console.withOut(out)(ngrammetric.main(Array("--unitTest", "--debug", "--n=1", "abc", "xyz")))
+			out.toString must beEqualTo("0.0\n")
 		}
-		"valid dashless arguments and invalid n argument" should throws {
-			"IllegalArgumentException" in {
-				evaluating {
-					ngrammetric.main(
-						Array(
-							"--unitTest",
-							"abc",
-							"abc"
-						)
-					)
-				} should produce [IllegalArgumentException]
-			}
+		"throw IllegalArgumentException with valid dashless arguments but invalid n argument" in {
+			ngrammetric.main(Array("--unitTest", "abc", "abc")) must throwA[IllegalArgumentException]
 		}
-		"no dashless arguments" should throws {
-			"IllegalArgumentException" in {
-				evaluating {
-					ngrammetric.main(Array("--unitTest", "--debug"))
-				} should produce [IllegalArgumentException]
-			}
+		"throw IllegalArgumentException with no dashless arguments" in {
+			ngrammetric.main(Array("--unitTest", "--debug")) must throwA[IllegalArgumentException]
 		}
 	}
-}}
+}

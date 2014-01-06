@@ -1,121 +1,91 @@
 package com.rockymadden.stringmetric.cli.similarity
 
-import com.rockymadden.stringmetric.cli.ScalaTest
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
+object weightedlevenshteinmetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+	"weightedlevenshteinmetric main()" should {
+		"print if they are a match with valid dashless arguments and valid weight arguments" in {
+			val out = new java.io.ByteArrayOutputStream()
 
-@RunWith(classOf[JUnitRunner])
-final class weightedlevenshteinmetricSpec extends ScalaTest { "weightedlevenshteinmetric" should provide {
-	"main method" when passed {
-		"valid dashless arguments and valid weight arguments" should executes {
-			"print if they are a match" in {
-				val out = new java.io.ByteArrayOutputStream()
-
-				Console.withOut(out)(
-					weightedlevenshteinmetric.main(
-						Array(
-							"--unitTest",
-							"--debug",
-							"--deleteWeight=1",
-							"--insertWeight=1",
-							"--substituteWeight=1",
-							"abc",
-							"abc"
-						)
-					)
+			Console.withOut(out)(weightedlevenshteinmetric.main(
+				Array(
+					"--unitTest",
+					"--debug",
+					"--deleteWeight=1",
+					"--insertWeight=1",
+					"--substituteWeight=1",
+					"abc",
+					"abc"
 				)
+			))
+			out.toString must beEqualTo("0.0\n")
+			out.reset()
 
-				out.toString should equal ("0.0\n")
-				out.reset()
-
-				Console.withOut(out)(
-					weightedlevenshteinmetric.main(
-						Array(
-							"--unitTest",
-							"--debug",
-							"--deleteWeight=2",
-							"--insertWeight=2",
-							"--substituteWeight=1",
-							"abc",
-							"xyz"
-						)
-					)
+			Console.withOut(out)(weightedlevenshteinmetric.main(
+				Array(
+					"--unitTest",
+					"--debug",
+					"--deleteWeight=2",
+					"--insertWeight=2",
+					"--substituteWeight=1",
+					"abc",
+					"xyz"
 				)
+			))
+			out.toString must beEqualTo("3.0\n")
+			out.reset()
 
-				out.toString should equal ("3.0\n")
-				out.reset()
-
-				Console.withOut(out)(
-					weightedlevenshteinmetric.main(
-						Array(
-							"--unitTest",
-							"--debug",
-							"--deleteWeight=2",
-							"--insertWeight=1",
-							"--substituteWeight=2",
-							"xyz",
-							"xyzxyz"
-						)
-					)
+			Console.withOut(out)(weightedlevenshteinmetric.main(
+				Array(
+					"--unitTest",
+					"--debug",
+					"--deleteWeight=2",
+					"--insertWeight=1",
+					"--substituteWeight=2",
+					"xyz",
+					"xyzxyz"
 				)
+			))
+			out.toString must beEqualTo("3.0\n")
+			out.reset()
 
-				out.toString should equal ("3.0\n")
-				out.reset()
-
-				Console.withOut(out)(
-					weightedlevenshteinmetric.main(
-						Array(
-							"--unitTest",
-							"--debug",
-							"--deleteWeight=1",
-							"--insertWeight=2",
-							"--substituteWeight=2",
-							"xyzxyz",
-							"xyz"
-						)
-					)
+			Console.withOut(out)(weightedlevenshteinmetric.main(
+				Array(
+					"--unitTest",
+					"--debug",
+					"--deleteWeight=1",
+					"--insertWeight=2",
+					"--substituteWeight=2",
+					"xyzxyz",
+					"xyz"
 				)
-
-				out.toString should equal ("3.0\n")
-				out.reset()
-			}
+			))
+			out.toString must beEqualTo("3.0\n")
 		}
-		"valid dashless arguments and invalid weight arguments" should throws {
-			"IllegalArgumentException" in {
-				evaluating {
-					weightedlevenshteinmetric.main(
-						Array(
-							"--unitTest",
-							"--debug",
-							"--deleteWeight=1",
-							"--substituteWeight=1",
-							"abc",
-							"abc"
-						)
-					)
-				} should produce [IllegalArgumentException]
+		"throw IllegalArgumentException with valid dashless arguments but invalid weight arguments" in {
+			weightedlevenshteinmetric.main(
+				Array(
+					"--unitTest",
+					"--debug",
+					"--deleteWeight=1",
+					"--substituteWeight=1",
+					"abc",
+					"abc"
+				)
+			) must throwA[IllegalArgumentException]
 
-				evaluating {
-					weightedlevenshteinmetric.main(
-						Array(
-							"--unitTest",
-							"--debug",
-							"--deleteWeight=1",
-							"--insertWeight=q",
-							"--substituteWeight=1",
-							"abc",
-							"abc"
-						)
-					)
-				} should produce [IllegalArgumentException]
-			}
+			weightedlevenshteinmetric.main(
+				Array(
+					"--unitTest",
+					"--debug",
+					"--deleteWeight=1",
+					"--insertWeight=q",
+					"--substituteWeight=1",
+					"abc",
+					"abc"
+				)
+			) must throwA[IllegalArgumentException]
 		}
-		"no dashless arguments" should throws {
-			"IllegalArgumentException" in {
-				evaluating {
-					weightedlevenshteinmetric.main(Array("--unitTest", "--debug"))
-				} should produce [IllegalArgumentException]
-			}
+		"throw IllegalArgumentException with no dashless arguments" in {
+			weightedlevenshteinmetric.main(Array("--unitTest", "--debug")) must throwA[IllegalArgumentException]
 		}
 	}
-}}
+}

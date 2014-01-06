@@ -1,37 +1,19 @@
 package com.rockymadden.stringmetric.cli.similarity
 
-import com.rockymadden.stringmetric.cli.ScalaTest
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
+object ratcliffobershelpmetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+	"ratcliffobershelpmetric main()" should {
+		"print if they are a match with valid dashless arguments" in {
+			val out = new java.io.ByteArrayOutputStream()
 
-@RunWith(classOf[JUnitRunner])
-final class ratcliffobershelpmetricSpec extends ScalaTest { "ratcliffobershelpmetric" should provide {
-	"main method" when passed {
-		"valid dashless arguments" should executes {
-			"print if they are a match" in {
-				val out = new java.io.ByteArrayOutputStream()
+			Console.withOut(out)(ratcliffobershelpmetric.main(Array("--unitTest", "--debug", "abc", "abc")))
+			out.toString must beEqualTo("1.0\n")
+			out.reset()
 
-				Console.withOut(out)(
-					ratcliffobershelpmetric.main(Array("--unitTest", "--debug", "abc", "abc"))
-				)
-
-				out.toString should equal ("1.0\n")
-				out.reset()
-
-				Console.withOut(out)(
-					ratcliffobershelpmetric.main(Array("--unitTest", "--debug", "abc", "xyz"))
-				)
-
-				out.toString should equal ("0.0\n")
-				out.reset()
-			}
+			Console.withOut(out)(ratcliffobershelpmetric.main(Array("--unitTest", "--debug", "abc", "xyz")))
+			out.toString must beEqualTo("0.0\n")
 		}
-		"no dashless arguments" should throws {
-			"IllegalArgumentException" in {
-				evaluating {
-					ratcliffobershelpmetric.main(Array("--unitTest", "--debug"))
-				} should produce [IllegalArgumentException]
-			}
+		"throw IllegalArgumentException with no dashless arguments" in {
+			ratcliffobershelpmetric.main(Array("--unitTest", "--debug")) must throwA[IllegalArgumentException]
 		}
 	}
-}}
+}

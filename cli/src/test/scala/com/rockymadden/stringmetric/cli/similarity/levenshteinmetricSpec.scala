@@ -1,37 +1,19 @@
 package com.rockymadden.stringmetric.cli.similarity
 
-import com.rockymadden.stringmetric.cli.ScalaTest
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
+object levenshteinmetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+	"levenshteinmetric main()" should {
+		"print if they are a match with valid dashless arguments" in {
+			val out = new java.io.ByteArrayOutputStream()
 
-@RunWith(classOf[JUnitRunner])
-final class levenshteinmetricSpec extends ScalaTest { "levenshteinmetric" should provide {
-	"main method" when passed {
-		"valid dashless arguments" should executes {
-			"print if they are a match" in {
-				val out = new java.io.ByteArrayOutputStream()
+			Console.withOut(out)(levenshteinmetric.main(Array("--unitTest", "--debug", "abc", "abc")))
+			out.toString must beEqualTo("0\n")
+			out.reset()
 
-				Console.withOut(out)(
-					levenshteinmetric.main(Array("--unitTest", "--debug", "abc", "abc"))
-				)
-
-				out.toString should equal ("0\n")
-				out.reset()
-
-				Console.withOut(out)(
-					levenshteinmetric.main(Array("--unitTest", "--debug", "abc", "xyz"))
-				)
-
-				out.toString should equal ("3\n")
-				out.reset()
-			}
+			Console.withOut(out)(levenshteinmetric.main(Array("--unitTest", "--debug", "abc", "xyz")))
+			out.toString must beEqualTo("3\n")
 		}
-		"no dashless arguments" should throws {
-			"IllegalArgumentException" in {
-				evaluating {
-					levenshteinmetric.main(Array("--unitTest", "--debug"))
-				} should produce [IllegalArgumentException]
-			}
+		"throw IllegalArgumentException with no dashless arguments" in {
+			levenshteinmetric.main(Array("--unitTest", "--debug")) must throwA[IllegalArgumentException]
 		}
 	}
-}}
+}
