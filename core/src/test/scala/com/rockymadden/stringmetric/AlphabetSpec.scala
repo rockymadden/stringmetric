@@ -1,95 +1,36 @@
 package com.rockymadden.stringmetric
 
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
-
-@RunWith(classOf[JUnitRunner])
-final class AlphabetSpec extends ScalaTest { "Alphabet" should provide {
+object AlphabetSpec extends org.specs2.mutable.SpecificationWithJUnit {
 	import Alphabet.{Alpha, Vowel}
 
-	"an overloaded isSuperset method which accepts Char" when passed {
-		"non-alphabet argument" should returns {
-			"false" in {
-				Alpha isSuperset '0' should be (false)
-			}
+	"AlphabetSet isSuperset()" should {
+		"return false with non-alphabet argument" in {
+			Alpha isSuperset '0' must beFalse
+			Alpha isSuperset Array.empty[Char] must beFalse
+			Alpha isSuperset "helloworld!".toCharArray must beFalse
+			Alpha isSuperset "" must beFalse
+			Alpha isSuperset "helloworld!" must beFalse
 		}
-		"alphabet argument" should returns {
-			"true" in {
-				Alpha isSuperset 'a' should be (true)
-				Alpha isSuperset 'A' should be (true)
-			}
+		"return true with alphabet argument" in {
+			Alpha isSuperset 'a' must beTrue
+			Alpha isSuperset 'A' must beTrue
+			Alpha isSuperset "helloworld".toCharArray must beTrue
+			Alpha isSuperset "HELLOWORLD".toCharArray must beTrue
+			Alpha isSuperset "helloworld" must beTrue
+			Alpha isSuperset "HELLOWORLD" must beTrue
 		}
-		"non-vowel argument" should returns {
-			"false" in {
-				Vowel isSuperset 'y' should be (false)
-			}
+		"return false with non-vowel argument" in {
+			Vowel isSuperset 'y' must beFalse
+			Vowel isSuperset "y".toCharArray must beFalse
+			Vowel isSuperset "y" must beFalse
 		}
-		"vowel argument" should returns {
-			"true" in {
-				Vowel isSuperset 'a' should be (true)
-				Vowel isSuperset 'A' should be (true)
-			}
-		}
-	}
-	"an overloaded isSuperset method which accepts Array[Char]" when passed {
-		"empty argument" should returns {
-			"false" in {
-				Alpha isSuperset Array.empty[Char] should be (false)
-			}
-		}
-		"non-alphabet argument" should returns {
-			"false" in {
-				Alpha isSuperset "hi!".toCharArray should be (false)
-				Alpha isSuperset "helloworld!".toCharArray should be (false)
-			}
-		}
-		"alphabet argument" should returns {
-			"true" in {
-				Alpha isSuperset "hi".toCharArray should be (true)
-				Alpha isSuperset "helloworld".toCharArray should be (true)
-				Alpha isSuperset "HI".toCharArray should be (true)
-				Alpha isSuperset "HELLOWORLD".toCharArray should be (true)
-			}
-		}
-		"non-vowel argument" should returns {
-			"false" in {
-				Vowel isSuperset "y".toCharArray should be (false)
-			}
-		}
-		"vowel argument" should returns {
-			"true" in {
-				Vowel isSuperset "a".toCharArray should be (true)
-				Vowel isSuperset "A".toCharArray should be (true)
-			}
+		"return true with vowel argument" in {
+			Vowel isSuperset 'a' must beTrue
+			Vowel isSuperset 'A' must beTrue
+			Vowel isSuperset "a".toCharArray must beTrue
+			Vowel isSuperset "A".toCharArray must beTrue
+			Vowel isSuperset "a" must beTrue
+			Vowel isSuperset "A" must beTrue
 		}
 	}
-	"an overloaded isSuperset method which accepts String" when passed {
-		"empty argument" should returns {
-			"false" in {
-				Alpha isSuperset "" should be (false)
-			}
-		}
-		"non-alphabet argument" should returns {
-			"false" in {
-				Alpha isSuperset "helloworld!" should be (false)
-			}
-		}
-		"alphabet argument" should returns {
-			"true" in {
-				Alpha isSuperset "helloworld" should be (true)
-				Alpha isSuperset "HELLOWORLD" should be (true)
-			}
-		}
-		"non-vowel argument" should returns {
-			"false" in {
-				Vowel isSuperset "y" should be (false)
-			}
-		}
-		"vowel argument" should returns {
-			"true" in {
-				Vowel isSuperset "a" should be (true)
-				Vowel isSuperset "A" should be (true)
-			}
-		}
-	}
-}}
+}

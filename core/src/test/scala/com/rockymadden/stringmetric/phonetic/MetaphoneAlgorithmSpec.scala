@@ -1,211 +1,200 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.ScalaTest
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
-
-@RunWith(classOf[JUnitRunner])
-final class MetaphoneAlgorithmSpec extends ScalaTest { "MetaphoneAlgorithm" should provide {
-	"compute method" when passed {
-		"empty argument" should returns {
-			"None" in {
-				MetaphoneAlgorithm.compute("").isDefined should be (false)
-			}
+object MetaphoneAlgorithmSpec extends org.specs2.mutable.SpecificationWithJUnit {
+	"MetaphoneAlgorithm compute()" should {
+		"return None with empty argument" in {
+			MetaphoneAlgorithm.compute("").isDefined must beFalse
 		}
-		"non-phonetic argument" should returns {
-			"None" in {
-				MetaphoneAlgorithm.compute("123").isDefined should be (false)
-			}
+		"return None with non-phonetic argument" in {
+			MetaphoneAlgorithm.compute("123").isDefined must beFalse
 		}
-		"phonetic argument" should returns {
-			"Some" in {
-				// z
-				MetaphoneAlgorithm.compute("z").get should equal ("s")
-				MetaphoneAlgorithm.compute("zz").get should equal ("s")
+		"return Some with phonetic argument" in {
+			// z
+			MetaphoneAlgorithm.compute("z").get must beEqualTo("s")
+			MetaphoneAlgorithm.compute("zz").get must beEqualTo("s")
 
-				// y
-				MetaphoneAlgorithm.compute("y").isDefined should be (false)
-				MetaphoneAlgorithm.compute("zy").get should equal ("s")
-				MetaphoneAlgorithm.compute("zyz").get should equal ("ss")
-				MetaphoneAlgorithm.compute("zya").get should equal ("sy")
+			// y
+			MetaphoneAlgorithm.compute("y").isDefined must beFalse
+			MetaphoneAlgorithm.compute("zy").get must beEqualTo("s")
+			MetaphoneAlgorithm.compute("zyz").get must beEqualTo("ss")
+			MetaphoneAlgorithm.compute("zya").get must beEqualTo("sy")
 
-				// x
-				MetaphoneAlgorithm.compute("x").get should equal ("s")
-				MetaphoneAlgorithm.compute("zx").get should equal ("sks")
-				MetaphoneAlgorithm.compute("zxz").get should equal ("skss")
+			// x
+			MetaphoneAlgorithm.compute("x").get must beEqualTo("s")
+			MetaphoneAlgorithm.compute("zx").get must beEqualTo("sks")
+			MetaphoneAlgorithm.compute("zxz").get must beEqualTo("skss")
 
-				// w
-				MetaphoneAlgorithm.compute("w").isDefined should be (false)
-				MetaphoneAlgorithm.compute("zw").get should equal ("s")
-				MetaphoneAlgorithm.compute("zwz").get should equal ("ss")
-				MetaphoneAlgorithm.compute("zwa").get should equal ("sw")
+			// w
+			MetaphoneAlgorithm.compute("w").isDefined must beFalse
+			MetaphoneAlgorithm.compute("zw").get must beEqualTo("s")
+			MetaphoneAlgorithm.compute("zwz").get must beEqualTo("ss")
+			MetaphoneAlgorithm.compute("zwa").get must beEqualTo("sw")
 
-				// v
-				MetaphoneAlgorithm.compute("v").get should equal ("f")
-				MetaphoneAlgorithm.compute("zv").get should equal ("sf")
-				MetaphoneAlgorithm.compute("zvz").get should equal ("sfs")
+			// v
+			MetaphoneAlgorithm.compute("v").get must beEqualTo("f")
+			MetaphoneAlgorithm.compute("zv").get must beEqualTo("sf")
+			MetaphoneAlgorithm.compute("zvz").get must beEqualTo("sfs")
 
-				// u
-				MetaphoneAlgorithm.compute("u").get should equal ("u")
-				MetaphoneAlgorithm.compute("zu").get should equal ("s")
+			// u
+			MetaphoneAlgorithm.compute("u").get must beEqualTo("u")
+			MetaphoneAlgorithm.compute("zu").get must beEqualTo("s")
 
-				// t
-				MetaphoneAlgorithm.compute("t").get should equal ("t")
-				MetaphoneAlgorithm.compute("ztiaz").get should equal ("sxs")
-				MetaphoneAlgorithm.compute("ztioz").get should equal ("sxs")
-				MetaphoneAlgorithm.compute("zthz").get should equal ("s0s")
-				MetaphoneAlgorithm.compute("ztchz").get should equal ("sxs")
-				MetaphoneAlgorithm.compute("ztz").get should equal ("sts")
+			// t
+			MetaphoneAlgorithm.compute("t").get must beEqualTo("t")
+			MetaphoneAlgorithm.compute("ztiaz").get must beEqualTo("sxs")
+			MetaphoneAlgorithm.compute("ztioz").get must beEqualTo("sxs")
+			MetaphoneAlgorithm.compute("zthz").get must beEqualTo("s0s")
+			MetaphoneAlgorithm.compute("ztchz").get must beEqualTo("sxs")
+			MetaphoneAlgorithm.compute("ztz").get must beEqualTo("sts")
 
-				// s
-				MetaphoneAlgorithm.compute("s").get should equal ("s")
-				MetaphoneAlgorithm.compute("zshz").get should equal ("sxs")
-				MetaphoneAlgorithm.compute("zsioz").get should equal ("sxs")
-				MetaphoneAlgorithm.compute("zsiaz").get should equal ("sxs")
-				MetaphoneAlgorithm.compute("zs").get should equal ("ss")
-				MetaphoneAlgorithm.compute("zsz").get should equal ("sss")
+			// s
+			MetaphoneAlgorithm.compute("s").get must beEqualTo("s")
+			MetaphoneAlgorithm.compute("zshz").get must beEqualTo("sxs")
+			MetaphoneAlgorithm.compute("zsioz").get must beEqualTo("sxs")
+			MetaphoneAlgorithm.compute("zsiaz").get must beEqualTo("sxs")
+			MetaphoneAlgorithm.compute("zs").get must beEqualTo("ss")
+			MetaphoneAlgorithm.compute("zsz").get must beEqualTo("sss")
 
-				// r
-				MetaphoneAlgorithm.compute("r").get should equal ("r")
-				MetaphoneAlgorithm.compute("zr").get should equal ("sr")
-				MetaphoneAlgorithm.compute("zrz").get should equal ("srs")
+			// r
+			MetaphoneAlgorithm.compute("r").get must beEqualTo("r")
+			MetaphoneAlgorithm.compute("zr").get must beEqualTo("sr")
+			MetaphoneAlgorithm.compute("zrz").get must beEqualTo("srs")
 
-				// q
-				MetaphoneAlgorithm.compute("q").get should equal ("k")
-				MetaphoneAlgorithm.compute("zq").get should equal ("sk")
-				MetaphoneAlgorithm.compute("zqz").get should equal ("sks")
+			// q
+			MetaphoneAlgorithm.compute("q").get must beEqualTo("k")
+			MetaphoneAlgorithm.compute("zq").get must beEqualTo("sk")
+			MetaphoneAlgorithm.compute("zqz").get must beEqualTo("sks")
 
-				// p
-				MetaphoneAlgorithm.compute("p").get should equal ("p")
-				MetaphoneAlgorithm.compute("zp").get should equal ("sp")
-				MetaphoneAlgorithm.compute("zph").get should equal ("sf")
-				MetaphoneAlgorithm.compute("zpz").get should equal ("sps")
+			// p
+			MetaphoneAlgorithm.compute("p").get must beEqualTo("p")
+			MetaphoneAlgorithm.compute("zp").get must beEqualTo("sp")
+			MetaphoneAlgorithm.compute("zph").get must beEqualTo("sf")
+			MetaphoneAlgorithm.compute("zpz").get must beEqualTo("sps")
 
-				// o
-				MetaphoneAlgorithm.compute("o").get should equal ("o")
-				MetaphoneAlgorithm.compute("zo").get should equal ("s")
+			// o
+			MetaphoneAlgorithm.compute("o").get must beEqualTo("o")
+			MetaphoneAlgorithm.compute("zo").get must beEqualTo("s")
 
-				// n
-				MetaphoneAlgorithm.compute("n").get should equal ("n")
-				MetaphoneAlgorithm.compute("zn").get should equal ("sn")
-				MetaphoneAlgorithm.compute("znz").get should equal ("sns")
+			// n
+			MetaphoneAlgorithm.compute("n").get must beEqualTo("n")
+			MetaphoneAlgorithm.compute("zn").get must beEqualTo("sn")
+			MetaphoneAlgorithm.compute("znz").get must beEqualTo("sns")
 
-				// m
-				MetaphoneAlgorithm.compute("m").get should equal ("m")
-				MetaphoneAlgorithm.compute("zm").get should equal ("sm")
-				MetaphoneAlgorithm.compute("zmz").get should equal ("sms")
+			// m
+			MetaphoneAlgorithm.compute("m").get must beEqualTo("m")
+			MetaphoneAlgorithm.compute("zm").get must beEqualTo("sm")
+			MetaphoneAlgorithm.compute("zmz").get must beEqualTo("sms")
 
-				// l
-				MetaphoneAlgorithm.compute("l").get should equal ("l")
-				MetaphoneAlgorithm.compute("zl").get should equal ("sl")
-				MetaphoneAlgorithm.compute("zlz").get should equal ("sls")
+			// l
+			MetaphoneAlgorithm.compute("l").get must beEqualTo("l")
+			MetaphoneAlgorithm.compute("zl").get must beEqualTo("sl")
+			MetaphoneAlgorithm.compute("zlz").get must beEqualTo("sls")
 
-				// k
-				MetaphoneAlgorithm.compute("k").get should equal ("k")
-				MetaphoneAlgorithm.compute("zk").get should equal ("sk")
-				MetaphoneAlgorithm.compute("zck").get should equal ("sk")
+			// k
+			MetaphoneAlgorithm.compute("k").get must beEqualTo("k")
+			MetaphoneAlgorithm.compute("zk").get must beEqualTo("sk")
+			MetaphoneAlgorithm.compute("zck").get must beEqualTo("sk")
 
-				// j
-				MetaphoneAlgorithm.compute("j").get should equal ("j")
-				MetaphoneAlgorithm.compute("zj").get should equal ("sj")
-				MetaphoneAlgorithm.compute("zjz").get should equal ("sjs")
+			// j
+			MetaphoneAlgorithm.compute("j").get must beEqualTo("j")
+			MetaphoneAlgorithm.compute("zj").get must beEqualTo("sj")
+			MetaphoneAlgorithm.compute("zjz").get must beEqualTo("sjs")
 
-				// i
-				MetaphoneAlgorithm.compute("i").get should equal ("i")
-				MetaphoneAlgorithm.compute("zi").get should equal ("s")
+			// i
+			MetaphoneAlgorithm.compute("i").get must beEqualTo("i")
+			MetaphoneAlgorithm.compute("zi").get must beEqualTo("s")
 
-				// h
-				MetaphoneAlgorithm.compute("h").get should equal ("h") // php wrongly says nothing
-				MetaphoneAlgorithm.compute("zh").get should equal ("sh") // php wrongly says s
-				MetaphoneAlgorithm.compute("zah").get should equal ("s")
-				MetaphoneAlgorithm.compute("zchh").get should equal ("sx")
-				MetaphoneAlgorithm.compute("ha").get should equal ("h")
+			// h
+			MetaphoneAlgorithm.compute("h").get must beEqualTo("h") // php wrongly says nothing
+			MetaphoneAlgorithm.compute("zh").get must beEqualTo("sh") // php wrongly says s
+			MetaphoneAlgorithm.compute("zah").get must beEqualTo("s")
+			MetaphoneAlgorithm.compute("zchh").get must beEqualTo("sx")
+			MetaphoneAlgorithm.compute("ha").get must beEqualTo("h")
 
-				// g
-				MetaphoneAlgorithm.compute("g").get should equal ("k")
-				MetaphoneAlgorithm.compute("zg").get should equal ("sk")
-				MetaphoneAlgorithm.compute("zgh").get should equal ("skh") // php wrongly says sf
-				MetaphoneAlgorithm.compute("zghz").get should equal ("shs") // php wrongly says sfs
-				MetaphoneAlgorithm.compute("zgha").get should equal ("sh") // php wrongly says sf others wrongly say skh
-				MetaphoneAlgorithm.compute("zgn").get should equal ("sn")
-				MetaphoneAlgorithm.compute("zgns").get should equal ("skns")
-				MetaphoneAlgorithm.compute("zgned").get should equal ("snt") // others wrongly says sknt
-				MetaphoneAlgorithm.compute("zgneds").get should equal ("sknts") // php wrongly says snts
-				MetaphoneAlgorithm.compute("zgi").get should equal ("sj")
-				MetaphoneAlgorithm.compute("zgiz").get should equal ("sjs")
-				MetaphoneAlgorithm.compute("zge").get should equal ("sj")
-				MetaphoneAlgorithm.compute("zgez").get should equal ("sjs")
-				MetaphoneAlgorithm.compute("zgy").get should equal ("sj")
-				MetaphoneAlgorithm.compute("zgyz").get should equal ("sjs")
-				MetaphoneAlgorithm.compute("zgz").get should equal ("sks")
+			// g
+			MetaphoneAlgorithm.compute("g").get must beEqualTo("k")
+			MetaphoneAlgorithm.compute("zg").get must beEqualTo("sk")
+			MetaphoneAlgorithm.compute("zgh").get must beEqualTo("skh") // php wrongly says sf
+			MetaphoneAlgorithm.compute("zghz").get must beEqualTo("shs") // php wrongly says sfs
+			MetaphoneAlgorithm.compute("zgha").get must beEqualTo("sh") // php wrongly says sf others wrongly say skh
+			MetaphoneAlgorithm.compute("zgn").get must beEqualTo("sn")
+			MetaphoneAlgorithm.compute("zgns").get must beEqualTo("skns")
+			MetaphoneAlgorithm.compute("zgned").get must beEqualTo("snt") // others wrongly says sknt
+			MetaphoneAlgorithm.compute("zgneds").get must beEqualTo("sknts") // php wrongly says snts
+			MetaphoneAlgorithm.compute("zgi").get must beEqualTo("sj")
+			MetaphoneAlgorithm.compute("zgiz").get must beEqualTo("sjs")
+			MetaphoneAlgorithm.compute("zge").get must beEqualTo("sj")
+			MetaphoneAlgorithm.compute("zgez").get must beEqualTo("sjs")
+			MetaphoneAlgorithm.compute("zgy").get must beEqualTo("sj")
+			MetaphoneAlgorithm.compute("zgyz").get must beEqualTo("sjs")
+			MetaphoneAlgorithm.compute("zgz").get must beEqualTo("sks")
 
-				// f
-				MetaphoneAlgorithm.compute("f").get should equal ("f")
-				MetaphoneAlgorithm.compute("zf").get should equal ("sf")
-				MetaphoneAlgorithm.compute("zfz").get should equal ("sfs")
+			// f
+			MetaphoneAlgorithm.compute("f").get must beEqualTo("f")
+			MetaphoneAlgorithm.compute("zf").get must beEqualTo("sf")
+			MetaphoneAlgorithm.compute("zfz").get must beEqualTo("sfs")
 
-				// e
-				MetaphoneAlgorithm.compute("e").get should equal ("e")
-				MetaphoneAlgorithm.compute("ze").get should equal ("s")
+			// e
+			MetaphoneAlgorithm.compute("e").get must beEqualTo("e")
+			MetaphoneAlgorithm.compute("ze").get must beEqualTo("s")
 
-				// d
-				MetaphoneAlgorithm.compute("d").get should equal ("t")
-				MetaphoneAlgorithm.compute("fudge").get should equal ("fjj") // php wrongly says fj
-				MetaphoneAlgorithm.compute("dodgy").get should equal ("tjj") // php wrongly says tj others wrongly say tjjy
-				MetaphoneAlgorithm.compute("dodgi").get should equal ("tjj") // php wrongly says tj
-				MetaphoneAlgorithm.compute("zd").get should equal ("st")
-				MetaphoneAlgorithm.compute("zdz").get should equal ("sts")
+			// d
+			MetaphoneAlgorithm.compute("d").get must beEqualTo("t")
+			MetaphoneAlgorithm.compute("fudge").get must beEqualTo("fjj") // php wrongly says fj
+			MetaphoneAlgorithm.compute("dodgy").get must beEqualTo("tjj") // php wrongly says tj others wrongly say tjjy
+			MetaphoneAlgorithm.compute("dodgi").get must beEqualTo("tjj") // php wrongly says tj
+			MetaphoneAlgorithm.compute("zd").get must beEqualTo("st")
+			MetaphoneAlgorithm.compute("zdz").get must beEqualTo("sts")
 
-				// c
-				MetaphoneAlgorithm.compute("c").get should equal ("k")
-				MetaphoneAlgorithm.compute("zcia").get should equal ("sx")
-				MetaphoneAlgorithm.compute("zciaz").get should equal ("sxs")
-				MetaphoneAlgorithm.compute("zch").get should equal ("sx")
-				MetaphoneAlgorithm.compute("zchz").get should equal ("sxs")
-				MetaphoneAlgorithm.compute("zci").get should equal ("ss")
-				MetaphoneAlgorithm.compute("zciz").get should equal ("sss")
-				MetaphoneAlgorithm.compute("zce").get should equal ("ss")
-				MetaphoneAlgorithm.compute("zcez").get should equal ("sss")
-				MetaphoneAlgorithm.compute("zcy").get should equal ("ss")
-				MetaphoneAlgorithm.compute("zcyz").get should equal ("sss")
-				MetaphoneAlgorithm.compute("zsci").get should equal ("ss")
-				MetaphoneAlgorithm.compute("zsciz").get should equal ("sss")
-				MetaphoneAlgorithm.compute("zsce").get should equal ("ss")
-				MetaphoneAlgorithm.compute("zscez").get should equal ("sss")
-				MetaphoneAlgorithm.compute("zscy").get should equal ("ss")
-				MetaphoneAlgorithm.compute("zscyz").get should equal ("sss")
-				MetaphoneAlgorithm.compute("zsch").get should equal ("sskh") // php wrongly says ssx
-				MetaphoneAlgorithm.compute("zc").get should equal ("sk")
-				MetaphoneAlgorithm.compute("zcz").get should equal ("sks")
+			// c
+			MetaphoneAlgorithm.compute("c").get must beEqualTo("k")
+			MetaphoneAlgorithm.compute("zcia").get must beEqualTo("sx")
+			MetaphoneAlgorithm.compute("zciaz").get must beEqualTo("sxs")
+			MetaphoneAlgorithm.compute("zch").get must beEqualTo("sx")
+			MetaphoneAlgorithm.compute("zchz").get must beEqualTo("sxs")
+			MetaphoneAlgorithm.compute("zci").get must beEqualTo("ss")
+			MetaphoneAlgorithm.compute("zciz").get must beEqualTo("sss")
+			MetaphoneAlgorithm.compute("zce").get must beEqualTo("ss")
+			MetaphoneAlgorithm.compute("zcez").get must beEqualTo("sss")
+			MetaphoneAlgorithm.compute("zcy").get must beEqualTo("ss")
+			MetaphoneAlgorithm.compute("zcyz").get must beEqualTo("sss")
+			MetaphoneAlgorithm.compute("zsci").get must beEqualTo("ss")
+			MetaphoneAlgorithm.compute("zsciz").get must beEqualTo("sss")
+			MetaphoneAlgorithm.compute("zsce").get must beEqualTo("ss")
+			MetaphoneAlgorithm.compute("zscez").get must beEqualTo("sss")
+			MetaphoneAlgorithm.compute("zscy").get must beEqualTo("ss")
+			MetaphoneAlgorithm.compute("zscyz").get must beEqualTo("sss")
+			MetaphoneAlgorithm.compute("zsch").get must beEqualTo("sskh") // php wrongly says ssx
+			MetaphoneAlgorithm.compute("zc").get must beEqualTo("sk")
+			MetaphoneAlgorithm.compute("zcz").get must beEqualTo("sks")
 
-				// b
-				MetaphoneAlgorithm.compute("b").get should equal ("b")
-				MetaphoneAlgorithm.compute("zb").get should equal ("sb")
-				MetaphoneAlgorithm.compute("zbz").get should equal ("sbs")
-				MetaphoneAlgorithm.compute("zmb").get should equal ("sm")
+			// b
+			MetaphoneAlgorithm.compute("b").get must beEqualTo("b")
+			MetaphoneAlgorithm.compute("zb").get must beEqualTo("sb")
+			MetaphoneAlgorithm.compute("zbz").get must beEqualTo("sbs")
+			MetaphoneAlgorithm.compute("zmb").get must beEqualTo("sm")
 
-				// a
-				MetaphoneAlgorithm.compute("a").get should equal ("a")
-				MetaphoneAlgorithm.compute("za").get should equal ("s")
+			// a
+			MetaphoneAlgorithm.compute("a").get must beEqualTo("a")
+			MetaphoneAlgorithm.compute("za").get must beEqualTo("s")
 
-				// Miscellaneous.
-				MetaphoneAlgorithm.compute("dumb").get should equal ("tm")
-				MetaphoneAlgorithm.compute("smith").get should equal ("sm0")
-				MetaphoneAlgorithm.compute("school").get should equal ("skhl") // php wrongly says sxl
-				MetaphoneAlgorithm.compute("merci").get should equal ("mrs")
-				MetaphoneAlgorithm.compute("cool").get should equal ("kl")
-				MetaphoneAlgorithm.compute("aebersold").get should equal ("ebrslt")
-				MetaphoneAlgorithm.compute("gnagy").get should equal ("nj")
-				MetaphoneAlgorithm.compute("knuth").get should equal ("n0")
-				MetaphoneAlgorithm.compute("pniewski").get should equal ("nsk")
-				MetaphoneAlgorithm.compute("wright").get should equal ("rht") // php wrongly says rft
-				MetaphoneAlgorithm.compute("phone").get should equal ("fn")
-				MetaphoneAlgorithm.compute("aggregate").get should equal ("akrkt")
-				MetaphoneAlgorithm.compute("accuracy").get should equal ("akkrs")
-				MetaphoneAlgorithm.compute("encyclopedia").get should equal ("ensklpt")
-				MetaphoneAlgorithm.compute("honorificabilitudinitatibus").get should equal ("hnrfkblttnttbs")
-				MetaphoneAlgorithm.compute("antidisestablishmentarianism").get should equal ("anttsstblxmntrnsm")
-			}
+			// Miscellaneous.
+			MetaphoneAlgorithm.compute("dumb").get must beEqualTo("tm")
+			MetaphoneAlgorithm.compute("smith").get must beEqualTo("sm0")
+			MetaphoneAlgorithm.compute("school").get must beEqualTo("skhl") // php wrongly says sxl
+			MetaphoneAlgorithm.compute("merci").get must beEqualTo("mrs")
+			MetaphoneAlgorithm.compute("cool").get must beEqualTo("kl")
+			MetaphoneAlgorithm.compute("aebersold").get must beEqualTo("ebrslt")
+			MetaphoneAlgorithm.compute("gnagy").get must beEqualTo("nj")
+			MetaphoneAlgorithm.compute("knuth").get must beEqualTo("n0")
+			MetaphoneAlgorithm.compute("pniewski").get must beEqualTo("nsk")
+			MetaphoneAlgorithm.compute("wright").get must beEqualTo("rht") // php wrongly says rft
+			MetaphoneAlgorithm.compute("phone").get must beEqualTo("fn")
+			MetaphoneAlgorithm.compute("aggregate").get must beEqualTo("akrkt")
+			MetaphoneAlgorithm.compute("accuracy").get must beEqualTo("akkrs")
+			MetaphoneAlgorithm.compute("encyclopedia").get must beEqualTo("ensklpt")
+			MetaphoneAlgorithm.compute("honorificabilitudinitatibus").get must beEqualTo("hnrfkblttnttbs")
+			MetaphoneAlgorithm.compute("antidisestablishmentarianism").get must beEqualTo("anttsstblxmntrnsm")
 		}
 	}
-}}
+}

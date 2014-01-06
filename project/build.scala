@@ -36,10 +36,7 @@ object CoreBuild extends Build {
 
 	lazy val core: Project = Project("core", file("core"),
 		settings = (root.settings: Seq[sbt.Def.Setting[_]]) ++ Seq(
-			libraryDependencies ++= Seq(
-				"junit" % "junit" % "4.11" % "test",
-				"org.scalatest" %% "scalatest" % "2.0.M5b" % "test"
-			),
+			libraryDependencies ++= Seq("org.specs2" %% "specs2" % "2.3.7" % "test"),
 			name := "stringmetric-core"
 		)
 	)

@@ -1,206 +1,195 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.ScalaTest
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
-
-@RunWith(classOf[JUnitRunner])
-final class RefinedNysiisAlgorithmSpec extends ScalaTest { "RefinedNysiisAlgorithm" should provide {
-	"compute method" when passed {
-		"empty argument" should returns {
-			"None" in {
-				RefinedNysiisAlgorithm.compute("").isDefined should be (false)
-			}
+object RefinedNysiisAlgorithmSpec extends org.specs2.mutable.SpecificationWithJUnit {
+	"RefinedNysiisAlgorithm compute()" should {
+		"return None with empty argument" in {
+			RefinedNysiisAlgorithm.compute("").isDefined must beFalse
 		}
-		"non-phonetic argument" should returns {
-			"None" in {
-				RefinedNysiisAlgorithm.compute("123").isDefined should be (false)
-			}
+		"return None with non-phonetic argument" in {
+			RefinedNysiisAlgorithm.compute("123").isDefined must beFalse
 		}
-		"phonetic argument" should returns {
-			"Some" in {
-				// a
-				RefinedNysiisAlgorithm.compute("a").get should equal ("a")
-				RefinedNysiisAlgorithm.compute("aa").get should equal ("a")
+		"return Some with phonetic argument" in {
+			// a
+			RefinedNysiisAlgorithm.compute("a").get must beEqualTo("a")
+			RefinedNysiisAlgorithm.compute("aa").get must beEqualTo("a")
 
-				// b
-				RefinedNysiisAlgorithm.compute("b").get should equal ("b")
-				RefinedNysiisAlgorithm.compute("bb").get should equal ("b")
+			// b
+			RefinedNysiisAlgorithm.compute("b").get must beEqualTo("b")
+			RefinedNysiisAlgorithm.compute("bb").get must beEqualTo("b")
 
-				// c
-				RefinedNysiisAlgorithm.compute("c").get should equal ("c")
-				RefinedNysiisAlgorithm.compute("cc").get should equal ("c")
+			// c
+			RefinedNysiisAlgorithm.compute("c").get must beEqualTo("c")
+			RefinedNysiisAlgorithm.compute("cc").get must beEqualTo("c")
 
-				// d
-				RefinedNysiisAlgorithm.compute("d").get should equal ("d")
-				RefinedNysiisAlgorithm.compute("dd").get should equal ("d")
+			// d
+			RefinedNysiisAlgorithm.compute("d").get must beEqualTo("d")
+			RefinedNysiisAlgorithm.compute("dd").get must beEqualTo("d")
 
-				// e
-				RefinedNysiisAlgorithm.compute("e").get should equal ("e")
-				RefinedNysiisAlgorithm.compute("ee").get should equal ("y")
+			// e
+			RefinedNysiisAlgorithm.compute("e").get must beEqualTo("e")
+			RefinedNysiisAlgorithm.compute("ee").get must beEqualTo("y")
 
-				// f
-				RefinedNysiisAlgorithm.compute("f").get should equal ("f")
-				RefinedNysiisAlgorithm.compute("ff").get should equal ("f")
+			// f
+			RefinedNysiisAlgorithm.compute("f").get must beEqualTo("f")
+			RefinedNysiisAlgorithm.compute("ff").get must beEqualTo("f")
 
-				// g
-				RefinedNysiisAlgorithm.compute("g").get should equal ("g")
-				RefinedNysiisAlgorithm.compute("gg").get should equal ("g")
+			// g
+			RefinedNysiisAlgorithm.compute("g").get must beEqualTo("g")
+			RefinedNysiisAlgorithm.compute("gg").get must beEqualTo("g")
 
-				// h
-				RefinedNysiisAlgorithm.compute("h").get should equal ("h")
-				RefinedNysiisAlgorithm.compute("hh").get should equal ("h")
+			// h
+			RefinedNysiisAlgorithm.compute("h").get must beEqualTo("h")
+			RefinedNysiisAlgorithm.compute("hh").get must beEqualTo("h")
 
-				// i
-				RefinedNysiisAlgorithm.compute("i").get should equal ("i")
-				RefinedNysiisAlgorithm.compute("ii").get should equal ("i")
+			// i
+			RefinedNysiisAlgorithm.compute("i").get must beEqualTo("i")
+			RefinedNysiisAlgorithm.compute("ii").get must beEqualTo("i")
 
-				// j
-				RefinedNysiisAlgorithm.compute("j").get should equal ("j")
-				RefinedNysiisAlgorithm.compute("jj").get should equal ("j")
+			// j
+			RefinedNysiisAlgorithm.compute("j").get must beEqualTo("j")
+			RefinedNysiisAlgorithm.compute("jj").get must beEqualTo("j")
 
-				// k
-				RefinedNysiisAlgorithm.compute("k").get should equal ("c")
-				RefinedNysiisAlgorithm.compute("kk").get should equal ("c")
+			// k
+			RefinedNysiisAlgorithm.compute("k").get must beEqualTo("c")
+			RefinedNysiisAlgorithm.compute("kk").get must beEqualTo("c")
 
-				// l
-				RefinedNysiisAlgorithm.compute("l").get should equal ("l")
-				RefinedNysiisAlgorithm.compute("ll").get should equal ("l")
+			// l
+			RefinedNysiisAlgorithm.compute("l").get must beEqualTo("l")
+			RefinedNysiisAlgorithm.compute("ll").get must beEqualTo("l")
 
-				// m
-				RefinedNysiisAlgorithm.compute("m").get should equal ("m")
-				RefinedNysiisAlgorithm.compute("mm").get should equal ("mn")
+			// m
+			RefinedNysiisAlgorithm.compute("m").get must beEqualTo("m")
+			RefinedNysiisAlgorithm.compute("mm").get must beEqualTo("mn")
 
-				// n
-				RefinedNysiisAlgorithm.compute("n").get should equal ("n")
-				RefinedNysiisAlgorithm.compute("nn").get should equal ("n")
+			// n
+			RefinedNysiisAlgorithm.compute("n").get must beEqualTo("n")
+			RefinedNysiisAlgorithm.compute("nn").get must beEqualTo("n")
 
-				// o
-				RefinedNysiisAlgorithm.compute("o").get should equal ("o")
-				RefinedNysiisAlgorithm.compute("oo").get should equal ("o")
+			// o
+			RefinedNysiisAlgorithm.compute("o").get must beEqualTo("o")
+			RefinedNysiisAlgorithm.compute("oo").get must beEqualTo("o")
 
-				// p
-				RefinedNysiisAlgorithm.compute("p").get should equal ("p")
-				RefinedNysiisAlgorithm.compute("pp").get should equal ("p")
+			// p
+			RefinedNysiisAlgorithm.compute("p").get must beEqualTo("p")
+			RefinedNysiisAlgorithm.compute("pp").get must beEqualTo("p")
 
-				// q
-				RefinedNysiisAlgorithm.compute("q").get should equal ("q")
-				RefinedNysiisAlgorithm.compute("qq").get should equal ("qg")
+			// q
+			RefinedNysiisAlgorithm.compute("q").get must beEqualTo("q")
+			RefinedNysiisAlgorithm.compute("qq").get must beEqualTo("qg")
 
-				// r
-				RefinedNysiisAlgorithm.compute("r").get should equal ("r")
-				RefinedNysiisAlgorithm.compute("rr").get should equal ("r")
+			// r
+			RefinedNysiisAlgorithm.compute("r").get must beEqualTo("r")
+			RefinedNysiisAlgorithm.compute("rr").get must beEqualTo("r")
 
-				// s
-				RefinedNysiisAlgorithm.compute("s").get should equal ("s")
-				RefinedNysiisAlgorithm.compute("ss").get should equal ("s")
+			// s
+			RefinedNysiisAlgorithm.compute("s").get must beEqualTo("s")
+			RefinedNysiisAlgorithm.compute("ss").get must beEqualTo("s")
 
-				// t
-				RefinedNysiisAlgorithm.compute("t").get should equal ("t")
-				RefinedNysiisAlgorithm.compute("tt").get should equal ("t")
+			// t
+			RefinedNysiisAlgorithm.compute("t").get must beEqualTo("t")
+			RefinedNysiisAlgorithm.compute("tt").get must beEqualTo("t")
 
-				// u
-				RefinedNysiisAlgorithm.compute("u").get should equal ("u")
-				RefinedNysiisAlgorithm.compute("uu").get should equal ("u")
+			// u
+			RefinedNysiisAlgorithm.compute("u").get must beEqualTo("u")
+			RefinedNysiisAlgorithm.compute("uu").get must beEqualTo("u")
 
-				// v
-				RefinedNysiisAlgorithm.compute("v").get should equal ("v")
-				RefinedNysiisAlgorithm.compute("vv").get should equal ("v")
+			// v
+			RefinedNysiisAlgorithm.compute("v").get must beEqualTo("v")
+			RefinedNysiisAlgorithm.compute("vv").get must beEqualTo("v")
 
-				// w
-				RefinedNysiisAlgorithm.compute("w").get should equal ("w")
-				RefinedNysiisAlgorithm.compute("ww").get should equal ("w")
+			// w
+			RefinedNysiisAlgorithm.compute("w").get must beEqualTo("w")
+			RefinedNysiisAlgorithm.compute("ww").get must beEqualTo("w")
 
-				// x
-				RefinedNysiisAlgorithm.compute("x").get should equal ("x")
-				RefinedNysiisAlgorithm.compute("xx").get should equal ("x")
+			// x
+			RefinedNysiisAlgorithm.compute("x").get must beEqualTo("x")
+			RefinedNysiisAlgorithm.compute("xx").get must beEqualTo("x")
 
-				// y
-				RefinedNysiisAlgorithm.compute("y").get should equal ("y")
-				RefinedNysiisAlgorithm.compute("yy").get should equal ("y")
-				RefinedNysiisAlgorithm.compute("ybyb").get should equal ("ybab")
+			// y
+			RefinedNysiisAlgorithm.compute("y").get must beEqualTo("y")
+			RefinedNysiisAlgorithm.compute("yy").get must beEqualTo("y")
+			RefinedNysiisAlgorithm.compute("ybyb").get must beEqualTo("ybab")
 
-				// z
-				RefinedNysiisAlgorithm.compute("z").get should equal ("z")
-				RefinedNysiisAlgorithm.compute("zz").get should equal ("z")
+			// z
+			RefinedNysiisAlgorithm.compute("z").get must beEqualTo("z")
+			RefinedNysiisAlgorithm.compute("zz").get must beEqualTo("z")
 
-				// Head cases.
-				RefinedNysiisAlgorithm.compute("mac").get should equal ("mc")
-				RefinedNysiisAlgorithm.compute("pf").get should equal ("f")
+			// Head cases.
+			RefinedNysiisAlgorithm.compute("mac").get must beEqualTo("mc")
+			RefinedNysiisAlgorithm.compute("pf").get must beEqualTo("f")
 
-				// Last cases.
-				RefinedNysiisAlgorithm.compute("ix").get should equal ("ic")
-				RefinedNysiisAlgorithm.compute("ex").get should equal ("ec")
-				RefinedNysiisAlgorithm.compute("ye").get should equal ("y")
-				RefinedNysiisAlgorithm.compute("ee").get should equal ("y")
-				RefinedNysiisAlgorithm.compute("ie").get should equal ("y")
-				RefinedNysiisAlgorithm.compute("dt").get should equal ("d")
-				RefinedNysiisAlgorithm.compute("rt").get should equal ("d")
-				RefinedNysiisAlgorithm.compute("rd").get should equal ("d")
-				RefinedNysiisAlgorithm.compute("nt").get should equal ("d")
-				RefinedNysiisAlgorithm.compute("nd").get should equal ("d")
+			// Last cases.
+			RefinedNysiisAlgorithm.compute("ix").get must beEqualTo("ic")
+			RefinedNysiisAlgorithm.compute("ex").get must beEqualTo("ec")
+			RefinedNysiisAlgorithm.compute("ye").get must beEqualTo("y")
+			RefinedNysiisAlgorithm.compute("ee").get must beEqualTo("y")
+			RefinedNysiisAlgorithm.compute("ie").get must beEqualTo("y")
+			RefinedNysiisAlgorithm.compute("dt").get must beEqualTo("d")
+			RefinedNysiisAlgorithm.compute("rt").get must beEqualTo("d")
+			RefinedNysiisAlgorithm.compute("rd").get must beEqualTo("d")
+			RefinedNysiisAlgorithm.compute("nt").get must beEqualTo("d")
+			RefinedNysiisAlgorithm.compute("nd").get must beEqualTo("d")
 
-				// Core cases.
-				RefinedNysiisAlgorithm.compute("bevb").get should equal ("bafb")
-				RefinedNysiisAlgorithm.compute("bghtb").get should equal ("bgtb")
-				RefinedNysiisAlgorithm.compute("bdgb").get should equal ("bgb")
-				RefinedNysiisAlgorithm.compute("bphb").get should equal ("bfb")
-				RefinedNysiisAlgorithm.compute("bknb").get should equal ("bnb")
-				RefinedNysiisAlgorithm.compute("bshb").get should equal ("bsb")
-				RefinedNysiisAlgorithm.compute("bschb").get should equal ("bsb")
-				RefinedNysiisAlgorithm.compute("bywb").get should equal ("bab")
-				RefinedNysiisAlgorithm.compute("byw").get should equal ("by")
-				RefinedNysiisAlgorithm.compute("ywb").get should equal ("yb")
-				RefinedNysiisAlgorithm.compute("bwrb").get should equal ("brb")
+			// Core cases.
+			RefinedNysiisAlgorithm.compute("bevb").get must beEqualTo("bafb")
+			RefinedNysiisAlgorithm.compute("bghtb").get must beEqualTo("bgtb")
+			RefinedNysiisAlgorithm.compute("bdgb").get must beEqualTo("bgb")
+			RefinedNysiisAlgorithm.compute("bphb").get must beEqualTo("bfb")
+			RefinedNysiisAlgorithm.compute("bknb").get must beEqualTo("bnb")
+			RefinedNysiisAlgorithm.compute("bshb").get must beEqualTo("bsb")
+			RefinedNysiisAlgorithm.compute("bschb").get must beEqualTo("bsb")
+			RefinedNysiisAlgorithm.compute("bywb").get must beEqualTo("bab")
+			RefinedNysiisAlgorithm.compute("byw").get must beEqualTo("by")
+			RefinedNysiisAlgorithm.compute("ywb").get must beEqualTo("yb")
+			RefinedNysiisAlgorithm.compute("bwrb").get must beEqualTo("brb")
 
-				// Transcode cases.
-				RefinedNysiisAlgorithm.compute("bay").get should equal ("by")
+			// Transcode cases.
+			RefinedNysiisAlgorithm.compute("bay").get must beEqualTo("by")
 
-				// Miscellaneous.
-				RefinedNysiisAlgorithm.compute("macdonald").get should equal ("mcdanald")
-				RefinedNysiisAlgorithm.compute("phone").get should equal ("fan")
-				RefinedNysiisAlgorithm.compute("aggregate").get should equal ("agragat")
-				RefinedNysiisAlgorithm.compute("accuracy").get should equal ("acaracy")
-				RefinedNysiisAlgorithm.compute("encyclopedia").get should equal ("encaclapad")
-				RefinedNysiisAlgorithm.compute("honorificabilitudinitatibus").get should equal ("hanarafacabalatadanatatab")
-				RefinedNysiisAlgorithm.compute("antidisestablishmentarianism").get should equal ("antadasastablasnantaranasn")
+			// Miscellaneous.
+			RefinedNysiisAlgorithm.compute("macdonald").get must beEqualTo("mcdanald")
+			RefinedNysiisAlgorithm.compute("phone").get must beEqualTo("fan")
+			RefinedNysiisAlgorithm.compute("aggregate").get must beEqualTo("agragat")
+			RefinedNysiisAlgorithm.compute("accuracy").get must beEqualTo("acaracy")
+			RefinedNysiisAlgorithm.compute("encyclopedia").get must beEqualTo("encaclapad")
+			RefinedNysiisAlgorithm.compute("honorificabilitudinitatibus").get must beEqualTo("hanarafacabalatadanatatab")
+			RefinedNysiisAlgorithm.compute("antidisestablishmentarianism").get must beEqualTo("antadasastablasnantaranasn")
 
-				// Dropby.
-				RefinedNysiisAlgorithm.compute("edwards").get should equal ("edwad")
-				RefinedNysiisAlgorithm.compute("parez").get should equal ("par")
-				RefinedNysiisAlgorithm.compute("macintosh").get should equal ("mcantas")
-				RefinedNysiisAlgorithm.compute("phillipson").get should equal ("falapsan")
-				RefinedNysiisAlgorithm.compute("haddix").get should equal ("hadac")
-				RefinedNysiisAlgorithm.compute("essex").get should equal ("esac")
-				RefinedNysiisAlgorithm.compute("moye").get should equal ("my")
-				RefinedNysiisAlgorithm.compute("mckee").get should equal ("mcy")
-				RefinedNysiisAlgorithm.compute("mackie").get should equal ("mcy")
-				RefinedNysiisAlgorithm.compute("heitschmidt").get should equal ("hatsnad")
-				RefinedNysiisAlgorithm.compute("bart").get should equal ("bad")
-				RefinedNysiisAlgorithm.compute("hurd").get should equal ("had")
-				RefinedNysiisAlgorithm.compute("hunt").get should equal ("had")
-				RefinedNysiisAlgorithm.compute("westerlund").get should equal ("wastarlad")
-				RefinedNysiisAlgorithm.compute("evers").get should equal ("evar")
-				RefinedNysiisAlgorithm.compute("devito").get should equal ("dafat")
-				RefinedNysiisAlgorithm.compute("rawson").get should equal ("rasan")
-				RefinedNysiisAlgorithm.compute("shoulders").get should equal ("saldar")
-				RefinedNysiisAlgorithm.compute("leighton").get should equal ("lagtan")
-				RefinedNysiisAlgorithm.compute("wooldridge").get should equal ("waldrag")
-				RefinedNysiisAlgorithm.compute("oliphant").get should equal ("olafad")
-				RefinedNysiisAlgorithm.compute("hatchett").get should equal ("hatcat")
-				RefinedNysiisAlgorithm.compute("mcknight").get should equal ("mcnagt")
-				RefinedNysiisAlgorithm.compute("rickert").get should equal ("racad")
-				RefinedNysiisAlgorithm.compute("bowman").get should equal ("banan")
-				RefinedNysiisAlgorithm.compute("vasquez").get should equal ("vasg")
-				RefinedNysiisAlgorithm.compute("bashaw").get should equal ("bas")
-				RefinedNysiisAlgorithm.compute("schoenhoeft").get should equal ("sanaft") // dropby wrongly says scanaft
-				RefinedNysiisAlgorithm.compute("heywood").get should equal ("had")
-				RefinedNysiisAlgorithm.compute("hayman").get should equal ("hanan")
-				RefinedNysiisAlgorithm.compute("seawright").get should equal ("saragt")
-				RefinedNysiisAlgorithm.compute("kratzer").get should equal ("cratsar")
-				RefinedNysiisAlgorithm.compute("canaday").get should equal ("canady")
-				RefinedNysiisAlgorithm.compute("crepeau").get should equal ("crap")
-			}
+			// Dropby.
+			RefinedNysiisAlgorithm.compute("edwards").get must beEqualTo("edwad")
+			RefinedNysiisAlgorithm.compute("parez").get must beEqualTo("par")
+			RefinedNysiisAlgorithm.compute("macintosh").get must beEqualTo("mcantas")
+			RefinedNysiisAlgorithm.compute("phillipson").get must beEqualTo("falapsan")
+			RefinedNysiisAlgorithm.compute("haddix").get must beEqualTo("hadac")
+			RefinedNysiisAlgorithm.compute("essex").get must beEqualTo("esac")
+			RefinedNysiisAlgorithm.compute("moye").get must beEqualTo("my")
+			RefinedNysiisAlgorithm.compute("mckee").get must beEqualTo("mcy")
+			RefinedNysiisAlgorithm.compute("mackie").get must beEqualTo("mcy")
+			RefinedNysiisAlgorithm.compute("heitschmidt").get must beEqualTo("hatsnad")
+			RefinedNysiisAlgorithm.compute("bart").get must beEqualTo("bad")
+			RefinedNysiisAlgorithm.compute("hurd").get must beEqualTo("had")
+			RefinedNysiisAlgorithm.compute("hunt").get must beEqualTo("had")
+			RefinedNysiisAlgorithm.compute("westerlund").get must beEqualTo("wastarlad")
+			RefinedNysiisAlgorithm.compute("evers").get must beEqualTo("evar")
+			RefinedNysiisAlgorithm.compute("devito").get must beEqualTo("dafat")
+			RefinedNysiisAlgorithm.compute("rawson").get must beEqualTo("rasan")
+			RefinedNysiisAlgorithm.compute("shoulders").get must beEqualTo("saldar")
+			RefinedNysiisAlgorithm.compute("leighton").get must beEqualTo("lagtan")
+			RefinedNysiisAlgorithm.compute("wooldridge").get must beEqualTo("waldrag")
+			RefinedNysiisAlgorithm.compute("oliphant").get must beEqualTo("olafad")
+			RefinedNysiisAlgorithm.compute("hatchett").get must beEqualTo("hatcat")
+			RefinedNysiisAlgorithm.compute("mcknight").get must beEqualTo("mcnagt")
+			RefinedNysiisAlgorithm.compute("rickert").get must beEqualTo("racad")
+			RefinedNysiisAlgorithm.compute("bowman").get must beEqualTo("banan")
+			RefinedNysiisAlgorithm.compute("vasquez").get must beEqualTo("vasg")
+			RefinedNysiisAlgorithm.compute("bashaw").get must beEqualTo("bas")
+			RefinedNysiisAlgorithm.compute("schoenhoeft").get must beEqualTo("sanaft") // dropby wrongly says scanaft
+			RefinedNysiisAlgorithm.compute("heywood").get must beEqualTo("had")
+			RefinedNysiisAlgorithm.compute("hayman").get must beEqualTo("hanan")
+			RefinedNysiisAlgorithm.compute("seawright").get must beEqualTo("saragt")
+			RefinedNysiisAlgorithm.compute("kratzer").get must beEqualTo("cratsar")
+			RefinedNysiisAlgorithm.compute("canaday").get must beEqualTo("canady")
+			RefinedNysiisAlgorithm.compute("crepeau").get must beEqualTo("crap")
 		}
 	}
-}}
+}

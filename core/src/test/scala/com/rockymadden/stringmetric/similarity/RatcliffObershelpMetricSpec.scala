@@ -1,40 +1,27 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.ScalaTest
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
-
-@RunWith(classOf[JUnitRunner])
-final class RatcliffObershelpMetricSpec extends ScalaTest { "RatcliffObershelpMetric" should provide {
-	"compare method" when passed {
-		"empty arguments" should returns {
-			"None" in {
-				RatcliffObershelpMetric.compare("", "").isDefined should be (false)
-				RatcliffObershelpMetric.compare("abc", "").isDefined should be (false)
-				RatcliffObershelpMetric.compare("", "xyz").isDefined should be (false)
-			}
+object RatcliffObershelpMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+	"RatcliffObershelpMetric compare()" should {
+		"return None with empty arguments" in {
+			RatcliffObershelpMetric.compare("", "").isDefined must beFalse
+			RatcliffObershelpMetric.compare("abc", "").isDefined must beFalse
+			RatcliffObershelpMetric.compare("", "xyz").isDefined must beFalse
 		}
-		"equal arguments" should returns {
-			"0" in {
-				RatcliffObershelpMetric.compare("abc", "abc").get should be (1)
-				RatcliffObershelpMetric.compare("123", "123").get should be (1)
-			}
+		"return 0 with equal arguments" in {
+			RatcliffObershelpMetric.compare("abc", "abc").get must beEqualTo(1)
+			RatcliffObershelpMetric.compare("123", "123").get must beEqualTo(1)
 		}
-		"unequal arguments" should returns {
-			"Double indicating distance" in {
-				RatcliffObershelpMetric.compare("abc", "xyz").get should be (0)
-				RatcliffObershelpMetric.compare("123", "456").get should be (0)
-			}
+		"return distance with unequal arguments" in {
+			RatcliffObershelpMetric.compare("abc", "xyz").get must beEqualTo(0)
+			RatcliffObershelpMetric.compare("123", "456").get must beEqualTo(0)
 		}
-		"valid arguments" should returns {
-			"Double indicating distance" in {
-				RatcliffObershelpMetric.compare("aleksander", "alexandre").get should be (0.7368421052631579)
-				RatcliffObershelpMetric.compare("alexandre", "aleksander").get should be (0.7368421052631579)
-				RatcliffObershelpMetric.compare("pennsylvania", "pencilvaneya").get should be (0.6666666666666666)
-				RatcliffObershelpMetric.compare("pencilvaneya", "pennsylvania").get should be (0.6666666666666666)
-				RatcliffObershelpMetric.compare("abcefglmn", "abefglmo").get should be (0.8235294117647058)
-				RatcliffObershelpMetric.compare("abefglmo", "abcefglmn").get should be (0.8235294117647058)
-			}
+		"return distance with valid arguments" in {
+			RatcliffObershelpMetric.compare("aleksander", "alexandre").get must beEqualTo(0.7368421052631579)
+			RatcliffObershelpMetric.compare("alexandre", "aleksander").get must beEqualTo(0.7368421052631579)
+			RatcliffObershelpMetric.compare("pennsylvania", "pencilvaneya").get must beEqualTo(0.6666666666666666)
+			RatcliffObershelpMetric.compare("pencilvaneya", "pennsylvania").get must beEqualTo(0.6666666666666666)
+			RatcliffObershelpMetric.compare("abcefglmn", "abefglmo").get must beEqualTo(0.8235294117647058)
+			RatcliffObershelpMetric.compare("abefglmo", "abcefglmn").get must beEqualTo(0.8235294117647058)
 		}
 	}
-}}
+}

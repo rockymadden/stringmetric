@@ -1,35 +1,22 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.ScalaTest
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
-
-@RunWith(classOf[JUnitRunner])
-final class RefinedSoundexMetricSpec extends ScalaTest { "RefinedSoundexMetric" should provide {
-	"compare method" when passed {
-		"empty arguments" should returns {
-			"None" in {
-				RefinedSoundexMetric.compare("", "").isDefined should be (false)
-				RefinedSoundexMetric.compare("abc", "").isDefined should be (false)
-				RefinedSoundexMetric.compare("", "xyz").isDefined should be (false)
-			}
+object RefinedSoundexMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+	"RefinedSoundexMetric compare()" should {
+		"return None with empty arguments" in {
+			RefinedSoundexMetric.compare("", "").isDefined must beFalse
+			RefinedSoundexMetric.compare("abc", "").isDefined must beFalse
+			RefinedSoundexMetric.compare("", "xyz").isDefined must beFalse
 		}
-		"non-phonetic arguments" should returns {
-			"None" in {
-				RefinedSoundexMetric.compare("123", "123").isDefined should be (false)
-				RefinedSoundexMetric.compare("123", "").isDefined should be (false)
-				RefinedSoundexMetric.compare("", "123").isDefined should be (false)
-			}
+		"return None with non-phonetic arguments" in {
+			RefinedSoundexMetric.compare("123", "123").isDefined must beFalse
+			RefinedSoundexMetric.compare("123", "").isDefined must beFalse
+			RefinedSoundexMetric.compare("", "123").isDefined must beFalse
 		}
-		"phonetically similar arguments" should returns {
-			"Boolean indicating true" in {
-				RefinedSoundexMetric.compare("robert", "rupert").get should be (true)
-			}
+		"return true with phonetically similar arguments" in {
+			RefinedSoundexMetric.compare("robert", "rupert").get must beTrue
 		}
-		"phonetically dissimilar arguments" should returns {
-			"Boolean indicating false" in {
-				RefinedSoundexMetric.compare("robert", "rubin").get should be (false)
-			}
+		"return false with phonetically dissimilar arguments" in {
+			RefinedSoundexMetric.compare("robert", "rubin").get must beFalse
 		}
 	}
-}}
+}

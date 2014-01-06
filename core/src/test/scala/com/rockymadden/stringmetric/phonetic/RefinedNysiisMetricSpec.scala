@@ -1,35 +1,22 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.ScalaTest
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
-
-@RunWith(classOf[JUnitRunner])
-final class RefinedNysiisMetricSpec extends ScalaTest { "RefinedNysiisMetric" should provide {
-	"compare method" when passed {
-		"empty arguments" should returns {
-			"None" in {
-				RefinedNysiisMetric.compare("", "").isDefined should be (false)
-				RefinedNysiisMetric.compare("abc", "").isDefined should be (false)
-				RefinedNysiisMetric.compare("", "xyz").isDefined should be (false)
-			}
+object RefinedNysiisMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+	"RefinedNysiisMetric compare()" should {
+		"return None with empty arguments" in {
+			RefinedNysiisMetric.compare("", "").isDefined must beFalse
+			RefinedNysiisMetric.compare("abc", "").isDefined must beFalse
+			RefinedNysiisMetric.compare("", "xyz").isDefined must beFalse
 		}
-		"non-phonetic arguments" should returns {
-			"None" in {
-				RefinedNysiisMetric.compare("123", "123").isDefined should be (false)
-				RefinedNysiisMetric.compare("123", "").isDefined should be (false)
-				RefinedNysiisMetric.compare("", "123").isDefined should be (false)
-			}
+		"return None with non-phonetic arguments" in {
+			RefinedNysiisMetric.compare("123", "123").isDefined must beFalse
+			RefinedNysiisMetric.compare("123", "").isDefined must beFalse
+			RefinedNysiisMetric.compare("", "123").isDefined must beFalse
 		}
-		"phonetically similar arguments" should returns {
-			"Boolean indicating true" in {
-				RefinedNysiisMetric.compare("ham", "hum").get should be (true)
-			}
+		"return true with phonetically similar arguments" in {
+			RefinedNysiisMetric.compare("ham", "hum").get must beTrue
 		}
-		"phonetically dissimilar arguments" should returns {
-			"Boolean indicating false" in {
-				RefinedNysiisMetric.compare("dumb", "gum").get should be (false)
-			}
+		"return false with phonetically dissimilar arguments" in {
+			RefinedNysiisMetric.compare("dumb", "gum").get must beFalse
 		}
 	}
-}}
+}

@@ -1,37 +1,22 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.ScalaTest
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
-
-@RunWith(classOf[JUnitRunner])
-final class NysiisMetricSpec extends ScalaTest {
-	"NysiisMetric" should provide {
-		"compare method" when passed {
-			"empty arguments" should returns {
-				"None" in {
-					NysiisMetric.compare("", "").isDefined should be (false)
-					NysiisMetric.compare("abc", "").isDefined should be (false)
-					NysiisMetric.compare("", "xyz").isDefined should be (false)
-				}
-			}
-			"non-phonetic arguments" should returns {
-				"None" in {
-					NysiisMetric.compare("123", "123").isDefined should be (false)
-					NysiisMetric.compare("123", "").isDefined should be (false)
-					NysiisMetric.compare("", "123").isDefined should be (false)
-				}
-			}
-			"phonetically similar arguments" should returns {
-				"Boolean indicating true" in {
-					NysiisMetric.compare("ham", "hum").get should be (true)
-				}
-			}
-			"phonetically dissimilar arguments" should returns {
-				"Boolean indicating false" in {
-					NysiisMetric.compare("dumb", "gum").get should be (false)
-				}
-			}
+object NysiisMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+	"NysiisMetric compare()" should {
+		"return None with empty arguments" in {
+			NysiisMetric.compare("", "").isDefined must beFalse
+			NysiisMetric.compare("abc", "").isDefined must beFalse
+			NysiisMetric.compare("", "xyz").isDefined must beFalse
+		}
+		"return None with non-phonetic arguments" in {
+			NysiisMetric.compare("123", "123").isDefined must beFalse
+			NysiisMetric.compare("123", "").isDefined must beFalse
+			NysiisMetric.compare("", "123").isDefined must beFalse
+		}
+		"return true with phonetically similar arguments" in {
+			NysiisMetric.compare("ham", "hum").get must beTrue
+		}
+		"return false with phonetically dissimilar arguments" in {
+			NysiisMetric.compare("dumb", "gum").get must beFalse
 		}
 	}
 }

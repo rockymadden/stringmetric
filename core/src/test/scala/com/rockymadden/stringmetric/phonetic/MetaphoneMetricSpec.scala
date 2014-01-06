@@ -1,39 +1,28 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.ScalaTest
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
-
-@RunWith(classOf[JUnitRunner])
-final class MetaphoneMetricSpec extends ScalaTest { "MetaphoneMetric" should provide {
-	"compare method" when passed {
-		"empty arguments" should returns {
+object MetaphoneMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+	"MetaphoneMetric compare()" should {
+		"return None with empty arguments" in {
+			MetaphoneMetric.compare("", "").isDefined must beFalse
+			MetaphoneMetric.compare("abc", "").isDefined must beFalse
+			MetaphoneMetric.compare("", "xyz").isDefined must beFalse
+		}
+		"return None with non-phonetic arguments" in {
 			"None" in {
-				MetaphoneMetric.compare("", "").isDefined should be (false)
-				MetaphoneMetric.compare("abc", "").isDefined should be (false)
-				MetaphoneMetric.compare("", "xyz").isDefined should be (false)
+			MetaphoneMetric.compare("123", "123").isDefined must beFalse
+			MetaphoneMetric.compare("123", "").isDefined must beFalse
+			MetaphoneMetric.compare("", "123").isDefined must beFalse
 			}
 		}
-		"non-phonetic arguments" should returns {
-			"None" in {
-				MetaphoneMetric.compare("123", "123").isDefined should be (false)
-				MetaphoneMetric.compare("123", "").isDefined should be (false)
-				MetaphoneMetric.compare("", "123").isDefined should be (false)
-			}
+		"return true with phonetically similar arguments" in {
+			MetaphoneMetric.compare("dumb", "dum").get must beTrue
+			MetaphoneMetric.compare("smith", "smeth").get must beTrue
+			MetaphoneMetric.compare("merci", "mercy").get must beTrue
 		}
-		"phonetically similar arguments" should returns {
-			"Boolean indicating true" in {
-				MetaphoneMetric.compare("dumb", "dum").get should be (true)
-				MetaphoneMetric.compare("smith", "smeth").get should be (true)
-				MetaphoneMetric.compare("merci", "mercy").get should be (true)
-			}
-		}
-		"phonetically dissimilar arguments" should returns {
-			"Boolean indicating false" in {
-				MetaphoneMetric.compare("dumb", "gum").get should be (false)
-				MetaphoneMetric.compare("smith", "kiss").get should be (false)
-				MetaphoneMetric.compare("merci", "burpy").get should be (false)
-			}
+		"return false with phonetically dissimilar arguments" in {
+			MetaphoneMetric.compare("dumb", "gum").get must beFalse
+			MetaphoneMetric.compare("smith", "kiss").get must beFalse
+			MetaphoneMetric.compare("merci", "burpy").get must beFalse
 		}
 	}
-}}
+}
