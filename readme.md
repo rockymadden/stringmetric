@@ -252,7 +252,7 @@ It is possible to decorate algorithms and metrics with additional functionality,
 
 ---
 
-Non-decorated usage:
+Non-decorated:
 ```scala
 MetaphoneAlgorithm.compute("abc123")
 MetaphoneMetric.compare("abc123", "abc456")
@@ -260,14 +260,7 @@ MetaphoneMetric.compare("abc123", "abc456")
 
 ---
 
-Memoized:
-```scala
-(MetaphoneAlgorithm withMemoization).compute("abc123")
-```
-
----
-
-Single filter, so that we only examine alphabetical characters:
+Using a transform so that we only examine alphabetical characters:
 ```scala
 (MetaphoneAlgorithm withTransform StringTransform.filterAlpha).compute("abc123")
 (MetaphoneMetric withTransform StringTransform.filterAlpha).compare("abc123", "abc456")
@@ -275,7 +268,7 @@ Single filter, so that we only examine alphabetical characters:
 
 ---
 
-Functionally composed filter, so that we only examine alphabetical characters but the case won't matter:
+Using a functionally composed transform so that we only examine alphabetical characters, but the case will not matter:
 ```scala
 val composedTransform = (StringTransform.filterAlpha andThen StringTransform.ignoreAlphaCase)
 
@@ -285,13 +278,19 @@ val composedTransform = (StringTransform.filterAlpha andThen StringTransform.ign
 
 ---
 
-Make your own:
+Making your own transform:
 ```scala
-// StringTransform is a type alias for (Array[Char] => Array[Char])
 val myTransform: StringTransform = (ca) => ca.filter(_ == 'x')
 
 (MetaphoneAlgorithm withTransform myTransform).compute("abc123")
 (MetaphoneMetric withTransform myTransform).compare("abc123", "abc456")
+```
+
+---
+
+Using memoization:
+```scala
+(MetaphoneAlgorithm withMemoization).compute("abc123")
 ```
 
 ---
