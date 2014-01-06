@@ -248,7 +248,7 @@ It is possible to decorate algorithms and metrics with additional functionality,
 
 * __withTransform:__ Transform arguments prior to computation/comparison. A handful of pre-built transforms are located in the [transform module](https://github.com/rockymadden/stringmetric/blob/master/core/src/main/scala/com/rockymadden/stringmetric/Transform.scala).
 
-* __[withMemoization](https://en.wikipedia.org/wiki/Memoization):__ All computations/comparisons are cached. Any further calls made with identical arguments will be looked up, rather than computed/compared.
+* __[withMemoization](https://en.wikipedia.org/wiki/Memoization):__ Computations and comparisons are cached. Future calls made with identical arguments will be looked up, rather than computed.
 
 ---
 
