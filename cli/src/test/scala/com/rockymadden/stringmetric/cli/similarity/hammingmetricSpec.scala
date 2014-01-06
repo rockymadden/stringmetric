@@ -12,7 +12,7 @@ object hammingmetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
 			Console.withOut(out)(hammingmetric.main(Array("--unitTest", "--debug", "abc", "xyz")))
 			out.toString must beEqualTo("3\n")
 		}
-		"throw IllegalArgumentException no dashless arguments" in {
+		"throw IllegalArgumentException with no dashless arguments" in {
 			hammingmetric.main(Array("--unitTest", "--debug")) must throwA[IllegalArgumentException]
 		}
 	}

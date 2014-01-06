@@ -12,7 +12,7 @@ object jaccardmetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
 			Console.withOut(out)(jaccardmetric.main(Array("--unitTest", "--debug", "--n=2", "abc", "xyz")))
 			out.toString must beEqualTo("0.0\n")
 		}
-		"throw IllegalArgumentException no dashless arguments" in {
+		"throw IllegalArgumentException with no dashless arguments" in {
 			jaccardmetric.main(Array("--unitTest", "--debug")) must throwA[IllegalArgumentException]
 		}
 	}
