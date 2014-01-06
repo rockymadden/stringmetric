@@ -11,7 +11,7 @@ object Algorithm {
 
 
 	object Algorithm {
-		implicit def stringAlgorithmToDecorated(sa: StringAlgorithm): StringAlgorithmDecorator =
+		implicit def toStringAlgorithmDecorator(sa: StringAlgorithm): StringAlgorithmDecorator =
 			new StringAlgorithmDecorator(sa)
 	}
 

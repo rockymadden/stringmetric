@@ -10,7 +10,7 @@ object Metric {
 
 
 	object Metric {
-		implicit def stringMetricToDecorated[A](sa: StringMetric[A]): StringMetricDecorator[A] =
+		implicit def toStringMetricDecorator[A](sa: StringMetric[A]): StringMetricDecorator[A] =
 			new StringMetricDecorator[A](sa)
 	}
 
