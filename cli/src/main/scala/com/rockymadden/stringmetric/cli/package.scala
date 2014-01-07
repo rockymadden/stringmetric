@@ -4,6 +4,7 @@ package com.rockymadden.stringmetric
 // Some things might look sloppy (e.g. access modifiers, broad imports, repetitive imports, etc), but are required
 // because of the way "scalascript" is ultimately compiled.
 package object cli {
+	import scala.collection.immutable.Map
 	import scala.language.implicitConversions
 
 
@@ -41,7 +42,7 @@ package object cli {
 
 		def apply(as: String*): OptionMap = {
 			@annotation.tailrec
-			def next(om: OptionMap, a: List[String]): OptionMap = {
+			def loop(om: OptionMap, a: List[String]): OptionMap = {
 				val double = """^(--[a-zA-Z0-9]+)(=[a-zA-Z0-9\.\-_]+)?""".r
 				val single = """^(-[a-zA-Z0-9]+)(=[a-zA-Z0-9\.\-_]+)?""".r
 				val less = """([a-zA-Z0-9/\-_\$\.]+)""".r
@@ -50,24 +51,24 @@ package object cli {
 					// Empty, return.
 					case Nil => om
 					// Double dash options without value.
-					case double(k, null) :: t => next(om + (Symbol(k.tail.tail) -> ""), t)
+					case double(k, null) :: t => loop(om + (Symbol(k.tail.tail) -> ""), t)
 					// Double dash options with value.
-					case double(k, v) :: t => next(om + (Symbol(k.tail.tail) -> v.tail), t)
+					case double(k, v) :: t => loop(om + (Symbol(k.tail.tail) -> v.tail), t)
 					// Single dash options without value.
-					case single(k, null) :: t => next(om + (Symbol(k.tail) -> ""), t)
+					case single(k, null) :: t => loop(om + (Symbol(k.tail) -> ""), t)
 					// Single dash options with value. Value is discarded.
-					case single(k, v) :: t => next(om + (Symbol(k.tail) -> ""), t)
+					case single(k, v) :: t => loop(om + (Symbol(k.tail) -> ""), t)
 					// Dashless options.
 					case less(v) :: t if v.head != '-' =>
 						if (om.contains('dashless))
-							next((om - 'dashless) + ('dashless -> (om('dashless).get + " " + v.trim)), t)
-						else next(om + ('dashless -> v.trim), t)
+							loop((om - 'dashless) + ('dashless -> (om('dashless).get + " " + v.trim)), t)
+						else loop(om + ('dashless -> v.trim), t)
 					// Invalid option, ignore.
-					case _ :: t => next(om, t)
+					case _ :: t => loop(om, t)
 				}
 			}
 
-			next(Map.empty[Symbol, OptionString], as.toList)
+			loop(Map.empty[Symbol, OptionString], as.toList)
 		}
 	}
 
@@ -77,8 +78,8 @@ package object cli {
 		protected val predicate: (OptionMap => Boolean),
 		protected val execute: (OptionMap => String)
 	) {
-		def main(args: Array[String]): Unit = {
-			val opts = OptionMap(args)
+		def main(as: Array[String]): Unit = {
+			val opts = OptionMap(as)
 
 			try
 				if (opts.contains('h) || opts.contains('help)) {
@@ -88,18 +89,21 @@ package object cli {
 					println(execute(opts))
 					exit(opts)
 				} else throw new IllegalArgumentException("Expected valid syntax. See --help.")
-			catch { case e: Throwable => error(e, opts) }
+			catch {
+				case e: Throwable => error(e, opts)
+			}
 		}
 
-		private def error(error: Throwable, opts: OptionMap): Unit =
-			if (!isUnitTest(opts)) {
-				println(error.getMessage)
+		private def error(e: Throwable, opts: OptionMap): Unit =
+			if (isUnitTest(opts)) throw e
+			else {
+				println(e.getMessage)
 				sys.exit(1)
-			} else throw error
+			}
 
 		private def exit(opts: OptionMap): Unit = if (!isUnitTest(opts)) sys.exit(0)
 
 		private def isUnitTest(opts: OptionMap) =
-			opts.contains('ut) || (opts.contains('unitTest) && opts.get('unitTest) != "false")
+			opts.contains('ut) || ((opts.contains('unitTest) && opts.get('unitTest) != "false"))
 	}
 }
