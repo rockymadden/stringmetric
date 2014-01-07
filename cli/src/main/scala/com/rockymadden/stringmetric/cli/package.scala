@@ -1,16 +1,14 @@
 package com.rockymadden.stringmetric
 
-/**
- * Provides core CLI functionality. Note that some things might look sloppy (e.g. access modifiers, broad imports,
- * repetitive imports, etc), but are required because of the way scalascript is ultimately compiled.
- */
+
+// Some things might look sloppy (e.g. access modifiers, broad imports, repetitive imports, etc), but are required
+// because of the way "scalascript" is ultimately compiled.
 package object cli {
 	import scala.language.implicitConversions
 
 
 	implicit def optionStringToArray(os: OptionString): Array[String] =
-		if (os.get.length == 0) Array.empty[String]
-		else os.get.split(" ")
+		if (os.get.length == 0) Array.empty[String] else os.get.split(" ")
 	implicit def optionStringToBigDecimal(os: OptionString): BigDecimal = BigDecimal(os.get)
 	implicit def optionStringToBigInt(os: OptionString): BigInt = BigInt(os.get)
 	implicit def optionStringToDouble(os: OptionString): Double = os.get.toDouble
@@ -19,27 +17,29 @@ package object cli {
 	implicit def optionStringToLong(os: OptionString): Long = os.get.toLong
 	implicit def optionStringToShort(os: OptionString): Short = os.get.toShort
 	implicit def optionStringToString(os: OptionString): String = os.get
-	implicit def stringToOptionString(s: String): OptionString = OptionString(s)
-	implicit def arrayOfStringToOptionMap(stringArray: Array[String]): OptionMap = OptionMap(stringArray)
 
 
-	final val Ls = sys.props("line.separator")
-	final val Tab = "  "
+	val Ls = sys.props("line.separator")
+	val Tab = "  "
 
 
 	class OptionString(val get: String)
 
+
 	object OptionString {
+		implicit def fromString(s: String): OptionString = OptionString(s)
+
 		def apply(s: String): OptionString = new OptionString(s)
 	}
 
 
 	type OptionMap = Map[Symbol, OptionString]
 
-	object OptionMap {
-		def apply(args: Array[String]): OptionMap = apply(args: _*)
 
-		def apply(varargs: String*): OptionMap = {
+	object OptionMap {
+		def apply(as: Array[String]): OptionMap = apply(as: _*)
+
+		def apply(as: String*): OptionMap = {
 			@annotation.tailrec
 			def next(om: OptionMap, a: List[String]): OptionMap = {
 				val double = """^(--[a-zA-Z0-9]+)(=[a-zA-Z0-9\.\-_]+)?""".r
@@ -67,7 +67,7 @@ package object cli {
 				}
 			}
 
-			next(Map.empty[Symbol, OptionString], varargs.toList)
+			next(Map.empty[Symbol, OptionString], as.toList)
 		}
 	}
 
@@ -78,7 +78,7 @@ package object cli {
 		protected val execute: (OptionMap => String)
 	) {
 		def main(args: Array[String]): Unit = {
-			val opts: OptionMap = args
+			val opts = OptionMap(args)
 
 			try
 				if (opts.contains('h) || opts.contains('help)) {
