@@ -264,7 +264,7 @@ It is possible to decorate algorithms and metrics with additional functionality,
 
 * __[withMemoization](https://en.wikipedia.org/wiki/Memoization):__ Computations and comparisons are cached. Future calls made with identical arguments will be looked up, rather than computed.
 
-* __withTransform:__ Transform arguments prior to computation/comparison. A handful of pre-built transforms are located in the [transform module](https://github.com/rockymadden/stringmetric/blob/master/core/src/main/scala/com/rockymadden/stringmetric/Transform.scala).
+* __withTransform:__ Transform arguments prior to computation/comparison. A handful of pre-built transforms are located in the [transform module](https://github.com/rockymadden/stringmetric/blob/master/core/src/main/scala/com/rockymadden/stringmetric/transform.scala).
 
 ---
 
@@ -276,17 +276,24 @@ MetaphoneMetric.compare("abcdef", "abcxyz")
 
 ---
 
+Using memoization:
+```scala
+(MetaphoneAlgorithm withMemoization).compute("abcdef")
+```
+
+---
+
 Using a transform so that we only examine alphabetical characters:
 ```scala
-(MetaphoneAlgorithm withTransform StringTransform.filterAlpha).compute("abcdef")
-(MetaphoneMetric withTransform StringTransform.filterAlpha).compare("abcdef", "abcxyz")
+(MetaphoneAlgorithm withTransform filterAlpha).compute("abcdef")
+(MetaphoneMetric withTransform filterAlpha).compare("abcdef", "abcxyz")
 ```
 
 ---
 
 Using a functionally composed transform so that we only examine alphabetical characters, but the case will not matter:
 ```scala
-val composedTransform = (StringTransform.filterAlpha andThen StringTransform.ignoreAlphaCase)
+val composedTransform = (filterAlpha andThen ignoreAlphaCase)
 
 (MetaphoneAlgorithm withTransform composedTransform).compute("abcdef")
 (MetaphoneMetric withTransform composedTransform).compare("abcdef", "abcxyz")
@@ -304,16 +311,9 @@ val myTransform: StringTransform = (ca) => ca.filter(_ == 'x')
 
 ---
 
-Using memoization:
-```scala
-(MetaphoneAlgorithm withMemoization).compute("abcdef")
-```
-
----
-
 Using memoization and a transform:
 ```scala
-((MetaphoneAlgorithm withMemoization) withTransform StringTransform.filterAlpha).compute("abcdef")
+((MetaphoneAlgorithm withMemoization) withTransform filterAlpha).compute("abcdef")
 ```
 
 ---
