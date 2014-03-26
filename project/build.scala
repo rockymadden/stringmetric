@@ -30,7 +30,7 @@ object CoreBuild extends Build {
 			publishTo := Some("Sonatype" at "https://oss.sonatype.org/service/local/staging/deploy/maven2"),
 			resolvers ++= Seq(DefaultMavenRepository),
 			scalaVersion := "2.10.3",
-			version := "0.27.2"
+			version := "0.27.3"
 		)
 	).aggregate(core, cli)
 

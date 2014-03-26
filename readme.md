@@ -35,14 +35,14 @@ String metrics and phonetic algorithms for Scala. The library provides facilitie
 
 __SBT:__
 ```scala
-libraryDependencies += "com.rockymadden.stringmetric" %% "stringmetric-core" % "0.27.2"
+libraryDependencies += "com.rockymadden.stringmetric" %% "stringmetric-core" % "0.27.3"
 ```
 
 ---
 
 __Gradle:__
 ```groovy
-compile 'com.rockymadden.stringmetric:stringmetric-core_2.10:0.27.2'
+compile 'com.rockymadden.stringmetric:stringmetric-core_2.10:0.27.3'
 ```
 
 ---
@@ -52,7 +52,7 @@ __Maven:__
 <dependency>
 	<groupId>com.rockymadden.stringmetric</groupId>
 	<artifactId>stringmetric-core_2.10</artifactId>
-	<version>0.27.2</version>
+	<version>0.27.3</version>
 </dependency>
 ```
 
