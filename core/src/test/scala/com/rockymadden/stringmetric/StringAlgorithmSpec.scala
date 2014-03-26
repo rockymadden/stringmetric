@@ -1,10 +1,9 @@
 package com.rockymadden.stringmetric
 
-object AlgorithmSpec extends org.specs2.mutable.SpecificationWithJUnit {
-	import phonetic._
-	import Algorithm._
-	import Transform._
+import com.rockymadden.stringmetric.phonetic._
+import com.rockymadden.stringmetric.transform._
 
+object StringAlgorithmSpec extends org.specs2.mutable.SpecificationWithJUnit {
 	"StringAlgorithm convenience methods" should {
 		"pass through" in {
 			StringAlgorithm.computeWithMetaphone("testone").get must
@@ -35,7 +34,7 @@ object AlgorithmSpec extends org.specs2.mutable.SpecificationWithJUnit {
 
 	"StringAlgorithmDecorator withTransform()" should {
 		"transform" in {
-			(MetaphoneAlgorithm withTransform StringTransform.filterAlpha).compute("abc123").get must
+			(MetaphoneAlgorithm withTransform filterAlpha).compute("abc123").get must
 				beEqualTo(MetaphoneAlgorithm.compute("abc").get)
 		}
 	}

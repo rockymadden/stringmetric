@@ -1,11 +1,9 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.Metric.StringMetric
+import com.rockymadden.stringmetric._
 
 final case class WeightedLevenshteinMetric(delete: BigDecimal, insert: BigDecimal, substitute: BigDecimal)
 	extends StringMetric[Double] {
-
-	import com.rockymadden.stringmetric.CompareTuple
 
 	override def compare(a: Array[Char], b: Array[Char]): Option[Double] =
 		if (a.length == 0 || b.length == 0) None

@@ -1,8 +1,8 @@
 package com.rockymadden.stringmetric
 
-object AlphabetSpec extends org.specs2.mutable.SpecificationWithJUnit {
-	import Alphabet.{Alpha, Vowel}
+import com.rockymadden.stringmetric.Alphabet._
 
+object AlphabetSpec extends org.specs2.mutable.SpecificationWithJUnit {
 	"AlphabetSet isSuperset()" should {
 		"return false with non-alphabet argument" in {
 			Alpha isSuperset '0' must beFalse

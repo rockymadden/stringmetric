@@ -1,13 +1,11 @@
 package com.rockymadden.stringmetric
 
+import scala.collection.immutable.Map
+import scala.language.implicitConversions
 
 // Some things might look sloppy (e.g. access modifiers, broad imports, repetitive imports, etc), but are required
 // because of the way "scalascript" is ultimately compiled.
 package object cli {
-	import scala.collection.immutable.Map
-	import scala.language.implicitConversions
-
-
 	implicit def optionStringToArray(os: OptionString): Array[String] =
 		if (os.get.length == 0) Array.empty[String] else os.get.split(" ")
 	implicit def optionStringToBigDecimal(os: OptionString): BigDecimal = BigDecimal(os.get)
@@ -19,13 +17,10 @@ package object cli {
 	implicit def optionStringToShort(os: OptionString): Short = os.get.toShort
 	implicit def optionStringToString(os: OptionString): String = os.get
 
-
 	val Ls = sys.props("line.separator")
 	val Tab = "  "
 
-
 	class OptionString(val get: String)
-
 
 	object OptionString {
 		implicit def fromString(s: String): OptionString = OptionString(s)
@@ -35,7 +30,6 @@ package object cli {
 
 
 	type OptionMap = Map[Symbol, OptionString]
-
 
 	object OptionMap {
 		def apply(as: Array[String]): OptionMap = apply(as: _*)

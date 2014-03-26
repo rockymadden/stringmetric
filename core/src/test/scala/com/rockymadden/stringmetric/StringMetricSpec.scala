@@ -1,11 +1,10 @@
 package com.rockymadden.stringmetric
 
-object MetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
-	import phonetic._
-	import similarity._
-	import Metric._
-	import Transform._
+import com.rockymadden.stringmetric.phonetic._
+import com.rockymadden.stringmetric.similarity._
+import com.rockymadden.stringmetric.transform._
 
+object StringMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
 	"StringMetric convenience methods" should {
 		"pass through" in {
 			StringMetric.compareWithDiceSorensen(1)("testone", "testtwo").get must
@@ -54,9 +53,9 @@ object MetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
 
 	"StringMetricDecorator withTransform()" should {
 		"transform" in {
-			(MetaphoneMetric withTransform StringTransform.filterAlpha).compare("abc123", "abc456").get must
+			(MetaphoneMetric withTransform filterAlpha).compare("abc123", "abc456").get must
 				beEqualTo(true)
-			(DiceSorensenMetric(1) withTransform StringTransform.filterAlpha).compare("abc123", "abc456").get must
+			(DiceSorensenMetric(1) withTransform filterAlpha).compare("abc123", "abc456").get must
 				beEqualTo(1.0)
 		}
 	}

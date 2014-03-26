@@ -1,15 +1,12 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.Metric.StringMetric
+import com.rockymadden.stringmetric._
 
 /**
  * An implementation of the Dice/Sorensen metric. This implementation differs in that n-gram size is required.
  * Traditionally, the algorithm uses bigrams.
  */
 final case class DiceSorensenMetric(n: Int) extends StringMetric[Double] {
-	import com.rockymadden.stringmetric.Tokenize.NGramTokenizer
-	import com.rockymadden.stringmetric.MatchTuple
-
 	override def compare(a: Array[Char], b: Array[Char]): Option[Double] =
 		if (n <= 0 || a.length < n || b.length < n) None // Because length is less than n, it is not possible to compare.
 		else if (a.sameElements(b)) Some(1d)

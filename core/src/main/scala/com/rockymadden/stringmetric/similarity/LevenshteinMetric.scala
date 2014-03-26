@@ -1,10 +1,8 @@
 package com.rockymadden.stringmetric.similarity
 
-import com.rockymadden.stringmetric.Metric.StringMetric
+import com.rockymadden.stringmetric._
 
 case object LevenshteinMetric extends StringMetric[Int] {
-	import com.rockymadden.stringmetric.CompareTuple
-
 	override def compare(a: Array[Char], b: Array[Char]): Option[Int] =
 		if (a.length == 0 || b.length == 0) None
 		else if (a.sameElements(b)) Some(0)

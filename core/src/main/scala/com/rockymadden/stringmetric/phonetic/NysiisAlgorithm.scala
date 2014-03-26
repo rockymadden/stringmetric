@@ -1,10 +1,9 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.Algorithm.StringAlgorithm
+import com.rockymadden.stringmetric._
+import com.rockymadden.stringmetric.Alphabet._
 
 case object NysiisAlgorithm extends StringAlgorithm {
-	import com.rockymadden.stringmetric.Alphabet.{Alpha, LowercaseVowel}
-
 	override def compute(a: Array[Char]): Option[Array[Char]] =
 		if (a.length == 0 || !(Alpha isSuperset a.head)) None
 		else {

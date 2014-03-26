@@ -1,10 +1,9 @@
 package com.rockymadden.stringmetric.phonetic
 
-import com.rockymadden.stringmetric.Metric.StringMetric
+import com.rockymadden.stringmetric._
+import com.rockymadden.stringmetric.Alphabet._
 
 case object RefinedNysiisMetric extends StringMetric[Boolean] {
-	import com.rockymadden.stringmetric.Alphabet.Alpha
-
 	override def compare(a: Array[Char], b: Array[Char]): Option[Boolean] = {
 		val unequal = (c1: Char, c2: Char) => {
 			val lc1 = c1.toLower
