@@ -32,7 +32,7 @@ object CoreBuild extends Build {
 			scalaVersion := "2.11.1",
 			crossScalaVersions := Seq("2.11.1", "2.10.4"),
 			crossVersion := CrossVersion.binary,
-			version := "0.27.3"
+			version := "0.27.4"
 		)
 	).aggregate(core, cli)
 
