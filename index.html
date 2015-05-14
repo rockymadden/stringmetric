@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>stringmetric by rockymadden</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">stringmetric</h1>
+      <h2 class="project-tagline">String metrics and phonetic algorithms for Scala.</h2>
+      <a href="https://github.com/rockymadden/stringmetric" class="btn">View on GitHub</a>
+      <a href="https://github.com/rockymadden/stringmetric/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/rockymadden/stringmetric/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p>The library provides facilities to perform approximate string matching, measurement of string similarity/distance, indexing by word pronunciation, and sounds-like comparisons. In addition to the core library, each metric and algorithm has a command line interface.</p>
+
+<ul>
+<li>
+<strong>Requirements:</strong> Scala 2.10+</li>
+<li>
+<strong>Documentation:</strong> <a href="http://rockymadden.com/stringmetric/scaladoc/">Scaladoc</a>
+</li>
+<li>
+<strong>Issues:</strong> <a href="https://github.com/rockymadden/stringmetric/issues?labels=accepted%2Cenhancement&amp;page=1&amp;state=open">Enhancements</a>, <a href="https://github.com/rockymadden/stringmetric/issues?labels=accepted%2Cquestion&amp;page=1&amp;state=open">Questions</a>, <a href="https://github.com/rockymadden/stringmetric/issues?labels=accepted%2Cbug&amp;page=1&amp;state=open">Bugs</a>
+</li>
+<li>
+<strong>Versioning:</strong> <a href="http://semver.org/">Semantic Versioning v2.0</a>
+</li>
+</ul>
+
+<h2>
+<a id="metrics-and-algorithms" class="anchor" href="#metrics-and-algorithms" aria-hidden="true"><span class="octicon octicon-link"></span></a>Metrics and algorithms</h2>
+
+<ul>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/Dice%27s_coefficient">Dice / Sorensen</a></strong> (Similarity metric)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/Metaphone">Double Metaphone</a></strong> (<a href="https://github.com/rockymadden/stringmetric/issues/6">Queued</a> phonetic metric and algorithm)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/Hamming_distance">Hamming</a></strong> (Similarity metric)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/Jaccard_index">Jaccard</a></strong> (Similarity metric)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/Jaro-Winkler_distance">Jaro</a></strong> (Similarity metric)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/Jaro-Winkler_distance">Jaro-Winkler</a></strong> (Similarity metric)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein</a></strong> (Similarity metric)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/Metaphone">Metaphone</a></strong> (Phonetic metric and algorithm)</li>
+<li>
+<strong><a href="http://www.cs.cmu.edu/%7Epradeepr/papers/ijcai03.pdf">Monge-Elkan</a></strong> (<a href="https://github.com/rockymadden/stringmetric/issues/7">Queued</a> similarity metric)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/Match_rating_approach">Match Rating Approach</a></strong> (<a href="https://github.com/rockymadden/stringmetric/issues/8">Queued</a> phonetic metric and algorithm)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm">Needleman-Wunch</a></strong> (<a href="https://github.com/rockymadden/stringmetric/issues/9">Queued</a> similarity metric)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/N-gram">N-Gram</a></strong> (Similarity metric)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/New_York_State_Identification_and_Intelligence_System">NYSIIS</a></strong> (Phonetic metric and algorithm)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/Overlap_coefficient">Overlap</a></strong> (Similarity metric)</li>
+<li>
+<strong><a href="http://xlinux.nist.gov/dads/HTML/ratcliffObershelp.html">Ratcliff-Obershelp</a></strong> (Similarity metric)</li>
+<li>
+<strong><a href="http://www.markcrocker.com/rexxtipsntricks/rxtt28.2.0482.html">Refined NYSIIS</a></strong> (Phonetic metric and algorithm)</li>
+<li>
+<strong><a href="http://ntz-develop.blogspot.com/2011/03/phonetic-algorithms.html">Refined Soundex</a></strong> (Phonetic metric and algorithm)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/Tanimoto_coefficient">Tanimoto</a></strong> (<a href="https://github.com/rockymadden/stringmetric/issues/10">Queued</a> similarity metric)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/Tversky_index">Tversky</a></strong> (<a href="https://github.com/rockymadden/stringmetric/issues/16">Queued</a> similarity metric)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm">Smith-Waterman</a></strong> (<a href="https://github.com/rockymadden/stringmetric/issues/11">Queued</a> similarity metric)</li>
+<li>
+<strong><a href="http://en.wikipedia.org/wiki/Soundex">Soundex</a></strong> (Phonetic metric and algorithm)</li>
+<li>
+<strong>Weighted Levenshtein</strong> (Similarity metric)</li>
+</ul>
+
+<h2>
+<a id="depending-upon" class="anchor" href="#depending-upon" aria-hidden="true"><span class="octicon octicon-link"></span></a>Depending upon</h2>
+
+<p><strong>SBT:</strong></p>
+
+<div class="highlight highlight-scala"><pre>libraryDependencies <span class="pl-k">+</span><span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>com.rockymadden.stringmetric<span class="pl-pds">"</span></span> <span class="pl-k">%%</span> <span class="pl-s"><span class="pl-pds">"</span>stringmetric-core<span class="pl-pds">"</span></span> <span class="pl-k">%</span> <span class="pl-s"><span class="pl-pds">"</span>0.27.4<span class="pl-pds">"</span></span></pre></div>
+
+<hr>
+
+<p><strong>Gradle:</strong></p>
+
+<div class="highlight highlight-groovy"><pre>compile <span class="pl-s"><span class="pl-pds">'</span>com.rockymadden.stringmetric:stringmetric-core_2.10:0.27.4<span class="pl-pds">'</span></span></pre></div>
+
+<hr>
+
+<p><strong>Maven:</strong></p>
+
+<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
+    &lt;<span class="pl-ent">groupId</span>&gt;com.rockymadden.stringmetric&lt;/<span class="pl-ent">groupId</span>&gt;
+    &lt;<span class="pl-ent">artifactId</span>&gt;stringmetric-core_2.10&lt;/<span class="pl-ent">artifactId</span>&gt;
+    &lt;<span class="pl-ent">version</span>&gt;0.27.4&lt;/<span class="pl-ent">version</span>&gt;
+&lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
+
+<hr>
+
+<h2>
+<a id="similarity-package" class="anchor" href="#similarity-package" aria-hidden="true"><span class="octicon octicon-link"></span></a>Similarity package</h2>
+
+<p>Useful for approximate string matching and measurement of string distance. Most metrics calculate the similarity of two strings as a double with a value between 0 and 1. A value of 0 being completely different and a value of 1 being completely similar.</p>
+
+<hr>
+
+<p><strong>Dice / Sorensen Metric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">DiceSorensenMetric</span>(<span class="pl-c1">1</span>).compare(<span class="pl-s"><span class="pl-pds">"</span>night<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>nacht<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.6</span>
+<span class="pl-en">DiceSorensenMetric</span>(<span class="pl-c1">1</span>).compare(<span class="pl-s"><span class="pl-pds">"</span>context<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>contact<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.7142857142857143</span></pre></div>
+
+<p><sup>Note you must specify the size of the n-gram you wish to use.</sup></p>
+
+<hr>
+
+<p><strong>Hamming Metric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">HammingMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>toned<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>roses<span class="pl-pds">"</span></span>) <span class="pl-c">// 3</span>
+<span class="pl-en">HammingMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>1011101<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>1001001<span class="pl-pds">"</span></span>) <span class="pl-c">// 2</span></pre></div>
+
+<p><sup>Note the exception of integers, rather than doubles, being returned.</sup></p>
+
+<hr>
+
+<p><strong>Jaccard Metric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">JaccardMetric</span>(<span class="pl-c1">1</span>).compare(<span class="pl-s"><span class="pl-pds">"</span>night<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>nacht<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.3</span>
+<span class="pl-en">JaccardMetric</span>(<span class="pl-c1">1</span>).compare(<span class="pl-s"><span class="pl-pds">"</span>context<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>contact<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.35714285714285715</span></pre></div>
+
+<p><sup>Note you must specify the size of the n-gram you wish to use.</sup></p>
+
+<hr>
+
+<p><strong>Jaro Metric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">JaroMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>dwayne<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>duane<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.8222222222222223</span>
+<span class="pl-en">JaroMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>jones<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>johnson<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.7904761904761904</span>
+<span class="pl-en">JaroMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>fvie<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>ten<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.0</span></pre></div>
+
+<hr>
+
+<p><strong>Jaro-Winkler Metric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">JaroWinklerMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>dwayne<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>duane<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.8400000000000001</span>
+<span class="pl-en">JaroWinklerMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>jones<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>johnson<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.8323809523809523</span>
+<span class="pl-en">JaroWinklerMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>fvie<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>ten<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.0</span></pre></div>
+
+<hr>
+
+<p><strong>Levenshtein Metric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">LevenshteinMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>sitting<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>kitten<span class="pl-pds">"</span></span>) <span class="pl-c">// 3</span>
+<span class="pl-en">LevenshteinMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>cake<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>drake<span class="pl-pds">"</span></span>) <span class="pl-c">// 2</span></pre></div>
+
+<p><sup>Note the exception of integers, rather than doubles, being returned.</sup></p>
+
+<hr>
+
+<p><strong>N-Gram Metric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">NGramMetric</span>(<span class="pl-c1">1</span>).compare(<span class="pl-s"><span class="pl-pds">"</span>night<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>nacht<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.6</span>
+<span class="pl-en">NGramMetric</span>(<span class="pl-c1">2</span>).compare(<span class="pl-s"><span class="pl-pds">"</span>night<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>nacht<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.25</span>
+<span class="pl-en">NGramMetric</span>(<span class="pl-c1">2</span>).compare(<span class="pl-s"><span class="pl-pds">"</span>context<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>contact<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.5</span></pre></div>
+
+<p><sup>Note you must specify the size of the n-gram you wish to use.</sup></p>
+
+<hr>
+
+<p><strong>Overlap Metric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">OverlapMetric</span>(<span class="pl-c1">1</span>).compare(<span class="pl-s"><span class="pl-pds">"</span>night<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>nacht<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.6</span>
+<span class="pl-en">OverlapMetric</span>(<span class="pl-c1">1</span>).compare(<span class="pl-s"><span class="pl-pds">"</span>context<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>contact<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.7142857142857143</span></pre></div>
+
+<p><sup>Note you must specify the size of the n-gram you wish to use.</sup></p>
+
+<hr>
+
+<p><strong>Ratcliff/Obershelp Metric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">RatcliffObershelpMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>aleksander<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>alexandre<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.7368421052631579</span>
+<span class="pl-en">RatcliffObershelpMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>pennsylvania<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>pencilvaneya<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.6666666666666666</span></pre></div>
+
+<hr>
+
+<p><strong>Weighted Levenshtein Metric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">WeightedLevenshteinMetric</span>(<span class="pl-c1">10</span>, <span class="pl-c1">0.1</span>, <span class="pl-c1">1</span>).compare(<span class="pl-s"><span class="pl-pds">"</span>book<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>back<span class="pl-pds">"</span></span>) <span class="pl-c">// 2</span>
+<span class="pl-en">WeightedLevenshteinMetric</span>(<span class="pl-c1">10</span>, <span class="pl-c1">0.1</span>, <span class="pl-c1">1</span>).compare(<span class="pl-s"><span class="pl-pds">"</span>hosp<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>hospital<span class="pl-pds">"</span></span>) <span class="pl-c">// 0.4</span>
+<span class="pl-en">WeightedLevenshteinMetric</span>(<span class="pl-c1">10</span>, <span class="pl-c1">0.1</span>, <span class="pl-c1">1</span>).compare(<span class="pl-s"><span class="pl-pds">"</span>hospital<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>hosp<span class="pl-pds">"</span></span>) <span class="pl-c">// 40</span></pre></div>
+
+<p><sup>Note you must specify the weight of each operation. Delete, insert, and then substitute. Note that while a double is returned, it can be outside the range of 0 to 1, based upon the weights used.</sup></p>
+
+<hr>
+
+<h2>
+<a id="phonetic-package" class="anchor" href="#phonetic-package" aria-hidden="true"><span class="octicon octicon-link"></span></a>Phonetic package</h2>
+
+<p>Useful for indexing by word pronunciation and performing sounds-like comparisons. All metrics return a boolean value indicating if the two strings sound the same, per the algorithm used. All metrics have an algorithm counterpart which provide the means to perform indexing by word pronunciation.</p>
+
+<hr>
+
+<p><strong>Metaphone Metric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">MetaphoneMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>merci<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>mercy<span class="pl-pds">"</span></span>) <span class="pl-c">// true</span>
+<span class="pl-en">MetaphoneMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>dumb<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>gum<span class="pl-pds">"</span></span>) <span class="pl-c">// false</span></pre></div>
+
+<hr>
+
+<p><strong>Metaphone Algorithm:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">MetaphoneAlgorithm</span>.compute(<span class="pl-s"><span class="pl-pds">"</span>dumb<span class="pl-pds">"</span></span>) <span class="pl-c">// tm</span>
+<span class="pl-en">MetaphoneAlgorithm</span>.compute(<span class="pl-s"><span class="pl-pds">"</span>knuth<span class="pl-pds">"</span></span>) <span class="pl-c">// n0</span></pre></div>
+
+<hr>
+
+<p><strong>NYSIIS Metric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">NysiisMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>ham<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>hum<span class="pl-pds">"</span></span>) <span class="pl-c">// true</span>
+<span class="pl-en">NysiisMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>dumb<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>gum<span class="pl-pds">"</span></span>) <span class="pl-c">// false</span></pre></div>
+
+<hr>
+
+<p><strong>NYSIIS Algorithm:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">NysiisAlgorithm</span>.compute(<span class="pl-s"><span class="pl-pds">"</span>macintosh<span class="pl-pds">"</span></span>) <span class="pl-c">// mcant</span>
+<span class="pl-en">NysiisAlgorithm</span>.compute(<span class="pl-s"><span class="pl-pds">"</span>knuth<span class="pl-pds">"</span></span>) <span class="pl-c">// nnat</span></pre></div>
+
+<hr>
+
+<p><strong>Refined NYSIIS Metric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">RefinedNysiisMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>ham<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>hum<span class="pl-pds">"</span></span>) <span class="pl-c">// true</span>
+<span class="pl-en">RefinedNysiisMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>dumb<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>gum<span class="pl-pds">"</span></span>) <span class="pl-c">// false</span></pre></div>
+
+<hr>
+
+<p><strong>Refined NYSIIS Algorithm:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">RefinedNysiisAlgorithm</span>.compute(<span class="pl-s"><span class="pl-pds">"</span>macintosh<span class="pl-pds">"</span></span>) <span class="pl-c">// mcantas</span>
+<span class="pl-en">RefinedNysiisAlgorithm</span>.compute(<span class="pl-s"><span class="pl-pds">"</span>westerlund<span class="pl-pds">"</span></span>) <span class="pl-c">// wastarlad</span></pre></div>
+
+<hr>
+
+<p><strong>Refined Soundex Metric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">RefinedSoundexMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>robert<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>rupert<span class="pl-pds">"</span></span>) <span class="pl-c">// true</span>
+<span class="pl-en">RefinedSoundexMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>robert<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>rubin<span class="pl-pds">"</span></span>) <span class="pl-c">// false</span></pre></div>
+
+<hr>
+
+<p><strong>Refined Soundex Algorithm:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">RefinedSoundexAlgorithm</span>.compute(<span class="pl-s"><span class="pl-pds">"</span>hairs<span class="pl-pds">"</span></span>) <span class="pl-c">// h093</span>
+<span class="pl-en">RefinedSoundexAlgorithm</span>.compute(<span class="pl-s"><span class="pl-pds">"</span>lambert<span class="pl-pds">"</span></span>) <span class="pl-c">// l7081096</span></pre></div>
+
+<hr>
+
+<p><strong>Soundex Metric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">SoundexMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>robert<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>rupert<span class="pl-pds">"</span></span>) <span class="pl-c">// true</span>
+<span class="pl-en">SoundexMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>robert<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>rubin<span class="pl-pds">"</span></span>) <span class="pl-c">// false</span></pre></div>
+
+<hr>
+
+<p><strong>Soundex Algorithm:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">SoundexAlgorithm</span>.compute(<span class="pl-s"><span class="pl-pds">"</span>rupert<span class="pl-pds">"</span></span>) <span class="pl-c">// r163</span>
+<span class="pl-en">SoundexAlgorithm</span>.compute(<span class="pl-s"><span class="pl-pds">"</span>lukasiewicz<span class="pl-pds">"</span></span>) <span class="pl-c">// l222</span></pre></div>
+
+<hr>
+
+<h2>
+<a id="convenience-objects" class="anchor" href="#convenience-objects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Convenience objects</h2>
+
+<p><strong>StringAlgorithm:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">StringAlgorithm</span>.computeWithMetaphone(<span class="pl-s"><span class="pl-pds">"</span>abcdef<span class="pl-pds">"</span></span>)
+<span class="pl-en">StringAlgorithm</span>.computeWithNysiis(<span class="pl-s"><span class="pl-pds">"</span>abcdef<span class="pl-pds">"</span></span>)</pre></div>
+
+<hr>
+
+<p><strong>StringMetric:</strong></p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">StringMetric</span>.compareWithJaccard(<span class="pl-c1">1</span>)(<span class="pl-s"><span class="pl-pds">"</span>abcdef<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>abcxyz<span class="pl-pds">"</span></span>)
+<span class="pl-en">StringMetric</span>.compareWithJaroWinkler(<span class="pl-s"><span class="pl-pds">"</span>abcdef<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>abcxyz<span class="pl-pds">"</span></span>)</pre></div>
+
+<hr>
+
+<h2>
+<a id="decorating" class="anchor" href="#decorating" aria-hidden="true"><span class="octicon octicon-link"></span></a>Decorating</h2>
+
+<p>It is possible to decorate algorithms and metrics with additional functionality, which you can mix and match. Decorations include:</p>
+
+<ul>
+<li><p><strong><a href="https://en.wikipedia.org/wiki/Memoization">withMemoization</a>:</strong> Computations and comparisons are cached. Future calls made with identical arguments will be looked up, rather than computed.</p></li>
+<li><p><strong>withTransform:</strong> Transform arguments prior to computation/comparison. A handful of pre-built transforms are located in the <a href="https://github.com/rockymadden/stringmetric/blob/master/core/src/main/scala/com/rockymadden/stringmetric/transform.scala">transform module</a>.</p></li>
+</ul>
+
+<hr>
+
+<p>Non-decorated:</p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-en">MetaphoneAlgorithm</span>.compute(<span class="pl-s"><span class="pl-pds">"</span>abcdef<span class="pl-pds">"</span></span>)
+<span class="pl-en">MetaphoneMetric</span>.compare(<span class="pl-s"><span class="pl-pds">"</span>abcdef<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>abcxyz<span class="pl-pds">"</span></span>)</pre></div>
+
+<hr>
+
+<p>Using memoization:</p>
+
+<div class="highlight highlight-scala"><pre>(<span class="pl-en">MetaphoneAlgorithm</span> withMemoization).compute(<span class="pl-s"><span class="pl-pds">"</span>abcdef<span class="pl-pds">"</span></span>)</pre></div>
+
+<hr>
+
+<p>Using a transform so that we only examine alphabetical characters:</p>
+
+<div class="highlight highlight-scala"><pre>(<span class="pl-en">MetaphoneAlgorithm</span> withTransform filterAlpha).compute(<span class="pl-s"><span class="pl-pds">"</span>abcdef<span class="pl-pds">"</span></span>)
+(<span class="pl-en">MetaphoneMetric</span> withTransform filterAlpha).compare(<span class="pl-s"><span class="pl-pds">"</span>abcdef<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>abcxyz<span class="pl-pds">"</span></span>)</pre></div>
+
+<hr>
+
+<p>Using a functionally composed transform so that we only examine alphabetical characters, but the case will not matter:</p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-k">val</span> <span class="pl-en">composedTransform</span> <span class="pl-k">=</span> (filterAlpha andThen ignoreAlphaCase)
+
+(<span class="pl-en">MetaphoneAlgorithm</span> withTransform composedTransform).compute(<span class="pl-s"><span class="pl-pds">"</span>abcdef<span class="pl-pds">"</span></span>)
+(<span class="pl-en">MetaphoneMetric</span> withTransform composedTransform).compare(<span class="pl-s"><span class="pl-pds">"</span>abcdef<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>abcxyz<span class="pl-pds">"</span></span>)</pre></div>
+
+<hr>
+
+<p>Making your own transform:</p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-k">val</span> <span class="pl-en">myTransform</span><span class="pl-k">:</span> <span class="pl-en">StringTransform</span> <span class="pl-k">=</span> (ca) <span class="pl-k">=&gt;</span> ca.filter(_ <span class="pl-k">==</span> <span class="pl-c1">'x'</span>)
+
+(<span class="pl-en">MetaphoneAlgorithm</span> withTransform myTransform).compute(<span class="pl-s"><span class="pl-pds">"</span>abcdef<span class="pl-pds">"</span></span>)
+(<span class="pl-en">MetaphoneMetric</span> withTransform myTransform).compare(<span class="pl-s"><span class="pl-pds">"</span>abcdef<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>abcxyz<span class="pl-pds">"</span></span>)</pre></div>
+
+<hr>
+
+<p>Using memoization and a transform:</p>
+
+<div class="highlight highlight-scala"><pre>((<span class="pl-en">MetaphoneAlgorithm</span> withMemoization) withTransform filterAlpha).compute(<span class="pl-s"><span class="pl-pds">"</span>abcdef<span class="pl-pds">"</span></span>)</pre></div>
+
+<hr>
+
+<h2>
+<a id="building-the-clis" class="anchor" href="#building-the-clis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building the CLIs</h2>
+
+<div class="highlight highlight-shell"><pre>$ git clone https://github.com/rockymadden/stringmetric.git
+$ <span class="pl-c1">cd</span> stringmetric
+$ sbt clean package
+$ ./project/build.sh
+$ ./target/cli/jarometric abc xyz</pre></div>
+
+<hr>
+
+<h2>
+<a id="using-the-clis" class="anchor" href="#using-the-clis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using the CLIs</h2>
+
+<p>Get help:</p>
+
+<div class="highlight highlight-shell"><pre>$ metaphonemetric --help
+Compares two strings to determine <span class="pl-k">if</span> they are phonetically similarly, per the Metaphone algorithm.
+
+Syntax:
+  metaphonemetric [Options] string1 string2...
+
+Options:
+  -h, --help
+    Outputs description, syntax, and options.</pre></div>
+
+<hr>
+
+<p>Get comparison value with metrics:</p>
+
+<div class="highlight highlight-shell"><pre>$ jarowinklermetric dog dawg
+0.75</pre></div>
+
+<hr>
+
+<p>Get representation value with phonetic algorithms:</p>
+
+<div class="highlight highlight-shell"><pre>$ metaphonealgorithm dog
+tk</pre></div>
+
+<hr>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>The MIT License (MIT)
+
+Copyright (c) 2013 Rocky Madden (http://rockymadden.com/)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/rockymadden/stringmetric">stringmetric</a> is maintained by <a href="https://github.com/rockymadden">rockymadden</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
