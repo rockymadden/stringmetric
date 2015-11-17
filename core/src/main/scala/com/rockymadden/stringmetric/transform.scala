@@ -1,24 +1,22 @@
 package com.rockymadden.stringmetric
 
 trait transform {
-	private val Ascii = 0x00.toChar to 0x7F.toChar
-	private val ExtendedAscii = 0x00.toChar to 0x7F.toChar
-	private val Latin = 0x00.toChar to 0x24F.toChar
-	private val LowerCase = 'a' to 'z'
-	private val Numbers = '0' to '9'
-	private val UpperCase = 'A' to 'Z'
+	private lazy val Ascii = 0x00.toChar to 0x7F.toChar
+	private lazy val ExtendedAscii = 0x00.toChar to 0x7F.toChar
+	private lazy val Latin = 0x00.toChar to 0x24F.toChar
+	private lazy val LowerCase = 'a' to 'z'
+	private lazy val Numbers = '0' to '9'
+	private lazy val UpperCase = 'A' to 'Z'
+	private lazy val Alpha = LowerCase ++ UpperCase
+	private lazy val AlphaNumeric = Alpha ++ Numbers
 
-	val filterAlpha: StringTransform =
-		_.filter(c => LowerCase.contains(c) || UpperCase.contains(c))
+	val filterAlpha: StringTransform = _.filter(Alpha.contains)
 
-	val filterNotAlpha: StringTransform =
-		_.filterNot(c => LowerCase.contains(c) || UpperCase.contains(c))
+	val filterNotAlpha: StringTransform = _.filterNot(Alpha.contains)
 
-	val filterAlphaNumeric: StringTransform =
-		_.filter(c => LowerCase.contains(c) || UpperCase.contains(c) || Numbers.contains(c))
+	val filterAlphaNumeric: StringTransform = _.filter(AlphaNumeric.contains)
 
-	val filterNotAlphaNumeric: StringTransform =
-		_.filterNot(c => LowerCase.contains(c) || UpperCase.contains(c) || Numbers.contains(c))
+	val filterNotAlphaNumeric: StringTransform = _.filterNot(AlphaNumeric.contains)
 
 	val filterAscii: StringTransform = _.filter(Ascii.contains)
 
