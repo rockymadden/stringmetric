@@ -14,21 +14,17 @@ trait transform {
 	private val filterNot: ((Array[Char], (Char => Boolean)) => String) = (ca, f) =>
 		ca.filterNot(c => f(c)).mkString
 
-	val filterAlpha: StringTransform = (ca) => filter(ca, c => {
-		LowerCase.contains(c) || UpperCase.contains(c)
-	})
+	val filterAlpha: StringTransform = (ca) =>
+		filter(ca, c => LowerCase.contains(c) || UpperCase.contains(c))
 
-	val filterNotAlpha: StringTransform = (ca) => filterNot(ca, c => {
-		LowerCase.contains(c) || UpperCase.contains(c)
-	})
+	val filterNotAlpha: StringTransform = (ca) =>
+		filterNot(ca, c => LowerCase.contains(c) || UpperCase.contains(c))
 
-	val filterAlphaNumeric: StringTransform = (ca) => filter(ca, c => {
-		LowerCase.contains(c) || UpperCase.contains(c) || Numbers.contains(c)
-	})
+	val filterAlphaNumeric: StringTransform = (ca) =>
+		filter(ca, c => LowerCase.contains(c) || UpperCase.contains(c) || Numbers.contains(c))
 
-	val filterNotAlphaNumeric: StringTransform = (ca) => filterNot(ca, c => {
-		LowerCase.contains(c) || UpperCase.contains(c) || Numbers.contains(c)
-	})
+	val filterNotAlphaNumeric: StringTransform = (ca) =>
+		filterNot(ca, c => LowerCase.contains(c) || UpperCase.contains(c) || Numbers.contains(c))
 
 	val filterAscii: StringTransform = (ca) => filter(ca, Ascii.contains)
 
