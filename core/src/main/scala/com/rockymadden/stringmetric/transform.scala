@@ -44,7 +44,7 @@ trait transform {
 
 	val filterNotUpperCase: StringTransform = _.filterNot(UpperCase.contains)
 
-	val ignoreAlphaCase: StringTransform = (ca) => ca.map(_.toLower)
+	val ignoreAlphaCase: StringTransform = _.map(c => if (UpperCase contains c) c.toLower else c)
 }
 
 object transform extends transform
