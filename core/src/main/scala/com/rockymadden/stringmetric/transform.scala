@@ -8,47 +8,41 @@ trait transform {
 	private val Numbers = '0' to '9'
 	private val UpperCase = 'A' to 'Z'
 
-	private val filter: ((Array[Char], (Char => Boolean)) => String) = (ca, f) =>
-		ca.filter(c => f(c)).mkString
+	val filterAlpha: StringTransform =
+		_.filter(c => LowerCase.contains(c) || UpperCase.contains(c))
 
-	private val filterNot: ((Array[Char], (Char => Boolean)) => String) = (ca, f) =>
-		ca.filterNot(c => f(c)).mkString
+	val filterNotAlpha: StringTransform =
+		_.filterNot(c => LowerCase.contains(c) || UpperCase.contains(c))
 
-	val filterAlpha: StringTransform = (ca) =>
-		filter(ca, c => LowerCase.contains(c) || UpperCase.contains(c))
+	val filterAlphaNumeric: StringTransform =
+		_.filter(c => LowerCase.contains(c) || UpperCase.contains(c) || Numbers.contains(c))
 
-	val filterNotAlpha: StringTransform = (ca) =>
-		filterNot(ca, c => LowerCase.contains(c) || UpperCase.contains(c))
+	val filterNotAlphaNumeric: StringTransform =
+		_.filterNot(c => LowerCase.contains(c) || UpperCase.contains(c) || Numbers.contains(c))
 
-	val filterAlphaNumeric: StringTransform = (ca) =>
-		filter(ca, c => LowerCase.contains(c) || UpperCase.contains(c) || Numbers.contains(c))
+	val filterAscii: StringTransform = _.filter(Ascii.contains)
 
-	val filterNotAlphaNumeric: StringTransform = (ca) =>
-		filterNot(ca, c => LowerCase.contains(c) || UpperCase.contains(c) || Numbers.contains(c))
+	val filterNotAscii: StringTransform = _.filterNot(Ascii.contains)
 
-	val filterAscii: StringTransform = (ca) => filter(ca, Ascii.contains)
+	val filterExtendedAscii: StringTransform = _.filter(ExtendedAscii.contains)
 
-	val filterNotAscii: StringTransform = (ca) => filterNot(ca, Ascii.contains)
+	val filterNotExtendedAscii: StringTransform = _.filterNot(ExtendedAscii.contains)
 
-	val filterExtendedAscii: StringTransform = (ca) => filter(ca, ExtendedAscii.contains)
+	val filterLatin: StringTransform = _.filter(Latin.contains)
 
-	val filterNotExtendedAscii: StringTransform = (ca) => filterNot(ca, ExtendedAscii.contains)
+	val filterNotLatin: StringTransform = _.filterNot(Latin.contains)
 
-	val filterLatin: StringTransform = (ca) => filter(ca, Latin.contains)
+	val filterLowerCase: StringTransform = _.filter(LowerCase.contains)
 
-	val filterNotLatin: StringTransform = (ca) => filterNot(ca, Latin.contains)
+	val filterNotLowerCase: StringTransform = _.filterNot(LowerCase.contains)
 
-	val filterLowerCase: StringTransform = (ca) => filter(ca, LowerCase.contains)
+	val filterNumeric: StringTransform = _.filter(Numbers.contains)
 
-	val filterNotLowerCase: StringTransform = (ca) => filterNot(ca, LowerCase.contains)
+	val filterNotNumeric: StringTransform = _.filterNot(Numbers.contains)
 
-	val filterNumeric: StringTransform = (ca) => filter(ca, Numbers.contains)
+	val filterUpperCase: StringTransform = _.filter(UpperCase.contains)
 
-	val filterNotNumeric: StringTransform = (ca) => filterNot(ca, Numbers.contains)
-
-	val filterUpperCase: StringTransform = (ca) => filter(ca, UpperCase.contains)
-
-	val filterNotUpperCase: StringTransform = (ca) => filterNot(ca, UpperCase.contains)
+	val filterNotUpperCase: StringTransform = _.filterNot(UpperCase.contains)
 
 	val ignoreAlphaCase: StringTransform = (ca) => ca.map(_.toLower)
 }
