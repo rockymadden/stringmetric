@@ -6,17 +6,17 @@ object transformSpec extends org.specs2.mutable.SpecificationWithJUnit {
 	"filterAlpha()" should {
 		"return transformed" in {
 			filterAlpha(
-				("aBc123" + 0x250.toChar).toCharArray
-			) must beEqualTo("aBc".toCharArray)
+				("aBc123zZ" + 0x5B.toChar + 0x7B.toChar).toCharArray
+			) must beEqualTo("aBczZ".toCharArray)
 		}
 	}
 
 	"filterNotAlpha()" should {
 		"return transformed" in {
 			filterNotAlpha(
-				("aBc123" + 0x250.toChar).toCharArray
+				("aBc123zZ" + 0x5B.toChar + 0x7B.toChar).toCharArray
 			) must beEqualTo(
-				("123" + 0x250.toChar).toCharArray
+				("123" + 0x5B.toChar + 0x7B.toChar).toCharArray
 			)
 		}
 	}
@@ -24,17 +24,17 @@ object transformSpec extends org.specs2.mutable.SpecificationWithJUnit {
 	"filterAlphaNumeric()" should {
 		"return transformed" in {
 			filterAlphaNumeric(
-				("aBc123" + 0x250.toChar).toCharArray
-			) must beEqualTo("aBc123".toCharArray)
+				("aBc123zZ9" + 0x3A.toChar + 0x5B.toChar + 0x7B.toChar).toCharArray
+			) must beEqualTo("aBc123zZ9".toCharArray)
 		}
 	}
 
 	"filterNotAlphaNumeric()" should {
 		"return transformed" in {
 			filterNotAlphaNumeric(
-				("aBc123" + 0x250.toChar).toCharArray
+				("aBc123zZ9" + 0x3A.toChar + 0x5B.toChar + 0x7B.toChar).toCharArray
 			) must beEqualTo(
-				("" + 0x250.toChar).toCharArray
+				("" + 0x3A.toChar + 0x5B.toChar + 0x7B.toChar).toCharArray
 			)
 		}
 	}
@@ -42,15 +42,15 @@ object transformSpec extends org.specs2.mutable.SpecificationWithJUnit {
 	"filterAscii()" should {
 		"return transformed" in {
 			filterAscii(
-				("aBc" + 0x80.toChar).toCharArray
-			) must beEqualTo("aBc".toCharArray)
+				("aBc" + 0x7F.toChar + 0x100.toChar).toCharArray
+			) must beEqualTo(("aBc" + 0x7F.toChar).toCharArray)
 		}
 	}
 
 	"filterNotAscii()" should {
 		"return transformed" in {
 			filterNotAscii(
-				("aBc" + 0x100.toChar).toCharArray
+				("aBc" + 0x7F.toChar + 0x100.toChar).toCharArray
 			) must beEqualTo(
 				("" + 0x100.toChar).toCharArray
 			)
@@ -60,15 +60,15 @@ object transformSpec extends org.specs2.mutable.SpecificationWithJUnit {
 	"filterExtendedAscii()" should {
 		"return transformed" in {
 			filterExtendedAscii(
-				("aBc" + 0x100.toChar).toCharArray
-			) must beEqualTo("aBc".toCharArray)
+				("aBc" + 0x7F.toChar + 0x100.toChar).toCharArray
+			) must beEqualTo(("aBc" + 0x7F.toChar).toCharArray)
 		}
 	}
 
 	"filterNotExtendedAscii()" should {
 		"return transformed" in {
 			filterNotExtendedAscii(
-				("aBc" + 0x250.toChar).toCharArray
+				("aBc" + 0x7F.toChar + 0x250.toChar).toCharArray
 			) must beEqualTo(
 				("" + 0x250.toChar).toCharArray
 			)
@@ -78,15 +78,15 @@ object transformSpec extends org.specs2.mutable.SpecificationWithJUnit {
 	"filterLatin()" should {
 		"return transformed" in {
 			filterLatin(
-				("aBc" + 0x250.toChar).toCharArray
-			) must beEqualTo("aBc".toCharArray)
+				("aBc" + 0x24F.toChar + 0x250.toChar).toCharArray
+			) must beEqualTo(("aBc" + 0x24F.toChar).toCharArray)
 		}
 	}
 
 	"filterNotLatin()" should {
 		"return transformed" in {
 			filterNotLatin(
-				("aBc" + 0x300.toChar).toCharArray
+				("aBc" + 0x24F.toChar + 0x300.toChar).toCharArray
 			) must beEqualTo(
 				("" + 0x300.toChar).toCharArray
 			)
@@ -96,15 +96,15 @@ object transformSpec extends org.specs2.mutable.SpecificationWithJUnit {
 	"filterLowerCase()" should {
 		"return transformed" in {
 			filterLowerCase(
-				"aBc123" + 0x250.toChar
-			) must beEqualTo("ac".toCharArray)
+				"aBc123z" + 0x250.toChar
+			) must beEqualTo("acz".toCharArray)
 		}
 	}
 
 	"filterNotLowerCase()" should {
 		"return transformed" in {
 			filterNotLowerCase(
-				("aBc123" + 0x250.toChar).toCharArray
+				("aBc123z" + 0x250.toChar).toCharArray
 			) must beEqualTo(
 				("B123" + 0x250.toChar).toCharArray
 			)
@@ -114,15 +114,15 @@ object transformSpec extends org.specs2.mutable.SpecificationWithJUnit {
 	"filterNumeric()" should {
 		"return transformed" in {
 			filterNumeric(
-				("aBc123" + 0x250.toChar).toCharArray
-			) must beEqualTo("123".toCharArray)
+				("aBc1239" + 0x250.toChar).toCharArray
+			) must beEqualTo("1239".toCharArray)
 		}
 	}
 
 	"filterNotNumeric()" should {
 		"return transformed" in {
 			filterNotNumeric(
-				("aBc123" + 0x250.toChar).toCharArray
+				("aBc1239" + 0x250.toChar).toCharArray
 			) must beEqualTo(
 				("aBc" + 0x250.toChar).toCharArray
 			)
@@ -132,15 +132,15 @@ object transformSpec extends org.specs2.mutable.SpecificationWithJUnit {
 	"filterUpperCase()" should {
 		"return transformed" in {
 			filterUpperCase(
-				("aBc123" + 0x250.toChar).toCharArray
-			) must beEqualTo("B".toCharArray)
+				("aBc123Z" + 0x250.toChar).toCharArray
+			) must beEqualTo("BZ".toCharArray)
 		}
 	}
 
 	"filterNotUpperCase()" should {
 		"return transformed" in {
 			filterNotUpperCase(
-				("aBc123" + 0x250.toChar).toCharArray
+				("aBc123Z" + 0x250.toChar).toCharArray
 			) must beEqualTo(
 				("ac123" + 0x250.toChar).toCharArray
 			)
@@ -150,9 +150,9 @@ object transformSpec extends org.specs2.mutable.SpecificationWithJUnit {
 	"ignoreAlphaCase()" should {
 		"return transformed" in {
 			ignoreAlphaCase(
-				("aBc123" + 0x250.toChar).toCharArray
+				("aBc123zZ" + 0x250.toChar).toCharArray
 			) must beEqualTo(
-				("abc123" + 0x250.toChar).toCharArray
+				("abc123zz" + 0x250.toChar).toCharArray
 			)
 		}
 	}

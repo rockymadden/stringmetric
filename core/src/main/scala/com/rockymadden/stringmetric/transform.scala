@@ -3,12 +3,12 @@ package com.rockymadden.stringmetric
 import scala.collection.immutable.NumericRange
 
 trait transform {
-	private val Ascii = NumericRange(0x00, 0x7F, 1)
-	private val ExtendedAscii = NumericRange(0x00, 0x7F, 1)
-	private val Latin = NumericRange(0x00, 0x24F, 1)
-	private val LowerCase = NumericRange(0x61, 0x7A, 1)
-	private val Numbers = NumericRange(0x30, 0x39, 1)
-	private val UpperCase = NumericRange(0x41, 0x5A, 1)
+	private val Ascii = NumericRange.inclusive(0x00, 0x7F, 1)
+	private val ExtendedAscii = NumericRange.inclusive(0x00, 0x7F, 1)
+	private val Latin = NumericRange.inclusive(0x00, 0x24F, 1)
+	private val LowerCase = NumericRange.inclusive(0x61, 0x7A, 1)
+	private val Numbers = NumericRange.inclusive(0x30, 0x39, 1)
+	private val UpperCase = NumericRange.inclusive(0x41, 0x5A, 1)
 
 	private val filter: ((Array[Char], (Char => Boolean)) => String) = (ca, f) =>
 		ca.filter(c => f(c)).mkString
