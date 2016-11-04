@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-object NGramMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object NGramMetricSpec extends org.specs2.mutable.Specification {
 	"NGramMetric compare()" should {
 		"return None with empty arguments" in {
 			NGramMetric(1).compare("", "").isDefined must beFalse

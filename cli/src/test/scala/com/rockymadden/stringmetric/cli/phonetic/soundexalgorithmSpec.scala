@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.cli.phonetic
 
-object soundexalgorithmSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object soundexalgorithmSpec extends org.specs2.mutable.Specification {
 	"soundexalgorithm main()" should {
 		"print phonetic representation with valid dashless argument" in {
 			val out = new java.io.ByteArrayOutputStream()

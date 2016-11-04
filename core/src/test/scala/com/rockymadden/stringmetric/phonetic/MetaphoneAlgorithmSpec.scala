@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.phonetic
 
-object MetaphoneAlgorithmSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object MetaphoneAlgorithmSpec extends org.specs2.mutable.Specification {
 	"MetaphoneAlgorithm compute()" should {
 		"return None with empty argument" in {
 			MetaphoneAlgorithm.compute("").isDefined must beFalse

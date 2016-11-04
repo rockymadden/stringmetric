@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-object HammingMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object HammingMetricSpec extends org.specs2.mutable.Specification {
 	"HammingMetric compare()" should {
 		"return None with empty arguments" in {
 			HammingMetric.compare("", "").isDefined must beFalse

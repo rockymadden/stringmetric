@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.cli.similarity
 
-object jaccardmetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object jaccardmetricSpec extends org.specs2.mutable.Specification {
 	"jaccardmetric main()" should {
 		"print if they are a match with valid dashless arguments" in {
 			val out = new java.io.ByteArrayOutputStream()

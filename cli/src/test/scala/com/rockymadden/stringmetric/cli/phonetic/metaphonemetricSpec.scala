@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.cli.phonetic
 
-object metaphonemetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object metaphonemetricSpec extends org.specs2.mutable.Specification {
 	"metaphonemetric main()" should {
 		"print if they are a match with valid dashless arguments" in {
 			val out = new java.io.ByteArrayOutputStream()

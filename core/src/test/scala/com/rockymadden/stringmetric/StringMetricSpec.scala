@@ -4,7 +4,7 @@ import com.rockymadden.stringmetric.phonetic._
 import com.rockymadden.stringmetric.similarity._
 import com.rockymadden.stringmetric.transform._
 
-object StringMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object StringMetricSpec extends org.specs2.mutable.Specification {
 	"StringMetric convenience methods" should {
 		"pass through" in {
 			StringMetric.compareWithDiceSorensen(1)("testone", "testtwo").get must

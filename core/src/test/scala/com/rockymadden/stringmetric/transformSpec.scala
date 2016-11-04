@@ -2,7 +2,7 @@ package com.rockymadden.stringmetric
 
 import com.rockymadden.stringmetric.transform._
 
-object transformSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object transformSpec extends org.specs2.mutable.Specification {
 	"filterAlpha()" should {
 		"return transformed" in {
 			filterAlpha(

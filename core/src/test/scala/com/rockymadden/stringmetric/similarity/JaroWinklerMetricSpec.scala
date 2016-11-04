@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-object JaroWinklerMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object JaroWinklerMetricSpec extends org.specs2.mutable.Specification {
 	"JaroWinklerMetric compare()" should {
 		"return None with empty arguments" in {
 			JaroWinklerMetric.compare("", "").isDefined must beFalse

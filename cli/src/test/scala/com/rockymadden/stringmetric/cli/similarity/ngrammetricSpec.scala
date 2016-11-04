@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.cli.similarity
 
-object ngrammetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object ngrammetricSpec extends org.specs2.mutable.Specification {
 	"ngrammetric main()" should {
 		"print if they are a match with valid dashless arguments and valid n argument" in {
 			val out = new java.io.ByteArrayOutputStream()
