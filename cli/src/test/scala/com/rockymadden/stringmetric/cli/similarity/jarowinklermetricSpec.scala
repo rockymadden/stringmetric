@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.cli.similarity
 
-object jarowinklermetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object jarowinklermetricSpec extends org.specs2.mutable.Specification {
 	"jarowinklermetric main()" should {
 		"print the distance with valid dashless arguments" in {
 			val out = new java.io.ByteArrayOutputStream()

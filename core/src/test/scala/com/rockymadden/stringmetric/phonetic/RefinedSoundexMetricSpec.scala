@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.phonetic
 
-object RefinedSoundexMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object RefinedSoundexMetricSpec extends org.specs2.mutable.Specification {
 	"RefinedSoundexMetric compare()" should {
 		"return None with empty arguments" in {
 			RefinedSoundexMetric.compare("", "").isDefined must beFalse

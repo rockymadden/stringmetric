@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.phonetic
 
-object RefinedNysiisAlgorithmSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object RefinedNysiisAlgorithmSpec extends org.specs2.mutable.Specification {
 	"RefinedNysiisAlgorithm compute()" should {
 		"return None with empty argument" in {
 			RefinedNysiisAlgorithm.compute("").isDefined must beFalse

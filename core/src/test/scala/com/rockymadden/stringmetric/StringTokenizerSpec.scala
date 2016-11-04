@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric
 
-object StringTokenizerSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object StringTokenizerSpec extends org.specs2.mutable.Specification {
 	"NGramTokenizer tokenize()" should {
 		"return None with empty argument" in {
 			NGramTokenizer(1).tokenize("").isDefined must beEqualTo(false)

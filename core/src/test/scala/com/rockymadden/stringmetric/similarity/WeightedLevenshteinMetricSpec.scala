@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-object WeightedLevenshteinMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object WeightedLevenshteinMetricSpec extends org.specs2.mutable.Specification {
 	"WeightedLevenshteinMetric compare()" should {
 		"return None with empty arguments" in {
 			WeightedLevenshteinMetric(10, 0.1, 1).compare("", "").isDefined must beFalse

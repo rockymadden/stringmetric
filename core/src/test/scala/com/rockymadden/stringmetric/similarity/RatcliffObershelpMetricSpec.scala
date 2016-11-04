@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-object RatcliffObershelpMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object RatcliffObershelpMetricSpec extends org.specs2.mutable.Specification {
 	"RatcliffObershelpMetric compare()" should {
 		"return None with empty arguments" in {
 			RatcliffObershelpMetric.compare("", "").isDefined must beFalse

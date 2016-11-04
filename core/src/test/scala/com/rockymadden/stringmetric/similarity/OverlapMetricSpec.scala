@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-object OverlapMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object OverlapMetricSpec extends org.specs2.mutable.Specification {
 	"OverlapMetric compare()" should {
 		"return None with empty arguments" in {
 			OverlapMetric(1).compare("", "").isDefined must beFalse

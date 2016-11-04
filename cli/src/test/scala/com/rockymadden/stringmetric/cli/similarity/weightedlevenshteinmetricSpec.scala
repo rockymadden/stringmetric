@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.cli.similarity
 
-object weightedlevenshteinmetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object weightedlevenshteinmetricSpec extends org.specs2.mutable.Specification {
 	"weightedlevenshteinmetric main()" should {
 		"print if they are a match with valid dashless arguments and valid weight arguments" in {
 			val out = new java.io.ByteArrayOutputStream()

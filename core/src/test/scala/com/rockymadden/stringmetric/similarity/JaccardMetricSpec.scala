@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-object JaccardMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object JaccardMetricSpec extends org.specs2.mutable.Specification {
 	"JaccardMetric compare()" should {
 		"return None with empty arguments" in {
 			JaccardMetric(1).compare("", "").isDefined must beFalse
