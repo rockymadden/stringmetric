@@ -26,7 +26,7 @@ case object RefinedSoundexAlgorithm extends StringAlgorithm {
 				case 'l' => '7'
 				case 'm' | 'n' => '8'
 				case 'r' => '9'
-				case _ => '\0'
+				case _ => '\u0000'
 			}
 			val m1 = (mc: Char, pc: Char) => (mc: @annotation.switch) match {
 				case 'a' | 'e' | 'h' | 'i' | 'o' | 'u' | 'w' | 'y' if pc != '0' => '0'
@@ -39,7 +39,7 @@ case object RefinedSoundexAlgorithm extends StringAlgorithm {
 				case 'l' if pc != '7' => '7'
 				case 'm' | 'n' if pc != '8' => '8'
 				case 'r' if pc != '9' => '9'
-				case _ => '\0'
+				case _ => '\u0000'
 			}
 			val a =
 				// Code twice.
@@ -53,6 +53,6 @@ case object RefinedSoundexAlgorithm extends StringAlgorithm {
 					}
 				)
 
-			transcode(i.tail, if (a != '\0') o :+ a else o)
+			transcode(i.tail, if (a != '\u0000') o :+ a else o)
 		}
 }
