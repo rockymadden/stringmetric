@@ -26,7 +26,7 @@ case object SoundexAlgorithm extends StringAlgorithm {
 				case 'l' => '4'
 				case 'm' | 'n' => '5'
 				case 'r' => '6'
-				case _ => '\0'
+				case _ => '\u0000'
 			}
 			val m1 = (mc: Char, pc: Char) => (mc: @annotation.switch) match {
 				case 'b' | 'f' | 'p' | 'v' if pc != '1' => '1'
@@ -35,7 +35,7 @@ case object SoundexAlgorithm extends StringAlgorithm {
 				case 'l' if pc != '4' => '4'
 				case 'm' | 'n' if pc != '5' => '5'
 				case 'r' if pc != '6' => '6'
-				case _ => '\0'
+				case _ => '\u0000'
 			}
 			val a = pc match {
 				// Code twice.
@@ -50,7 +50,7 @@ case object SoundexAlgorithm extends StringAlgorithm {
 				)
 			}
 
-			if (o.length == 3 && a != '\0') o :+ a
-			else transcode(i.tail, c, if (a != '\0') o :+ a else o)
+			if (o.length == 3 && a != '\u0000') o :+ a
+			else transcode(i.tail, c, if (a != '\u0000') o :+ a else o)
 		}
 }
