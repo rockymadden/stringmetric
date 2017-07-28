@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.phonetic
 
-object SoundexAlgorithmSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object SoundexAlgorithmSpec extends org.specs2.mutable.Specification {
 	"SoundexAlgorithm compute()" should {
 		"return None with empty argument" in {
 			SoundexAlgorithm.compute("").isDefined must beFalse

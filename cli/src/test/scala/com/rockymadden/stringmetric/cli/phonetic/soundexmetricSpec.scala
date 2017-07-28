@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.cli.phonetic
 
-object soundexmetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object soundexmetricSpec extends org.specs2.mutable.Specification {
 	"soundexmetric main()" should {
 		"print if they are a match with valid dashless arguments" in {
 			val out = new java.io.ByteArrayOutputStream()

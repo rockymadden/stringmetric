@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.phonetic
 
-object RefinedNysiisMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object RefinedNysiisMetricSpec extends org.specs2.mutable.Specification {
 	"RefinedNysiisMetric compare()" should {
 		"return None with empty arguments" in {
 			RefinedNysiisMetric.compare("", "").isDefined must beFalse

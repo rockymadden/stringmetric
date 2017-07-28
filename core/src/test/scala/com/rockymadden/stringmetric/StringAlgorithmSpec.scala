@@ -3,7 +3,7 @@ package com.rockymadden.stringmetric
 import com.rockymadden.stringmetric.phonetic._
 import com.rockymadden.stringmetric.transform._
 
-object StringAlgorithmSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object StringAlgorithmSpec extends org.specs2.mutable.Specification {
 	"StringAlgorithm convenience methods" should {
 		"pass through" in {
 			StringAlgorithm.computeWithMetaphone("testone").get must

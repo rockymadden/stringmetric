@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.similarity
 
-object DiceSorensenMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object DiceSorensenMetricSpec extends org.specs2.mutable.Specification {
 	"DiceSorensenMetric compare()" should {
 		"return None with empty arguments" in {
 			DiceSorensenMetric(1).compare("", "").isDefined must beFalse

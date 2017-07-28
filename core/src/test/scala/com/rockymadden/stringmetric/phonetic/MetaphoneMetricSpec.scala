@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.phonetic
 
-object MetaphoneMetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object MetaphoneMetricSpec extends org.specs2.mutable.Specification {
 	"MetaphoneMetric compare()" should {
 		"return None with empty arguments" in {
 			MetaphoneMetric.compare("", "").isDefined must beFalse

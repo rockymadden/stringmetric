@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.cli.phonetic
 
-object nysiismetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object nysiismetricSpec extends org.specs2.mutable.Specification {
 	"nysiismetric main()" should {
 		"print if they are a match with valid dashless arguments" in {
 			val out = new java.io.ByteArrayOutputStream()

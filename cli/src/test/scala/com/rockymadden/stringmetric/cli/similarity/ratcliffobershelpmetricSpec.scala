@@ -1,6 +1,6 @@
 package com.rockymadden.stringmetric.cli.similarity
 
-object ratcliffobershelpmetricSpec extends org.specs2.mutable.SpecificationWithJUnit {
+object ratcliffobershelpmetricSpec extends org.specs2.mutable.Specification {
 	"ratcliffobershelpmetric main()" should {
 		"print if they are a match with valid dashless arguments" in {
 			val out = new java.io.ByteArrayOutputStream()
