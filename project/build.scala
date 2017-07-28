@@ -29,23 +29,25 @@ object CoreBuild extends Build {
 			publishMavenStyle := true,
 			publishTo := Some("Sonatype" at "https://oss.sonatype.org/service/local/staging/deploy/maven2"),
 			resolvers ++= Seq(DefaultMavenRepository),
-			scalaVersion := "2.12.0",
-			crossScalaVersions := Seq("2.12.0", "2.11.1", "2.10.4"),
+			scalaVersion := "2.12.3",
+			crossScalaVersions := Seq("2.12.3", "2.11.11", "2.10.6"),
 			crossVersion := CrossVersion.binary,
 			version := "0.27.5"
 		)
 	).aggregate(core, cli)
 
+	private val specs2Version = "3.9.4"
+
 	lazy val core: Project = Project("core", file("core"),
 		settings = (root.settings: Seq[sbt.Def.Setting[_]]) ++ Seq(
-			libraryDependencies ++= Seq("org.specs2" %% "specs2-core" % "3.8.6" % "test"),
+			libraryDependencies ++= Seq("org.specs2" %% "specs2-core" % specs2Version % "test"),
 			name := "stringmetric-core"
 		)
 	)
 
 	lazy val cli: Project = Project("cli", file("cli"),
 		settings = (root.settings: Seq[sbt.Def.Setting[_]]) ++ Seq(
-			libraryDependencies ++= Seq("org.specs2" %% "specs2-core" % "3.8.6" % "test"),
+			libraryDependencies ++= Seq("org.specs2" %% "specs2-core" % specs2Version % "test"),
 			name := "stringmetric-cli"
 		)
 	).dependsOn(core)
